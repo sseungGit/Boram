@@ -21,8 +21,12 @@
 	<a href="${pageContext.request.contextPath}/users/login.do">로그인 하기</a><br>
 =======
 	<a href="${pageContext.request.contextPath }/users/login.do">로그인하기</a><br>
+<<<<<<< HEAD
 >>>>>>> 4fa0b75682992b3c345c5853b927f3a17f8b6f0f
 	<a href="${pageContext.request.contextPath }/customer/qna.do">문의게시판</a><br>
+=======
+	<a href="${pageContext.request.contextPath }/qna/list.do">문의게시판</a><br>
+>>>>>>> 4e48e6f5fdcc45dcd85f32e5094314ea99efe982
 	<a href="${pageContext.request.contextPath}/users/logout.do">로그아웃 하기(정연)</a><br>
 	<a href="${pageContext.request.contextPath }/notice/list.do">공지사항</a><br>
 	<a href="${pageContext.request.contextPath}/users/reserve.do">예약하기</a>

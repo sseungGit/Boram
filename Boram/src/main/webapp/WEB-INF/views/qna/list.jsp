@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>views/customer/qna.jsp</title>
+<title>views/qna/list.jsp</title>
 </head>
 <body>
 	<h1>문의게시판 입니다</h1>
