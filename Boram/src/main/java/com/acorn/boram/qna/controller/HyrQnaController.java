@@ -1,13 +1,13 @@
-package com.acorn.boram.hyr;
+package com.acorn.boram.qna.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class HYRController {
-	@RequestMapping("/customer/qna")
+public class HyrQnaController {
+	@RequestMapping("/qna/list")
 	public String qnaPage() {
-		return "customer/qna";
+		return "qna/list";
 	}
 	
 }
