@@ -10,6 +10,6 @@
 <body>
 	<h1>Index Page</h1>
 	<a href="${pageContext.request.contextPath}/users/login.do">로그인 하기</a>
-	<a href="${pageContext.request.contextPath}/users/logout.do">로그아웃 하기</a>
+	<a href="${pageContext.request.contextPath}/users/logout.do">로그아웃 하기(정연)</a>
 </body>
 </html>
