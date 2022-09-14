@@ -13,7 +13,9 @@
 	<a href="${pageContext.request.contextPath }/customer/qna.do">문의게시판</a><br>
 	<a href="${pageContext.request.contextPath}/users/logout.do">로그아웃 하기(정연)</a><br>
 	<a href="${pageContext.request.contextPath }/notice/list.do">공지사항</a><br>
-	<!-- 문준욱 -->
+	<a href="${pageContext.request.contextPath}/users/reserve.do">예약하기</a>
 	<a href="${pageContext.request.contextPath}/users/reserve.do">예약하기</a><br>
+	<a href="${pageContext.request.contextPath}/users/reservationList.do">예약 리스트</a><br>
+
 </body>
 </html>
