@@ -1,4 +1,4 @@
-# Created by https://www.toptal.com/developers/gitignore/api/java,windows,eclipse,maven
+﻿# Created by https://www.toptal.com/developers/gitignore/api/java,windows,eclipse,maven
 # Edit at https://www.toptal.com/developers/gitignore?templates=java,windows,eclipse,maven
 
 ### 직접 추가한 것 ###
@@ -140,5 +140,7 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+
+.gitignore
 
 # End of https://www.toptal.com/developers/gitignore/api/java,windows,eclipse,maven
