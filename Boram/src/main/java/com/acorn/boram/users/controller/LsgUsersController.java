@@ -1,10 +1,10 @@
-package com.acorn.boram.lsg;
+package com.acorn.boram.users.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class UsersController {
+public class LsgUsersController {
 
 	@RequestMapping("/users/login")
 	public String loginPage() {
