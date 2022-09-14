@@ -10,5 +10,7 @@
 <body>
 	<h1>Index Page</h1>
 	<a href="${pageContext.request.contextPath}/users/login.do">로그인 하기</a>
+	<!-- 문준욱 -->
+	<a href="${pageContext.request.contextPath}/users/reserve.do">예약하기</a>
 </body>
 </html>
