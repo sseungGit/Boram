@@ -5,11 +5,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>views/customer/qna.jsp</title>
 </head>
 <body>
-	<h1>Index Page</h1>
-	<a href="${pageContext.request.contextPath}/users/login.do">로그인 하기</a>
-	<a href="${pageContext.request.contextPath }/customer/qna.do">문의게시판</a>
+	<h1>문의게시판 입니다</h1>
+	<a href="${pageContext.request.contextPath}/">인덱스로</a>
 </body>
 </html>
