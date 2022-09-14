@@ -16,6 +16,6 @@
 	<a href="${pageContext.request.contextPath}/users/reserve.do">예약하기</a>
 	<a href="${pageContext.request.contextPath}/users/reserve.do">예약하기</a><br>
 	<a href="${pageContext.request.contextPath}/users/reservationList.do">예약 리스트</a><br>
-
+	<a href="${pageContext.request.contextPath }/review/list.do">후기게시판</a><br>
 </body>
 </html>
