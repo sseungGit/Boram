@@ -8,7 +8,7 @@
 <title>views/corporation/brand.jsp</title>
 </head>
 <body>
-	<h1>저희 브랜드는</h1>
+	<h1>브랜드 페이지입니다</h1>
 	<a href="${pageContext.request.contextPath}/">인덱스로</a>
 </body>
 </html>
