@@ -9,7 +9,7 @@
 </head>
 <body>
 	<h1>Index Page</h1>
-	<a href="${pageContext.request.contextPath }/users/login.do">로그인하기</a><br>
+	<a href="${pageContext.request.contextPath }/loginform.do">로그인하기</a><br>
 	<a href="${pageContext.request.contextPath }/customer/qna.do">문의게시판</a><br>
 	<a href="${pageContext.request.contextPath}/users/logout.do">로그아웃 하기(정연)</a><br>
 	<a href="${pageContext.request.contextPath }/notice/list.do">공지사항</a><br>

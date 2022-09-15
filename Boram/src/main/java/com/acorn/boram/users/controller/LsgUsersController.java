@@ -6,8 +6,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class LsgUsersController {
 
-	@RequestMapping("/users/login")
+	@RequestMapping("/loginform")
 	public String loginPage() {
-		return "users/login";
+		System.out.println("test");
+		return "mypage/login/loginform";
 	}
 }
