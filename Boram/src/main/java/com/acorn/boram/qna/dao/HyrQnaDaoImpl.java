@@ -4,9 +4,11 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.acorn.boram.qna.dto.HyrQnaDto;
 
+@Repository
 public class HyrQnaDaoImpl implements HyrQnaDao {
 	@Autowired
 	private SqlSession session;

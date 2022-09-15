@@ -16,12 +16,12 @@
 		</choose>
 	</sql>
 	
-	<select id="getList" parameterType="com.acorn.boram.qna.dto.HyrQnaDto">
+	<select id="getList" parameterType="qnaDto" resultType="qnaDto">
 		SELECT *
 		FROM
 			(SELECT result1.*, ROWNUM AS rnum
 			FROM
-				(SELECT num,writer,title,content,regdate
+				(SELECT num,writer,title,content
 				FROM qna_board
 				<include refid="searchCondition"/>
 				ORDER BY num DESC) result1)

@@ -10,7 +10,7 @@
 <body>
 	<h1>자주 묻는 질문</h1>
 	<a href="${pageContext.request.contextPath}/">인덱스로</a>
-	<a href="${pageContext.request.contextPath }/qna/question">1:1문의</a>
+	<a href="${pageContext.request.contextPath }/qna/question.do">1:1문의</a>
 	<table>
 		<thead>
 			<tr>
