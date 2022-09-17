@@ -1,0 +1,12 @@
+CREATE TABLE users(
+id VARCHAR2(100) PRIMARY KEY,
+pwd VARCHAR2(100) NOT NULL,
+name VARCHAR2(100) NOT NULL,
+countryCode NUMBER,
+phone VARCHAR2(100),
+email VARCHAR2(100),
+profile VARCHAR2(100),
+addr VARCHAR2(100),
+regdate DATE,
+manager CHAR(1) CHECK(manager IN ('Y', 'N')) 
+)
