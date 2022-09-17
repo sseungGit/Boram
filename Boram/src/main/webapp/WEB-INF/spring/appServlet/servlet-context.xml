@@ -94,7 +94,6 @@
 	</beans:bean>
 	
 	<context:component-scan base-package="com.acorn.boram" />
-	<context:component-scan base-package="com.acorn.boram.aspect" />
 	
 	<!-- Multipart 폼 전송 처리를 위한 bean 설정 -->
 	<beans:bean id="multipartResolver"
