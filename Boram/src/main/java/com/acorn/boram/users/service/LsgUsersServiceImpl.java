@@ -60,6 +60,8 @@ public class LsgUsersServiceImpl implements LsgUsersService {
 		if(isValid) {//만일 유효한 정보이면 
 			//로그인 처리를 한다.
 			session.setAttribute("id", dto.getId());
+			//매니저/고객 여부 담기
+			session.setAttribute("manager", result.getManager());
 			isValid=true;
 			mView.addObject("isValid",isValid);
 		}

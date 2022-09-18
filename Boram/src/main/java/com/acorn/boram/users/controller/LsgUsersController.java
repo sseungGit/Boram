@@ -30,6 +30,13 @@ public class LsgUsersController {
 		return mView;
 	}
 	
+	//로그아웃
+	@RequestMapping("/users/logout")
+	public String logout(HttpSession session) {
+		session.removeAttribute("id");
+		return "redirect:/home.do";
+	}
+	
 	//회원가입 화면으로 이동
 	@RequestMapping("/users/signup_form")
 	public String signupForm() {

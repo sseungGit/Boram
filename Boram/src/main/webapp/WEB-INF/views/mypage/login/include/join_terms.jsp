@@ -3,26 +3,26 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <%-- 약관 div --%>
-   	<div id="container_terms" class="container">
-
-		<h2>Join Us</h2>
-		
+   	<div id="container_terms" class="container" >
 		<!-- 회원가입약관 동의 시작 { -->
-		<div id="register_agree">
-			<h3>약관 동의</h3>
+		<div id="register_agree" class="d-flex flex-column p-5" style="text-align: left">
+			<div >
+				<h3>약관 동의</h3>
+			</div>
+			<hr />
 		    <!-- <p style="margin: 10px 0;">회원가입약관 및 개인정보처리방침안내의 내용에 동의하셔야 회원가입 하실 수 있습니다.</p> -->
 		    <div id="fregister_chkall">
 				<input type="checkbox" id="chk_all">
 		        <label for="chk_all">회원가입 약관에 모두 동의합니다</label>
 		    </div>
-		
+			<hr />
 		    <section id="fregister_term">
-				<div>            
+				<div class="mb-3">            
 		            <input type="checkbox" id="agree11">
 					<label for="agree11">이용약관 동의<span>(필수)</span></label>
 		        </div>
 		        
-		        <textarea readonly>제1조(목적) 이 약관은 업체 회사(전자상거래 사업자)가 운영하는 업체 사이버 몰(이하 “몰”이라 한다)에서 제공하는 인터넷 관련 서비스(이하 “서비스”라 한다)를 이용함에 있어 사이버 몰과 이용자의 권리․의무 및 책임사항을 규정함을 목적으로 합니다.
+		        <textarea readonly style="width:100%; height:200px; padding:15px; margin-bottom:10px;">제1조(목적) 이 약관은 업체 회사(전자상거래 사업자)가 운영하는 업체 사이버 몰(이하 “몰”이라 한다)에서 제공하는 인터넷 관련 서비스(이하 “서비스”라 한다)를 이용함에 있어 사이버 몰과 이용자의 권리․의무 및 책임사항을 규정함을 목적으로 합니다.
 		 
 		  ※「PC통신, 무선 등을 이용하는 전자상거래에 대해서도 그 성질에 반하지 않는 한 이 약관을 준용합니다.」
 		 
@@ -263,12 +263,12 @@
 		    </section>
 		
 		    <section id="fregister_private">
-		        <fieldset>            
+		        <div class="mb-3">            
 		            <input type="checkbox" id="agree21">
 					<label for="agree21">개인정보 수집 및 이용 동의<span>(필수)</span></label>
-		        </fieldset>
+		        </div>
 		
-				<textarea readonly>개인정보처리방침
+				<textarea readonly style="width:100%; height:200px; padding:15px; margin-bottom:10px;">개인정보처리방침
 		
 		[차례]
 		1. 총칙
@@ -407,8 +407,8 @@
 		    </section>
 		
 		    <div>
-				<a href="javascript:history.back();" class="btn">취소</a>
-				<a href="javascript:agree_check();" class="btn">계속</a>
+				<a href="javascript:history.back();" class="btn btn-primary">취소</a>
+				<a href="javascript:agree_check();" class="btn btn-success">계속</a>
 		    </div>
 		
 		    <script>
@@ -434,12 +434,13 @@
 			    }
 			    
 			    document.querySelector('#chk_all').addEventListener("change",function(){
-			    	if(!agree.checked && !agree2.checked){
+
+			    	if(this.checked){
 			    		agree.checked=true;
 				    	agree2.checked=true;	
 			    	}else{
 			    		agree.checked=false;
-				    	agree2.checked=false;
+				    	agree2.checked=false;	
 			    	}
 			    });
 		    </script>
