@@ -52,9 +52,11 @@
 
 </style>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/nav.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/subFooter.css">
 </head>
 <body>
-
+<jsp:include page="/include/nav.jsp"></jsp:include>
 <div class="container" style= "width:700px">
 	<img src="${pageContext.request.contextPath}/images/review3.jpg"  />	
 	<h1>REVIEW</h1>
@@ -171,7 +173,7 @@
 			<strong>${totalRow }</strong> 개의 글이 검색 되었습니다.
 		</p>
 	</c:if>
-
 </div>
+<jsp:include page="/include/footer.jsp"></jsp:include>
 </body>
 </html>
