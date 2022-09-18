@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="users">
+	<!-- 인자로 전달된 아이디와 일치하는 아디이가 존재하는지 검색 -->
+	<select id="isExist" parameterType="String" resultType="string">
+		SELECT id 
+		FROM users
+		WHERE id=#{inputId}
+	</select>
+	<!-- 인자로 전달된 아이디에 해당하는 가입정보를 리턴해주는 메소드 -->
+	<select id="getData" parameterType="String" resultType="usersDto">
+		SELECT id,name,pwd,email,countryCode,phone,addr,profile,TO_CHAR(regdate,'YYYY-MM-DD') regdate,manager
+		FROM users
+		WHERE id=#{id}
+	</select>
+	<!-- 회원 정보를 저장하는 메소드 -->
+	<insert id="insert" parameterType="usersDto">
+		INSERT INTO users(id,name,pwd,email,countryCode,phone,addr,regdate,manager)
+		VALUES(#{id}, #{name}, #{pwd}, #{email}, #{countryCode}, #{phone}, #{addr}, SYSDATE, 'N')
+	</insert>
+</mapper>

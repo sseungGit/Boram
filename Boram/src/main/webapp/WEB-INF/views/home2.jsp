@@ -24,6 +24,9 @@
 	<a href="${pageContext.request.contextPath}/users/reserve.do">예약하기</a><br>
 	<a href="${pageContext.request.contextPath}/users/reservationList.do">예약 리스트</a><br>
 	<a href="${pageContext.request.contextPath }/review/list.do">후기게시판</a><br>
+		<%-- 이승경--%>
+	<a href="${pageContext.request.contextPath }/users/login_form.do">로그인하기</a><br>
+	<a href="${pageContext.request.contextPath }/users/signup_form.do">회원가입</a><br>
 	<br><br><br><br><br>
 	<jsp:include page="/include/footer.jsp"></jsp:include>
 </body>
