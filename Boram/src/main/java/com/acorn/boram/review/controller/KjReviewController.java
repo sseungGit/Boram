@@ -13,6 +13,7 @@ public class KjReviewController {
 		return "review/list";
 	}
 	
+	//리뷰 리스트 불러오기
 	@RequestMapping("/review/insertform")
 	public ModelAndView authInsertForm(HttpServletRequest request) {
 		

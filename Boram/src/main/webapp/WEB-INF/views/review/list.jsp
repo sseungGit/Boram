@@ -41,6 +41,9 @@
 	  margin-top: 40px;
 	  display: block;
 	  text-align: center;
+	  font-size :35px;
+	  font-weight: 400;
+	  color:000000;
 	}
   	#formOne {
   		display: inline-block;
@@ -49,11 +52,25 @@
   	  	display: inline-block;
 
   	}
-
+	th {
+		color:000000;
+		font-size:17px;
+		font-weight:400;
+	}
+	td {
+		color:999999;
+		font-size:17px;
+	}
 </style>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/nav.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/subFooter.css">
+<!--font-->
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+
+<!-- Font awesome -->
+<script src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/nav.css">
 </head>
 <body>
 <jsp:include page="/include/nav.jsp"></jsp:include>

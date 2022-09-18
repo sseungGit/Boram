@@ -40,7 +40,7 @@
 	
 	<insert id="insert" parameterType="kjReviewDto">
 		INSERT INTO review_board
-		(num,writer,title,content,viewCount,regdate,star)
+		(num,writer,title,content,viewcount,regdate,star)
 		VALUES(review_board_seq.NEXTVAL, #{writer}, #{title},
 			#{content}, #{viewCount}, SYSDATE,#{star})
 	</insert>
