@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>views/qna/insertform.jsp</title>
+<title>/views/qna/updateform.jsp</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" />
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
@@ -15,19 +15,26 @@
 </head>
 <body>
 <div class="container">
-	<h1>문의 작성 폼</h1>
-	<form action="insert.do" method="post" id="insertForm">
-		<div class="mb-3">
-			<label class="form-label" for="title">제목</label>
-			<input class="form-control" type="text" name="title" id="title"/>
+	<h1>글 수정 폼</h1>
+	<form action="update.do" method="post">
+		<input type="hidden" name="num" value="${dto.num }" />
+		<div>
+			<label for="writer">작성자</label>
+			<input type="text" id="writer" value="${dto.writer }" disabled/>
 		</div>
-		<div class="mb-3">
-			<label class="form-label" for="content">내용</label>
-			<textarea class="form-control"  name="content" id="content"></textarea>
+		<div>
+			<label for="title">제목</label>
+			<input type="text" name="title" id="title" value="${dto.title }"/>
 		</div>
-		<button class="btn btn-primary" type="submit">저장</button>
+		<div>
+			<label for="content">내용</label>
+			<textarea name="content" id="content">${dto.content }</textarea>
+		</div>
+		<button type="submit" onclick="submitContents(this);">수정 확인</button>
+		<button type="reset">취소</button>
 	</form>
 </div>
+<!-- SmartEditor 에서 필요한 javascript 로딩  -->
 <script src="${pageContext.request.contextPath }/SmartEditor/js/HuskyEZCreator.js"></script>
 <script>
 	var oEditors = [];
@@ -64,23 +71,22 @@
 		var sHTML = oEditors.getById["content"].getIR();
 		alert(sHTML);
 	}
-
+		
+	function submitContents(elClickedObj) {
+		oEditors.getById["content"].exec("UPDATE_CONTENTS_FIELD", []);	// 에디터의 내용이 textarea에 적용됩니다.
+		
+		// 에디터의 내용에 대한 값 검증은 이곳에서 document.getElementById("content").value를 이용해서 처리하면 됩니다.
+		
+		try {
+			elClickedObj.form.submit();
+		} catch(e) {}
+	}
 	
 	function setDefaultFont() {
 		var sDefaultFont = '궁서';
 		var nFontSize = 24;
 		oEditors.getById["content"].setDefaultFont(sDefaultFont, nFontSize);
 	}
-	
-	//폼에 submit 이벤트가 일어났을때 실행할 함수 등록
-	document.querySelector("#insertForm")
-		.addEventListener("submit", function(e){
-			//에디터에 입력한 내용이 textarea 의 value 값이 될수 있도록 변환한다. 
-			oEditors.getById["content"].exec("UPDATE_CONTENTS_FIELD", []);
-			//textarea 이외에 입력한 내용을 여기서 검증하고 
-			const title=document.querySelector("#title").value;
-			
-		});
 </script>
 </body>
 </html>

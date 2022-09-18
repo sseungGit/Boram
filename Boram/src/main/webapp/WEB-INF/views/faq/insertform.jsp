@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>views/qna/insertform.jsp</title>
+<title>views/faq/insertform.jsp</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" />
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
@@ -15,14 +15,24 @@
 </head>
 <body>
 <div class="container">
-	<h1>문의 작성 폼</h1>
+	<h1>자주묻는질문 작성 폼</h1>
 	<form action="insert.do" method="post" id="insertForm">
 		<div class="mb-3">
-			<label class="form-label" for="title">제목</label>
-			<input class="form-control" type="text" name="title" id="title"/>
+			<label class="form-label" for="category">카테고리</label>
+			<select class="form-select" name="category" id="category">
+				<option selected>카테고리 선택</option>
+				<option value="주문결제">주문결제</option>
+				<option value="배송">배송</option>
+				<option value="회원정보">회원정보</option>
+				<option value="기타">기타</option>
+			</select>
 		</div>
 		<div class="mb-3">
-			<label class="form-label" for="content">내용</label>
+			<label class="form-label" for="quesetion">질문</label>
+			<input class="form-control" type="text" name="question" id="question"/>
+		</div>
+		<div class="mb-3">
+			<label class="form-label" for="content">답변 내용</label>
 			<textarea class="form-control"  name="content" id="content"></textarea>
 		</div>
 		<button class="btn btn-primary" type="submit">저장</button>

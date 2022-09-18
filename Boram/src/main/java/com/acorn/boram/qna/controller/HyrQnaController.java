@@ -23,9 +23,4 @@ public class HyrQnaController {
 		return "qna/list";
 	}
 	
-	//1대1문의하러 가기
-	@RequestMapping("/qna/question")
-	public String questionPage() {
-		return "qna/question";
-	}
 }
