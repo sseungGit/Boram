@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
 	 <!-- 네비바 시작 -->
 	 <div class = "main-wrapper1" id="menu">
 	
@@ -178,11 +179,21 @@
 				</ul>
 			</div>
 			<div class="header-top1">
-				<ul class="menu1">
-					<li><a href="#"><strong>로그인</strong></a></li>
-					<li><a href="#"><strong>회원가입</strong></a></li>			
-				</ul>
+			<c:choose>
+				<c:when test="${ empty sessionScope.id}">
+						<ul class="menu1">
+							<li><a href="${pageContext.request.contextPath}/users/login_form.do"><strong>로그인</strong></a></li>
+							<li><a href="${pageContext.request.contextPath}/users/signup_form.do"><strong>회원가입</strong></a></li>			
+						</ul>
+				</c:when>
+				<c:otherwise>
+						<ul class="menu1">
+							<li><a href="${pageContext.request.contextPath}/users/logout.do"><strong>로그아웃</strong></a></li>			
+						</ul>
+				</c:otherwise>
+			</c:choose>
 			</div><!-- /header-top -->
+
 		</nav>
 	</div>
 	<!-- 네비바 끝 -->
