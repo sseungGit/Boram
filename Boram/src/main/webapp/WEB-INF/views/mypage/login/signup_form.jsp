@@ -44,7 +44,9 @@
 </style>
 </head>
 <body>
-	<jsp:include page="/include/nav.jsp"></jsp:include>
+	<header>
+		<jsp:include page="/include/nav.jsp"></jsp:include>
+	</header>
 	<main>
 		<jsp:include page="include/join_terms.jsp"></jsp:include>
 		<jsp:include page="include/join_form.jsp"></jsp:include>
