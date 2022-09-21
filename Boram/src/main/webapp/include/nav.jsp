@@ -95,14 +95,14 @@
 						<div class = "sub-menu-item1">
 							<h3>예약안내</h3>
 							<ul>
-								<li><a href = "#">예약안내</a></li>
+								<li><a href = "${pageContext.request.contextPath}/reserve/reserve_select.do">예약안내</a></li>
 							</ul>
 						</div>
 						<!-- end of item -->
 						<!-- item -->
 						<div class = "sub-menu-item1" id="lili2">
 							<h2>365일 언제나!<br>Laundry365와 함께해요~!</h2>
-							<button type = "button" class = "btn1">예약안내</button>
+							<button type = "button" class = "btn1" onclick="location.href='${pageContext.request.contextPath}/reserve/reserve_select.do'">예약안내</button>
 						</div>
 						<!-- end of item -->
 						<!-- item -->
