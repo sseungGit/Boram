@@ -86,9 +86,9 @@
 	</div>
 		<form class="reply-form insert-form" action="reply_insert.do" method="post">
 			<!-- 원글의 글번호가 답변의 ref_num 번호가 된다. -->
-			<input type="text" name="ref_num" value="${dto.num }"/>
+			<input type="hidden" name="ref_num" value="${dto.num }"/>
 			<!-- 원글의 작성자가 댓글의 대상자가 된다. -->
-			<input type="text" name="target_id" value="${dto.writer }"/>
+			<input type="hidden" name="target_id" value="${dto.writer }"/>
 	
 			<textarea name="content">${empty id ? '답글 작성을 위해 로그인이 필요 합니다.' : '' }</textarea>
 			<button type="submit">등록</button>
@@ -105,7 +105,7 @@
 			.addEventListener("submit", function(e){
 				//만일 로그인 하지 않았으면 
 				if(!isLogin){
-					//폼 전송을 막고 
+					//폼 전송을 막고 w
 					e.preventDefault();
 					//로그인 폼으로 이동 시킨다.
 					//로그인 성공후 다시 해당글 자세히 보기 페이지로 돌아올 수 있도록 url 정보를  같이 전달한다.
