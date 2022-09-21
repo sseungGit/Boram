@@ -6,7 +6,7 @@
     	<c:when test="${param.thisPage eq 'guide'}">
     		<div id="image-box">
     			<img id="image-thumbnail" 
-    				src="${pageContext.request.contextPath }/resources/img/sub/subimg.jpg" alt="" />
+    				src="${pageContext.request.contextPath }/resources/img/sub/guideimg.jpg" alt="" />
     		</div>
     		<div id="sub-text">
     			<p id="subTitle">이용안내</p>
@@ -17,7 +17,7 @@
 	    		or param.thisPage eq 'findpwd' or param.thisPage eq 'findid'}">
     		<div id="image-box">
     			<img id="image-thumbnail" 
-    				src="${pageContext.request.contextPath }/resources/img/sub/subimg.jpg" alt="" />
+    				src="${pageContext.request.contextPath }/resources/img/sub/loginimg.jpg" alt="" />
     		</div>
     		<div id="sub-text">
     			<p id="subTitle"></p>
