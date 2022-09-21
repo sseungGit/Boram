@@ -1,5 +1,8 @@
 package com.acorn.boram.qna.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -7,9 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.acorn.boram.qna.dto.HyrQnaDto;
+import com.acorn.boram.qna.dto.HyrQnaReplyDto;
 import com.acorn.boram.qna.service.HyrQnaService;
 
 @Controller
@@ -55,6 +60,34 @@ public class HyrQnaController {
 	public String detail(HttpServletRequest request) {
 		service.getDetail(request);
 		return "qna/detail";
+	}
+	@RequestMapping("/qna/reply_insert")
+	public ModelAndView ReplyInsert(HttpServletRequest request, 
+			@RequestParam int ref_num) {
+		
+		service.saveReply(request);
+	
+		return new ModelAndView("redirect:/qna/detail.do?num="+ref_num);
+	}
+	//댓글 삭제 요청 처리
+	@RequestMapping("/qna/comment_delete")
+	@ResponseBody
+	public Map<String, Object> ReplyDelete(HttpServletRequest request) {
+		service.deleteReply(request);
+		Map<String, Object> map=new HashMap<String, Object>();
+		map.put("isSuccess", true);
+		// {"isSuccess":true} 형식의 JSON 문자열이 응답되도록 한다. 
+		return map;
+	}
+	//댓글 수정 요청처리 (JSON 을 응답하도록 한다)
+	@RequestMapping("/qna/reply_update")
+	@ResponseBody
+	public Map<String, Object> CommentUpdate(HyrQnaReplyDto dto, HttpServletRequest request){
+		service.updateReply(dto);
+		Map<String, Object> map=new HashMap<String, Object>();
+		map.put("isSuccess", true);
+		// {"isSuccess":true} 형식의 JSON 문자열이 응답되도록 한다. 
+		return map;
 	}
 	
 }

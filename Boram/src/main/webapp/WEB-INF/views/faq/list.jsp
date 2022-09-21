@@ -66,30 +66,35 @@
 					<th scope="col">#</th>
 					<th scope="col">카테고리</th>
 					<th scope="col">질문</th>
-					
+					<c:if test="${dto.manager eq 'Y' }">
 					<th scope="col">수정</th>
 					<th scope="col">삭제</th>
-					
+					</c:if>
 				</tr>
 			</thead>
 			<tbody>
 			<c:forEach var="tmp" items="${list }">
-				<tr class="question ${tmp.num }" id="question">
+				<tr class="question ${tmp.num }">
 					<td scope="row">${tmp.num }</td>
-					<th scope="row">${tmp.category }</th>
+					<c:choose>
+						<c:when>
+						<th scope="row">${tmp.category } 영어 면 한글로 </th>
+						</c:when>
+					
+					</c:choose>
 					<td scope="row">
 					
 						${tmp.title }<i class="bi bi-chevron-down" style="float:right"></i>
 		
 					</td>
-					
+					<c:if test="${dto.manager eq 'Y' }">
 					<td scope="row"><a href="updateform.do?num=${tmp.num }">수정</a></td>
 					<td scope="row"><a href="delete.do?num=${tmp.num }">삭제</a></td>
-					
+					</c:if>
 				</tr>
 	
 
-				<tr class="answer ${tmp.num }" id="answer">
+				<tr class="answer ${tmp.num }">
 					<td colspan="100%">
 					<div>
 						<p style="text-align: left;">${tmp.content}</p>
@@ -101,8 +106,7 @@
 		</table>
 		
 			<button class="btn btn-dark" style="float:right" onclick="location.href='insertform.do' ">글쓰기</button>
-		
-		
+			
 		<div class="page-ui clearfix">
 		<ul>
 			<c:if test="${startPageNum ne 1 }">

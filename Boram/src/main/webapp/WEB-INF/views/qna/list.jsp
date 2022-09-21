@@ -37,6 +37,9 @@
 		float: left;
 		padding: 5px;
 	}
+	.question:hover{
+		cursor: pointer;
+	}
 </style>
 </head>
 <body>
@@ -65,7 +68,7 @@
 			</thead>
 			<tbody>
 			<c:forEach var="tmp" items="${list }">
-				<tr onclick="location.href='detail.do?num=${tmp.num }'">
+				<tr class="question" onclick="location.href='detail.do?num=${tmp.num }'">
 					<td scope="row">${tmp.title }</td>
 					<td scope="row">${tmp.regdate }</td>
 					<td scope="row"></td>

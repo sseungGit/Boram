@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.acorn.boram.qna.dto.HyrQnaDto;
+import com.acorn.boram.qna.dto.HyrQnaReplyDto;
 
 public interface HyrQnaService {
 	public void getList(HttpServletRequest request);
@@ -18,4 +19,7 @@ public interface HyrQnaService {
 	public void getDetail(HttpServletRequest request);
 	public void updateContent(HyrQnaDto dto);
 	public void getData(HttpServletRequest request);
+	public void saveReply(HttpServletRequest request);//답변 저장 
+	public void deleteReply(HttpServletRequest request);//답변 삭제
+	public void updateReply(HyrQnaReplyDto dto);//답변 수정
 }
