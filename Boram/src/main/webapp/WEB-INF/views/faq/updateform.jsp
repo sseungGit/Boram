@@ -15,15 +15,13 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
-	<header>
-		<!-- main nav바  -->
-   		<jsp:include page="/include/nav.jsp"></jsp:include>
-   		<!-- sub nav바 -->
-   		<jsp:include page="/include/subnav.jsp">
-      		<jsp:param value="cs" name="thisPage"/>
-      		<jsp:param value="faq" name="subPage"/>
-   		</jsp:include>
-	</header>
+	<!-- main nav바  -->
+	<jsp:include page="/include/nav.jsp"></jsp:include>
+	<!-- sub nav바 -->
+	<jsp:include page="/include/subnav.jsp">
+			<jsp:param value="cs" name="thisPage"/>
+			<jsp:param value="faq" name="subPage"/>
+	</jsp:include>
 	<div class="container">
 		<h1 class="text-center">자주 묻는 질문 수정</h1>
 		<form action="update.do" method="post">
@@ -51,9 +49,9 @@
 			<button type="reset">취소</button>
 		</form>
 	</div>
-<!-- SmartEditor 에서 필요한 javascript 로딩  -->
-<script src="${pageContext.request.contextPath }/SmartEditor/js/HuskyEZCreator.js"></script>
-<script>
+	<!-- SmartEditor 에서 필요한 javascript 로딩  -->
+	<script src="${pageContext.request.contextPath }/SmartEditor/js/HuskyEZCreator.js"></script>
+	<script>
 	var oEditors = [];
 	
 	//추가 글꼴 목록
@@ -104,7 +102,7 @@
 		var nFontSize = 24;
 		oEditors.getById["content"].setDefaultFont(sDefaultFont, nFontSize);
 	}
-</script>
-
+	</script>
+	<jsp:include page="/include/footer.jsp"></jsp:include>
 </body>
 </html>

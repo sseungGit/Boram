@@ -48,15 +48,13 @@
 
 </head>
 <body>
-	<header>
-		<!-- main nav바  -->
-   		<jsp:include page="/include/nav.jsp"></jsp:include>
-   		<!-- sub nav바 -->
-   		<jsp:include page="/include/subnav.jsp">
-      		<jsp:param value="cs" name="thisPage"/>
-      		<jsp:param value="faq" name="subPage"/>
-   		</jsp:include>
-	</header>
+	<!-- main nav바  -->
+	<jsp:include page="/include/nav.jsp"></jsp:include>
+	<!-- sub nav바 -->
+	<jsp:include page="/include/subnav.jsp">
+			<jsp:param value="cs" name="thisPage"/>
+			<jsp:param value="faq" name="subPage"/>
+	</jsp:include>
 	<div class="container">
 		<h1 class="text-center">자주 묻는 질문</h1>
 		<button class="btn btn-dark" style="float:right" onclick="location.href='${pageContext.request.contextPath}/qna/list.do' ">1:1문의</button>
@@ -77,10 +75,18 @@
 				<tr class="question ${tmp.num }">
 					<td scope="row">${tmp.num }</td>
 					<c:choose>
-						<c:when>
-						<th scope="row">${tmp.category } 영어 면 한글로 </th>
+						<c:when test="${tmp.category eq 'service' }">
+						<th scope="row">[서비스 이용]</th>
 						</c:when>
-					
+						<c:when test="${tmp.category eq 'order' }">
+						<th scope="row">[주문·결제·배송]</th>
+						</c:when>
+						<c:when test="${tmp.category eq 'member' }">
+						<th scope="row">[회원정보]</th>
+						</c:when>
+						<c:when test="${tmp.category eq 'etc' }">
+						<th scope="row">[기타]</th>
+						</c:when>
 					</c:choose>
 					<td scope="row">
 					
@@ -93,7 +99,7 @@
 					</c:if>
 				</tr>
 	
-
+	
 				<tr class="answer ${tmp.num }">
 					<td colspan="100%">
 					<div>
@@ -151,18 +157,19 @@
 			<strong>${totalRow }</strong> 개의 글이 검색 되었습니다.
 		</p>
 	</c:if>
-	</div>
-	
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script>
-$(document).ready(function() {
-	$(".answer").hide();
-	$(".question").each(function(){
-	 	$(this).click(function(){
-	 		$(".answer").slideToggle();
-	 	});
+		</div>
+		
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script>
+	$(document).ready(function() {
+		$(".answer").hide();
+		$(".question").each(function(){
+		 	$(this).click(function(){
+		 		$(".answer").slideToggle();
+		 	});
+		});
 	});
-});
-</script>
+	</script>
+	<jsp:include page="/include/footer.jsp"></jsp:include>
 </body>
 </html>

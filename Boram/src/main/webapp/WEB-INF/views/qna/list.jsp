@@ -43,15 +43,13 @@
 </style>
 </head>
 <body>
-	<header>
-		<!-- main nav바  -->
-   		<jsp:include page="/include/nav.jsp"></jsp:include>
-   		<!-- sub nav바 -->
-   		<jsp:include page="/include/subnav.jsp">
-      		<jsp:param value="cs" name="thisPage"/>
-      		<jsp:param value="faq" name="subPage"/>
-   		</jsp:include>
-	</header>
+	<!-- main nav바  -->
+	<jsp:include page="/include/nav.jsp"></jsp:include>
+	<!-- sub nav바 -->
+	<jsp:include page="/include/subnav.jsp">
+			<jsp:param value="cs" name="thisPage"/>
+			<jsp:param value="faq" name="subPage"/>
+	</jsp:include>
 	<div class="container">
 		<h1 class="text-center">1:1문의</h1>
 		<button class="btn btn-dark" style="float:right" onclick="location.href='${pageContext.request.contextPath}/qna/insertform.do' "><i class="bi bi-plus"></i>문의하기</button>
@@ -61,9 +59,6 @@
 					<th scope="col">제목</th>
 					<th scope="col">작성일</th>
 					<th scope="col">답변여부</th>
-					<c:if test="${dto.writer eq id }">
-					<th scope="col">삭제</th>
-					</c:if>
 				</tr>
 			</thead>
 			<tbody>
@@ -71,10 +66,7 @@
 				<tr class="question" onclick="location.href='detail.do?num=${tmp.num }'">
 					<td scope="row">${tmp.title }</td>
 					<td scope="row">${tmp.regdate }</td>
-					<td scope="row"></td>
-					<c:if test="${dto.writer eq id }">
-					<td scope="row"><a href="deleteform.do?num=${dto.num }">삭제</a></td>
-					</c:if>
+					<td scope="row">답변대기</td>					
 				</tr>
 			</c:forEach>
 			</tbody>
@@ -106,5 +98,6 @@
 		</ul>
 	</div>
 	</div>
+	<jsp:include page="/include/footer.jsp"></jsp:include>
 </body>
 </html>

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<c:forEach var="tmp" items="${commentList }">
+<c:forEach var="tmp" items="${replyList }">
 			<c:if test="${tmp.rnum eq tmp.ref_num }">
 				<li id="reli${tmp.rnum }">
 			</c:if>
@@ -25,14 +25,14 @@
 							<pre id="pre${tmp.rnum }">${tmp.content }</pre>						
 						</dd>
 					</dl>
-					<form id="reForm${tmp.rnum }" class="animate__animated comment-form re-insert-form" action="comment_insert.do" method="post">
+					<form id="reForm${tmp.rnum }" class="animate__animated reply-form re-insert-form" action="reply_insert.do" method="post">
 						<input type="hidden" name="ref_num" value="${rnum }"/>
 						<input type="hidden" name="target_id" value="${tmp.writer }"/>
 						<textarea name="content"></textarea>
 						<button type="submit">등록</button>
 					</form>
 				<c:if test="${tmp.writer eq id }">
-					<form id="updateForm${tmp.rnum }" class="comment-form update-form" action="comment_update.do" method="post">
+					<form id="updateForm${tmp.rnum }" class="reply-form update-form" action="reply_update.do" method="post">
 						<input type="hidden" name="num" value="${tmp.rnum }" />
 						<textarea name="content">${tmp.content }</textarea>
 						<button type="submit">수정</button>

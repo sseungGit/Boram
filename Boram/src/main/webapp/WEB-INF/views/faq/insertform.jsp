@@ -15,15 +15,13 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
-	<header>
-		<!-- main nav바  -->
-   		<jsp:include page="/include/nav.jsp"></jsp:include>
-   		<!-- sub nav바 -->
-   		<jsp:include page="/include/subnav.jsp">
-      		<jsp:param value="cs" name="thisPage"/>
-      		<jsp:param value="faq" name="subPage"/>
-   		</jsp:include>
-	</header>
+	<!-- main nav바  -->
+	<jsp:include page="/include/nav.jsp"></jsp:include>
+	<!-- sub nav바 -->
+	<jsp:include page="/include/subnav.jsp">
+			<jsp:param value="cs" name="thisPage"/>
+			<jsp:param value="faq" name="subPage"/>
+	</jsp:include>
 	<div class="container">
 		<h1>자주묻는질문 작성 폼</h1>
 		<form action="insert.do" method="post" id="insertForm">
@@ -32,7 +30,7 @@
 				<select class="form-select" name="category" id="category">
 					<option selected>카테고리 선택</option>
 					<option value="service">서비스이용</option>
-					<option value="order">주문결제배송</option>
+					<option value="order">주문·결제·배송</option>
 					<option value="member">회원정보</option>
 					<option value="etc">기타</option>
 				</select>
@@ -48,8 +46,9 @@
 			<button class="btn btn-dark" type="submit">저장</button>
 		</form>
 	</div>
-<script>
-
-</script>
+	<script>
+	
+	</script>
+	<jsp:include page="/include/footer.jsp"></jsp:include>
 </body>
 </html>

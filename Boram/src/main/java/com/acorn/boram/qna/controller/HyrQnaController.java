@@ -69,8 +69,8 @@ public class HyrQnaController {
 	
 		return new ModelAndView("redirect:/qna/detail.do?num="+ref_num);
 	}
-	//댓글 삭제 요청 처리
-	@RequestMapping("/qna/comment_delete")
+	//답글 삭제 요청 처리
+	@RequestMapping("/qna/reply_delete")
 	@ResponseBody
 	public Map<String, Object> ReplyDelete(HttpServletRequest request) {
 		service.deleteReply(request);
@@ -79,10 +79,10 @@ public class HyrQnaController {
 		// {"isSuccess":true} 형식의 JSON 문자열이 응답되도록 한다. 
 		return map;
 	}
-	//댓글 수정 요청처리 (JSON 을 응답하도록 한다)
+	//답글 수정 요청처리 (JSON 을 응답하도록 한다)
 	@RequestMapping("/qna/reply_update")
 	@ResponseBody
-	public Map<String, Object> CommentUpdate(HyrQnaReplyDto dto, HttpServletRequest request){
+	public Map<String, Object> ReplyUpdate(HyrQnaReplyDto dto, HttpServletRequest request){
 		service.updateReply(dto);
 		Map<String, Object> map=new HashMap<String, Object>();
 		map.put("isSuccess", true);
