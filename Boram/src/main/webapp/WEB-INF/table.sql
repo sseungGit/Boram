@@ -42,6 +42,7 @@ CREATE TABLE qna_board(
 	writer VARCHAR2(100) NOT NULL, --작성자 (로그인된 아이디)
 	title VARCHAR2(100) NOT NULL, --제목
 	content CLOB, --글(질문) 내용
+	regdate DATE,
 	orgFileName VARCHAR2(100) NOT NULL, -- 원본 파일명
 	saveFileName VARCHAR2(100) NOT NULL, -- 서버에 실제로 저장된 파일명
 	fileSize NUMBER NOT NULL -- 파일의 크기 

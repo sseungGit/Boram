@@ -40,7 +40,7 @@ public class HyrFaqController {
 	public ModelAndView Insert(HyrFaqDto dto, HttpSession session, HttpServletRequest request) {
 		//글 작성자는 세션에서 얻어낸다. 
 		String id=(String)session.getAttribute("id");
-		//CafeDto 객체에 글 작성자도 담기
+		//dto객체에 글 작성자도 담기
 		dto.setWriter(id);
 		service.saveContent(dto);
 		

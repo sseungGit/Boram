@@ -4,8 +4,10 @@ public class HyrFaqDto {
 	private int num;
 	private String writer;
 	private String category;
-	private String question;
+	private String title;
 	private String content;
+	private String regdate;
+	private String update_date;
 	private int startRowNum;
 	private int endRowNum;
 	private int prevNum;
@@ -13,14 +15,16 @@ public class HyrFaqDto {
 	
 	public HyrFaqDto() {}
 
-	public HyrFaqDto(int num, String writer, String category, String question, String content, int startRowNum,
-			int endRowNum, int prevNum, int nextNum) {
+	public HyrFaqDto(int num, String writer, String category, String title, String content, String regdate,
+			String update_date, int startRowNum, int endRowNum, int prevNum, int nextNum) {
 		super();
 		this.num = num;
 		this.writer = writer;
 		this.category = category;
-		this.question = question;
+		this.title = title;
 		this.content = content;
+		this.regdate = regdate;
+		this.update_date = update_date;
 		this.startRowNum = startRowNum;
 		this.endRowNum = endRowNum;
 		this.prevNum = prevNum;
@@ -51,12 +55,12 @@ public class HyrFaqDto {
 		this.category = category;
 	}
 
-	public String getQuestion() {
-		return question;
+	public String getTitle() {
+		return title;
 	}
 
-	public void setQuestion(String question) {
-		this.question = question;
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 	public String getContent() {
@@ -65,6 +69,22 @@ public class HyrFaqDto {
 
 	public void setContent(String content) {
 		this.content = content;
+	}
+
+	public String getRegdate() {
+		return regdate;
+	}
+
+	public void setRegdate(String regdate) {
+		this.regdate = regdate;
+	}
+
+	public String getUpdate_date() {
+		return update_date;
+	}
+
+	public void setUpdate_date(String update_date) {
+		this.update_date = update_date;
 	}
 
 	public int getStartRowNum() {
@@ -99,6 +119,9 @@ public class HyrFaqDto {
 		this.nextNum = nextNum;
 	}
 
+	
+
+	
 	
 }
 

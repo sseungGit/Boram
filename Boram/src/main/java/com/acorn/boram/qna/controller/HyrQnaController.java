@@ -1,12 +1,15 @@
 package com.acorn.boram.qna.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.acorn.boram.qna.dto.HyrQnaDto;
 import com.acorn.boram.qna.service.HyrQnaService;
 
 @Controller
@@ -21,6 +24,37 @@ public class HyrQnaController {
 		service.getList(request);
 		
 		return "qna/list";
+	}
+	@RequestMapping("/qna/insertform")
+	public ModelAndView InsertForm(HttpServletRequest request) {
+		
+		return new ModelAndView("qna/insertform");
+	}
+	//새글 저장 요청 처리 
+	@RequestMapping("/qna/insert")
+	public ModelAndView Insert(HyrQnaDto dto, ModelAndView mView, HttpSession session, HttpServletRequest request) {
+		//글 작성자는 세션에서 얻어낸다. 
+		String id=(String)session.getAttribute("id");
+		//dto객체에 글 작성자도 담기
+		dto.setWriter(id);
+		service.saveFile(dto, mView, request);
+		mView.setViewName("qna/insert");
+		return mView;
+	}	
+	//파일 삭제 요청 처리
+	@RequestMapping("/qna/delete")
+	public ModelAndView authDelete(@RequestParam int num,
+			ModelAndView mView, HttpServletRequest request) {
+		
+		service.deleteFile(num, request);
+		
+		mView.setViewName("redirect:/qna/list.do");
+		return mView;
+	}
+	@RequestMapping("/qna/detail")
+	public String detail(HttpServletRequest request) {
+		service.getDetail(request);
+		return "qna/detail";
 	}
 	
 }

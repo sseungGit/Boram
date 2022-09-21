@@ -126,7 +126,7 @@
 							<h3>고객지원</h3>
 							<ul>
 								<li><a href = "#">후기게시판</a></li>
-								<li><a href = "#">질문게시판</a></li>
+								<li><a href = "${pageContext.request.contextPath }/faq/list.do">질문게시판</a></li>
 								<li><a href = "#">공지사항</a></li>
 							</ul>
 						</div>
@@ -134,7 +134,7 @@
 						<!-- item -->
 						<div class = "sub-menu-item1" id="lili2">
 							<h2>Laundry에서<br> 여러분의 고민을 상담해 드립니다.</h2>
-							<button type = "button" class = "btn1">질문게시판</button>
+							<button type = "button" class = "btn1" onclick="location.href='${pageContext.request.contextPath}/faq/list.do'">질문게시판</button>
 						</div>
 						<!-- end of item -->
 						<!-- item -->

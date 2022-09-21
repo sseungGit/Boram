@@ -1,5 +1,6 @@
 package com.acorn.boram.faq.service;
 
+import java.net.URLEncoder;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -38,9 +39,35 @@ public class HyrFaqServiceImpl implements HyrFaqService{
 		//보여줄 페이지의 끝 ROWNUM
 		int endRowNum=pageNum*PAGE_ROW_COUNT;
 		
+		String keyword=request.getParameter("keyword");
+		String condition=request.getParameter("condition");
+		//만일 키워드가 넘어오지 않는다면 
+		if(keyword==null){
+			//키워드와 검색 조건에 빈 문자열을 넣어준다. 
+			//클라이언트 웹브라우저에 출력할때 "null" 을 출력되지 않게 하기 위해서  
+			keyword="";
+			condition=""; 
+		}
+
+		//특수기호를 인코딩한 키워드를 미리 준비한다. 
+		String encodedK=URLEncoder.encode(keyword);
+		
 		HyrFaqDto dto=new HyrFaqDto();
 		dto.setStartRowNum(startRowNum);
 		dto.setEndRowNum(endRowNum);
+		//만일 검색 키워드가 넘어온다면 
+		if(!keyword.equals("")){
+			//검색 조건이 무엇이냐에 따라 분기 하기
+			if(condition.equals("title_content")){//제목 + 내용 검색인 경우
+				//검색 키워드를 CafeDto 에 담아서 전달한다.
+				dto.setTitle(keyword);
+				dto.setContent(keyword);
+			}else if(condition.equals("title")){ //제목 검색인 경우
+				dto.setTitle(keyword);
+			}else if(condition.equals("category")){ //카테고리 검색인 경우
+				dto.setCategory(keyword);
+			} // 다른 검색 조건을 추가 하고 싶다면 아래에 else if() 를 계속 추가 하면 된다.
+		}		
 		//글 목록 얻어오기
 		List<HyrFaqDto> list=faqDao.getList(dto);
 		//전체글 갯수
@@ -64,7 +91,9 @@ public class HyrFaqServiceImpl implements HyrFaqService{
 		request.setAttribute("totalPageCount", totalPageCount);
 		request.setAttribute("totalRow", totalRow);
 		mView.addObject("list",list);
-		mView.addObject("test","test");
+		request.setAttribute("condition", condition);
+		request.setAttribute("keyword", keyword);
+		request.setAttribute("encodedK", encodedK);
 	}
 
 	@Override

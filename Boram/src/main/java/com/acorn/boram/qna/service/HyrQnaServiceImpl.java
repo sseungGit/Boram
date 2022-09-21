@@ -1,11 +1,14 @@
 package com.acorn.boram.qna.service;
 
+import java.io.File;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.acorn.boram.qna.dao.HyrQnaDao;
 import com.acorn.boram.qna.dto.HyrQnaDto;
@@ -38,6 +41,8 @@ public class HyrQnaServiceImpl implements HyrQnaService{
 		int endRowNum=pageNum*PAGE_ROW_COUNT;
 		
 		HyrQnaDto dto=new HyrQnaDto();
+		dto.setStartRowNum(startRowNum);
+		dto.setEndRowNum(endRowNum);
 		//글 목록 얻어오기
 		List<HyrQnaDto> list=qnaDao.getList(dto);
 		//전체글 갯수
@@ -61,6 +66,85 @@ public class HyrQnaServiceImpl implements HyrQnaService{
 		request.setAttribute("totalPageCount", totalPageCount);
 		request.setAttribute("list", list);
 		request.setAttribute("totalRow", totalRow);
+	}
+
+	@Override
+	public void saveFile(HyrQnaDto dto, ModelAndView mView, HttpServletRequest request) {
+		//업로드된 파일의 정보를 가지고 있는 MultipartFile 객체의 참조값 얻어오기 
+		MultipartFile myFile=dto.getMyFile();
+		//원본 파일명
+		String orgFileName=myFile.getOriginalFilename();
+		//파일의 크기
+		long fileSize=myFile.getSize();
+		
+		// webapp/upload 폴더 까지의 실제 경로(서버의 파일시스템 상에서의 경로)
+		String realPath=request.getServletContext().getRealPath("/upload");
+		//저장할 파일의 상세 경로
+		String filePath=realPath+File.separator;
+		//디렉토리를 만들 파일 객체 생성
+		File upload=new File(filePath);
+		if(!upload.exists()) {//만일 디렉토리가 존재하지 않으면 
+			upload.mkdir(); //만들어 준다.
+		}
+		//저장할 파일 명을 구성한다.
+		String saveFileName=
+				System.currentTimeMillis()+orgFileName;
+		try {
+			//upload 폴더에 파일을 저장한다.
+			myFile.transferTo(new File(filePath+saveFileName));
+			System.out.println(filePath+saveFileName);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		//dto 에 업로드된 파일의 정보를 담는다.
+		String id=(String)request.getSession().getAttribute("id");
+		dto.setWriter(id); //세션에서 읽어낸 파일 업로더의 아이디 
+		dto.setOrgFileName(orgFileName);
+		dto.setSaveFileName(saveFileName);
+		dto.setFileSize(fileSize);
+		//fileDao 를 이용해서 DB 에 저장하기
+		qnaDao.insert(dto);
+		//view 페이지에서 사용할 모델 담기 
+		mView.addObject("dto", dto);
+		
+	}
+
+	@Override
+	public void getFileData(int num, ModelAndView mView) {
+		HyrQnaDto dto=qnaDao.getData(num);
+		mView.addObject("dto", dto);
+		
+	}
+
+	@Override
+	public void deleteFile(int num, HttpServletRequest request) {
+		HyrQnaDto dto=qnaDao.getData(num);
+		//파일 시스템에서 삭제
+		String saveFileName=dto.getSaveFileName();
+		String path=request.getServletContext().getRealPath("/upload")+
+				File.separator+saveFileName;
+		new File(path).delete();
+		qnaDao.delete(num);
+		
+	}
+
+	@Override
+	public void updateContent(HyrQnaDto dto) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void getData(HttpServletRequest request) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void getDetail(HttpServletRequest request) {
+		int num=Integer.parseInt(request.getParameter("num"));
+		HyrQnaDto dto= new HyrQnaDto();
+		dto.setNum(num);
 	}
 	
 }

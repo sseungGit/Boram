@@ -11,36 +11,46 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/nav.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/subFooter.css">
-
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/subnav.css">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
-<div class="container">
-	<h1>글 수정 폼</h1>
-	<form action="update.do" method="post">
-		<input type="hidden" name="num" value="${dto.num }" />
-		<div>
-			<label for="category">카테고리</label>
-			<!--<input type="text" name="category" id="category" value="${dto.category }"/> -->
-			<select name="category" id="category">
-				<option selected>카테고리 선택</option>
-				<option value="1">주문결제</option>
-				<option value="2">배송</option>
-				<option value="3">회원정보</option>
-				<option value="4">기타</option>
-			</select>
-		</div>
-		<div>
-			<label for="question">질문</label>
-			<input type="text" name="question" id="question" value="${dto.question }"/>
-		</div>
-		<div>
-			<label for="content">답변 내용</label>
-			<textarea name="content" id="content">${dto.content }</textarea>
-		</div>
-		<button type="submit" onclick="submitContents(this);">수정 확인</button>
-		<button type="reset">취소</button>
-	</form>
-</div>
+	<header>
+		<!-- main nav바  -->
+   		<jsp:include page="/include/nav.jsp"></jsp:include>
+   		<!-- sub nav바 -->
+   		<jsp:include page="/include/subnav.jsp">
+      		<jsp:param value="cs" name="thisPage"/>
+      		<jsp:param value="faq" name="subPage"/>
+   		</jsp:include>
+	</header>
+	<div class="container">
+		<h1 class="text-center">자주 묻는 질문 수정</h1>
+		<form action="update.do" method="post">
+			<input type="hidden" name="num" value="${dto.num }" />
+			<input type="hidden" name="writer" value="${dto.writer }" />
+			<div>
+				<label for="category">카테고리</label>
+				<select name="category" id="category">
+					<option value="">카테고리 선택</option>
+					<option value="service" ${dto.category eq 'service' ? 'selected' : '' }>서비스이용</option>
+					<option value="order" ${dto.category eq 'order' ? 'selected' : '' }>주문결제배송</option>
+					<option value="member ${dto.category eq 'member' ? 'selected' : '' }">회원정보</option>
+					<option value="etc ${dto.category eq 'etc' ? 'selected' : '' }">기타</option>
+				</select>
+			</div>
+			<div>
+				<label for="title">질문</label>
+				<input type="text" name="title" id="title" value="${dto.title }"/>
+			</div>
+			<div>
+				<label for="content">답변 내용</label>
+				<textarea name="content" id="content">${dto.content }</textarea>
+			</div>
+			<button type="submit" onclick="submitContents(this);">수정 확인</button>
+			<button type="reset">취소</button>
+		</form>
+	</div>
 <!-- SmartEditor 에서 필요한 javascript 로딩  -->
 <script src="${pageContext.request.contextPath }/SmartEditor/js/HuskyEZCreator.js"></script>
 <script>
@@ -95,5 +105,6 @@
 		oEditors.getById["content"].setDefaultFont(sDefaultFont, nFontSize);
 	}
 </script>
+
 </body>
 </html>

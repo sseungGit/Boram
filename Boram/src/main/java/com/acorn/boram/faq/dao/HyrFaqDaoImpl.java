@@ -32,12 +32,6 @@ public class HyrFaqDaoImpl implements HyrFaqDao {
 	}
 
 	@Override
-	public HyrFaqDto getData(int num) {
-		
-		return session.selectOne("faq.getData", num);
-	}
-
-	@Override
 	public void delete(int num) {
 		
 		session.delete("faq.delete",num);
@@ -53,6 +47,18 @@ public class HyrFaqDaoImpl implements HyrFaqDao {
 	public int getCount(HyrFaqDto dto) {
 		
 		return session.selectOne("faq.getCount",dto);
+	}
+
+	@Override
+	public HyrFaqDto getData(HyrFaqDto dto) {
+		
+		return session.selectOne("faq.getData2", dto);
+	}
+
+	@Override
+	public HyrFaqDto getData(int num) {
+		// TODO Auto-generated method stub
+		return session.selectOne("faq.getData", num);
 	}
 	
 	

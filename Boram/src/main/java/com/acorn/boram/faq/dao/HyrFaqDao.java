@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.acorn.boram.faq.dto.HyrFaqDto;
 
-
 public interface HyrFaqDao {
 	//글목록
 	public List<HyrFaqDto> getList(HyrFaqDto dto);
@@ -12,6 +11,7 @@ public interface HyrFaqDao {
 	public void insert(HyrFaqDto dto);
 	//글정보 얻어오기
 	public HyrFaqDto getData(int num);
+	public HyrFaqDto getData(HyrFaqDto dto);
 	//글 삭제
 	public void delete(int num);
 	//글 수정
