@@ -28,7 +28,7 @@
 		height: 150px;
 		position:relative;
 	}
-	#findpwdform_wr{
+	#findidform_wr{
 		width: 100%;
 		height: 600px;
 		text-align: center;
@@ -43,7 +43,7 @@
 	}
 </style>
 </head>
-<body>
+<body>	
 	<!-- main nav바  -->
 	<jsp:include page="/include/nav.jsp"></jsp:include>
 	<!-- sub nav바 -->
@@ -52,54 +52,41 @@
 		subPage는 소메뉴를 구별하는데 사용
 	 -->
 	<jsp:include page="/include/subnav.jsp">
-		<jsp:param value="findpwd" name="thisPage"/>
-		<jsp:param value="findpwd" name="subPage"/>
+		<jsp:param value="findid" name="thisPage"/>
+		<jsp:param value="findid" name="subPage"/>
 	</jsp:include>
-	<div id="findpwdform_wr">
+	<div id="findidform_wr">
 		<div id="body_content">
-			<form action="#" id="findPwdForm" method="post" autocomplete="off">
+			<form action="#" id="findIdForm" method="post" autocomplete="off">
 				<div class="input-group mb-3">
-					<span class="input-group-text" id="basic-addon1" style="background-color:#F5F5F5;">아이디
-					 </span>
-					 <input class="form-control" type="text" id="id" name="id" style="background-color:#F5F5F5;">
-				</div>
-				<div class="input-group mb-3">
-					<span class="input-group-text" id="basic-addon1" style="background-color:#F5F5F5;">이름
-					 </span>
+					<span class="input-group-text" id="basic-addon1" style="background-color:#F5F5F5;">이름</span>
 					 <input class="form-control" type="text" id="name" name="name" style="background-color:#F5F5F5;">
 				</div>
 				<div class="input-group mb-3">
-					<span class="input-group-text" id="basic-addon1" style="background-color:#F5F5F5;">E-mail
-					 </span>
+					<span class="input-group-text" id="basic-addon1" style="background-color:#F5F5F5;">이메일</span>
 					 <input class="form-control" type="text" id="email" name="email" style="background-color:#F5F5F5;">
 				</div>
-				<div class="row row-cols-1">
-					<div class="col d-grid gap-1 mx-auto mb-3">
-						<button class="btn btn-primary" type="submit" >계속</button>
-					</div>
-					<div class="col">
-						<a href="find_id_form.do" class="btn">Forgot ID?</a>
-					</div>
+				<div class="d-grid gap-1 mx-auto mb-3">
+					<button class="btn btn-primary" type="submit" >계속</button>
 				</div>
 			</form>
-			<div id="addPwdForm"></div>
+			<div id="successDiv" style="display:none;">
+				<p>회원님의 ID는
+				<strong id="data"></strong>입니다.</p>
+				<a href="login_form.do" class="btn btn-primary">로그인</a>
+			</div>
 		</div>
 	</div>
 	<jsp:include page="/include/footer.jsp"></jsp:include>
-	<script src="${pageContext.request.contextPath}/resources/js/gura_util.js"></script>
 	<script>
-		const form=document.querySelector("#findPwdForm"); //폼의 참조값
-		
+		const form=document.querySelector("#findIdForm"); //폼의 참조값
 		form.addEventListener("submit", function(event){
 			event.preventDefault();
-			let id=document.querySelector('#id');
 			let name=document.querySelector('#name');
 			let email=document.querySelector('#email');
 			
-			if(id.value=="" || name.value=="" || email.value==""){
-				if(id.value==""){
-					id.focus();	
-				}else if(name.value==""){
+			if(name.value=="" || email.value==""){
+				if(name.value==""){
 					name.focus();
 				}else{
 					email.focus();
@@ -112,23 +99,14 @@
 					method:"POST",
 					headers:{"Content-Type":"application/x-www-form-urlencoded; charset=utf-8"},
 					body:qs      	
-	            }).then(function(res){
+	            })
+   				.then(function(res){
 					return res.json();
-				}).then(function(data){
-					if(data.user==null){
-						alert('입력하신 정보와 일치하는 회원정보가 없습니다.');
-					}else{
-						form.innerHTML="";
-						
-						ajaxPromise("update_pwd_form.do","get","id="+data.user.id)
-			            .then(function(res){
-							return res.text();
-						}).then(function(data){
-							console.log(data);
-							$('#addPwdForm').html(data);
-							//document.querySelector('#addPwdForm').innerHTML+=data;
-						});
-					}
+				})
+				.then(function(data){
+					$("#findIdForm").hide();
+					$("#data").text(data.user.id);
+					$("#successDiv").show();
 				});
 			}
 		});

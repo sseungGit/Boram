@@ -69,7 +69,18 @@ CREATE SEQUENCE question_board_seq;
 
 
 
+--ALTER TABLE users ADD(saveId CHAR(1));
 
+--ALTER TABLE users ADD CHECK (saveId IN('Y','N'));
+
+--UPDATE users Set saveid='H' WHERE id='hahaha';
+
+--select *
+--from user_constraints
+--where table_name='USERS'
+
+--alter table users
+--drop constraint SYS_C0015017
 
 
 
