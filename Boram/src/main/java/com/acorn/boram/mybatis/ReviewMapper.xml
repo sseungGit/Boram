@@ -21,7 +21,7 @@
 		FROM
 			(SELECT result1.*, ROWNUM AS rnum
 			FROM
-				(SELECT num,writer,title,content,viewCount,regdate,star
+				(SELECT num,writer,title,content,viewCount,TO_CHAR(regdate,'YY.MM.DD') AS regdate ,star
 				FROM review_board
 				<include refid="searchCondition"/>
 				ORDER BY num DESC) result1)
@@ -48,8 +48,8 @@
 	<select id="getData" parameterType="int" resultType="kjReviewDto">
 		SELECT result1.*
 		FROM
-			(SELECT num,writer,title,content,viewCount,star
-				TO_CHAR(regdate,'YY.MM.DD HH24:MI') AS regdate,
+			(SELECT num,writer,title,content,viewCount,star,
+				TO_CHAR(regdate,'YY.MM.DD') AS regdate,
 				LAG(num,1,0) OVER (ORDER BY num DESC) AS prevNum,
 				LEAD(num,1,0) OVER (ORDER BY num DESC) AS nextNum
 			FROM review_board) result1
@@ -60,10 +60,10 @@
 	<select id="getData2" parameterType="kjReviewDto" resultType="kjReviewDto">
 		SELECT result1.*
 		FROM
-			(SELECT num,writer,title,content,viewCount,star
-				TO_CHAR(regdate,'YY.MM.DD HH24:MI') AS regdate,
+			(SELECT num,writer,title,content,viewCount,star,
+				TO_CHAR(regdate,'YY.MM.DD') AS regdate,
 				LAG(num,1,0) OVER (ORDER BY num DESC) AS prevNum,
-				LEAD(num,1,0) OVER (ORDER BY num DESC) AS nextNum
+				LEAD(num,1,0) OVER (ORDER BY num DESC) AS nextNum 
 			FROM review_board
 			<include refid="searchCondition"/>
 			) result1

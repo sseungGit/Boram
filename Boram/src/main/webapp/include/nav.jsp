@@ -33,8 +33,8 @@
 							<ul>
 								<li><a href = "${pageContext.request.contextPath}/home2.do">회사소개</a></li>
 								<li><a href = "#">연혁</a></li>
-								<li><a href = "#">창업안내</a></li>
-								<li><a href = "#">팀원소개</a></li>
+								<li><a href = "${pageContext.request.contextPath }/corporation/startup.do">창업안내</a></li>
+								<li><a href = "${pageContext.request.contextPath }/corporation/members.do">팀원소개</a></li>
 							</ul>
 						</div>
 						<!-- end of item -->
