@@ -84,11 +84,11 @@
 			</dl>		
 		</c:forEach>
 	</div>
-		<form class="reply-form insert-form" action="reply_insert.do" method="post">
+		<form id="reForm${tmp.rnum }" class="reply-form insert-form" action="reply_insert.do" method="post">
 			<!-- 원글의 글번호가 답변의 ref_num 번호가 된다. -->
-			<input type="hidden" name="ref_num" value="${dto.num }"/>
+			<input type="hidden" name="ref_num" value="${dto.rnum }"/>
 			<!-- 원글의 작성자가 댓글의 대상자가 된다. -->
-			<input type="hidden" name="target_id" value="${dto.writer }"/>
+			<input type="hidden" name="writer" value="${dto.writer }"/>
 	
 			<textarea name="content">${empty id ? '답글 작성을 위해 로그인이 필요 합니다.' : '' }</textarea>
 			<button type="submit">등록</button>

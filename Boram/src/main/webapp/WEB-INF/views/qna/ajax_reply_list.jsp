@@ -6,7 +6,7 @@
 				<li id="reli${tmp.rnum }">
 			</c:if>
 			<c:if test="${tmp.rnum ne tmp.ref_num }">
-				<li id="reli${tmp.num }" class="page-${pageNum }" style="padding-left:50px;" >
+				<li id="reli${tmp.rnum }" class="page-${pageNum }" style="padding-left:50px;" >
 					<svg class="reply-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-return-right" viewBox="0 0 16 16">
  							<path fill-rule="evenodd" d="M1.5 1.5A.5.5 0 0 0 1 2v4.8a2.5 2.5 0 0 0 2.5 2.5h9.793l-3.347 3.346a.5.5 0 0 0 .708.708l4.2-4.2a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 8.3H3.5A1.5 1.5 0 0 1 2 6.8V2a.5.5 0 0 0-.5-.5z"/>
 					</svg>
@@ -25,15 +25,16 @@
 							<pre id="pre${tmp.rnum }">${tmp.content }</pre>						
 						</dd>
 					</dl>
-					<form id="reForm${tmp.rnum }" class="animate__animated reply-form re-insert-form" action="reply_insert.do" method="post">
-						<input type="hidden" name="ref_num" value="${rnum }"/>
-						<input type="hidden" name="target_id" value="${tmp.writer }"/>
+					<form id="reForm${tmp.num }" class="animate__animated reply-form re-insert-form" action="reply_insert.do" method="post">
+						<input type="hidden" name="ref_num" value="${tmp.ref_num }"/>
+						<input type="hidden" name="writer" value="${tmp.writer }"/>
 						<textarea name="content"></textarea>
 						<button type="submit">등록</button>
 					</form>
 				<c:if test="${tmp.writer eq id }">
 					<form id="updateForm${tmp.rnum }" class="reply-form update-form" action="reply_update.do" method="post">
-						<input type="hidden" name="num" value="${tmp.rnum }" />
+						<input type="hidden" name="ref_num" value="${tmp.ref_num }" />
+						<input type="hidden" name="writer" value="${tmp.writer }"/>
 						<textarea name="content">${tmp.content }</textarea>
 						<button type="submit">수정</button>
 					</form>

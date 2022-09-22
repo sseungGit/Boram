@@ -15,7 +15,7 @@
 		WHERE rnum=#{rnum}
 	</update>
 	<insert id="insert" parameterType="qnaReplyDto">
-		INSERT INTO board_cafe_comment
+		INSERT INTO reply_board
 		(rnum, ref_num, writer, content, regdate)
 		VALUES(#{rnum},#{ref_num}, #{writer}, #{content}, #{target_id}, 
 			 SYSDATE)
