@@ -123,15 +123,17 @@
 	<div class="a2">
 	<ul>
 	<c:if test="${dto.prevNum ne 0 }">
-			<li><a class="a1" href="detail.do?num=${dto.prevNum }&keyword=${encodedK }&condition=${condition }">이전글</a></li>
+			<li><a class="a1" href="detail.do?num=${dto.prevNum }&keyword=${encodedK }&condition=${condition }">&lt;&lt;이전 글</a></li>
 		</c:if>
 		<c:if test="${dto.nextNum ne 0 }">
-			<li><a class="a1" href="detail.do?num=${dto.nextNum }&keyword=${encodedK }&condition=${condition }">다음글</a></li>
+			<li><a class="a1" href="detail.do?num=${dto.nextNum }&keyword=${encodedK }&condition=${condition }">다음 글&gt;&gt;</a></li>
 	</c:if>
 	</ul>
 	</div>
 	<div class="container mb-5" style= "width:800px">
-		<a class="a1" href="list.do" style= "float: right">목록보기</a>
+		<form action="${pageContext.request.contextPath}/review/list.do" >
+		<button class="float-right btn btn-outline-secondary" style="float: right" type="submit">목록보기 </button>	
+		</form>
 		<c:if test="${dto.writer eq id }">
 			<a class="a1" href="updateform.do?num=${dto.num }" "float: left" >수정</a>
 			<a class="a1" href="delete.do?num=${dto.num }" "float: left" >삭제</a>
