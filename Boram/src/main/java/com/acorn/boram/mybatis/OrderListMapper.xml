@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="orderList">
+	<!-- 주문 내역 전체 검색하기 -->
+	<select id="getList" resultType="orderListDto">
+		SELECT code, s.orderer, order_price, order_addr, s.regdate, reservation_date,
+				request, state, get_invoice_num, send_invoice_num,
+				name, phone, addr
+		FROM service_order s
+		INNER JOIN users ON s.orderer=users.id
+		ORDER BY code
+	</select>
+</mapper>

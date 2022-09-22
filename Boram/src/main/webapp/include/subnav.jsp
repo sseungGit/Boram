@@ -14,7 +14,7 @@
     		</div>
     	</c:when>
 	    <c:when test="${param.thisPage eq 'login' or param.thisPage eq 'signup' 
-	    		or param.thisPage eq 'findpwd' or param.thisPage eq 'findid'}">
+	    		or param.thisPage eq 'findpwd' or param.thisPage eq 'findid' or param.thisPage eq 'manager'}">
     		<div id="image-box">
     			<img id="image-thumbnail" 
     				src="${pageContext.request.contextPath }/resources/img/sub/subimg.jpg" alt="" />
@@ -58,6 +58,10 @@
 	<c:when test="${param.thisPage eq 'findid'}">
 		<div id="subMenuText">
 			<p>아이디 찾기</p>
+		</div>
+	</c:when>
+	<c:when test="${param.thisPage eq 'manager'}">
+		<div id="subMenuText">
 		</div>
 	</c:when>
 	<c:otherwise>
