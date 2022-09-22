@@ -62,41 +62,15 @@
 				</tr>
 			</thead>
 			<tbody>
-			<c:forEach var="tmp" items="${list }">
-				<tr class="question" onclick="location.href='detail.do?num=${tmp.num }'">
-					<td scope="row">${tmp.title }</td>
-					<td scope="row">${tmp.regdate }</td>
-					<td scope="row">답변대기</td>					
-				</tr>
-			</c:forEach>
+					<c:forEach var="tmp" items="${list }">
+					<tr class="question" onclick="location.href='detail.do?num=${tmp.num }'">
+						<td scope="row">${tmp.title }</td>
+						<td scope="row">${tmp.regdate }</td>
+						<td scope="row">답변대기</td>					
+					</tr>
+					</c:forEach>
 			</tbody>
 		</table>
-				<div class="page-ui clearfix">
-		<ul>
-			<c:if test="${startPageNum ne 1 }">
-				<li>
-					<a href="list.do?pageNum=${startPageNum-1 }&condition=${condition }&keyword=${encodedK }">Prev</a>
-				</li>
-			</c:if>
-			<c:forEach var="i" begin="${startPageNum }" end="${endPageNum }">
-				<li>
-					<c:choose>
-						<c:when test="${pageNum eq i }">
-							<a  class="active" href="list.do?pageNum=${i }&condition=${condition }&keyword=${encodedK }">${i }</a>
-						</c:when>
-						<c:otherwise>
-							<a href="list.do?pageNum=${i }&condition=${condition }&keyword=${encodedK }">${i }</a>
-						</c:otherwise>
-					</c:choose>
-				</li>
-			</c:forEach>
-			<c:if test="${endPageNum lt totalPageCount }">
-				<li>
-					<a href="list.do?pageNum=${endPageNum+1 }&condition=${condition }&keyword=${encodedK }">Next</a>
-				</li>
-			</c:if>
-		</ul>
-	</div>
 	</div>
 	<jsp:include page="/include/footer.jsp"></jsp:include>
 </body>

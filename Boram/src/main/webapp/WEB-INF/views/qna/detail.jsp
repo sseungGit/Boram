@@ -35,9 +35,6 @@
 		width: 14%;
 		height: 100px;
 	}
-	.li{
-		border-top: 1px solid #888;
-	}
 	pre {
 	  display: block;
 	  padding: 9.5px;
@@ -64,7 +61,7 @@
 	</jsp:include>
 	<div class="container" style= "width:800px">
 	<h1>1:1문의</h1>
-	<div class="mb-4">
+	<div>
 		<table class="table table-bordered table-striped-columns">
 			<tr>
 				<th>글번호</th>
@@ -89,7 +86,16 @@
 			</tr>
 		</table>		
 		<div class="reply" >
-			<div class="content">${dtoReply.content }</div>
+			<c:if test="${not empty dtoReply.content }">
+				<div class="rcontent">
+					<dl>
+						<dt><i class="bi bi-chat-square-quote"></i> 답변 드립니다.</dt>
+						<dd>${dtoReply.content }</dd>
+					</dl>
+				
+				</div>
+			</c:if>
+
 			<c:if test="${not empty manager and manager == 'Y'}">
 				<!-- 원글의 답글 작성 폼 -->
 				<form class="reply-form insert-form mt-3" action="reply_insert.do" method="post">
@@ -128,10 +134,7 @@
 		function addDeleteListener(sel){
 			//답글 삭제 링크의 참조값을 배열에 담아오기 
 			let deleteLinks=document.querySelectorAll(sel);
-			for(let i=0; i<deleteLinks.length; i++){
-				deleteLinks[i].addEventListener("click", function(){
-					//click 이벤트가 일어난 바로 그 요소의 data-num 속성의 value 값을 읽어온다. 
-					const num=this.getAttribute("data-num"); //답글의 글번호
+				deleteLinks.addEventListener("click", function(){
 					const isDelete=confirm("답글을 삭제 하시겠습니까?");
 					if(isDelete){
 						// gura_util.js 에 있는 함수들 이용해서 ajax 요청
@@ -185,6 +188,8 @@
 			}
 		}
 	</script>
-	<jsp:include page="/include/footer.jsp"></jsp:include>
+	<footer>
+		<jsp:include page="/include/footer.jsp"></jsp:include>
+	</footer>
 </body>
 </html>

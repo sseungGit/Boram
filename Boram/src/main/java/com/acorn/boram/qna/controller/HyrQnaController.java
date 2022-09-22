@@ -51,8 +51,6 @@ public class HyrQnaController {
 	public ModelAndView authDelete(@RequestParam int num,
 			ModelAndView mView, HttpServletRequest request) {
 		
-		//service.deleteFile(num, request);
-		
 		mView.setViewName("redirect:/qna/list.do");
 		return mView;
 	}
