@@ -1,11 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="Reserve">
-	<select id="getData1" parameterType="int" resultType="com.acorn.boram.reserve.dto.ItemsDto">
-		SELECT inum, item, price, category FROM item
-		ORDER BY category
-		WHERE num=#{num}
+	<select id="getList" parameterType="com.acorn.boram.reserve.dto.ItemsDto" resultType="com.acorn.boram.reserve.dto.ItemsDto">
+		SELECT inum, item, price, category
+		FROM items
+		JOIN categorize USING(category)
+		WHERE category = 'clothes'
 	</select>
+	<select id="getList2" parameterType="com.acorn.boram.reserve.dto.ItemsDto" resultType="com.acorn.boram.reserve.dto.ItemsDto">
+		SELECT inum, item, price, category
+		FROM items
+		JOIN categorize USING(category)
+		WHERE category = 'bedding'
+	</select>
+	<select id="getList3" parameterType="com.acorn.boram.reserve.dto.ItemsDto" resultType="com.acorn.boram.reserve.dto.ItemsDto">
+		SELECT inum, item, price, category
+		FROM items
+		JOIN categorize USING(category)
+		WHERE category = 'shoes'
+	</select>
+	<select id="getList4" parameterType="com.acorn.boram.reserve.dto.ItemsDto" resultType="com.acorn.boram.reserve.dto.ItemsDto">
+		SELECT inum, item, price, category
+		FROM items
+		JOIN categorize USING(category)
+		WHERE category = 'living'
+	</select>
+	
 	<select id="getData2" parameterType="int" resultType="com.acorn.boram.reserve.dto.Order_ItemsDto">
 		SELECT code, inum, count FROM order_items
 		WHERE num=#{num}

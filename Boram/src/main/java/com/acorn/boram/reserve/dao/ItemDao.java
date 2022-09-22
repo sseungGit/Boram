@@ -1,8 +1,10 @@
 package com.acorn.boram.reserve.dao;
 
+import java.util.List;
+
 import com.acorn.boram.reserve.dto.ItemsDto;
 
 public interface ItemDao {
 
-	public ItemsDto getData(int num);
+	public List<ItemsDto> getList(ItemsDto dto);
 }

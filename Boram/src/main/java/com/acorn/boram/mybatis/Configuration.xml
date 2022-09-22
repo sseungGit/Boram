@@ -15,7 +15,7 @@
 		<typeAlias type="com.acorn.boram.notice.dto.NoticeDto" alias="noticeDto"/>
 		<typeAlias type="com.acorn.boram.notice.dto.NoticeCommentDto" alias="noticeCommentDto"/>
  	</typeAliases>
-	<mappers>
+ 	<mappers>
 		<mapper resource="com/acorn/boram/mybatis/QnaMapper.xml"/>
 		<mapper resource="com/acorn/boram/mybatis/QnaReplyMapper.xml"/>
 		<mapper resource="com/acorn/boram/mybatis/FaqMapper.xml"/>
@@ -23,12 +23,9 @@
 		<mapper resource="com/acorn/boram/mybatis/UsersMapper.xml"/>
 		<mapper resource="com/acorn/boram/mybatis/LsaOrderListMapper.xml"/>
 		<mapper resource="com/acorn/boram/mybatis/ItemsMapper.xml"/>
-<<<<<<< HEAD
 		<mapper resource="com/acorn/boram/mybatis/OrderListMapper.xml"/>
 		<mapper resource="com/acorn/boram/mybatis/NoticeMapper.xml"/>
 		<mapper resource="com/acorn/boram/mybatis/NoticeCommentMapper.xml"/>
-=======
 		<mapper resource="com/acorn/boram/mybatis/ReserveMapper.xml"/>
->>>>>>> refs/remotes/origin/LAB11
  	</mappers>
  </configuration>

@@ -37,11 +37,6 @@
                     <dd>
                         <select name="product" id="product">
                             <optgroup label="상품선택">
-                               <c:forEach var="tmp" itmes="${list }">
-                                  <option value="">선택해주세요</option>
-                                  <option value="${ tmp.inum }" onclik="click(${ tmp.inum },${ tmp.item })">${ tmp.item }</option>
-                                 </c:forEach>
-                                
                                 <option value="카페트">카페트</option>
                                 <option value="러그">러그</option>
                                 <option value="커튼">커튼</option>
