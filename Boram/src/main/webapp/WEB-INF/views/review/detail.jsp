@@ -69,7 +69,7 @@
     <jsp:param value="review" name="subPage"/>
  </jsp:include>
 <div class="container" style= "width:800px">
-	<img src="${pageContext.request.contextPath}/images/review6.jpg"  />
+	<img src="${pageContext.request.contextPath}/images/laundry.jpg"  />
 	<table class="table table-bordered table-striped-columns ">
 		<tr>
 			<th>글번호</th>
@@ -123,10 +123,22 @@
 	<div class="a2">
 	<ul>
 	<c:if test="${dto.prevNum ne 0 }">
-			<li><a class="a1" href="detail.do?num=${dto.prevNum }&keyword=${encodedK }&condition=${condition }">&lt;&lt;이전 글</a></li>
+			<li><a class="a1" href="detail.do?num=${dto.prevNum }&keyword=${encodedK }&condition=${condition }">
+					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-double-left" viewBox="0 0 16 16">
+					  <path fill-rule="evenodd" d="M8.354 1.646a.5.5 0 0 1 0 .708L2.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+					  <path fill-rule="evenodd" d="M12.354 1.646a.5.5 0 0 1 0 .708L6.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+					</svg>
+				</a>
+			</li>
 		</c:if>
 		<c:if test="${dto.nextNum ne 0 }">
-			<li><a class="a1" href="detail.do?num=${dto.nextNum }&keyword=${encodedK }&condition=${condition }">다음 글&gt;&gt;</a></li>
+			<li><a class="a1" href="detail.do?num=${dto.nextNum }&keyword=${encodedK }&condition=${condition }">
+					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-double-right" viewBox="0 0 16 16">
+	  					<path fill-rule="evenodd" d="M3.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L9.293 8 3.646 2.354a.5.5 0 0 1 0-.708z"/>
+	  					<path fill-rule="evenodd" d="M7.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L13.293 8 7.646 2.354a.5.5 0 0 1 0-.708z"/>
+					</svg>
+				</a>
+			</li>
 	</c:if>
 	</ul>
 	</div>

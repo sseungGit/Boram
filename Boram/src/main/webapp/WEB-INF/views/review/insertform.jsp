@@ -40,7 +40,7 @@
     <jsp:param value="review" name="subPage"/>
  </jsp:include>
 	<div class="container mb-3" style= "width:800px">
-	<img src="${pageContext.request.contextPath}/images/review7.jpg"  />
+	<img src="${pageContext.request.contextPath}/images/laundry3.PNG"  />
 	<form action="insert.do" method="post" id="insertForm">
 		<div class="mt-3 mb-3">
 			<label class="form-label" for="title">제목</label>
