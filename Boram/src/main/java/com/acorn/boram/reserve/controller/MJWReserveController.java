@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -16,9 +17,8 @@ import com.acorn.boram.reserve.service.ServiceOrderService;
 @Controller
 public class MJWReserveController {
 
-   
 
-   
+	
    @RequestMapping("/reserve/reserve_select")
    public String reserve_select(HttpServletRequest request) {
       return "reserve/reserve_select";
@@ -29,20 +29,23 @@ public class MJWReserveController {
       
       //카테고리 값 확인
       System.out.println("category : "+category);
-      
       ModelAndView mView=new ModelAndView();
       //category키 값으로 value에 category값 담기
       mView.addObject("category", category);
       if(category.equals("clothes")) {
-         mView.setViewName("reserve/reserve_wash");
+    	  service1.getList(request);
+    	  mView.setViewName("reserve/reserve_wash");
       }else if(category.equals("bedding")){
-         mView.setViewName("reserve/reserve_bed");
+    	  service1.getList2(request);
+    	  mView.setViewName("reserve/reserve_bed");
       }else if(category.equals("shoes")){
-         mView.setViewName("reserve/reserve_shoes");
+    	  service1.getList3(request);
+    	  mView.setViewName("reserve/reserve_shoes");
       }else if(category.equals("living")){
-         mView.setViewName("reserve/reserve_living");
+    	  service1.getList4(request);
+    	  mView.setViewName("reserve/reserve_living");
       }
-      return mView;
+      	return mView;
    }
    
    @RequestMapping("/reserve/reserve_wash")

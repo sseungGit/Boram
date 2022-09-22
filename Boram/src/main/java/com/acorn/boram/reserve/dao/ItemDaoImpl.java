@@ -17,6 +17,24 @@ public class ItemDaoImpl implements ItemDao{
 	@Override
 	public List<ItemsDto> getList(ItemsDto dto) {
 		
-		return session.selectOne("Reserve.getList", dto);
+		return session.selectList("Reserve.getList", dto);
+	}
+
+	@Override
+	public List<ItemsDto> getList2(ItemsDto dto) {
+
+		return session.selectList("Reserve.getList2", dto);
+	}
+
+	@Override
+	public List<ItemsDto> getList3(ItemsDto dto) {
+
+		return session.selectList("Reserve.getList3", dto);
+	}
+
+	@Override
+	public List<ItemsDto> getList4(ItemsDto dto) {
+
+		return session.selectList("Reserve.getList4", dto);
 	}
 }
