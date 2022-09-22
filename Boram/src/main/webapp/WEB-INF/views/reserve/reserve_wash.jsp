@@ -10,13 +10,19 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/reserve_img/jquery css/jquery.datetimepicker.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/reserve_img/reserve.css">
-       <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/nav.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/nav.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/subFooter.css" />
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/subnav.css">
+	
 </head>
 <body>
 <jsp:include page="/include/nav.jsp"></jsp:include>
+<jsp:include page="/include/subnav.jsp">
+      <jsp:param value="guide" name="thisPage"/>
+      <jsp:param value="area" name="subPage"/>
+</jsp:include>
 <div class="container">
-    <span>step02 상품선택</span>
+    <p>step02 상품선택</p>
     <main id="order_wrap">
         <div class="left">
             <img src="${pageContext.request.contextPath}/reserve_img/990A4A4A5DB90F5C2F.png">

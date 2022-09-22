@@ -12,11 +12,17 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/reserve_img/reserve.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/nav.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/subFooter.css" />
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/subnav.css">
 </head>
 <body>
 <jsp:include page="/include/nav.jsp"></jsp:include>
+<jsp:include page="/include/subnav.jsp">
+      <jsp:param value="guide" name="thisPage"/>
+      <jsp:param value="area" name="subPage"/>
+</jsp:include>
+
 <div class="container">
-    <span>step02 상품선택</span>
+    <p>step02 상품선택</p>
     <main id="order_wrap">
         <div class="left">
             <img src="${pageContext.request.contextPath}/reserve_img/10_1555258129.png">

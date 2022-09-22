@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Reserve">
+	<select id="getData1" parameterType="int" resultType="com.acorn.boram.reserve.dto.ItemsDto">
+		SELECT item, price, category FROM item
+		WHERE num=#{num}
+	</select>
+	<select id="getData2" parameterType="int" resultType="com.acorn.boram.reserve.dto.Order_ItemsDto">
+		SELECT code, inum, count FROM order_items
+		WHERE num=#{num}
+	</select>
+</mapper>
