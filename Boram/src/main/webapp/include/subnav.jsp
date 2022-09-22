@@ -77,8 +77,8 @@
     	</c:when>
    		<c:when test="${param.thisPage eq 'brand'}">
 			<ul id="subNavUl">
-				<li class="subNavItem ${param.subPage eq 'brand' ? 'deco' : ''}">
-				  	<a class="${param.subPage eq 'brand' ? 'active' : ''}" aria-current="page" href="${pageContext.request.contextPath}/corporation/brand.do">브랜드소개</a>
+				<li class="subNavItem ${param.subPage eq 'corpor' ? 'deco' : ''}">
+				  	<a class="${param.subPage eq 'corpor' ? 'active' : ''}" aria-current="page" href="${pageContext.request.contextPath}/corporation/brand.do">브랜드소개</a>
 				</li>
 				<li class="subNavItem ${param.subPage eq 'history' ? 'deco' : ''}">
 				  	<a class="${param.subPage eq 'history' ? 'active' : ''}" href="${pageContext.request.contextPath}/corporation/history.do">연혁</a>
@@ -129,7 +129,7 @@
     	</c:when>
 	</c:choose>
 	<c:choose>
-    	<c:when test="${param.subPage eq 'brand'}">
+    	<c:when test="${param.subPage eq 'corpor'}">
     		<p>브랜드소개</p>
     	</c:when>
   	    <c:when test="${param.subPage eq 'history'}">
