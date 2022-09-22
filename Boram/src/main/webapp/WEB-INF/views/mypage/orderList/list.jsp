@@ -19,8 +19,11 @@
       subPage는 소메뉴를 구별하는데 사용
 -->
 <jsp:include page="/include/subnav.jsp">
-	<jsp:param value="guide" name="thisPage"/>
-	<jsp:param value="area" name="subPage"/>
+	<jsp:param value="mypage" name="thisPage"/>
+	<jsp:param value="orderlist" name="subPage"/>
 </jsp:include>
+<c:if test="${ not empty manager and manager == 'Y'}">
+      sdfsdfd
+</c:if>
 </body>
 </html>
