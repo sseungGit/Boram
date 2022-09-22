@@ -5,13 +5,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class KjMembersController {
-
 	@RequestMapping("/corporation/members")
-	public String memberspage() {
+	public String members() {
 		return "corporation/members";
 	}
-	
-	
-	
-	
 }

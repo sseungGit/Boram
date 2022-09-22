@@ -8,11 +8,13 @@
  		<typeAlias type="com.acorn.boram.review.dto.KjReviewDto" alias="kjReviewDto"/>
 		<typeAlias type="com.acorn.boram.users.dto.LsgUsersDto" alias="usersDto"/>
 		<typeAlias type="com.acorn.boram.orderList.dto.LsaOrderListDto" alias="ordersDto"/>
+		<typeAlias type="com.acorn.boram.guide.dto.LsgItemsDto" alias="itemsDto"/>
  	</typeAliases>
 	<mappers>
 		<mapper resource="com/acorn/boram/mybatis/QnaMapper.xml"/>
 		<mapper resource="com/acorn/boram/mybatis/ReviewMapper.xml"/>
 		<mapper resource="com/acorn/boram/mybatis/UsersMapper.xml"/>
 		<mapper resource="com/acorn/boram/mybatis/LsaOrderListMapper.xml"/>
+		<mapper resource="com/acorn/boram/mybatis/ItemsMapper.xml"/>
  	</mappers>
  </configuration>

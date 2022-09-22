@@ -5,9 +5,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class KjStartupController {
-	
+
 	@RequestMapping("/corporation/startup")
-	public String startuppage() {
+	public String startup() {
 		return "corporation/startup";
 	}
 }

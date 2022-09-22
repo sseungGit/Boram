@@ -30,4 +30,20 @@ public class LsgUsersDaoImpl implements LsgUsersDao{
 		LsgUsersDto dto=session.selectOne("users.getData",id);
 		return dto;
 	}
+
+	@Override
+	public LsgUsersDto isExistUser(LsgUsersDto dto) {
+		LsgUsersDto user=session.selectOne("users.isExistUser",dto);
+		return user;
+	}
+
+	@Override
+	public boolean UpdateUser(LsgUsersDto dto) {
+		int plug=session.update("users.updatePwd",dto);
+		if(plug > 0) {
+			return true;
+		}else {
+			return false;
+		}
+	}
 }

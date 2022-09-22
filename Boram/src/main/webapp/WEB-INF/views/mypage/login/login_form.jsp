@@ -9,40 +9,63 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/nav.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/subnav.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/subFooter.css">
 <style>
-	html,body{  
-		margin:0;
-		padding:0;
-	    height:100%;
-	}
-    body {
-		display: flex;
-		flex-direction: column;
-		text-align: center;
+	body{
 		margin: 0;
+		padding: 0;
+		height: 100%;
 	}
-	main {
-        flex: 1;
-        display: flex;
-        justify-content:center;
-        align-items:center;
-		height:100%;
+	#image-box{
+		width: 100%;
+		height: 300px;
+		overflow: hidden;
+		margin-bottom: 30px;
+	}
+	#subMenuText{
+		height: 150px;
+		position:relative;
+	}
+	#loginform_wr {
+		width: 100%;
+		height: 600px;
+		text-align: center;
+	} 
+	#body-content{
+		width: 25%;
+		display: inline-block;
+	}
+	footer{
 		width:100%;
+		bottom: 0px;
 	}
 </style>
 </head>
 <body>
-	<header>
-		<jsp:include page="/include/nav.jsp"></jsp:include>
-	</header>
-	<main>
+	<!-- main nav바  -->
+	<jsp:include page="/include/nav.jsp"></jsp:include>
+	<!-- sub nav바 -->
+	<!-- 
+		thisPage는 대메뉴를 구별하는데 사용
+		subPage는 소메뉴를 구별하는데 사용
+	 -->
+	<jsp:include page="/include/subnav.jsp">
+		<jsp:param value="login" name="thisPage"/>
+		<jsp:param value="login" name="subPage"/>
+	</jsp:include>
+	<div class="container" id="loginform_wr">
 		<div id="body-content">
-			<h3>Users Login</h3>
 			<form id="loginForm" action="login.do" method="post" autocomplete="off">
 				<!-- 로그인 성공후 어디로 갈지에 대한 정보를 url 이라는 파라미터 명으로 같이 전송되도록 한다. -->
-				<input type="hidden" name="url" value="${url }"/>
-				
+				<c:choose>
+					<c:when test="${ empty param.url }">
+						<input type="hidden" name="url" value="${pageContext.request.contextPath}/"/>
+					</c:when>
+					<c:otherwise>
+						<input type="hidden" name="url" value="${param.url }"/>
+					</c:otherwise>
+				</c:choose>
 				<div class="input-group mb-3">
 				  <span class="input-group-text" id="basic-addon1" style="background-color:#F5F5F5;">
 				  	<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
@@ -62,18 +85,33 @@
 				</div>
 				<div class="row row-cols-1">
 					<div class="col d-grid gap-1 mx-auto mb-3">
-						<button class="btn btn-primary" type="submit">Sign in</button>
+						<button class="btn btn-primary" type="submit" >Sign in</button>
 					</div>
-					<div class="col d-flex justify-content-between">
-						<a href="signup_form.do" class="btn btn-light">Sign up</a>
-						<a href="find_pwd_form.do" class="btn btn-light" >Password?</a>		
+					<div class="col d-flex justify-content-between mb-2">
+						<a href="signup_form.do" class="btn btn-light" style="width:150px;">Sign up</a>
+						<a href="find_pwd_form.do" class="btn btn-light" style="width:150px;" >Password?</a>		
 					</div>			
+					<div class="col">
+						<input type="checkbox" name="saveId" id="saveIdCB" class="form-check-input me-1"/>
+    					<label class="form-check-label" for="saveIdCB">Remember me?</label>
+					</div>
 				</div>
 			</form>
 		</div>
-	</main>
-	
+	</div>
+	<jsp:include page="/include/footer.jsp"></jsp:include>
 	<script>
+		window.onload=function(){
+			const key='${cookie.saveId.value}';
+			const idEl=document.querySelector('#id');
+			const checkEl=document.querySelector('#saveIdCB');
+			idEl.value=key;
+			
+			if(idEl.value != ""){
+				checkEl.checked=true;
+			}
+		}
+	
 		document.querySelector('#loginForm').addEventListener("submit", function(event){
 			let id=document.querySelector('#id').value;
 			let pwd=document.querySelector('#pwd').value;

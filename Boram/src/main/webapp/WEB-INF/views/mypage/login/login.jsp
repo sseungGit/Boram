@@ -9,15 +9,15 @@
 </head>
 <body>
 	<c:choose>
-		<c:when test="${isValid}">
+		<c:when test="${not empty sessionScope.id }">
 			<script>
-				location.href="${pageContext.request.contextPath }/home.do";
+				location.href="${requestScope.url }";
 			</script>
 		</c:when>
 		<c:otherwise>
 			<script>
 				alert("아이디 또는 비밀번호가 틀립니다.");
-				location.href="${pageContext.request.contextPath }/users/login_form.do";
+				location.href="login_form.do?url=${requestScope.encodedUrl }";
 			</script>
 		</c:otherwise>
 	</c:choose>

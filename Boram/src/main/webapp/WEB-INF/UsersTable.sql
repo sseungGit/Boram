@@ -48,7 +48,7 @@ INSERT INTO items
    
 INSERT INTO items
    (inum, item, price, category)
-   VALUES(items_seq.NEXTVAL, '자켓, 점퍼', 5000, 'clothes'1);
+   VALUES(items_seq.NEXTVAL, '자켓, 점퍼', 5000, 'clothes');
    
 INSERT INTO items
    (inum, item, price, category)
@@ -129,7 +129,7 @@ CREATE TABLE service_order(
    regdate DATE NOT NULL,
    reservation_date VARCHAR2(100) NOT NULL, --예약날짜
    request VARCHAR2(500), -- 요구사항, 글자수 제한
-   state VARCHAR2(50) CHECK(type IN ('예약완료', '수거중', '수거완료', '세탁중', '세탁완료', '반환중','반환완료')),
+   state VARCHAR2(50) CHECK(state IN ('예약완료', '수거중', '수거완료', '세탁중', '세탁완료', '반환중','반환완료')),
    get_invoice_num NUMBER, -- 수거용 운송장 번호
    send_invoice_num NUMBER -- 반환용 운송장 번호
    );
@@ -140,3 +140,5 @@ CREATE TABLE order_items(
    inum NUMBER NOT NULL,
    count NUMBER NOT NULL -- 수량
    );
+   
+CREATE SEQUENCE order_items_seq;
