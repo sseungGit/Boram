@@ -4,16 +4,18 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.acorn.boram.reserve.dto.CategorizeDto;
+import com.acorn.boram.reserve.dto.ItemsDto;
 
 @Repository
-public class CategorizeDaoImpl implements CategorizeDao{
+public class ItemDaoImpl implements ItemDao{
 
 	@Autowired
 	private SqlSession session;
 	
-	@Override public CategorizeDto getData(int num) {
+	@Override
+	public ItemsDto getData(int num) {
 		
-		return session.selectOne("Reserve.getData3", num);
+		return session.selectOne("Reserve.getData1", num);
 	}
+
 }

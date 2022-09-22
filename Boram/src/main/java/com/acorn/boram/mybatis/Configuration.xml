@@ -20,5 +20,6 @@
 		<mapper resource="com/acorn/boram/mybatis/UsersMapper.xml"/>
 		<mapper resource="com/acorn/boram/mybatis/LsaOrderListMapper.xml"/>
 		<mapper resource="com/acorn/boram/mybatis/ItemsMapper.xml"/>
+		<mapper resource="com/acorn/boram/mybatis/ReserveMapper.xml"/>
  	</mappers>
  </configuration>

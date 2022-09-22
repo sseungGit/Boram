@@ -1,5 +1,5 @@
 package com.acorn.boram.reserve.service;
 
-public class MJWReserveServiceImpl {
+public class ItemServiceImpl {
 
 }

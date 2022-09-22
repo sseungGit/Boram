@@ -202,6 +202,8 @@ CREATE TABLE service_order(
    send_invoice_num NUMBER -- 반환용 운송장 번호
    );
    
+CREATE SEQUENCE service_order_seq;
+   
 CREATE TABLE order_items(
    num NUMBER PRIMARY KEY,
    code NUMBER NOT NULL,
