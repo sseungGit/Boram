@@ -42,4 +42,22 @@
 		INSERT INTO users(id,name,pwd,email,countryCode,phone,addr,regdate,manager)
 		VALUES(#{id}, #{name}, #{pwd}, #{email}, #{countryCode}, #{phone}, #{addr}, SYSDATE, 'N')
 	</insert>
+	
+	<!-- 이소현 추가 -->
+	<update id="pwdUpdate" parameterType="usersDto">
+		UPDATE users
+		SET pwd=#{newPwd }
+		WHERE id=#{id }
+	</update>
+	
+	<update id="update" parameterType="usersDto">
+		UPDATE users
+		SET email=#{email }, profile=#{profile }, phone=#{phone }, addr=#{addr }, countryCode=#{countryCode }
+		WHERE id=#{id }
+	</update>
+	
+	<delete id="delete" parameterType="string">
+		DELETE FROM users
+		WHERE id=#{id}
+	</delete>
 </mapper>

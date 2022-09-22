@@ -36,7 +36,7 @@
  	<jsp:param value="brand" name="thisPage"/>
     <jsp:param value="members" name="subPage"/>
  </jsp:include>
-<div class="container mb-5" style= "width:1000px">
+<div class="container mb-5" >
  	<img src="${pageContext.request.contextPath}/resources/img/members.png"  />
  
  </div>

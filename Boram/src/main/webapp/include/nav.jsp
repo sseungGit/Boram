@@ -124,7 +124,7 @@
 						<div class = "sub-menu-item1">
 							<h3>고객지원</h3>
 							<ul>
-								<li><a href = "${pageContext.request.contextPath}">후기게시판</a></li>
+								<li><a href = "${pageContext.request.contextPath}/review/list.do">후기게시판</a></li>
 								<li><a href = "${pageContext.request.contextPath }/faq/list.do">질문게시판</a></li>
 								<li><a href = "${pageContext.request.contextPath}/notice/list.do">공지사항</a></li>
 							</ul>
@@ -156,8 +156,8 @@
 						<div class = "sub-menu-item1">
 							<h3>마이페이지</h3>
 							<ul>
-								<li><a href = "#">회원정보</a></li>
-								<li><a href = "${pageContext.request.contextPath}/mypage/orderList/customer.do"">신청내역확인</a></li>
+								<li><a href = "${pageContext.request.contextPath }/mypage/users/info.do">회원정보</a></li>
+								<li><a href = "${pageContext.request.contextPath}/mypage/orderList/customer.do">신청내역확인</a></li>
 								<%-- 로그인 여부에 따라 --%>
 								<c:choose>
 									<c:when test="${ empty sessionScope.id}">
