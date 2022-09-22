@@ -41,7 +41,7 @@
     <jsp:param value="review" name="subPage"/>
  </jsp:include>
 <div class="container mb-3" style= "width:800px">
-	<img src="${pageContext.request.contextPath}/images/review7.jpg"  />
+	<img src="${pageContext.request.contextPath}/images/laundry3.PNG"  />
 	<form action="update.do" method="post">
 		<input type="hidden" name="num" value="${dto.num }" />
 		<div class="mt-3 mb-3">
