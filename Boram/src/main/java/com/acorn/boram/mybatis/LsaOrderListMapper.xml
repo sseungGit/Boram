@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="orders">
+	<select id="getOrderList" resultType="ordersDto">
+		SELECT CODE, REGDATE,  (SELECT ITEM FROM ORDER_ITEMS OI,ITEMS I
+		WHERE OI.CODE = SO.CODE
+		AND OI.INUM = I.INUM
+		AND ROWNUM=1) ITEM, 
+		(
+		SELECT SUM(OI.COUNT *PRICE) FROM ORDER_ITEMS OI,ITEMS I
+		WHERE OI.CODE = SO.CODE
+		AND OI.INUM = I.INUM
+		) totalPrice, STATE, SO.ORDERER FROM SERVICE_ORDER SO
+		WHERE SO.ORDERER = #{userId}
+		ORDER BY SO.CODE
+	</select>
+	
+	
+	<select id="getOrderDetailList" resultType="ordersDto">
+		SELECT CODE, ITEM, OI.COUNT, (OI.COUNT * I.PRICE) TOTALPRICE
+		FROM ORDER_ITEMS OI,ITEMS I
+		WHERE OI.INUM = I.INUM
+		AND OI.CODE=#{code}
+	</select>
+	
+</mapper>

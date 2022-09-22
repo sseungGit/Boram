@@ -5,16 +5,22 @@
  <configuration>
  	<typeAliases>
  		<typeAlias type="com.acorn.boram.qna.dto.HyrQnaDto" alias="qnaDto"/>
+ 		<typeAlias type="com.acorn.boram.qna.dto.HyrQnaReplyDto" alias="qnaReplyDto"/>
+ 		<typeAlias type="com.acorn.boram.faq.dto.HyrFaqDto" alias="faqDto"/>
  		<typeAlias type="com.acorn.boram.review.dto.KjReviewDto" alias="kjReviewDto"/>
 		<typeAlias type="com.acorn.boram.users.dto.LsgUsersDto" alias="usersDto"/>
+		<typeAlias type="com.acorn.boram.orderList.dto.LsaOrderListDto" alias="ordersDto"/>
 		<typeAlias type="com.acorn.boram.guide.dto.LsgItemsDto" alias="itemsDto"/>
 				<typeAlias type="com.acorn.boram.notice.dto.NoticeDto" alias="noticeDto"/>
 		<typeAlias type="com.acorn.boram.notice.dto.NoticeCommentDto" alias="noticeCommentDto"/>
  	</typeAliases>
 	<mappers>
 		<mapper resource="com/acorn/boram/mybatis/QnaMapper.xml"/>
+		<mapper resource="com/acorn/boram/mybatis/QnaReplyMapper.xml"/>
+		<mapper resource="com/acorn/boram/mybatis/FaqMapper.xml"/>
 		<mapper resource="com/acorn/boram/mybatis/ReviewMapper.xml"/>
 		<mapper resource="com/acorn/boram/mybatis/UsersMapper.xml"/>
+		<mapper resource="com/acorn/boram/mybatis/LsaOrderListMapper.xml"/>
 		<mapper resource="com/acorn/boram/mybatis/ItemsMapper.xml"/>
 		<mapper resource="com/acorn/boram/mybatis/NoticeMapper.xml"/>
 		<mapper resource="com/acorn/boram/mybatis/NoticeCommentMapper.xml"/>

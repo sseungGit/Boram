@@ -5,26 +5,51 @@
 <head>
 <meta charset="UTF-8">
 <title>/views/cafe/insertform.jsp</title>
-<link rel="stylesheet" 
-	href="${pageContext.request.contextPath}/resources/css/bootstrap.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/nav.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/subnav.css">
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/subFooter.css">
+<!--font-->
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+<!-- Font awesome -->
+<script src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
 <style>
 	#content{
 		height: 200px;
+		width: 750px;
 	}
+	.container > img {
+	  width: 100%;
+	  height: 200px;	  
+	  }
+	  	
 </style>
 </head>
 <body>
-<div class="container">
-	<h1>후기 작성하기</h1>
+<jsp:include page="/include/nav.jsp"></jsp:include>
+   <!-- sub nav바 -->
+   <!-- 
+      thisPage는 대메뉴를 구별하는데 사용
+      subPage는 소메뉴를 구별하는데 사용
+    -->
+ <jsp:include page="/include/subnav.jsp">
+ 	<jsp:param value="client" name="thisPage"/>
+    <jsp:param value="review" name="subPage"/>
+ </jsp:include>
+	<div class="container mb-3" style= "width:800px">
+	<img src="${pageContext.request.contextPath}/images/review7.jpg"  />
 	<form action="insert.do" method="post" id="insertForm">
-		<div class="mb-3">
+		<div class="mt-3 mb-3">
 			<label class="form-label" for="title">제목</label>
 			<input class="form-control" type="text" name="title" id="title"/>
 			
 		</div>
 		<div class="mb-3">
 			<label class="form-label" for="star">평점</label>
-			<select>
+			<select name="star" id="star">
     			<option value=1>★☆☆☆☆</option>
     			<option value=2>★★☆☆☆</option>
    				<option value=3 selected>★★★☆☆</option>
@@ -32,11 +57,11 @@
     			<option value=5>★★★★★</option>
 			</select>
 		</div>
-		<div class="mb-3">
+		<div class="container mb-5">
 			<label class="form-label" for="content">내용</label>
 			<textarea class="form-control"  name="content" id="content"></textarea>
 		</div>
-		<button class="btn btn-primary" type="submit">저장</button>
+		<button class="btn btn-outline-secondary" type="submit" >저장</button>
 	</form>
 </div>
 <%--
@@ -107,13 +132,14 @@
 			//만일 폼 제출을 막고 싶으면  
 			//e.preventDefault();
 			//을 수행하게 해서 폼 제출을 막아준다.
-			if(title.length < 5){
-				alert("제목을 5글자 이상 입력하세요!");
+			if(title.length < 2){
+				alert("제목을 2글자 이상 입력하세요!");
 				e.preventDefault();
 			}
 			
 		});
 </script>
+<jsp:include page="/include/footer.jsp"></jsp:include>
 </body>
 </html>
 
