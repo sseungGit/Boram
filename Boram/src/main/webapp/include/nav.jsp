@@ -66,13 +66,13 @@
 						<div class = "sub-menu-item1">
 							<h3>이용안내</h3>
 							<ul>
-								<li><a href = "#">가격안내</a></li>
-								<li><a href = "#">지역안내</a></li>
+								<li><a href = "${pageContext.request.contextPath}/guide/price_guide.do">가격안내</a></li>
+								<li><a href = "${pageContext.request.contextPath}/guide/area_guide.do">지역안내</a></li>
 							</ul>
 						</div>
 						<div class = "sub-menu-item1" id="lili2">
 							<h2>편한한 이용을 위해 Laundry365가 함께하겠습니다.</h2>
-							<button type = "button" class = "btn1">가격안내</button>
+							<button type = "button" class = "btn1" onclick="location.href='${pageContext.request.contextPath}/guide/price_guide.do'">가격안내</button>
 						</div>
 						<!-- end of item -->
 						<!-- item -->
@@ -159,8 +159,16 @@
 							<ul>
 								<li><a href = "#">회원정보</a></li>
 								<li><a href = "#">신청내역확인</a></li>
-								<li class="lili1"><a href="#">로그인</a></li>
-								<li class="lili1"><a href="#">회원가입</a></li>	
+								<%-- 로그인 여부에 따라 --%>
+								<c:choose>
+									<c:when test="${ empty sessionScope.id}">
+										<li class="lili1"><a href="${pageContext.request.contextPath}/users/login_form.do">로그인</a></li>
+										<li class="lili1"><a href="${pageContext.request.contextPath}/users/signup_form.do">회원가입</a></li>
+									</c:when>
+									<c:otherwise>
+										<li class="lili1"><a href="${pageContext.request.contextPath}/users/logout.do">로그아웃</a></li>
+									</c:otherwise>
+								</c:choose>
 							</ul>
 						</div>
 						<!-- end of item -->
@@ -180,6 +188,7 @@
 			</div>
 			<div class="header-top1">
 			<c:choose>
+				<%-- 로그인 여부에 따라 --%>
 				<c:when test="${ empty sessionScope.id}">
 						<ul class="menu1">
 							<li><a href="${pageContext.request.contextPath}/users/login_form.do"><strong>로그인</strong></a></li>
