@@ -12,10 +12,10 @@ public class CategorizeDaoImpl implements CategorizeDao{
 	@Autowired
 	private SqlSession session;
 	
-	@Override
-	public CategorizeDto getData(int num) {
-		
-		return session.;
-	}
+	/*
+	 * @Override public CategorizeDto getData(int num) {
+	 * 
+	 * return session.; }
+	 */
 
 }
