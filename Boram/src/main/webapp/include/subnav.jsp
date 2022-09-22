@@ -24,6 +24,16 @@
 				<p id="subContent"></p>	
     		</div>
     	</c:when>
+		<c:when test="${param.thisPage eq 'mypage'}">
+    		<div id="image-box">
+    			<img id="image-thumbnail" 
+    				src="${pageContext.request.contextPath }/resources/img/sub/mypageimg.jpg" alt="" />
+    		</div>
+    		<div id="sub-text">
+    			<p id="subTitle">마이페이지</p>
+				<p id="subContent">여러분의 배송정보를 여기서 확인해 보세요.</p>	
+    		</div>
+    	</c:when>
     	<%-- 각 서브 메뉴를 밑에 이어서 추가하면 됩니다 --%>
  	    <%-- 예시
 	 	    <c:when test="${param.thisPage eq '메뉴별 param 값'}">
@@ -75,6 +85,16 @@
 						</li>
 					</ul>
 		    	</c:when>
+		    	<c:when test="${param.thisPage eq 'mypage'}">
+					<ul id="subNavUl">
+						<li class="subNavItem ${param.subPage eq 'info' ? 'deco' : ''}">
+						  	<a class="${param.subPage eq 'info' ? 'active' : ''}" href="${pageContext.request.contextPath }/mypage/users/info.do">회원정보</a>
+						</li>
+						<li class="subNavItem ${param.subPage eq 'orderlist' ? 'deco' : ''}">
+						  	<a class="${param.subPage eq 'orderlist' ? 'active' : ''}" aria-current="page" href="#">신청내역확인</a>
+						</li>
+					</ul>
+		    	</c:when>		    	
 		    	<%-- 각 서브 메뉴를 밑에 이어서 추가하면 됩니다 --%>
 		    	<%-- 예시
 		    	<c:when test="${param.thisPage eq '메뉴별 param 값'}">
@@ -100,17 +120,21 @@
 		    	<c:when test="${param.subPage eq 'area'}">
 		    		<p>지역안내</p>
 		    	</c:when>
+		    	<c:when test="${param.subPage eq 'info'}">
+		    		<p>회원정보</p>
+		    	</c:when>
+		  	    <c:when test="${param.subPage eq 'orderlist'}">
+		    		<p>신청내역확인</p>
+		    	</c:when>
 			</c:choose>
 			<%-- 각 서브 메뉴를 밑에 이어서 추가하면 됩니다 --%>
 		    <%-- 예시
-		  	<c:choose>
-		    	<c:when test="${param.subPage eq '서브메뉴 param 값'}">
-		    		<p>서브메뉴명1</p>
-		    	</c:when>
-		  	    <c:when test="${param.subPage eq '서브메뉴 param 값'}">
-		    		<p>서브메뉴명2</p>
-		    	</c:when>
-			</c:choose>
+	    	<c:when test="${param.subPage eq '서브메뉴 param 값'}">
+	    		<p>서브메뉴명1</p>
+	    	</c:when>
+	  	    <c:when test="${param.subPage eq '서브메뉴 param 값'}">
+	    		<p>서브메뉴명2</p>
+	    	</c:when>
 		  	--%>
 		</div>
 	</c:otherwise>

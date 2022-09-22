@@ -3,6 +3,7 @@ package com.acorn.boram.users.dto;
 public class LsgUsersDto {
 	private String id;
 	private String pwd;
+	private String newPwd;
 	private String name;
 	private int countryCode;
 	private String phone;
@@ -16,11 +17,12 @@ public class LsgUsersDto {
 	
 	public LsgUsersDto() {}
 	
-	public LsgUsersDto(String id, String pwd, String name, int countryCode, String phone, String email, String profile,
+	public LsgUsersDto(String id, String pwd, String newPwd, String name, int countryCode, String phone, String email, String profile,
 			String addr, String regdate, char manager, boolean saveId) {
 		super();
 		this.id = id;
 		this.pwd = pwd;
+		this.newPwd = newPwd;
 		this.name = name;
 		this.countryCode = countryCode;
 		this.phone = phone;
@@ -119,4 +121,13 @@ public class LsgUsersDto {
 	public void setSaveId(boolean saveId) {
 		this.saveId = saveId;
 	}
+
+	public String getNewPwd() {
+		return newPwd;
+	}
+
+	public void setNewPwd(String newPwd) {
+		this.newPwd = newPwd;
+	}
+	
 }
