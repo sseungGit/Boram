@@ -6,7 +6,7 @@
    	<div id="container_terms" class="container" >
 		<!-- 회원가입약관 동의 시작 { -->
 		<div id="register_agree" class="d-flex flex-column p-5" style="text-align: left">
-			<div >
+			<div>
 				<h3>약관 동의</h3>
 			</div>
 			<hr />
@@ -406,7 +406,7 @@
 		2) 시행일자 : 2018년 05월 01일 </textarea>
 		    </section>
 		
-		    <div>
+		    <div id="btnGroup">
 				<a href="javascript:history.back();" class="btn btn-primary">취소</a>
 				<a href="javascript:agree_check();" class="btn btn-success">계속</a>
 		    </div>

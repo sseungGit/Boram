@@ -2,10 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%-- 회원가입 form --%>
-<div id="container_form" class="container" style="width:600px;text-align: left;display:none;">
-
-	<h2 style="text-align: center;">회원 가입</h2>
-	
+<div id="container_form" class="container" style="text-align: left;display:none;">
 	<form action="signup.do" method="post" id="signupForm" autocomplete="off">
 		<div class="mb-3">
 			<input class="form-control" type="text" name="name" id="name" placeholder="이름"/>
@@ -361,7 +358,7 @@
 		//비밀번호를 검증할 정규 표현식
 		//let reg=/[\W]/; 특수문자 하나는 꼭 들어가야 한다
 		//최소 하나의 문자,숫자,특수문자가 들어가고 8글자~13글자 이내로 입력
-		const reg=/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,13}$/;
+		const reg=/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&^])[A-Za-z\d@$!%*#?&^]{8,13}$/;
 		//만일 비밀번호가 정규 표현식을 통과 하지 못한다면 
 		if(!reg.test(pwd)){		
 			document.querySelector("#pwd").classList.add("is-invalid");

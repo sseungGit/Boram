@@ -11,11 +11,13 @@ public class LsgUsersDto {
 	private String addr;
 	private String regdate;
 	private String manager;
+	//아이디 저장여부
+	private boolean saveId;
 	
 	public LsgUsersDto() {}
-
+	
 	public LsgUsersDto(String id, String pwd, String name, int countryCode, String phone, String email, String profile,
-			String addr, String regdate, String manager) {
+			String addr, String regdate, String manager, boolean saveId) {
 		super();
 		this.id = id;
 		this.pwd = pwd;
@@ -27,6 +29,7 @@ public class LsgUsersDto {
 		this.addr = addr;
 		this.regdate = regdate;
 		this.manager = manager;
+		this.saveId = saveId;
 	}
 
 	public String getId() {
@@ -108,5 +111,12 @@ public class LsgUsersDto {
 	public void setManager(String manager) {
 		this.manager = manager;
 	}
-	
+
+	public boolean isSaveId() {
+		return saveId;
+	}
+
+	public void setSaveId(boolean saveId) {
+		this.saveId = saveId;
+	}
 }
