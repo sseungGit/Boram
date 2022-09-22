@@ -53,7 +53,7 @@
 	<jsp:include page="/include/nav.jsp"></jsp:include>
 	<!-- sub nav바 -->
 	<jsp:include page="/include/subnav.jsp">
-			<jsp:param value="cs" name="thisPage"/>
+			<jsp:param value="support" name="thisPage"/>
 			<jsp:param value="faq" name="subPage"/>
 	</jsp:include>
 	<div class="container">
@@ -64,7 +64,7 @@
 				<tr>
 					<th scope="col">#</th>
 					<th scope="col">카테고리</th>
-					<th scope="col">질문</th>
+					<th scope="col">제목</th>
 					<c:if test="${not empty manager and manager == 'Y'}">
 					<th scope="col">수정</th>
 					<th scope="col">삭제</th>
@@ -111,9 +111,9 @@
 			</c:forEach>
 			</tbody>
 		</table>
-		
+		<c:if test="${not empty manager and manager == 'Y'}">
 			<button class="btn btn-dark" style="float:right" onclick="location.href='insertform.do' ">글쓰기</button>
-			
+		</c:if>	
 		<div class="page-ui clearfix">
 		<ul>
 			<c:if test="${startPageNum ne 1 }">

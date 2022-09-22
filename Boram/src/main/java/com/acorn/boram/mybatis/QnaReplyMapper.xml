@@ -26,7 +26,7 @@
 	</select>
 	<update id="update" parameterType="qnaReplyDto">
 		UPDATE reply_board
-		SET content=#{content}
+		SET content=#{content},update_date=SYSDATE
 		WHERE rnum=#{rnum}
 	</update>
 	<select id="getData" parameterType="int" resultType="qnaReplyDto">

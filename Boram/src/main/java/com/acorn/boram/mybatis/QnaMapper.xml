@@ -8,7 +8,7 @@
 		FROM
 			(SELECT result1.*, ROWNUM AS rnum
 			FROM
-				(SELECT num,writer,title,content,orgFileName,saveFileName,fileSize,regdate
+				(SELECT num,writer,title,content,regdate
 				FROM qna_board
 				ORDER BY num DESC) result1)
 		<![CDATA[ 
@@ -21,14 +21,14 @@
 	</select>
 	<insert id="insert" parameterType="qnaDto">
 		INSERT INTO qna_board
-		(num, writer, title, content, orgFileName, saveFileName, fileSize, regdate)
-		VALUES(qna_seq.NEXTVAL, #{writer}, #{title}, #{content},
-			#{orgFileName}, #{saveFileName}, #{fileSize}, SYSDATE)
+		(num, writer, title, content, regdate)
+		VALUES(qna_seq.NEXTVAL, #{writer}, #{title}, #{content}
+			, SYSDATE)
 	</insert>
 	<select id="getData" parameterType="int" resultType="qnaDto">		
 		SELECT result1.*
 		FROM
-			(SELECT num,writer,title,content,orgFileName,saveFileName,fileSize,
+			(SELECT num,writer,title,content,
 				TO_CHAR(regdate,'YY.MM.DD HH24:MI') AS regdate,
 				LAG(num,1,0) OVER (ORDER BY num DESC) AS prevNum,
 				LEAD(num,1,0) OVER (ORDER BY num DESC) AS nextNum

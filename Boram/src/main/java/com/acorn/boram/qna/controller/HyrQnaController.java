@@ -42,7 +42,7 @@ public class HyrQnaController {
 		String id=(String)session.getAttribute("id");
 		//dto객체에 글 작성자도 담기
 		dto.setWriter(id);
-		service.saveFile(dto, mView, request);
+		//service.saveFile(dto, mView, request);
 		mView.setViewName("qna/insert");
 		return mView;
 	}	
@@ -51,14 +51,14 @@ public class HyrQnaController {
 	public ModelAndView authDelete(@RequestParam int num,
 			ModelAndView mView, HttpServletRequest request) {
 		
-		service.deleteFile(num, request);
+		//service.deleteFile(num, request);
 		
 		mView.setViewName("redirect:/qna/list.do");
 		return mView;
 	}
 	@RequestMapping("/qna/detail")
 	public String detail(HttpServletRequest request) {
-		service.getDetail(request);
+		service.getData(request);
 		return "qna/detail";
 	}
 	@RequestMapping("/qna/reply_insert")

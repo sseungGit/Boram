@@ -34,7 +34,7 @@
 	<jsp:include page="/include/nav.jsp"></jsp:include>
 	<!-- sub nav바 -->
 	<jsp:include page="/include/subnav.jsp">
-	  	<jsp:param value="cs" name="thisPage"/>
+	  	<jsp:param value="support" name="thisPage"/>
 	  	<jsp:param value="faq" name="subPage"/>
 	</jsp:include>
 	<div class="container" style= "width:800px">
@@ -66,63 +66,66 @@
 		<button class="btn btn-dark" style="float:right" onclick="location.href='delete.do?num=${dto.num }' ">삭제</button>
 		<button class="btn btn-dark" style="float:left" onclick="location.href='${pageContext.request.contextPath}/qna/list.do' ">목록보기</button>		
 	<div class="reply">
-		<c:forEach var="tmp" items="${replyList }">
-			<%--만일 답글의 글번호가 댓글의 그룹와 같다면(원글의 댓글이라면) --%>
-			<c:if test="${tmp.rnum eq tmp.ref_num }">
-				<li id="reli${tmp.rnum }">
-			</c:if>
-			<dl>
-				<dt>
-					<c:if test="${ tmp.writer eq sessionScope.id }">
-						<a data-num="${tmp.rnum }" class="update-link" href="javascript:">수정</a>
-						<a data-num="${tmp.rnum }" class="delete-link" href="javascript:">삭제</a>
-					</c:if>
-				</dt>
-				<dd>
-					<pre id="pre${tmp.rnum }">${tmp.content }</pre>
-				</dd>
-			</dl>		
-		</c:forEach>
-	</div>
-		<form id="reForm${tmp.rnum }" class="reply-form insert-form" action="reply_insert.do" method="post">
-			<!-- 원글의 글번호가 답변의 ref_num 번호가 된다. -->
-			<input type="hidden" name="ref_num" value="${dto.rnum }"/>
-			<!-- 원글의 작성자가 댓글의 대상자가 된다. -->
-			<input type="hidden" name="writer" value="${dto.writer }"/>
-	
-			<textarea name="content">${empty id ? '답글 작성을 위해 로그인이 필요 합니다.' : '' }</textarea>
-			<button type="submit">등록</button>
+	<c:forEach var="tmp" items="${replyList }">
+		<div id="reli${tmp.rnum}">
+		
+		</div>
+		<dl>
+			<dt>
+				<%--만일 프로필 이미지가 없다면 기본 아이콘 출력 --%>
+				<c:if test="${ empty tmp.profile }">
+					<svg class="profile-image" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+					  <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+					  <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+					</svg>
+				</c:if>
+				<%--만일 프로필 이미지가 empty가 아니라면(있다면) 프로필 이미지 출력 --%>
+				<c:if test="${not empty tmp.profile }">
+					<img class="profile-image" src="${pageContext.request.contextPath}${tmp.profile }"/>
+				</c:if>
+				<span>${tmp.writer }</span>
+				<span>${tmp.regdate }</span>
+				<%--답글 링크를 눌렀을때 해당댓글의 글번호를 위해 data-num 속성에 댓글의 번호 넣어두기 --%>
+				<a data-num="${tmp.rnum }" href="javascript:" class="reply-link">답글</a>
+				<%--만일 글 작성자가 로그인된 사용자와 같다면 수정, 삭제 링크를 출력 --%>
+				<c:if test="${ tmp.writer eq sessionScope.id }">
+					<a data-num="${tmp.rnum }" class="update-link" href="javascript:">수정</a>
+					<a data-num="${tmp.rnum }" class="delete-link" href="javascript:">삭제</a>
+				</c:if>
+			</dt>
+			<dd>
+				<%--댓글은 textarea로 입력 받았기 때문에 tab, 공백, 개행 기호도 같이 존재한다.
+					html에서 pre요소는 tab, 공백, 개행기호를 해석해주는 요소이기 때문에
+					pre 요소의 innerText 로 댓글의 내용을 출력했다.
+					그리고 해당 댓글을 javascript로 바로 수정할 수 있도록 댓글 번호를 조합해서
+					아이디를 부여해 놓았다.
+				 --%>
+				<pre id="pre${tmp.rnum }">${tmp.content }</pre>						
+			</dd>
+		</dl>
+	</c:forEach>
+	<c:if test="${not empty manager and manager == 'Y'}">
+		<form class="reply-form insert-form" action="reply_insert.do" method="post">
+			<!-- 원글의 글번호가 답글의 ref_num 번호가 된다. -->
+			<input type="hidden" name="ref_num" value="${dto.num }"/>
+			<textarea name="content"></textarea>
+			<button type="submit">답변 등록</button>
 		</form>
+	</c:if>
 	</div>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	</div>
+	<jsp:include page="/include/footer.jsp"></jsp:include>
+	<script src="${pageContext.request.contextPath}/resources/js/gura_util.js"></script>
+   	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script>
-		//관리자만 작성가능
-		let isManager=${manager =='Y'};
-		let isLogin=${ not empty id };
-	
-		//원글의 댓글 폼에 submit이벤트가 일어났을때 실행할 함수 등록
-		document.querySelector(".insert-form")
-			.addEventListener("submit", function(e){
-				//만일 로그인 하지 않았으면 
-				if(!isLogin){
-					//폼 전송을 막고 w
-					e.preventDefault();
-					//로그인 폼으로 이동 시킨다.
-					//로그인 성공후 다시 해당글 자세히 보기 페이지로 돌아올 수 있도록 url 정보를  같이 전달한다.
-					location.href=
-						"${pageContext.request.contextPath}/users/loginform.do?url=${pageContext.request.contextPath}/qna/detail.do?num=${dto.num}";
-				}
-			});
-	
 		addUpdateFormListener(".update-form");
 		addUpdateListener(".update-link");
 		addDeleteListener(".delete-link");
 		addReplyListener(".reply-link");
-	
-		//인자로 전달되는 선택자를 이용해서 이벤트 리스너를 등록하는 함수 
+		
 		function addUpdateListener(sel){
-			//댓글 수정 링크의 참조값을 배열에 담아오기 
-			// sel 은  ".page-xxx  .update-link" 형식의 내용이다 
+			//답글 수정 링크 참조값을 배열에 담아오기
+			// sel 은  ".page-xxx  .update-link" 형식의 내용이다
 			let updateLinks=document.querySelectorAll(sel);
 			for(let i=0; i<updateLinks.length; i++){
 				updateLinks[i].addEventListener("click", function(){
@@ -133,110 +136,6 @@
 				});
 			}
 		}
-		function addDeleteListener(sel){
-			//댓글 삭제 링크의 참조값을 배열에 담아오기 
-			let deleteLinks=document.querySelectorAll(sel);
-			for(let i=0; i<deleteLinks.length; i++){
-				deleteLinks[i].addEventListener("click", function(){
-					//click 이벤트가 일어난 바로 그 요소의 data-num 속성의 value 값을 읽어온다. 
-					const num=this.getAttribute("data-num"); //댓글의 글번호
-					const isDelete=confirm("댓글을 삭제 하시겠습니까?");
-					if(isDelete){
-						// gura_util.js 에 있는 함수들 이용해서 ajax 요청
-						ajaxPromise("reply_delete.do", "post", "num="+num)
-						.then(function(response){
-							return response.json();
-						})
-						.then(function(data){
-							//만일 삭제 성공이면 
-							if(data.isSuccess){
-								//댓글이 있는 곳에 삭제된 댓글입니다를 출력해 준다. 
-								document.querySelector("#reli"+num).innerText="삭제된 댓글입니다.";
-							}
-						});
-					}
-				});
-			}
-		}
-		function addReplyListener(sel){
-			//댓글 링크의 참조값을 배열에 담아오기 
-			let replyLinks=document.querySelectorAll(sel);
-			//반복문 돌면서 모든 링크에 이벤트 리스너 함수 등록하기
-			for(let i=0; i<replyLinks.length; i++){
-				replyLinks[i].addEventListener("click", function(){
-					
-					if(!isLogin){
-						const isMove=confirm("로그인이 필요 합니다. 로그인 페이지로 이동 하시겠습니까?");
-						if(isMove){
-							location.href=
-								"${pageContext.request.contextPath}/users/loginform.do?url=${pageContext.request.contextPath}/cafe/detail.do?num=${dto.num}";
-						}
-						return;
-					}
-					
-					//click 이벤트가 일어난 바로 그 요소의 data-num 속성의 value 값을 읽어온다. 
-					const num=this.getAttribute("data-num"); //댓글의 글번호
-					
-					const form=document.querySelector("#reForm"+num);
-					
-					//현재 문자열을 읽어온다 ( "답글" or "취소" )
-					let current = this.innerText;
-					
-					if(current == "답글"){
-						//번호를 이용해서 댓글의 댓글폼을 선택해서 보이게 한다. 
-						form.style.display="block";
-						form.classList.add("animate__flash");
-						this.innerText="취소";	
-						form.addEventListener("animationend", function(){
-							form.classList.remove("animate__flash");
-						}, {once:true});
-					}else if(current == "취소"){
-						form.classList.add("animate__fadeOut");
-						this.innerText="답글";
-						form.addEventListener("animationend", function(){
-							form.classList.remove("animate__fadeOut");
-							form.style.display="none";
-						},{once:true});
-					}
-				});
-			}
-		}
-		
-		function addUpdateFormListener(sel){
-			//댓글 수정 폼의 참조값을 배열에 담아오기
-			let updateForms=document.querySelectorAll(sel);
-			for(let i=0; i<updateForms.length; i++){
-				//폼에 submit 이벤트가 일어 났을때 호출되는 함수 등록 
-				updateForms[i].addEventListener("submit", function(e){
-					//submit 이벤트가 일어난 form 의 참조값을 form 이라는 변수에 담기 
-					const form=this;
-					//폼 제출을 막은 다음 
-					e.preventDefault();
-					//이벤트가 일어난 폼을 ajax 전송하도록 한다.
-					ajaxFormPromise(form)
-					.then(function(response){
-						return response.json();
-					})
-					.then(function(data){
-						if(data.isSuccess){
-							/*
-								document.querySelector() 는 html 문서 전체에서 특정 요소의 
-								참조값을 찾는 기능
-								
-								특정문서의 참조값.querySelector() 는 해당 문서 객체의 자손 요소 중에서
-								특정 요소의 참조값을 찾는 기능
-							*/
-							const num=form.querySelector("input[name=num]").value;
-							const content=form.querySelector("textarea[name=content]").value;
-							//수정폼에 입력한 value 값을 pre 요소에도 출력하기 
-							document.querySelector("#pre"+num).innerText=content;
-							form.style.display="none";
-						}
-					});
-				});
-			}
-		}
 	</script>
-	<jsp:include page="/include/footer.jsp"></jsp:include>
 </body>
 </html>
