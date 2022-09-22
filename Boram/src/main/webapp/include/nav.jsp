@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
 	 <!-- 네비바 시작 -->
 	 <div class = "main-wrapper1" id="menu">
@@ -31,10 +30,10 @@
 						<div class = "sub-menu-item1">
 							<h3>브랜드소개</h3>
 							<ul>
-								<li><a href = "${pageContext.request.contextPath}/home2.do">회사소개</a></li>
-								<li><a href = "#">연혁</a></li>
-								<li><a href = "#">창업안내</a></li>
-								<li><a href = "#">팀원소개</a></li>
+								<li><a href = "${pageContext.request.contextPath}/corporation/brand.do">회사소개</a></li>
+								<li><a href = "${pageContext.request.contextPath}/corporation/history.do">연혁</a></li>
+								<li><a href = "${pageContext.request.contextPath }/corporation/startup.do">창업안내</a></li>
+								<li><a href = "${pageContext.request.contextPath }/corporation/members.do">팀원소개</a></li>
 							</ul>
 						</div>
 						<!-- end of item -->
@@ -125,7 +124,7 @@
 						<div class = "sub-menu-item1">
 							<h3>고객지원</h3>
 							<ul>
-								<li><a href = "#">후기게시판</a></li>
+								<li><a href = "${pageContext.request.contextPath}">후기게시판</a></li>
 								<li><a href = "${pageContext.request.contextPath }/faq/list.do">질문게시판</a></li>
 								<li><a href = "#">공지사항</a></li>
 							</ul>
@@ -158,7 +157,7 @@
 							<h3>마이페이지</h3>
 							<ul>
 								<li><a href = "#">회원정보</a></li>
-								<li><a href = "#">신청내역확인</a></li>
+								<li><a href = "${pageContext.request.contextPath}/mypage/orderList/customer.do"">신청내역확인</a></li>
 								<%-- 로그인 여부에 따라 --%>
 								<c:choose>
 									<c:when test="${ empty sessionScope.id}">
