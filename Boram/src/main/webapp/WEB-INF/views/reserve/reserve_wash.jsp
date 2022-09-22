@@ -39,17 +39,9 @@
                         <select name="product" id="product">
                             <optgroup label="상품선택">
                                 <option value="">선택해주세요</option>
-                                <option value="셔츠">셔츠</option>
-                                <option value="면(티셔츠, 맨투맨, 후드티)">면(티셔츠, 맨투맨, 후드티)</option>
-                                <option value="니트, 스웨터, 가디건">니트, 스웨터, 가디건</option>
-                                <option value="자켓, 점퍼">자켓, 점퍼</option>
-                                <option value="모자">모자</option>
-                                <option value="가죽">가죽</option>
-                                <option value="바지, 스커트">바지, 스커트</option>
-                                <option value="패딩">패딩</option>
-                                <option value="목도리, 스카프, 장갑">목도리, 스카프, 장갑</option>
-                                <option value="코트">코트</option>
-                                <option value="원피스">원피스</option>
+                                <c:forEach var="tmp" items="${list }">
+                                <option id="${tmp.inum }" value="${tmp.price }">${tmp.item }</option>
+                                </c:forEach>
                             </optgroup>
                         </select>
                     </dd>
@@ -114,14 +106,16 @@
 
 
         $("#product").on("change", function(){
-            var msg=$("#product option:selected").val();
+        	var msg2=$("#product option:selected").val();
+            var msg=$("#product option:selected").text();
             $("#number").text(msg);
             $("#inputMsg").val("");
             $('.order_number').append('<input type="number" type="number" name="num" id="num" min="1" max="30" value="1">');
-            $('.order_number').append('<span>2000</span>');
+            $('.order_number').append(msg2);
             $("<li></li>").text(msg).appendTo(".order_name");
         });
-    
+        
+    	
     </script>
    <jsp:include page="/include/footer.jsp"></jsp:include>
 </body>
