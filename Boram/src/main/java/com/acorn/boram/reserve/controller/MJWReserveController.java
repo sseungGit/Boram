@@ -17,7 +17,8 @@ import com.acorn.boram.reserve.service.ServiceOrderService;
 @Controller
 public class MJWReserveController {
 
-
+	@Autowired
+	private ItemService service;
 	
    @RequestMapping("/reserve/reserve_select")
    public String reserve_select(HttpServletRequest request) {
@@ -25,24 +26,23 @@ public class MJWReserveController {
    }
    
    @RequestMapping("/reserve/select")
-   public ModelAndView reserve_select(HttpServletRequest request,String category) {
+   public ModelAndView reserve_select(ModelAndView mView,String category) {
       
       //카테고리 값 확인
       System.out.println("category : "+category);
-      ModelAndView mView=new ModelAndView();
       //category키 값으로 value에 category값 담기
       mView.addObject("category", category);
       if(category.equals("clothes")) {
-    	  service1.getList(request);
+    	  service.getList(mView);
     	  mView.setViewName("reserve/reserve_wash");
       }else if(category.equals("bedding")){
-    	  service1.getList2(request);
+    	  
     	  mView.setViewName("reserve/reserve_bed");
       }else if(category.equals("shoes")){
-    	  service1.getList3(request);
+    	  
     	  mView.setViewName("reserve/reserve_shoes");
       }else if(category.equals("living")){
-    	  service1.getList4(request);
+    	  
     	  mView.setViewName("reserve/reserve_living");
       }
       	return mView;

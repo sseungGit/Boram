@@ -67,28 +67,28 @@
         <div class="container text-center">
             <div class="row row-cols-2">
             <div class="col">
-                <a href="${pageContext.request.contextPath}/reserve/reserve_wash.do" class="at">
+                <a href="${pageContext.request.contextPath}/reserve/select.do?category=clothes" class="at">
                     <img src="${pageContext.request.contextPath}/reserve_img/service1.png" class="imga" alt="생활빨래">
                     <p>생활빨래</p>
                     <p class="sm_text">좋은 세제와 향기를 <br>고객분들에게 다가갑니다.</p>
                 </a>  
             </div>
             <div class="col">
-                <a href="${pageContext.request.contextPath}/reserve/reserve_bed.do" class="at">
+                <a href="${pageContext.request.contextPath}/reserve/select.do?category=bedding" class="at">
                     <img src="${pageContext.request.contextPath}/reserve_img/service2.png" class="imga" alt="침구류">
                     <p>침구류</p>
                     <p class="sm_text">다양한 이불들을 <br>저렴한 세탁으로 만나보세요.</p>
                 </a>
             </div>
             <div class="col">
-                <a href="${pageContext.request.contextPath}/reserve/reserve_shoes.do" class="at">
+                <a href="${pageContext.request.contextPath}/reserve/select.do?category=shoes" class="at">
                     <img src="${pageContext.request.contextPath}/reserve_img/service3.png" class="imga" alt="운동화">
                     <p>운동화,구두</p>
                     <p class="sm_text">세탁하기 번거로운 <br>운동화를 꺠끗하게!</p>
                 </a>
             </div>
             <div class="col">
-                <a href="${pageContext.request.contextPath}/reserve/reserve_living.do" class="at">
+                <a href="${pageContext.request.contextPath}/reserve/select.do?category=living" class="at">
                     <img src="${pageContext.request.contextPath}/reserve_img/service4.png" class="imga" alt="리빙">
                     <p class="text_loc">리빙</p>
                     <p class="sm_text">미세먼지 없는<br> 집안생활은 리빙세탁으로!</p>
