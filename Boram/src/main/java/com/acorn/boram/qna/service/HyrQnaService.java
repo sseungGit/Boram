@@ -10,7 +10,7 @@ import com.acorn.boram.qna.dto.HyrQnaReplyDto;
 public interface HyrQnaService {
 	public void getList(HttpServletRequest request);
 	public void saveContent(HyrQnaDto dto);
-	public void getDetail(HttpServletRequest request);
+	public void getDataReply(HttpServletRequest request);
 	public void updateContent(HyrQnaDto dto);
 	public void getData(HttpServletRequest request);
 	public void saveReply(HttpServletRequest request);//답글 저장 

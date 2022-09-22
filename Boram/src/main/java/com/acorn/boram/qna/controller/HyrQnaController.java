@@ -59,6 +59,7 @@ public class HyrQnaController {
 	@RequestMapping("/qna/detail")
 	public String detail(HttpServletRequest request) {
 		service.getData(request);
+		service.getDataReply(request);
 		return "qna/detail";
 	}
 	@RequestMapping("/qna/reply_insert")

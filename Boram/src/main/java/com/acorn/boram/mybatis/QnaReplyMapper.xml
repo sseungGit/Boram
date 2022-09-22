@@ -34,4 +34,9 @@
 		FROM reply_board
 		WHERE rnum=#{rnum}
 	</select>
+	<select id="getDataReply" parameterType="int" resultType="qnaReplyDto">
+		SELECT rnum,writer,content,ref_num,regdate
+		FROM reply_board
+		WHERE ref_num=#{num}
+	</select>
 </mapper>

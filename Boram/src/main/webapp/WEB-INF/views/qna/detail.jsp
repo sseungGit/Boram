@@ -18,6 +18,15 @@
    .content{
       border: 1px dotted gray;
    }
+   	.reply dt{
+		margin-top: 5px;
+	}
+	.reply dd{
+		margin-left: 50px;
+	}
+	.reply-form textarea, .reply-form button{
+		float: left;
+	}
 	.reply-form textarea{
 		width: 84%;
 		height: 100px;
@@ -25,6 +34,22 @@
 	.reply-form button{
 		width: 14%;
 		height: 100px;
+	}
+	.li{
+		border-top: 1px solid #888;
+	}
+	pre {
+	  display: block;
+	  padding: 9.5px;
+	  margin: 0 0 10px;
+	  font-size: 13px;
+	  line-height: 1.42857143;
+	  color: #333333;
+	  word-break: break-all;
+	  word-wrap: break-word;
+	  background-color: #f5f5f5;
+	  border: 1px solid #ccc;
+	  border-radius: 4px;
 	}
 
 </style>
@@ -39,82 +64,46 @@
 	</jsp:include>
 	<div class="container" style= "width:800px">
 	<h1>1:1문의</h1>
+	<div class="mb-4">
 		<table class="table table-bordered table-striped-columns">
-				<tr>
-					<th>글번호</th>
-					<td>${dto.num }</td>
-				</tr>
-				<tr>
-					<th>작성자</th>
-					<td>${dto.writer }</td>
-				</tr>
-				<tr>
-					<th>제목</th>
-					<td>${dto.title }</td>
-				</tr>
-				<tr>
-					<th>등록일</th>
-					<td>${dto.regdate }</td>
-				</tr>
-				<tr>
-					<td colspan="2">
-						<div class="content">${dto.content }</div>
-					</td>
-				</tr>
-		
-		</table>
-		<button class="btn btn-dark" style="float:right" onclick="location.href='delete.do?num=${dto.num }' ">삭제</button>
-		<button class="btn btn-dark" style="float:left" onclick="location.href='${pageContext.request.contextPath}/qna/list.do' ">목록보기</button>		
-	<div class="reply">
-	<c:forEach var="tmp" items="${replyList }">
-		<div id="reli${tmp.rnum}">
-		
+			<tr>
+				<th>글번호</th>
+				<td>${dto.num }</td>
+			</tr>
+			<tr>
+				<th>작성자</th>
+				<td>${dto.writer }</td>
+			</tr>
+			<tr>
+				<th>제목</th>
+				<td>${dto.title }</td>
+			</tr>
+			<tr>
+				<th>등록일</th>
+				<td>${dto.regdate }</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<div class="content">${dto.content }</div>
+				</td>
+			</tr>
+		</table>		
+		<div class="reply" >
+			<div class="content">${dtoReply.content }</div>
+			<c:if test="${not empty manager and manager == 'Y'}">
+				<!-- 원글의 답글 작성 폼 -->
+				<form class="reply-form insert-form mt-3" action="reply_insert.do" method="post">
+					<!-- 원글의 글번호가 답글의 ref_num 번호가 된다. -->
+					<input type="hidden" name="ref_num" value="${dto.num }"/>
+					<textarea name="content"></textarea>
+					<button type="submit">답변 등록</button>
+				</form>
+			</c:if>
 		</div>
-		<dl>
-			<dt>
-				<%--만일 프로필 이미지가 없다면 기본 아이콘 출력 --%>
-				<c:if test="${ empty tmp.profile }">
-					<svg class="profile-image" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
-					  <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-					  <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
-					</svg>
-				</c:if>
-				<%--만일 프로필 이미지가 empty가 아니라면(있다면) 프로필 이미지 출력 --%>
-				<c:if test="${not empty tmp.profile }">
-					<img class="profile-image" src="${pageContext.request.contextPath}${tmp.profile }"/>
-				</c:if>
-				<span>${tmp.writer }</span>
-				<span>${tmp.regdate }</span>
-				<%--답글 링크를 눌렀을때 해당댓글의 글번호를 위해 data-num 속성에 댓글의 번호 넣어두기 --%>
-				<a data-num="${tmp.rnum }" href="javascript:" class="reply-link">답글</a>
-				<%--만일 글 작성자가 로그인된 사용자와 같다면 수정, 삭제 링크를 출력 --%>
-				<c:if test="${ tmp.writer eq sessionScope.id }">
-					<a data-num="${tmp.rnum }" class="update-link" href="javascript:">수정</a>
-					<a data-num="${tmp.rnum }" class="delete-link" href="javascript:">삭제</a>
-				</c:if>
-			</dt>
-			<dd>
-				<%--댓글은 textarea로 입력 받았기 때문에 tab, 공백, 개행 기호도 같이 존재한다.
-					html에서 pre요소는 tab, 공백, 개행기호를 해석해주는 요소이기 때문에
-					pre 요소의 innerText 로 댓글의 내용을 출력했다.
-					그리고 해당 댓글을 javascript로 바로 수정할 수 있도록 댓글 번호를 조합해서
-					아이디를 부여해 놓았다.
-				 --%>
-				<pre id="pre${tmp.rnum }">${tmp.content }</pre>						
-			</dd>
-		</dl>
-	</c:forEach>
-	<c:if test="${not empty manager and manager == 'Y'}">
-		<form class="reply-form insert-form" action="reply_insert.do" method="post">
-			<!-- 원글의 글번호가 답글의 ref_num 번호가 된다. -->
-			<input type="hidden" name="ref_num" value="${dto.num }"/>
-			<textarea name="content"></textarea>
-			<button type="submit">답변 등록</button>
-		</form>
-	</c:if>
+		<button class="btn btn-dark" style="float:right" onclick="location.href='delete.do?num=${dto.num }' ">삭제</button>
+		<button class="btn btn-dark" style="float:left" onclick="location.href='${pageContext.request.contextPath}/qna/list.do' ">목록보기</button>
 	</div>
 	</div>
-	<jsp:include page="/include/footer.jsp"></jsp:include>
 	<script src="${pageContext.request.contextPath}/resources/js/gura_util.js"></script>
    	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script>
@@ -130,12 +119,72 @@
 			for(let i=0; i<updateLinks.length; i++){
 				updateLinks[i].addEventListener("click", function(){
 					//click 이벤트가 일어난 바로 그 요소의 data-num 속성의 value 값을 읽어온다. 
-					const num=this.getAttribute("data-num"); //댓글의 글번호
+					const num=this.getAttribute("data-num"); //답글의 글번호
 					document.querySelector("#updateForm"+num).style.display="block";
 					
 				});
 			}
 		}
+		function addDeleteListener(sel){
+			//답글 삭제 링크의 참조값을 배열에 담아오기 
+			let deleteLinks=document.querySelectorAll(sel);
+			for(let i=0; i<deleteLinks.length; i++){
+				deleteLinks[i].addEventListener("click", function(){
+					//click 이벤트가 일어난 바로 그 요소의 data-num 속성의 value 값을 읽어온다. 
+					const num=this.getAttribute("data-num"); //답글의 글번호
+					const isDelete=confirm("답글을 삭제 하시겠습니까?");
+					if(isDelete){
+						// gura_util.js 에 있는 함수들 이용해서 ajax 요청
+						ajaxPromise("reply_delete.do", "post", "num="+num)
+						.then(function(response){
+							return response.json();
+						})
+						.then(function(data){
+							//만일 삭제 성공이면 
+							if(data.isSuccess){
+								//답글이 있는 곳에 삭제된 답글입니다를 출력해 준다. 
+								document.querySelector("#reli"+num).innerText="삭제된 답글입니다.";
+							}
+						});
+					}
+				});
+			}
+		}
+		function addUpdateFormListener(sel){
+			//댓글 수정 폼의 참조값을 배열에 담아오기
+			let updateForms=document.querySelectorAll(sel);
+			for(let i=0; i<updateForms.length; i++){
+				//폼에 submit 이벤트가 일어 났을때 호출되는 함수 등록 
+				updateForms[i].addEventListener("submit", function(e){
+					//submit 이벤트가 일어난 form 의 참조값을 form 이라는 변수에 담기 
+					const form=this;
+					//폼 제출을 막은 다음 
+					e.preventDefault();
+					//이벤트가 일어난 폼을 ajax 전송하도록 한다.
+					ajaxFormPromise(form)
+					.then(function(response){
+						return response.json();
+					})
+					.then(function(data){
+						if(data.isSuccess){
+							/*
+								document.querySelector() 는 html 문서 전체에서 특정 요소의 
+								참조값을 찾는 기능
+								
+								특정문서의 참조값.querySelector() 는 해당 문서 객체의 자손 요소 중에서
+								특정 요소의 참조값을 찾는 기능
+							*/
+							const num=form.querySelector("input[name=rnum]").value;
+							const content=form.querySelector("textarea[name=content]").value;
+							//수정폼에 입력한 value 값을 pre 요소에도 출력하기 
+							document.querySelector("#pre"+num).innerText=content;
+							
+						}
+					});
+				});
+			}
+		}
 	</script>
+	<jsp:include page="/include/footer.jsp"></jsp:include>
 </body>
 </html>

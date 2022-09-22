@@ -1,13 +1,12 @@
 package com.acorn.boram.qna.service;
 
-import java.io.File;
+
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.acorn.boram.qna.dao.HyrQnaDao;
@@ -76,7 +75,7 @@ public class HyrQnaServiceImpl implements HyrQnaService{
 
 	@Override
 	public void updateContent(HyrQnaDto dto) {
-		// TODO Auto-generated method stub
+		qnaDao.update(dto);
 		
 	}
 
@@ -90,26 +89,39 @@ public class HyrQnaServiceImpl implements HyrQnaService{
 		request.setAttribute("dto", dto);
 		
 	}
-
-	@Override
-	public void getDetail(HttpServletRequest request) {
-		int num=Integer.parseInt(request.getParameter("num"));
-		
-		HyrQnaDto dto=new HyrQnaDto();
-		dto.setNum(num);
 	
-		request.setAttribute("dto", dto);
-
+	@Override
+	public void getDataReply(HttpServletRequest request) {
+		//글번호
+		int num=Integer.parseInt(request.getParameter("num"));
+		//글의 답변 가져오기
+		HyrQnaReplyDto dto=qnaReplyDao.getDataReply(num);
+		//request 에 담아준다.
+		request.setAttribute("dtoReply", dto);
 		
 	}
+
+	/*
+	 * @Override public void getDetail(HttpServletRequest request) { int
+	 * num=Integer.parseInt(request.getParameter("num"));
+	 * 
+	 * HyrQnaDto dto=new HyrQnaDto(); dto.setNum(num);
+	 * 
+	 * request.setAttribute("dto", dto);
+	 * 
+	 * 
+	 * }
+	 */
 
 	@Override
 	public void saveReply(HttpServletRequest request) {
 		int ref_num=Integer.parseInt(request.getParameter("ref_num"));
+		//String writer=request.getParameter("writer");
 		String content=request.getParameter("content");
-		
+		//session영역에 저장된 id로 부터 얻어내는 writer
 		String writer=(String)request.getSession().getAttribute("id");
 		int seq=qnaReplyDao.getSequence();
+		//답글 정보 dto에 담기
 		HyrQnaReplyDto dto=new HyrQnaReplyDto();
 		dto.setRnum(seq);
 		dto.setWriter(writer);
