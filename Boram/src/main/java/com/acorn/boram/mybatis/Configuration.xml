@@ -23,8 +23,12 @@
 		<mapper resource="com/acorn/boram/mybatis/UsersMapper.xml"/>
 		<mapper resource="com/acorn/boram/mybatis/LsaOrderListMapper.xml"/>
 		<mapper resource="com/acorn/boram/mybatis/ItemsMapper.xml"/>
+<<<<<<< HEAD
 		<mapper resource="com/acorn/boram/mybatis/OrderListMapper.xml"/>
 		<mapper resource="com/acorn/boram/mybatis/NoticeMapper.xml"/>
 		<mapper resource="com/acorn/boram/mybatis/NoticeCommentMapper.xml"/>
+=======
+		<mapper resource="com/acorn/boram/mybatis/ReserveMapper.xml"/>
+>>>>>>> refs/remotes/origin/LAB11
  	</mappers>
  </configuration>
