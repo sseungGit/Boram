@@ -36,10 +36,13 @@ public class MJWReserveController {
     	  service.getList(mView);
     	  mView.setViewName("reserve/reserve_wash");
       }else if(category.equals("bedding")){
+    	  
     	  mView.setViewName("reserve/reserve_bed");
       }else if(category.equals("shoes")){
+    	  
     	  mView.setViewName("reserve/reserve_shoes");
       }else if(category.equals("living")){
+    	  
     	  mView.setViewName("reserve/reserve_living");
       }
       	return mView;
