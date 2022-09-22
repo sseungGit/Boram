@@ -21,37 +21,30 @@ public class HyrQnaDaoImpl implements HyrQnaDao {
 
 	@Override
 	public int getCount(HyrQnaDto dto) {
-		// TODO Auto-generated method stub
-		return 0;
+		return session.selectOne("qna.getCount",dto);
 	}
 
 	@Override
 	public void insert(HyrQnaDto dto) {
-		// TODO Auto-generated method stub
+		session.insert("qna.insert", dto);
 		
 	}
 
 	@Override
 	public HyrQnaDto getData(int num) {
 		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void addViewCount(int num) {
-		// TODO Auto-generated method stub
-		
+		return session.selectOne("qna.getData", num);
 	}
 
 	@Override
 	public void delete(int num) {
-		// TODO Auto-generated method stub
+		session.delete("qna.delete", num);
 		
 	}
 
 	@Override
 	public void update(HyrQnaDto dto) {
-		// TODO Auto-generated method stub
+		session.update("qna.update", dto);
 		
 	}
 
