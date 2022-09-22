@@ -21,6 +21,7 @@ public class HyrQnaReplyDaoImpl implements HyrQnaReplyDao {
 	@Override
 	public void delete(int num) {
 		session.delete("qnaReply.delete", num);
+
 		
 	}
 

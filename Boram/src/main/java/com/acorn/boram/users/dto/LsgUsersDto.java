@@ -10,12 +10,12 @@ public class LsgUsersDto {
 	private String profile;
 	private String addr;
 	private String regdate;
-	private char manager;
+	private String manager;
 	
 	public LsgUsersDto() {}
 
 	public LsgUsersDto(String id, String pwd, String name, int countryCode, String phone, String email, String profile,
-			String addr, String regdate, char manager) {
+			String addr, String regdate, String manager) {
 		super();
 		this.id = id;
 		this.pwd = pwd;
@@ -101,11 +101,11 @@ public class LsgUsersDto {
 		this.regdate = regdate;
 	}
 
-	public char getManager() {
+	public String getManager() {
 		return manager;
 	}
 
-	public void setManager(char manager) {
+	public void setManager(String manager) {
 		this.manager = manager;
 	}
 	

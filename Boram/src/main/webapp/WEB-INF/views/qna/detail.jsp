@@ -67,7 +67,7 @@
 		<button class="btn btn-dark" style="float:left" onclick="location.href='${pageContext.request.contextPath}/qna/list.do' ">목록보기</button>		
 	<div class="reply">
 		<c:forEach var="tmp" items="${replyList }">
-			<%--만일 댓글의 글번호가 댓글의 그룹번호와 같다면(원글의 댓글이라면) --%>
+			<%--만일 답글의 글번호가 댓글의 그룹와 같다면(원글의 댓글이라면) --%>
 			<c:if test="${tmp.rnum eq tmp.ref_num }">
 				<li id="reli${tmp.rnum }">
 			</c:if>

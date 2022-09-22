@@ -152,8 +152,11 @@ public class HyrQnaServiceImpl implements HyrQnaService{
 	@Override
 	public void getDetail(HttpServletRequest request) {
 		int num=Integer.parseInt(request.getParameter("num"));
-		HyrQnaDto dto=qnaDao.getData(num);
+		HyrQnaDto dto=new HyrQnaDto();
+		dto.setNum(num);
+	
 		request.setAttribute("dto", dto);
+
 		
 	}
 
@@ -183,6 +186,12 @@ public class HyrQnaServiceImpl implements HyrQnaService{
 	@Override
 	public void updateReply(HyrQnaReplyDto dto) {
 		qnaReplyDao.update(dto);
+		
+	}
+
+	@Override
+	public void saveContent(HyrQnaDto dto) {
+		qnaDao.insert(dto);
 		
 	}
 	

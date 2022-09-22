@@ -15,11 +15,12 @@ public interface HyrQnaService {
 	//파일하나의 정보 얻어오기 
 	public void getFileData(int num, ModelAndView mView);
 	//파일 삭제하기
-	public void deleteFile(int num, HttpServletRequest request);	
+	public void deleteFile(int num, HttpServletRequest request);
+	public void saveContent(HyrQnaDto dto);
 	public void getDetail(HttpServletRequest request);
 	public void updateContent(HyrQnaDto dto);
 	public void getData(HttpServletRequest request);
-	public void saveReply(HttpServletRequest request);//답변 저장 
-	public void deleteReply(HttpServletRequest request);//답변 삭제
-	public void updateReply(HyrQnaReplyDto dto);//답변 수정
+	public void saveReply(HttpServletRequest request);//답글 저장 
+	public void deleteReply(HttpServletRequest request);//답글 삭제
+	public void updateReply(HyrQnaReplyDto dto);//답글 수정
 }

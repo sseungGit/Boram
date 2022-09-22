@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -64,7 +65,7 @@
 					<th scope="col">#</th>
 					<th scope="col">카테고리</th>
 					<th scope="col">질문</th>
-					<c:if test="${dto.manager eq 'Y' }">
+					<c:if test="${not empty manager and manager == 'Y'}">
 					<th scope="col">수정</th>
 					<th scope="col">삭제</th>
 					</c:if>
@@ -72,7 +73,7 @@
 			</thead>
 			<tbody>
 			<c:forEach var="tmp" items="${list }">
-				<tr class="question ${tmp.num }">
+				<tr class="question" data-num="${tmp.num }">
 					<td scope="row">${tmp.num }</td>
 					<c:choose>
 						<c:when test="${tmp.category eq 'service' }">
@@ -93,14 +94,14 @@
 						${tmp.title }<i class="bi bi-chevron-down" style="float:right"></i>
 		
 					</td>
-					<c:if test="${dto.manager eq 'Y' }">
+					<c:if test="${ not empty manager and manager == 'Y'}">
 					<td scope="row"><a href="updateform.do?num=${tmp.num }">수정</a></td>
 					<td scope="row"><a href="delete.do?num=${tmp.num }">삭제</a></td>
 					</c:if>
 				</tr>
 	
 	
-				<tr class="answer ${tmp.num }">
+				<tr class="answer" id="answer${tmp.num }">
 					<td colspan="100%">
 					<div>
 						<p style="text-align: left;">${tmp.content}</p>
@@ -161,15 +162,21 @@
 		
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script>
-	$(document).ready(function() {
-		$(".answer").hide();
-		$(".question").each(function(){
-		 	$(this).click(function(){
-		 		$(".answer").slideToggle();
-		 	});
+		
+		$(".question").click(function(){
+			//data-num 속성으로 저장된 번호를 읽어와서 
+			let num=$(this).attr("data-num");
+			//선택자로 활용한다.
+			$("#answer"+num).fadeToggle(400);
 		});
-	});
 	</script>
 	<jsp:include page="/include/footer.jsp"></jsp:include>
 </body>
 </html>
+
+
+
+
+
+
+
