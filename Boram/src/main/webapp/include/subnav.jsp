@@ -13,15 +13,45 @@
 				<p id="subContent">편한한 이용을 위해 Laundry365가 함께하겠습니다.</p>	
     		</div>
     	</c:when>
-	    <c:when test="${param.thisPage eq 'login' or param.thisPage eq 'signup' 
+  		<c:when test="${param.thisPage eq 'login' or param.thisPage eq 'signup' 
 	    		or param.thisPage eq 'findpwd' or param.thisPage eq 'findid' or param.thisPage eq 'manager'}">
     		<div id="image-box">
     			<img id="image-thumbnail" 
-    				src="${pageContext.request.contextPath }/resources/img/sub/subimg.jpg" alt="" />
+    				src="${pageContext.request.contextPath }/resources/img/sub/loginimg.jpg" alt="" />
     		</div>
     		<div id="sub-text">
     			<p id="subTitle"></p>
 				<p id="subContent"></p>	
+    		</div>
+    	</c:when>
+    	<c:when test="${param.thisPage eq 'support'}">
+    		<div id="image-box">
+    			<img id="image-thumbnail" 
+    				src="${pageContext.request.contextPath }/resources/img/sub/support.png" alt="" />
+    		</div>
+    		<div id="sub-text">
+    			<p id="subTitle">고객지원</p>
+				<p id="subContent">365일 신속, 정확한 고객케어 서비스를 운영합니다.</p>	
+    		</div>
+    	</c:when>
+    	<c:when test="${param.thisPage eq 'brand'}">
+    		<div id="image-box">
+    			<img id="image-thumbnail" 
+    				src="${pageContext.request.contextPath }/resources/img/brandSubImg2.jpg" alt="" />
+    		</div>
+    		<div id="sub-text">
+    			<p id="subTitle">브랜드소개</p>
+				<p id="subContent">Laundry365를 소개합니다.</p>	
+    		</div>
+    	</c:when>
+ 	    <c:when test="${param.thisPage eq 'mypage'}">
+    		<div id="image-box">
+    			<img id="image-thumbnail" 
+    				src="${pageContext.request.contextPath }/resources/img/sub/mypageimg.jpg" alt="" />
+    		</div>
+    		<div id="sub-text">
+    			<p id="subTitle">마이페이지</p>
+				<p id="subContent">여러분의 배송정보를 여기서 확인해 보세요.</p>	
     		</div>
     	</c:when>
     	<%-- 각 서브 메뉴를 밑에 이어서 추가하면 됩니다 --%>
@@ -79,6 +109,45 @@
 						</li>
 					</ul>
 		    	</c:when>
+		  	   	<c:when test="${param.thisPage eq 'brand'}">
+					<ul id="subNavUl">
+						<li class="subNavItem ${param.subPage eq 'corpor' ? 'deco' : ''}">
+						  	<a class="${param.subPage eq 'corpor' ? 'active' : ''}" aria-current="page" href="${pageContext.request.contextPath}/corporation/brand.do">브랜드소개</a>
+						</li>
+						<li class="subNavItem ${param.subPage eq 'history' ? 'deco' : ''}">
+						  	<a class="${param.subPage eq 'history' ? 'active' : ''}" href="${pageContext.request.contextPath}/corporation/history.do">연혁</a>
+						</li>					
+						<li class="subNavItem ${param.subPage eq 'startup' ? 'deco' : ''}">
+						  	<a class="${param.subPage eq 'startup' ? 'active' : ''}" href="${pageContext.request.contextPath}/corporation/startup.do">창업안내</a>
+						</li>
+						<li class="subNavItem ${param.subPage eq 'members' ? 'deco' : ''}">
+						  	<a class="${param.subPage eq 'members' ? 'active' : ''}" href="${pageContext.request.contextPath}/corporation/members.do">팀원소개</a>
+						</li>				
+					</ul>
+		    	</c:when>
+	    		<c:when test="${param.thisPage eq 'mypage'}">
+					<ul id="subNavUl">
+						<li class="subNavItem ${param.subPage eq 'info' ? 'deco' : ''}">
+							<a class="${param.subPage eq 'info' ? 'active' : ''}" href="${pageContext.request.contextPath }/mypage/users/info.do">회원정보</a>
+						</li>
+						<li class="subNavItem ${param.subPage eq 'orderlist' ? 'deco' : ''}">
+							<a class="${param.subPage eq 'orderlist' ? 'active' : ''}" aria-current="page" href="${pageContext.request.contextPath}/mypage/orderList/customer.do">신청내역확인</a>
+						</li>
+					</ul>
+				</c:when>
+				<c:when test="${param.thisPage eq 'support'}">
+					<ul id="subNavUl">
+						<li class="subNavItem ${param.subPage eq 'review' ? 'deco' : ''}">
+						  	<a class="${param.subPage eq 'review' ? 'active' : ''}" href="">후기게시판</a>
+						</li>
+						<li class="subNavItem ${param.subPage eq 'faq' ? 'deco' : ''}">
+						  	<a class="${param.subPage eq 'faq' ? 'active' : ''}" aria-current="page" href="${pageContext.request.contextPath}/faq/list.do">질문게시판</a>
+						</li>
+						<li class="subNavItem ${param.subPage eq 'notice' ? 'deco' : ''}">
+						  	<a class="${param.subPage eq 'notice' ? 'active' : ''}" aria-current="page" href="">공지사항</a>
+						</li>
+					</ul>
+		    	</c:when>
 		    	<%-- 각 서브 메뉴를 밑에 이어서 추가하면 됩니다 --%>
 		    	<%-- 예시
 		    	<c:when test="${param.thisPage eq '메뉴별 param 값'}">
@@ -103,6 +172,33 @@
 		    	</c:when>
 		    	<c:when test="${param.subPage eq 'area'}">
 		    		<p>지역안내</p>
+		    	</c:when>
+		    	<c:when test="${param.subPage eq 'corpor'}">
+		    		<p>브랜드소개</p>
+		    	</c:when>
+		  	    <c:when test="${param.subPage eq 'history'}">
+		    		<p>연혁</p>
+		    	</c:when>
+		    	<c:when test="${param.subPage eq 'startup'}">
+		    		<p>창업안내</p>
+		    	</c:when>
+		    	<c:when test="${param.subPage eq 'members'}">
+		    		<p>팀원소개</p>
+		    	</c:when>  
+		    	<c:when test="${param.subPage eq 'info'}">
+		    		<p>회원정보</p>
+		    	</c:when>
+		  	    <c:when test="${param.subPage eq 'orderlist'}">
+		    		<p>주문내역</p>
+		    	</c:when>  	 
+		    	<c:when test="${param.subPage eq 'review'}">
+		    		<p>후기게시판</p>
+		    	</c:when>
+		    	<c:when test="${param.subPage eq 'qna'}">
+		    		<p>질문게시판</p>
+		    	</c:when>
+		    	<c:when test="${param.subPage eq 'notice'}">
+		    		<p>공지사항</p>
 		    	</c:when>
 			</c:choose>
 			<%-- 각 서브 메뉴를 밑에 이어서 추가하면 됩니다 --%>

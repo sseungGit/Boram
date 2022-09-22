@@ -6,6 +6,17 @@
 <head>
 <meta charset="UTF-8">
 <title>/views/review/list.jsp</title>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/nav.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/subnav.css">
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/subFooter.css">
+<!--font-->
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+<!-- Font awesome -->
+<script src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
 <style>
 	.page-ui a{
 		text-decoration: none;
@@ -17,18 +28,16 @@
 	}
 	
 	.page-ui a.active{
-		color: red;
+		color: gray;
 		font-weight: bold;
 		text-decoration: underline;
 	}
 	.page-ui ul{
-		list-style-type: none;
-		padding: 0;
+		text-align: center;
+
 	}
-	
 	.page-ui ul > li{
-		float: left;
-		padding: 5px;
+		display:inline-block;
 		
 	}
 	.container > img {
@@ -37,11 +46,6 @@
 	  height: 300px;	  
 	  }
 	  
-	h1 {
-	  margin-top: 40px;
-	  display: block;
-	  text-align: center;
-	}
   	#formOne {
   		display: inline-block;
   	}
@@ -49,23 +53,46 @@
   	  	display: inline-block;
 
   	}
-
+	table > th {
+		color:000000;
+		font-size:17px;
+		font-weight:400;
+	}
+	table > td {
+		color:999999;
+		font-size:17px;
+	}
+	
+	td > a {
+  text-align: center;
+  text-decoration: none; /* 링크의 밑줄 제거 */
+  color: inherit; /* 링크의 색상 제거 */
+	}
+	
 </style>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" />
 </head>
 <body>
+<jsp:include page="/include/nav.jsp"></jsp:include>
+   <!-- sub nav바 -->
+   <!-- 
+      thisPage는 대메뉴를 구별하는데 사용
+      subPage는 소메뉴를 구별하는데 사용
+    -->
+ <jsp:include page="/include/subnav.jsp">
+ 	<jsp:param value="client" name="thisPage"/>
+    <jsp:param value="review" name="subPage"/>
+ </jsp:include>
 
-<div class="container" style= "width:700px">
-	<img src="${pageContext.request.contextPath}/images/review3.jpg"  />	
-	<h1>REVIEW</h1>
-	<table class="table table-bordered" >
+<div class="container mb-5" style= "width:1320px">
+
+	<table class="table table-hover" >
 		<colgroup>
-			<col style="width:20px">
-			<col style="width:50px">
-			<col style="width:100px">
+			<col style="width:70px">
 			<col style="width:30px">
+			<col style="width:150px">
+			<col style="width:70px">
+			<col style="width:50px">
 			<col style="width:20px">
-			<col style="width:40px">
 		</colgroup>
 		<thead>
 			<tr>
@@ -110,11 +137,11 @@
 		</c:forEach>
 		</tbody>
 	</table>
-	<div class="page-ui clearfix">	
-		<ul class="pagination">
+	<div class="mb-3 container page-ui clearfix ">	
+		<ul>
 			<c:if test="${startPageNum ne 1 }">
 				<li>
-					<a href="list.do?pageNum=${startPageNum-1 }&condition=${condition }&keyword=${encodedK }">Prev</a>
+					<a href="list.do?pageNum=${startPageNum-1 }&condition=${condition }&keyword=${encodedK }">&lt;</a>
 				</li>
 			</c:if>
 			<c:forEach var="i" begin="${startPageNum }" end="${endPageNum }">
@@ -131,7 +158,7 @@
 			</c:forEach>
 			<c:if test="${endPageNum lt totalPageCount }">
 				<li>
-					<a href="list.do?pageNum=${endPageNum+1 }&condition=${condition }&keyword=${encodedK }">Next</a>
+					<a href="list.do?pageNum=${endPageNum+1 }&condition=${condition }&keyword=${encodedK }">&gt;</a>
 				</li>
 			</c:if>
 		</ul>
@@ -171,7 +198,7 @@
 			<strong>${totalRow }</strong> 개의 글이 검색 되었습니다.
 		</p>
 	</c:if>
-
 </div>
+<jsp:include page="/include/footer.jsp"></jsp:include>
 </body>
 </html>
