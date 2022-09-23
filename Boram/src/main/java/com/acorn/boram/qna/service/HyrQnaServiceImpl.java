@@ -132,9 +132,8 @@ public class HyrQnaServiceImpl implements HyrQnaService{
 
 	@Override
 	public void deleteReply(HttpServletRequest request) {
-		int num=Integer.parseInt(request.getParameter("rnum"));
-		HyrQnaReplyDto dto=qnaReplyDao.getData(num);
-		String id=(String)request.getSession().getAttribute("id");
+		int num=Integer.parseInt(request.getParameter("num"));
+		System.out.println(num);
 		qnaReplyDao.delete(num);
 	}
 

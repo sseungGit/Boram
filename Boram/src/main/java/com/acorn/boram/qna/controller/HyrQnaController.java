@@ -81,7 +81,7 @@ public class HyrQnaController {
 	//답글 수정 요청처리 (JSON 을 응답하도록 한다)
 	@RequestMapping("/qna/reply_update")
 	@ResponseBody
-	public Map<String, Object> ReplyUpdate(HyrQnaReplyDto dto, HttpServletRequest request){
+	public Map<String, Object> ReplyUpdate(HyrQnaReplyDto dto){
 		service.updateReply(dto);
 		Map<String, Object> map=new HashMap<String, Object>();
 		map.put("isSuccess", true);

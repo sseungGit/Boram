@@ -27,7 +27,7 @@
 	<update id="update" parameterType="qnaReplyDto">
 		UPDATE reply_board
 		SET content=#{content},update_date=SYSDATE
-		WHERE rnum=#{rnum}
+		WHERE ref_num=#{ref_num} AND writer=#{writer}
 	</update>
 	<select id="getData" parameterType="int" resultType="qnaReplyDto">
 		SELECT rnum,writer,content,ref_num,regdate

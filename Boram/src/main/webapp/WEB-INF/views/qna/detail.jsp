@@ -35,19 +35,6 @@
 		width: 14%;
 		height: 100px;
 	}
-	pre {
-	  display: block;
-	  padding: 9.5px;
-	  margin: 0 0 10px;
-	  font-size: 13px;
-	  line-height: 1.42857143;
-	  color: #333333;
-	  word-break: break-all;
-	  word-wrap: break-word;
-	  background-color: #f5f5f5;
-	  border: 1px solid #ccc;
-	  border-radius: 4px;
-	}
 
 </style>
 </head>
@@ -88,106 +75,93 @@
 		<div class="reply" >
 			<c:if test="${not empty dtoReply.content }">
 				<div class="rcontent">
+					<c:if test="${manager eq 'Y' and dtoReply.writer eq sessionScope.id}">
+						<a id="updateBtn" href="javascript:">수정</a>
+						<a id="deleteBtn" href="javascript:">삭제</a>
+					</c:if>
 					<dl>
 						<dt><i class="bi bi-chat-square-quote"></i> 답변 드립니다.</dt>
 						<dd>${dtoReply.content }</dd>
 					</dl>
-				
 				</div>
 			</c:if>
 
-			<c:if test="${not empty manager and manager == 'Y'}">
-				<!-- 원글의 답글 작성 폼 -->
-				<form class="reply-form insert-form mt-3" action="reply_insert.do" method="post">
+			<c:if test="${manager eq 'Y' and empty dtoReply.content }">
+				<!-- 답글 작성하는 폼 -->
+				<form class="reply-form insert-form mt-3" action="reply_insert.do" method="post" id="insertForm" style="display:block">
 					<!-- 원글의 글번호가 답글의 ref_num 번호가 된다. -->
 					<input type="hidden" name="ref_num" value="${dto.num }"/>
 					<textarea name="content"></textarea>
 					<button type="submit">답변 등록</button>
 				</form>
 			</c:if>
+			
+			<!-- 답글 수정하는 폼 -->
+			<c:if test="${manager eq 'Y' and dtoReply.writer eq sessionScope.id}">
+				<!-- 원글의 답글 작성 폼 -->
+				<form class="reply-form insert-form mt-3" action="reply_update.do" method="post" id="updateForm" style="display:none">
+					<input type="hidden" name="ref_num" value="${dto.num }"/>
+					<input type="hidden" name="writer" value="${sessionScope.id }"/>
+					<textarea name="content">${dtoReply.content }</textarea>
+					<button type="submit">수정</button>
+				</form>
+			</c:if>
+			
+			
 		</div>
+		
 		<button class="btn btn-dark" style="float:right" onclick="location.href='delete.do?num=${dto.num }' ">삭제</button>
 		<button class="btn btn-dark" style="float:left" onclick="location.href='${pageContext.request.contextPath}/qna/list.do' ">목록보기</button>
 	</div>
 	</div>
 	<script src="${pageContext.request.contextPath}/resources/js/gura_util.js"></script>
    	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<script>
-		addUpdateFormListener(".update-form");
-		addUpdateListener(".update-link");
-		addDeleteListener(".delete-link");
-		addReplyListener(".reply-link");
-		
-		function addUpdateListener(sel){
-			//답글 수정 링크 참조값을 배열에 담아오기
-			// sel 은  ".page-xxx  .update-link" 형식의 내용이다
-			let updateLinks=document.querySelectorAll(sel);
-			for(let i=0; i<updateLinks.length; i++){
-				updateLinks[i].addEventListener("click", function(){
-					//click 이벤트가 일어난 바로 그 요소의 data-num 속성의 value 값을 읽어온다. 
-					const num=this.getAttribute("data-num"); //답글의 글번호
-					document.querySelector("#updateForm"+num).style.display="block";
-					
-				});
-			}
-		}
-		function addDeleteListener(sel){
-			//답글 삭제 링크의 참조값을 배열에 담아오기 
-			let deleteLinks=document.querySelectorAll(sel);
-				deleteLinks.addEventListener("click", function(){
-					const isDelete=confirm("답글을 삭제 하시겠습니까?");
-					if(isDelete){
-						// gura_util.js 에 있는 함수들 이용해서 ajax 요청
-						ajaxPromise("reply_delete.do", "post", "num="+num)
-						.then(function(response){
-							return response.json();
-						})
-						.then(function(data){
-							//만일 삭제 성공이면 
-							if(data.isSuccess){
-								//답글이 있는 곳에 삭제된 답글입니다를 출력해 준다. 
-								document.querySelector("#reli"+num).innerText="삭제된 답글입니다.";
-							}
-						});
+   	<script>
+   		document.querySelector("#updateForm").addEventListener("submit",function(event){
+   			let form=document.querySelector('#updateForm');
+   			let content=document.querySelector('#updateForm textarea').value;
+   			ajaxFormPromise(form)
+   			.then(function(res){
+   				return res.json();
+   			})
+   			.then(function(data){
+   				console.log(data);
+   				if(data){
+   					alert('수정되었습니다.');
+   		   			form.style.display="none";
+   				}else{
+   					alert('수정이 실패했습니다');
+   				}
+				location.href="detail.do?num=${dto.num }"
+   			});
+   		});
+   		
+   		document.querySelector('#updateBtn').addEventListener("click",function(){
+   			let form=document.querySelector("#updateForm");
+   			form.style.display="block";
+   		});
+   		
+		document.querySelector('#deleteBtn').addEventListener("click",function(){
+			let form=document.querySelector("#insertForm");
+			let rdiv=document.querySelector(".rcontent");
+			const isDelete=confirm("답글을 삭제 하시겠습니까?");
+			if(isDelete){
+				ajaxPromise("reply_delete.do", "get", "num=${dtoReply.rnum}")
+				.then(function(res){
+					return res.json();
+				})
+				.then(function(data){
+					if(data.isSuccess){
+						rdiv.style.display="none";
+						if(${dtoReply.rnum}){
+							form.style.display="block";
+						}
 					}
 				});
 			}
-		}
-		function addUpdateFormListener(sel){
-			//댓글 수정 폼의 참조값을 배열에 담아오기
-			let updateForms=document.querySelectorAll(sel);
-			for(let i=0; i<updateForms.length; i++){
-				//폼에 submit 이벤트가 일어 났을때 호출되는 함수 등록 
-				updateForms[i].addEventListener("submit", function(e){
-					//submit 이벤트가 일어난 form 의 참조값을 form 이라는 변수에 담기 
-					const form=this;
-					//폼 제출을 막은 다음 
-					e.preventDefault();
-					//이벤트가 일어난 폼을 ajax 전송하도록 한다.
-					ajaxFormPromise(form)
-					.then(function(response){
-						return response.json();
-					})
-					.then(function(data){
-						if(data.isSuccess){
-							/*
-								document.querySelector() 는 html 문서 전체에서 특정 요소의 
-								참조값을 찾는 기능
-								
-								특정문서의 참조값.querySelector() 는 해당 문서 객체의 자손 요소 중에서
-								특정 요소의 참조값을 찾는 기능
-							*/
-							const num=form.querySelector("input[name=rnum]").value;
-							const content=form.querySelector("textarea[name=content]").value;
-							//수정폼에 입력한 value 값을 pre 요소에도 출력하기 
-							document.querySelector("#pre"+num).innerText=content;
-							
-						}
-					});
-				});
-			}
-		}
-	</script>
+		});
+   		
+   	</script>
 	<footer>
 		<jsp:include page="/include/footer.jsp"></jsp:include>
 	</footer>

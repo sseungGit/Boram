@@ -183,7 +183,7 @@
 					//로그인 폼으로 이동 시킨다.
 					//로그인 성공후 다시 해당글 자세히 보기 페이지로 돌아올 수 있도록 url 정보를  같이 전달한다.
 					location.href=
-						"${pageContext.request.contextPath}/users/loginform.do?url=${pageContext.request.contextPath}/faq/list.do";
+						"${pageContext.request.contextPath}/users/login_form.do?url=${pageContext.request.contextPath}/faq/list.do";
 				}
 			});
 	</script>
