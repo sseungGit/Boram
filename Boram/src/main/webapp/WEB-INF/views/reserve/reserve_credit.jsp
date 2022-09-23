@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -66,8 +67,34 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
-$(document).ready(function(){
 
+
+
+$(document).ready(function(){
+	
+		var name = '<c:out value="${name}"/>';
+		var price = '<c:out value="${price}"/>';
+		var count = '<c:out value="${count}"/>';
+		
+		
+		//제품 수량에 따른 가격
+		var productTotPrice =  new Array();
+		
+		var n = name.split('/');
+		var p = price.split('/');
+		var c = count.split('/');
+		//전체 가격
+		var tot = 0;
+		
+		//Ex 이런식으로 값 화면에 뿌리기
+		//$('.'+getId).text(testtt);
+	
+		for(var i = 1; i < n.length; i++){
+			productTotPrice[i] = parseInt(p[i]) * parseInt(c[i]);
+			tot += parseInt(p[i]) * parseInt(c[i]);
+		}
+		
+		
         /*  배송지 선택 코드  */
 
         $('#selectAddr_newAddr').hide(); // 초기값 설정
@@ -198,7 +225,7 @@ $(document).ready(function(){
             <div class="addr">
                 <p>배송지정보</p>   
                 <!-- 1. 주소 입력 api 적용-->
-                <label for="staticName">이름 : 홍길동</label><br>
+                <label for="staticName">이름 : 홍길동  <c:out value="${name}"/> </label><br>
                 <label for="staticPhone">전화번호 : 010-1234-5678</label><br><br>
                 <div class=" form-check-inline">
                     <input class="form-check-input" type="radio" name="addr" value="기존배송지" checked>

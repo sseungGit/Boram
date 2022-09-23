@@ -62,6 +62,7 @@ border: 0;
 }
 li{
     margin-top: 15px;
+    margin-bottom: 15px;
 }
 .number input{
     display: inline-block;

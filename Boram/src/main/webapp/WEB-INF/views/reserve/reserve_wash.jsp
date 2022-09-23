@@ -53,13 +53,13 @@
                     <ul class="order_name">
 
                     </ul>
-                    <div class="order_number">
+                    <div class="order_number" style="text-align:left; width: 100px;">
                         
                     </div>
                 </div>
                 <div class="total_price">
                     <p>총 상품 금액</p>
-                    <p class="result_price"></p>
+                    <p class="result_price" style="text-align: right;"></p>
                 </div>
             </div>
             <div class="bottom">
@@ -98,36 +98,50 @@
 </div>
     <script src="${pageContext.request.contextPath}/reserve_img/jquery js/jquery-3.4.1.js"></script>
     <script src="${pageContext.request.contextPath}/reserve_img/jquery js/jquery.datetimepicker.full.min.js"></script>
+<script src="${pageContext.request.contextPath}/reserve_img/jquery js/jquery-3.4.1.js"></script>
+    <script src="${pageContext.request.contextPath}/reserve_img/jquery js/jquery.datetimepicker.full.min.js"></script>
     <script>
         $.datetimepicker.setLocale("ko");
-
+		
         $("#one").datetimepicker();
-
+       
+		var idNum = 0;
+		
         $("#product").on("change", function(){
-        	var msg2=$("#product option:selected").val();
+        	idNum += 1;
+        	var msg2=parseInt($("#product option:selected").val());
             var msg=$("#product option:selected").text();
-            var count=1;
             $("#number").text(msg);
             $("#inputMsg").val("");
-            $('.order_number').append(
-            	'<button type="submit" class="minusBtn">-</button><input type="text" type="number" name="num1" id="num1" min="1" max="30" value="1"/><button type="submit" class="plusBtn">+</button>'
-            );
-            $('.plusBtn').on("click", function(){
-            	$("#num").val(count+=1);
-            })
-            $('.minusBtn').on("click", function(){
-            	if($("#num").val()>=2){
-            		$("#num").val(count-=1);
-            	}else{
-            		alert("0이하는 불가합니다!");
-            	}
-            })
-            $('.order_number').append(msg2);
+            $('.order_number').append('<input type="number" type="number" name="num" id="num'+idNum+'" min="1" max="30" value="1" onchange="history(this.value,'+msg2+',this.id);">');
+            $('.order_number').append('<span class="num'+idNum+' in" name="number">'+msg2+'</span>');
             $("<li></li>").text(msg).appendTo(".order_name");
+            var sum = 0;
+        	$('.in').each(function(){
+
+        		sum += parseInt($(this).text());
+        	});
+           
+            $('.result_price').text(sum);
+            
         });
-       
+
+    function history(countNum,countPrice,getId){
+    	var testtt = countNum * countPrice;
     	
-        
+    	
+    	$('.'+getId).text(testtt);
+    	ttt();
+    	
+    }
+    function ttt(){
+    	var sum = 0;
+    	$('.in').each(function(){
+
+    		sum += parseInt($(this).text());
+    	});
+    	$('.result_price').text(sum);
+    }
     </script>
    <jsp:include page="/include/footer.jsp"></jsp:include>
 </body>

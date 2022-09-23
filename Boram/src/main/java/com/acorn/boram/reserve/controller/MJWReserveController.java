@@ -55,8 +55,12 @@ public class MJWReserveController {
    }
    
    @RequestMapping("/reserve/reserve_credit")
-   public String reserve_credit() {
-      return "reserve/reserve_credit";
+   public ModelAndView reserve_credit(ModelAndView mView, String name, String price, String count) {
+	   mView.addObject("name", name);
+	   mView.addObject("price", price);
+	   mView.addObject("count", count);
+	   mView.setViewName("reserve/reserve_credit");
+      return mView;
    }
    
    @RequestMapping("/reserve/reserve_bed")

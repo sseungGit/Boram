@@ -22,6 +22,12 @@
       <jsp:param value="guide" name="thisPage"/>
       <jsp:param value="area" name="subPage"/>
 </jsp:include>
+<form action="${pageContext.request.contextPath}/member/update.do" method="post">
+		
+		
+
+		
+
 <div class="container">
     <p>step02 상품선택</p>
     <main id="order_wrap">
@@ -60,11 +66,12 @@
                 </div>
                 <div class="total_price">
                     <p>총 상품 금액</p>
-                    <p class="result_price">2,000</p>
+                    <p class="result_price" value="0"></p>
                 </div>
             </div>
             <div class="bottom">
-                <button type="button" onclick="location.href='${pageContext.request.contextPath}/reserve/reserve_credit.do'" id="order_btn">예약하기</button>
+            	
+                <button type="button" onclick="nextViewPage()" id="order_btn">예약하기</button>
             </div>
         </div>
     </main>
@@ -97,25 +104,71 @@
         <h2>Laundry365에서<br>깨끗하고 안전하게! 배송해드리겠습니다!</h2>
     </div>
 </div>
+</form>
     <script src="${pageContext.request.contextPath}/reserve_img/jquery js/jquery-3.4.1.js"></script>
     <script src="${pageContext.request.contextPath}/reserve_img/jquery js/jquery.datetimepicker.full.min.js"></script>
     <script>
         $.datetimepicker.setLocale("ko");
-
+		
         $("#one").datetimepicker();
-
-
+       
+		var idNum = 0;
+		
         $("#product").on("change", function(){
-        	var msg2=$("#product option:selected").val();
+        	idNum += 1;
+        	var msg2=parseInt($("#product option:selected").val());
             var msg=$("#product option:selected").text();
             $("#number").text(msg);
             $("#inputMsg").val("");
-            $('.order_number').append('<input type="number" type="number" name="num" id="num" min="1" max="30" value="1">');
-            $('.order_number').append(msg2);
-            $("<li></li>").text(msg).appendTo(".order_name");
+            
+            $('.order_number').append('<input type="number" class="product" name="num" id="num'+idNum+'" min="1" max="30" value="1" onchange="history(this.value,'+msg2+',this.id);">');
+            $('.order_number').append('<span class="num'+idNum+' in" name="number">'+msg2+'</span>');
+            $("<li class=\"productName\"></li>").text(msg).appendTo(".order_name");
+            var sum = 0;
+        	$('.in').each(function(){
+
+        		sum += parseInt($(this).text());
+        	});
+           
+            $('.result_price').text(sum);
+            
         });
 
+    function history(countNum,countPrice,getId){
+    	var testtt = countNum * countPrice;
+    	
+    	
+    	$('.'+getId).text(testtt);
+    	ttt();
+    	
+    }
+    function ttt(){
+    	var sum = 0;
+    	$('.in').each(function(){
+
+    		sum += parseInt($(this).text());
+    	});
+    	$('.result_price').text(sum);
+    }
     
+    function nextViewPage(){
+    	var sum ='이름';
+    	var sum2 ='가격';
+    	var sum3 ='수량';
+    	$('.productName').each(function(){
+    		sum = sum + '/' + $(this).text();
+    	});
+    	$('.in').each(function(){
+    		sum2 = sum2 + '/' + $(this).text();
+    	});
+    	$('.product').each(function(){
+    		sum3 = sum3 + '/' + $(this).val();
+    	});
+    	
+
+    	var text = '${pageContext.request.contextPath}/reserve/reserve_credit.do?name='+sum+'&price='+sum2+'&count='+sum3;
+    	location.href=text;
+    }
     </script>
 <jsp:include page="/include/footer.jsp"></jsp:include>
 </body>
