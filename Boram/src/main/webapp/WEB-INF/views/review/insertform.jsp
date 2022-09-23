@@ -36,7 +36,7 @@
       subPage는 소메뉴를 구별하는데 사용
     -->
  <jsp:include page="/include/subnav.jsp">
- 	<jsp:param value="client" name="thisPage"/>
+ 	<jsp:param value="support" name="thisPage"/>
     <jsp:param value="review" name="subPage"/>
  </jsp:include>
 	<div class="container mb-3" style= "width:800px">

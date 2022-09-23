@@ -34,7 +34,7 @@
 	<jsp:include page="/include/nav.jsp"></jsp:include>
 	<!-- sub nav바 -->
 	<jsp:include page="/include/subnav.jsp">
-	  	<jsp:param value="cs" name="thisPage"/>
+	  	<jsp:param value="support" name="thisPage"/>
 	  	<jsp:param value="faq" name="subPage"/>
 	</jsp:include>
 	<div class="container" style= "width:800px">
