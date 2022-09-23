@@ -14,7 +14,6 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/nav.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/subFooter.css" />
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/subnav.css">
-	
 </head>
 <body>
 <jsp:include page="/include/nav.jsp"></jsp:include>
@@ -60,7 +59,7 @@
                 </div>
                 <div class="total_price">
                     <p>총 상품 금액</p>
-                    <p class="result_price">2,000</p>
+                    <p class="result_price"></p>
                 </div>
             </div>
             <div class="bottom">
@@ -104,18 +103,31 @@
 
         $("#one").datetimepicker();
 
-
         $("#product").on("change", function(){
         	var msg2=$("#product option:selected").val();
             var msg=$("#product option:selected").text();
+            var count=1;
             $("#number").text(msg);
             $("#inputMsg").val("");
-            $('.order_number').append('<input type="number" type="number" name="num" id="num" min="1" max="30" value="1">');
+            $('.order_number').append(
+            	'<button type="submit" class="minusBtn">-</button><input type="text" type="number" name="num1" id="num1" min="1" max="30" value="1"/><button type="submit" class="plusBtn">+</button>'
+            );
+            $('.plusBtn').on("click", function(){
+            	$("#num").val(count+=1);
+            })
+            $('.minusBtn').on("click", function(){
+            	if($("#num").val()>=2){
+            		$("#num").val(count-=1);
+            	}else{
+            		alert("0이하는 불가합니다!");
+            	}
+            })
             $('.order_number').append(msg2);
             $("<li></li>").text(msg).appendTo(".order_name");
         });
-        
+       
     	
+        
     </script>
    <jsp:include page="/include/footer.jsp"></jsp:include>
 </body>

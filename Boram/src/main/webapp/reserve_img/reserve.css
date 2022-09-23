@@ -107,3 +107,6 @@ p{
     width: 1000px; margin: 0px auto; font-size: x-large; 
     padding-left: 15px; padding-bottom: 20px; font-weight: 550;
 }
+.order_number input{
+	width: 50px;
+}
