@@ -77,7 +77,7 @@
     <jsp:param value="review" name="subPage"/>
  </jsp:include>
 
-<div class="container mb-5" style= "width:1320px">
+<div class="container" style= "width:1320px; margin-bottom:150px">
 
 	<table class="table table-hover" >
 		<colgroup>

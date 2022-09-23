@@ -42,7 +42,7 @@
 <div class="container mb-2"  >	
  	<img src="${pageContext.request.contextPath}/resources/img/startup2.jpg"  />
  </div>
-<div class="container mb-5"  >
+<div class="container" style="margin-bottom:150px"  >
  	<img src="${pageContext.request.contextPath}/resources/img/startup.png"  />
  
  </div>

@@ -39,10 +39,10 @@
  	<jsp:param value="support" name="thisPage"/>
     <jsp:param value="review" name="subPage"/>
  </jsp:include>
-	<div class="container mb-5" style= "width:800px; border-top:1px solid #000;">
+<div class="container mb-5" style= "width:800px; border-top:1px solid #000; ">
  
  	</div> 
-	<div class="container mb-3" style= "width:800px">
+	<div class="container mb-3" style= "width:800px ;">
 	<img src="${pageContext.request.contextPath}/images/laundry3.PNG"  />
 	<form action="insert.do" method="post" id="insertForm">
 		<div class="mt-3 mb-3">
@@ -60,11 +60,11 @@
     			<option value=5>★★★★★</option>
 			</select>
 		</div>
-		<div class="container mb-5">
+		<div class="container" >
 			<label class="form-label" for="content">내용</label>
 			<textarea class="form-control"  name="content" id="content"></textarea>
 		</div>
-		<button class="btn btn-outline-secondary" type="submit" >저장</button>
+		<button style="margin-bottom:100px;" class="btn btn-outline-secondary mt-3" type="submit" >저장</button>
 	</form>
 </div>
 <%--

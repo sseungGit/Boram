@@ -38,7 +38,7 @@
  </jsp:include>
 <div class="container mb-5" style="border-top:1px solid #000; width:1320px" >
  </div>
- <div class="container mb-5">
+ <div class="container" style="margin-bottom:200px">
   	<img src="${pageContext.request.contextPath}/images/members.PNG"  /> 
  </div>
 <jsp:include page="/include/footer.jsp"></jsp:include>
