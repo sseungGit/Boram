@@ -124,7 +124,7 @@
 						<div class = "sub-menu-item1">
 							<h3>고객지원</h3>
 							<ul>
-								<li><a href = "${pageContext.request.contextPath}">후기게시판</a></li>
+								<li><a href = "${pageContext.request.contextPath}/review/list.do">후기게시판</a></li>
 								<li><a href = "${pageContext.request.contextPath }/faq/list.do">질문게시판</a></li>
 								<li><a href = "${pageContext.request.contextPath}/notice/list.do">공지사항</a></li>
 							</ul>
