@@ -36,8 +36,9 @@
  	<jsp:param value="brand" name="thisPage"/>
     <jsp:param value="startup" name="subPage"/>
  </jsp:include>
-
-<h2 class="container mb-3">지역별 담당자 안내</h2>
+<div class="container mb-3" >
+<h2 >지역별 담당자 안내</h2>
+</div>
 <div class="container mb-2"  >	
  	<img src="${pageContext.request.contextPath}/resources/img/startup2.jpg"  />
  </div>

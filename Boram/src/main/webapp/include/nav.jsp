@@ -42,7 +42,7 @@
 							<h2>
 								명품을 명품답게<br>명품 케어 서비스
 							</h2>
-							<button type = "button" class = "btn1">회사소개</button>
+							<button type = "button" class = "btn1" onclick="location.href='${pageContext.request.contextPath}/corporation/brand.do'">회사소개</button>
 						</div>
 						<!-- end of item -->
 						<!-- item -->

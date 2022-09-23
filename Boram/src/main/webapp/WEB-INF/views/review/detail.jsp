@@ -68,6 +68,9 @@
  	<jsp:param value="support" name="thisPage"/>
     <jsp:param value="review" name="subPage"/>
  </jsp:include>
+ <div class="container mb-5" style= "width:800px; border-top:1px solid #000;">
+ 
+ </div>
 <div class="container" style= "width:800px">
 	<img src="${pageContext.request.contextPath}/images/laundry.jpg"  />
 	<table class="table table-bordered table-striped-columns ">
