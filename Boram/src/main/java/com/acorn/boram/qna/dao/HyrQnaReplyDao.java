@@ -17,5 +17,7 @@ public interface HyrQnaReplyDao {
 	public void update(HyrQnaReplyDto dto);
 	//답글 하나의 정보를 리턴하는 메소드
 	public HyrQnaReplyDto getData(int num);
+	//답글 하나의 정보를 리턴하는 메소드
+	public HyrQnaReplyDto getDataReply(int num);
 
 }

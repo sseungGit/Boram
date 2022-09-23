@@ -36,17 +36,18 @@ public class MJWReserveController {
     	  service.getList(mView);
     	  mView.setViewName("reserve/reserve_wash");
       }else if(category.equals("bedding")){
-    	  
+    	  service.getList2(mView);
     	  mView.setViewName("reserve/reserve_bed");
       }else if(category.equals("shoes")){
-    	  
+    	  service.getList3(mView);
     	  mView.setViewName("reserve/reserve_shoes");
       }else if(category.equals("living")){
-    	  
+    	  service.getList4(mView);
     	  mView.setViewName("reserve/reserve_living");
       }
       	return mView;
    }
+   
    
    @RequestMapping("/reserve/reserve_wash")
    public String reserve_wash() {

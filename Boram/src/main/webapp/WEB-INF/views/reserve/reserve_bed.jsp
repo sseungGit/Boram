@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -38,9 +39,9 @@
                         <select name="product" id="product">
                             <optgroup label="상품선택">
                                 <option value="">선택해주세요</option>
-                                <option value="일반이불">일반이불</option>
-                                <option value="극세사이불">극세사이불</option>
-                                <option value="오리, 거위털이불">오리, 거위털이불</option>
+                                <c:forEach var="tmp" items="${list2}">
+                                	<option id="${tmp.inum }" value="${tmp.price }">${tmp.item }</option>
+                                </c:forEach>
                             </optgroup>
                         </select>
                     </dd>
@@ -105,11 +106,12 @@
 
 
         $("#product").on("change", function(){
-            var msg=$("#product option:selected").val();
+        	var msg2=$("#product option:selected").val();
+            var msg=$("#product option:selected").text();
             $("#number").text(msg);
             $("#inputMsg").val("");
-            $('.order_number').append('<input type="number" type="number" name="num" id="num" min="1" max="30" value="1">');
-            $('.order_number').append('<span>2000</span>');
+            $('.order_number').append('<input type="number" type="number" name="num1" id="num1" min="1" max="30" value="1">');
+            $('.order_number').append(msg2);
             $("<li></li>").text(msg).appendTo(".order_name");
         });
 
