@@ -58,13 +58,13 @@
 	</jsp:include>
 	<div class="container">
 		<h1 class="text-center">자주 묻는 질문</h1>
-		<button class="btn btn-dark" style="float:right" onclick="location.href='${pageContext.request.contextPath}/qna/list.do' ">1:1문의</button>
+			<button class="btn btn-dark" id="qna" style="float:right" onclick="location.href='${pageContext.request.contextPath}/qna/list.do' ">1:1문의하러 가기</button>
 		<table class="table" id="table">
 			<thead>
 				<tr>
 					<th scope="col">#</th>
 					<th scope="col">카테고리</th>
-					<th scope="col">질문</th>
+					<th scope="col">제목</th>
 					<c:if test="${not empty manager and manager == 'Y'}">
 					<th scope="col">수정</th>
 					<th scope="col">삭제</th>
@@ -111,9 +111,9 @@
 			</c:forEach>
 			</tbody>
 		</table>
-		
+		<c:if test="${not empty manager and manager == 'Y'}">
 			<button class="btn btn-dark" style="float:right" onclick="location.href='insertform.do' ">글쓰기</button>
-			
+		</c:if>	
 		<div class="page-ui clearfix">
 		<ul>
 			<c:if test="${startPageNum ne 1 }">
@@ -169,6 +169,23 @@
 			//선택자로 활용한다.
 			$("#answer"+num).fadeToggle(400);
 		});
+		
+		//클라이언트가 로그인 했는지 여부
+		let isLogin=${ not empty id };
+		
+		//1:1문의하러가기 버튼에 click이벤트가 일어났을때 실행할 함수 등록
+		document.querySelector("#qna")
+			.addEventListener("click", function(e){
+				//만일 로그인 하지 않았으면 
+				if(!isLogin){
+					//폼 전송을 막고 
+					e.preventDefault();
+					//로그인 폼으로 이동 시킨다.
+					//로그인 성공후 다시 해당글 자세히 보기 페이지로 돌아올 수 있도록 url 정보를  같이 전달한다.
+					location.href=
+						"${pageContext.request.contextPath}/users/loginform.do?url=${pageContext.request.contextPath}/faq/list.do";
+				}
+			});
 	</script>
 	<jsp:include page="/include/footer.jsp"></jsp:include>
 </body>
