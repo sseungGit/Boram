@@ -46,13 +46,7 @@
 	  height: 300px;	  
 	  }
 	  
-  	#formOne {
-  		display: inline-block;
-  	}
-  	#formTwo {
-  	  	display: inline-block;
 
-  	}
 	table > th {
 		color:000000;
 		font-size:17px;
@@ -165,39 +159,37 @@
 	</div>
 	
 	<div style="clear:both;"></div>
-	<div id="formOne">
-		<form action="list.do" method="get" > 
-			<label for="condition">검색조건</label>
-			<select  name="condition" id="condition">
-				<option value="title_content" ${condition eq 'title_content' ? 'selected' : '' }>제목+내용</option>
-				<option value="title" ${condition eq 'title' ? 'selected' : '' }>제목</option>
-				<option value="writer" ${condition eq 'writer' ? 'selected' : '' }>작성자</option>
-			</select>
-			<label for="keyword" ></label>
-			<input type="text"  id="keyword" name="keyword" placeholder="검색어를 입력하세요" value="${keyword }"/>
-			<button class="btn btn-outline-secondary" type="submit">
-				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-	  			<path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-				</svg>
-			</button>
-		</form>
-	</div>	
-	<div id="formTwo" style= "float: right">
-		<form action="insertform.do" >
-		<button class="float-right btn btn-outline-secondary"  type="submit">
+	
+	<div class="notice_btn mr-2" style="display:flex; justify-content:center;">
+		<form action="list.do" method="get" style="height:33px;"> 
+			<label for="condition"></label>
+				<select name="condition" id="condition" style="height:100%;">
+					<option value="title_content" ${condition eq 'title_content' ? 'selected' : '' }>제목+내용</option>
+					<option value="title" ${condition eq 'title' ? 'selected' : '' }>제목</option>
+					<option value="writer" ${condition eq 'writer' ? 'selected' : '' }>작성자</option>
+				</select>
+				<input style="height:100%;" type="text" id="keyword" name="keyword" placeholder="검색어..." value="${keyword }"/>
+				<button style="height:100%; margin-top:-5px;" class="btn btn-outline-dark btn-sm"  type="submit">검색</button>
+			</form>	
+	</div>
+	<div style="float:right">
+	<form action="insertform.do" >
+		<button class="float-right btn btn-dark"  type="submit">
 			<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-square" viewBox="0 0 16 16">
-	  		<path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
-	  		<path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-		</svg>
-		새글 작성
+		  		<path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+		  		<path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+			</svg>
+			새글 작성
 		</button>	
-		</form>
-	</div>	
+	</form>
+	</div>			
+	<!--  
 	<c:if test="${ not empty condition }">
 		<p>
 			<strong>${totalRow }</strong> 개의 글이 검색 되었습니다.
 		</p>
 	</c:if>
+	-->
 </div>
 <jsp:include page="/include/footer.jsp"></jsp:include>
 </body>

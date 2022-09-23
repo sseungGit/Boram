@@ -12,33 +12,7 @@ public class HyrQnaDto {
 	private int endRowNum;
 	private int prevNum;
 	private int nextNum;
-	//원본 파일명
-	private String orgFileName;
-	//파일 시스템에 저장된 파일명
-	private String saveFileName;
-	//파일의 크기 
-	private long fileSize;
-	//파일 업로드 처리를 하기 위한 필드
-	private MultipartFile myFile;
-	public HyrQnaDto() {}
-	public HyrQnaDto(int num, String writer, String title, String content, String regdate, int startRowNum,
-			int endRowNum, int prevNum, int nextNum, String orgFileName, String saveFileName, long fileSize,
-			MultipartFile myFile) {
-		super();
-		this.num = num;
-		this.writer = writer;
-		this.title = title;
-		this.content = content;
-		this.regdate = regdate;
-		this.startRowNum = startRowNum;
-		this.endRowNum = endRowNum;
-		this.prevNum = prevNum;
-		this.nextNum = nextNum;
-		this.orgFileName = orgFileName;
-		this.saveFileName = saveFileName;
-		this.fileSize = fileSize;
-		this.myFile = myFile;
-	}
+	
 	public int getNum() {
 		return num;
 	}
@@ -92,30 +66,6 @@ public class HyrQnaDto {
 	}
 	public void setNextNum(int nextNum) {
 		this.nextNum = nextNum;
-	}
-	public String getOrgFileName() {
-		return orgFileName;
-	}
-	public void setOrgFileName(String orgFileName) {
-		this.orgFileName = orgFileName;
-	}
-	public String getSaveFileName() {
-		return saveFileName;
-	}
-	public void setSaveFileName(String saveFileName) {
-		this.saveFileName = saveFileName;
-	}
-	public long getFileSize() {
-		return fileSize;
-	}
-	public void setFileSize(long fileSize) {
-		this.fileSize = fileSize;
-	}
-	public MultipartFile getMyFile() {
-		return myFile;
-	}
-	public void setMyFile(MultipartFile myFile) {
-		this.myFile = myFile;
 	}
 
 }

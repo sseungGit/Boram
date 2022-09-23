@@ -41,10 +41,14 @@ public class HyrQnaReplyDaoImpl implements HyrQnaReplyDao {
 		session.update("qnaReply.update", dto);
 		
 	}
-
+	
 	@Override
 	public HyrQnaReplyDto getData(int num) {
 		return session.selectOne("qnaReply.getData", num);
 	}
 
+	@Override
+	public HyrQnaReplyDto getDataReply(int num) {
+		return session.selectOne("qnaReply.getDataReply", num);
+	}
 }
