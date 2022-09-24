@@ -9,9 +9,13 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/nav.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/subnav.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/subFooter.css">
-	<style>
-		body{background-color:#666;}
-	</style>
+<style>
+	.container > img {
+
+	  width: 100%;
+
+	  }
+	  </style>	
 </head>
 <body>
 <!-- main nav바  -->
@@ -25,22 +29,9 @@
 	<jsp:param value="brand" name="thisPage"/>
 	<jsp:param value="corpor" name="subPage"/>
 </jsp:include>
-
-	<br><br><br><br><br>
-	<div>
-		<p>우리집 모바일 세탁소 런드리365</p>
-		<br><br><br>
-		<p>잠들기 전 내놓으면 한밤만에 세탁 끝!</p>
-		<br><br>
-		<p>세탁은 런드리365에 맡기고 </p>
-		<p>의미있는 시간을 보내 보세요.</p>
-		<br><br>
-		<p>편리하고 스마트한 세탁 서비스로 </p>
-		<p>생활의 여유를 찾아 드리겠습니다 :) </p>
-	</div>
-	<br><br><br><br><br>
-	<img src="${pageContext.request.contextPath}/resources/img/brand.JPG">
-	<br><br><br><br><br>
+ <div class="container" style="margin:0px 150px 250px 150px">
+	<img src="${pageContext.request.contextPath}/resources/img/corpor.jpg">
+ </div>
 	<jsp:include page="/include/footer.jsp"></jsp:include>
 </body>
 </html>

@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="orders">
 	<select id="getOrderList" resultType="ordersDto">
-		SELECT CODE, REGDATE,  (SELECT ITEM FROM ORDER_ITEMS OI,ITEMS I
+		SELECT CODE, REGDATE,RESERVATION_DATE RESERVATIONDATE,  (SELECT ITEM FROM ORDER_ITEMS OI,ITEMS I
 		WHERE OI.CODE = SO.CODE
 		AND OI.INUM = I.INUM
 		AND ROWNUM=1) ITEM, 
