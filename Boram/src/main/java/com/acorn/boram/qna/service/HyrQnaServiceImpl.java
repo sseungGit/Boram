@@ -148,5 +148,13 @@ public class HyrQnaServiceImpl implements HyrQnaService{
 		qnaDao.insert(dto);
 		
 	}
+
+
+
+	@Override
+	public void updateCheckReply(int num) {
+		qnaDao.updateCheckReply(num);
+		
+	}
 	
 }

@@ -8,7 +8,7 @@
 		FROM
 			(SELECT result1.*, ROWNUM AS rnum
 			FROM
-				(SELECT num,writer,title,content,regdate
+				(SELECT num,writer,title,content,regdate,check_reply
 				FROM qna_board
 				ORDER BY num DESC) result1)
 		<![CDATA[ 
@@ -36,9 +36,16 @@
 			) result1
 		WHERE num=#{num}
 	</select>
-	
 	<delete id="delete" parameterType="int">
 		DELETE FROM qna_board
 		WHERE num=#{num}
 	</delete>
+	<update id="updateCheckReply" parameterType="int">
+		UPDATE qna_board
+		SET check_reply=
+			(SELECT COUNT(*) 
+			FROM reply_board 
+			WHERE ref_num = #{ref_num})
+		WHERE num=#{num}
+	</update>
 </mapper>

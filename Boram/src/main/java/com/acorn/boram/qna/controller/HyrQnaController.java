@@ -55,9 +55,10 @@ public class HyrQnaController {
 		return mView;
 	}
 	@RequestMapping("/qna/detail")
-	public String detail(HttpServletRequest request) {
+	public String detail(@RequestParam int num,HttpServletRequest request){
 		service.getData(request);
 		service.getDataReply(request);
+		service.updateCheckReply(num);
 		return "qna/detail";
 	}
 	@RequestMapping("/qna/reply_insert")

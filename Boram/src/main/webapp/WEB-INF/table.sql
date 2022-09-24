@@ -224,3 +224,5 @@ INSERT INTO qcategorize(category) VALUES('order');
 INSERT INTO qcategorize(category) VALUES('member');
 
 INSERT INTO qcategorize(category) VALUES('etc');
+
+ALTER TABLE qna_board ADD check_reply int DEFAULT '0';

@@ -75,15 +75,16 @@
 							</c:if>
 						</c:when>
 						<c:otherwise>
-							<c:forEach var="tmp" items="${list }">
 							<tr class="question" onclick="location.href='detail.do?num=${tmp.num }'">
 								<td scope="row">${tmp.title }</td>
 								<td scope="row">${tmp.regdate }</td>
-								
-								
-								<td scope="row">답변대기</td>					
+								<c:if test="${tmp.check_reply eq '0'}">
+									<td scope="row">답변대기</td>
+								</c:if>
+								<c:if test="${tmp.check_reply eq '1'}">
+									<td scope="row">답변완료</td>
+								</c:if>					
 							</tr>
-							</c:forEach>
 						</c:otherwise>
 					</c:choose>
 				</c:forEach>
