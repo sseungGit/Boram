@@ -12,8 +12,8 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/nav.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/subFooter.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/subnav.css">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 <style>
+	* { font-family: 'Noto Sans KR', sans-serif !important;}
 	.page-ui a{
 		text-decoration: none;
 		color: #000;
@@ -52,8 +52,8 @@
 	</jsp:include>
 	<div class="container">
 		<h1 class="text-center">1:1문의</h1>
-		<button class="btn btn-dark" style="float:right" onclick="location.href='${pageContext.request.contextPath}/qna/insertform.do' "><i class="bi bi-plus"></i>문의하기</button>
-		<table class="table">
+		<button class="btn btn-outline-dark" style="float:right" onclick="location.href='${pageContext.request.contextPath}/qna/insertform.do' "><i class="bi bi-plus"></i>문의하기</button>
+		<table class="table table-hover">
 			<thead>
 				<tr>
 					<th scope="col">제목</th>
@@ -62,13 +62,31 @@
 				</tr>
 			</thead>
 			<tbody>
-					<c:forEach var="tmp" items="${list }">
-					<tr class="question" onclick="location.href='detail.do?num=${tmp.num }'">
-						<td scope="row">${tmp.title }</td>
-						<td scope="row">${tmp.regdate }</td>
-						<td scope="row">답변대기</td>					
-					</tr>
-					</c:forEach>
+				<c:forEach var="tmp" items="${list }" varStatus="status">
+					<c:choose>
+						<c:when test="${ tmp.writer ne sessionScope.id }">
+							<c:if test="${ status.first }">
+								<tr>
+									<td colspan="3" class="text-center">작성한 1:1 문의가 없습니다.</td>
+								</tr>							
+							</c:if>
+							<c:if test="${ !status.first }">
+								<tr style="display:none;"></tr>
+							</c:if>
+						</c:when>
+						<c:otherwise>
+							<c:forEach var="tmp" items="${list }">
+							<tr class="question" onclick="location.href='detail.do?num=${tmp.num }'">
+								<td scope="row">${tmp.title }</td>
+								<td scope="row">${tmp.regdate }</td>
+								
+								
+								<td scope="row">답변대기</td>					
+							</tr>
+							</c:forEach>
+						</c:otherwise>
+					</c:choose>
+				</c:forEach>
 			</tbody>
 		</table>
 	</div>

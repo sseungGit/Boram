@@ -12,11 +12,22 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/nav.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/subFooter.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/subnav.css">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 <style>
+	* { font-family: 'Noto Sans KR', sans-serif !important;}
+	.container{
+		margin-bottom: 200px;
+	}
+	.container2{
+		margin-bottom: 10px;
+	}
    .content{
       border: 1px dotted gray;
+      height: 300px;
+   }
+      .rcontent{
+      border: 1px solid;
+      
    }
    	.reply dt{
 		margin-top: 5px;
@@ -48,71 +59,76 @@
 	</jsp:include>
 	<div class="container" style= "width:800px">
 	<h1>1:1문의</h1>
-	<div>
-		<table class="table table-bordered table-striped-columns">
-			<tr>
-				<th>글번호</th>
-				<td>${dto.num }</td>
-			</tr>
-			<tr>
-				<th>작성자</th>
-				<td>${dto.writer }</td>
-			</tr>
-			<tr>
-				<th>제목</th>
-				<td>${dto.title }</td>
-			</tr>
-			<tr>
-				<th>등록일</th>
-				<td>${dto.regdate }</td>
-			</tr>
-			<tr>
-				<td colspan="2">
-					<div class="content">${dto.content }</div>
-				</td>
-			</tr>
-		</table>		
-		<div class="reply" >
-			<c:if test="${not empty dtoReply.content }">
-				<div class="rcontent">
-					<c:if test="${manager eq 'Y' and dtoReply.writer eq sessionScope.id}">
-						<a id="updateBtn" href="javascript:">수정</a>
-						<a id="deleteBtn" href="javascript:">삭제</a>
-					</c:if>
-					<dl>
-						<dt><i class="bi bi-chat-square-quote"></i> 답변 드립니다.</dt>
-						<dd>${dtoReply.content }</dd>
-					</dl>
-				</div>
-			</c:if>
-
-			<c:if test="${manager eq 'Y' and empty dtoReply.content }">
-				<!-- 답글 작성하는 폼 -->
-				<form class="reply-form insert-form mt-3" action="reply_insert.do" method="post" id="insertForm" style="display:block">
-					<!-- 원글의 글번호가 답글의 ref_num 번호가 된다. -->
-					<input type="hidden" name="ref_num" value="${dto.num }"/>
-					<textarea name="content"></textarea>
-					<button type="submit">답변 등록</button>
-				</form>
-			</c:if>
-			
-			<!-- 답글 수정하는 폼 -->
-			<c:if test="${manager eq 'Y' and dtoReply.writer eq sessionScope.id}">
-				<!-- 원글의 답글 작성 폼 -->
-				<form class="reply-form insert-form mt-3" action="reply_update.do" method="post" id="updateForm" style="display:none">
-					<input type="hidden" name="ref_num" value="${dto.num }"/>
-					<input type="hidden" name="writer" value="${sessionScope.id }"/>
-					<textarea name="content">${dtoReply.content }</textarea>
-					<button type="submit">수정</button>
-				</form>
-			</c:if>
-			
-			
+		<div>
+			<table class="table table-bordered table-striped-columns">
+				<tr>
+					<th>글번호</th>
+					<td>${dto.num }</td>
+				</tr>
+				<tr>
+					<th>작성자</th>
+					<td>${dto.writer }</td>
+				</tr>
+				<tr>
+					<th>제목</th>
+					<td>${dto.title }</td>
+				</tr>
+				<tr>
+					<th>등록일</th>
+					<td>${dto.regdate }</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<div class="content">${dto.content }</div>
+					</td>
+				</tr>
+			</table>		
+			<div class="reply" >
+				<c:if test="${not empty dtoReply.content }">
+					<div class="rcontent">
+						<dl>
+							<dt>&nbsp;<i class="bi bi-chat-square-quote"></i> 답변 드립니다.</dt>
+							<dd><pre>${dtoReply.content }</pre></dd>
+						</dl>
+						<c:if test="${manager eq 'Y' and dtoReply.writer eq sessionScope.id}">
+						<div id="btnGroup">
+							<a id="updateBtn" class="btn btn-outline-dark" href="javascript:rdelete();">수정</a>
+							<a id="deleteBtn" class="btn btn-outline-dark" href="javascript:('')">삭제</a>
+						</div>
+						</c:if>
+					</div>
+				</c:if>
+	
+				<c:if test="${manager eq 'Y' and empty dtoReply.content }">
+					<!-- 답글 작성하는 폼 -->
+					<form class="reply-form insert-form mt-3" action="reply_insert.do" method="post" id="insertForm" style="display:block">
+						<!-- 원글의 글번호가 답글의 ref_num 번호가 된다. -->
+						<input type="hidden" name="ref_num" value="${dto.num }"/>
+						<textarea name="content"></textarea>
+						<button class="btn btn-dark" type="submit">답변 등록</button>
+					</form>
+				</c:if>
+				
+				<!-- 답글 수정하는 폼 -->
+				<c:if test="${manager eq 'Y' and dtoReply.writer eq sessionScope.id}">
+					<!-- 원글의 답글 작성 폼 -->
+					<form class="reply-form insert-form mt-3" action="reply_update.do" method="post" id="updateForm" style="display:none">
+						<input type="hidden" name="ref_num" value="${dto.num }"/>
+						<input type="hidden" name="writer" value="${sessionScope.id }"/>
+						<textarea name="content">${dtoReply.content }</textarea>
+						<button class="btn btn-dark" type="submit">수정</button>
+					</form>
+				</c:if>
+				
+				
+			</div>
+	
+	
 		</div>
-		
-		<button class="btn btn-dark" style="float:right" onclick="location.href='delete.do?num=${dto.num }' ">삭제</button>
-		<button class="btn btn-dark" style="float:left" onclick="location.href='${pageContext.request.contextPath}/qna/list.do' ">목록보기</button>
-	</div>
+		<div class="btnContainer">
+			<button class="btn btn-outline-dark" style="float:right" onclick="location.href='delete.do?num=${dto.num }' ">삭제</button>
+			<button class="btn btn-outline-dark" style="float:left" onclick="location.href='${pageContext.request.contextPath}/qna/list.do' ">목록보기</button>
+		</div>
 	</div>
 	<script src="${pageContext.request.contextPath}/resources/js/gura_util.js"></script>
    	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -141,7 +157,7 @@
    			form.style.display="block";
    		});
    		
-		document.querySelector('#deleteBtn').addEventListener("click",function(){
+		document.querySelector('#deleteBtn').addEventListener("click",function rdelete(){
 			let form=document.querySelector("#insertForm");
 			let rdiv=document.querySelector(".rcontent");
 			const isDelete=confirm("답글을 삭제 하시겠습니까?");
@@ -153,7 +169,7 @@
 				.then(function(data){
 					if(data.isSuccess){
 						rdiv.style.display="none";
-						if(${dtoReply.rnum}){
+						if(dtoReply.rnum == NULL){
 							form.style.display="block";
 						}
 					}

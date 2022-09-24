@@ -31,13 +31,13 @@ public class HyrQnaController {
 		return "qna/list";
 	}
 	@RequestMapping("/qna/insertform")
-	public ModelAndView InsertForm(HttpServletRequest request) {
+	public ModelAndView authInsertForm(HttpServletRequest request) {
 		
 		return new ModelAndView("qna/insertform");
 	}
 	//새글 저장 요청 처리 
 	@RequestMapping("/qna/insert")
-	public ModelAndView Insert(HyrQnaDto dto, ModelAndView mView, HttpSession session, HttpServletRequest request) {
+	public ModelAndView authInsert(HyrQnaDto dto, ModelAndView mView, HttpSession session, HttpServletRequest request) {
 		//글 작성자는 세션에서 얻어낸다. 
 		String id=(String)session.getAttribute("id");
 		//dto객체에 글 작성자도 담기
@@ -61,7 +61,7 @@ public class HyrQnaController {
 		return "qna/detail";
 	}
 	@RequestMapping("/qna/reply_insert")
-	public ModelAndView ReplyInsert(HttpServletRequest request, 
+	public ModelAndView authReplyInsert(HttpServletRequest request, 
 			@RequestParam int ref_num) {
 		
 		service.saveReply(request);
@@ -71,7 +71,7 @@ public class HyrQnaController {
 	//답글 삭제 요청 처리
 	@RequestMapping("/qna/reply_delete")
 	@ResponseBody
-	public Map<String, Object> ReplyDelete(HttpServletRequest request) {
+	public Map<String, Object> authReplyDelete(HttpServletRequest request) {
 		service.deleteReply(request);
 		Map<String, Object> map=new HashMap<String, Object>();
 		map.put("isSuccess", true);
@@ -81,7 +81,7 @@ public class HyrQnaController {
 	//답글 수정 요청처리 (JSON 을 응답하도록 한다)
 	@RequestMapping("/qna/reply_update")
 	@ResponseBody
-	public Map<String, Object> ReplyUpdate(HyrQnaReplyDto dto){
+	public Map<String, Object> authReplyUpdate(HyrQnaReplyDto dto){
 		service.updateReply(dto);
 		Map<String, Object> map=new HashMap<String, Object>();
 		map.put("isSuccess", true);

@@ -45,8 +45,8 @@
 				<label for="content">답변 내용</label>
 				<textarea name="content" id="content">${dto.content }</textarea>
 			</div>
-			<button type="submit" onclick="submitContents(this);">수정 확인</button>
-			<button type="reset">취소</button>
+			<button class="btn btn-outline-dark" type="submit" onclick="submitContents(this);" >수정 확인</button>
+			<button class="btn btn-outline-dark" type="reset">취소</button>
 		</form>
 	</div>
 	<!-- SmartEditor 에서 필요한 javascript 로딩  -->

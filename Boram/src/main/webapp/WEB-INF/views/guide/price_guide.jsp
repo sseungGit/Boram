@@ -23,10 +23,24 @@
 	#price-wr{
 		 margin-bottom: 250px;
 	}
-	#btnGroup{
+	#btnGroup{		
 		display: inline-block;
 		margin-bottom: 50px;
 	}
+	.btn{
+    border: 1px solid rgb(0, 0, 0);
+    text-transform: uppercase;
+    padding: 0.6rem 1rem;
+    cursor: pointer;
+    background: rgb(0, 0, 0);
+    color: #ffffff;
+    transition: all 0.5s ease;
+    border-radius: 0px;
+}
+	.btn:hover{
+    background: transparent;
+    color: #000000;
+}
 	#btnGroup a{
 		margin: 0px 30px;
 		width: 100px;

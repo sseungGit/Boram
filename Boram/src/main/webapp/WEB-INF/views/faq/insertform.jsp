@@ -43,12 +43,54 @@
 				<label class="form-label" for="content">답변 내용</label>
 				<textarea class="form-control"  name="content" id="content"></textarea>
 			</div>
-			<button class="btn btn-dark" type="submit">저장</button>
+			<button class="btn btn-outline-dark" type="submit" style="margin-bottom:50px;">저장</button>
 		</form>
 	</div>
-	<script>
+<!-- SmartEditor 에서 필요한 javascript 로딩  -->
+<script src="${pageContext.request.contextPath }/SmartEditor/js/HuskyEZCreator.js"></script>
+<script>
+	var oEditors = [];
 	
-	</script>
+	//추가 글꼴 목록
+	//var aAdditionalFontSet = [["MS UI Gothic", "MS UI Gothic"], ["Comic Sans MS", "Comic Sans MS"],["TEST","TEST"]];
+	
+	nhn.husky.EZCreator.createInIFrame({
+		oAppRef: oEditors,
+		elPlaceHolder: "content",
+		sSkinURI: "${pageContext.request.contextPath}/SmartEditor/SmartEditor2Skin.html",	
+		htParams : {
+			bUseToolbar : true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
+			bUseVerticalResizer : true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
+			bUseModeChanger : true,			// 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
+			//aAdditionalFontList : aAdditionalFontSet,		// 추가 글꼴 목록
+			fOnBeforeUnload : function(){
+				//alert("완료!");
+			}
+		}, //boolean
+		fOnAppLoad : function(){
+			//예제 코드
+			//oEditors.getById["ir1"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
+		},
+		fCreator: "createSEditor2"
+	});
+	
+	function pasteHTML() {
+		var sHTML = "<span style='color:#FF0000;'>이미지도 같은 방식으로 삽입합니다.<\/span>";
+		oEditors.getById["content"].exec("PASTE_HTML", [sHTML]);
+	}
+	
+	function showHTML() {
+		var sHTML = oEditors.getById["content"].getIR();
+		alert(sHTML);
+	}
+
+	
+	function setDefaultFont() {
+		var sDefaultFont = '궁서';
+		var nFontSize = 24;
+		oEditors.getById["content"].setDefaultFont(sDefaultFont, nFontSize);
+	}
+</script>
 	<jsp:include page="/include/footer.jsp"></jsp:include>
 </body>
 </html>
