@@ -14,12 +14,14 @@ public class LsgOrderListDto {
 	private String state;
 	private String get_invoice_num;
 	private String send_invoice_num;
+	private int startRowNum;
+	private int endRowNum;
 	
 	public LsgOrderListDto() {}
 
 	public LsgOrderListDto(int code, String orderer, String name, String phone, String addr, int order_price,
 			String order_addr, String regdate, String reservation_date, String request, String state,
-			String get_invoice_num, String send_invoice_num) {
+			String get_invoice_num, String send_invoice_num, int startRowNum, int endRowNum) {
 		super();
 		this.code = code;
 		this.orderer = orderer;
@@ -34,6 +36,8 @@ public class LsgOrderListDto {
 		this.state = state;
 		this.get_invoice_num = get_invoice_num;
 		this.send_invoice_num = send_invoice_num;
+		this.startRowNum = startRowNum;
+		this.endRowNum = endRowNum;
 	}
 
 	public int getCode() {
@@ -139,4 +143,21 @@ public class LsgOrderListDto {
 	public void setSend_invoice_num(String send_invoice_num) {
 		this.send_invoice_num = send_invoice_num;
 	}
+
+	public int getStartRowNum() {
+		return startRowNum;
+	}
+
+	public void setStartRowNum(int startRowNum) {
+		this.startRowNum = startRowNum;
+	}
+
+	public int getEndRowNum() {
+		return endRowNum;
+	}
+
+	public void setEndRowNum(int endRowNum) {
+		this.endRowNum = endRowNum;
+	}
+
 }

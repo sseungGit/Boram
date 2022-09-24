@@ -157,7 +157,7 @@
 							<h3>마이페이지</h3>
 							<ul>
 								<li><a href = "${pageContext.request.contextPath }/mypage/users/info.do">회원정보</a></li>
-								<li><a href = "${pageContext.request.contextPath}/mypage/orderList/customer.do">신청내역확인</a></li>
+								<li><a href = "${pageContext.request.contextPath}/mypage/order.do">신청내역확인</a></li>
 								<%-- 로그인 여부에 따라 --%>
 								<c:choose>
 									<c:when test="${ empty sessionScope.id}">

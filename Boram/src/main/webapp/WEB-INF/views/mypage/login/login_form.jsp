@@ -75,14 +75,15 @@
 				  <input class="form-control" type="text" name="id" id="id" style="background-color:#F5F5F5;">
 				</div>
 				
-				<div class="input-group mb-3">
+				<div class="input-group">
 				  <span class="input-group-text" id="basic-addon2" style="background-color:#F5F5F5;">
 					<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-lock" viewBox="0 0 16 16">
 					  <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2zM5 8h6a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/>
 					</svg>
 				  </span>
-				  <input class="form-control" type="password"  name="pwd" id="pwd" style="background-color:#F5F5F5;">
+				  <input class="form-control" type="password"  name="pwd" id="pwd" style="background-color:#F5F5F5;" onkeyup="checkCapsLock(event)">
 				</div>
+				<p id="message" class="mt-1 mb-3"></p>
 				<div class="row row-cols-1">
 					<div class="col d-grid gap-1 mx-auto mb-3">
 						<button class="btn btn-primary" type="submit" >Sign in</button>
@@ -122,9 +123,24 @@
 			}
 		});
 		
+/* 		function checkCapsLock(event)  {
+		  if (event.getModifierState("CapsLock")) {
+		    document.getElementById("message").innerText 
+		      = "Caps Lock이 켜져 있습니다."
+		  }else {
+		    document.getElementById("message").innerText 
+		      = ""
+		  }
+		} */
 		
-		if (new Date() == new Date('09/21/2022 20:37:00')) {
-			alert('지금은 8시 36분입니다');        
+		function checkCapsLock(event)  {
+		  if (event.getModifierState("CapsLock")) {
+		    document.getElementById("message").innerText 
+		      = "Caps Lock이 켜져 있습니다."
+		  }else {
+		    document.getElementById("message").innerText 
+		      = ""
+		  }
 		}
 	</script>
 </body>
