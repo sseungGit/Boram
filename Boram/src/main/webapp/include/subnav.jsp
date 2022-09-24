@@ -215,7 +215,7 @@
 		    		<p>회원정보</p>
 		    	</c:when>
 		  	    <c:when test="${param.thisPage eq 'mypage' and param.subPage eq 'orderlist'}">
-		    		<p>주문내역</p>
+		    		<p>신청내역</p>
 		    	</c:when> 
 			</c:choose>
 		</div>
