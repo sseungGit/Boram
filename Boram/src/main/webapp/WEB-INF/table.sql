@@ -210,3 +210,5 @@ CREATE TABLE order_items(
    inum NUMBER NOT NULL,
    count NUMBER NOT NULL -- 수량
    );
+   
+CREATE SEQUENCE order_items_seq;

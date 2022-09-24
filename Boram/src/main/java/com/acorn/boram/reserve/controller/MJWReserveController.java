@@ -19,7 +19,7 @@ public class MJWReserveController {
 
 	@Autowired
 	private ItemService service;
-	
+
    @RequestMapping("/reserve/reserve_select")
    public String reserve_select(HttpServletRequest request) {
       return "reserve/reserve_select";
@@ -47,29 +47,27 @@ public class MJWReserveController {
       }
       	return mView;
    }
-   
-   
-   @RequestMapping("/reserve/reserve_wash")
-   public String reserve_wash() {
-      return "reserve/reserve_wash";
-   }
+
    
    @RequestMapping("/reserve/reserve_credit")
-   public String reserve_credit() {
-      return "reserve/reserve_credit";
+   public ModelAndView reserve_credit(HttpServletRequest request, ModelAndView mView, String name, String price, String count, String date) {
+	   mView.addObject("name", name);
+	   mView.addObject("price", price);
+	   mView.addObject("count", count);
+	   mView.addObject("date", date);
+	   mView.setViewName("reserve/reserve_credit");
+      return mView;
    }
    
-   @RequestMapping("/reserve/reserve_bed")
-   public String reserve_bed() {
-      return "reserve/reserve_bed";
+   @RequestMapping("/reserve/insert")
+   public ModelAndView reserve_insert(HttpServletRequest request, ModelAndView mView, String name, String price, String count, String date) {
+	   request.getSession().getAttribute("id");
+	   request.getSession().getAttribute("addr");
+	   
+	   
+	   
+	   mView.setViewName("/reserve/insert");
+	   return mView;
    }
-   
-   @RequestMapping("/reserve/reserve_shoes")
-   public String reserve_shoes() {
-      return "reserve/reserve_shoes";
-   }
-   @RequestMapping("/reserve/reserve_living")
-   public String reserve_living() {
-      return "reserve/reserve_living";
-   }
+
 }

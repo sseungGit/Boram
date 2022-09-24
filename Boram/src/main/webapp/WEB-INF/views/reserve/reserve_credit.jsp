@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,7 +34,7 @@
     .container{
         height: 1000px !important;
         background: #f5f5f5;
-        margin-bottom: 50px;
+        margin-bottom: 270px;
     }
     .addr{
         margin-bottom: 30px;
@@ -66,8 +67,53 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
-$(document).ready(function(){
 
+
+
+$(document).ready(function(){
+	
+		var name = '<c:out value="${name}"/>';
+		var price = '<c:out value="${price}"/>';
+		var count = '<c:out value="${count}"/>';
+		var date = '<c:out value="${date}"/>';
+		
+		
+		//제품 수량에 따른 가격
+		var productTotPrice =  new Array();
+		
+		var n = name.split('/');
+		var p = price.split('/');
+		var c = count.split('/');
+		var d = date.split('/');
+		//전체 가격
+		var tot = 0;
+		
+		//Ex 이런식으로 값 화면에 뿌리기
+		//$('.'+getId).text(testtt);
+		
+		// 상품
+		var productName ='';
+		var productDate =d[1]+'년 '+d[2]+'월 '+d[3].substr(0, 2)+'일 '+d[3].substr(3, 7);
+		
+		// 수량
+		
+		for(var i = 1; i < n.length; i++){
+			productTotPrice[i] = parseInt(p[i]) * parseInt(c[i]);
+			tot += parseInt(p[i]) * parseInt(c[i]);
+			if(i==1){
+				productName += n[i]+' '+c[i]+'개';
+			}else{
+				productName += ', '+n[i]+' '+c[i]+'개';
+			}
+		}
+		
+		
+		$('.do').val(productName);
+		$('.dp').val(productDate);
+		
+		$('.di').val(tot+'원');
+		
+		
         /*  배송지 선택 코드  */
 
         $('#selectAddr_newAddr').hide(); // 초기값 설정
@@ -186,6 +232,7 @@ $(document).ready(function(){
       <jsp:param value="area" name="subPage"/>
 </jsp:include>
     <div class="container">
+    <form action="insert.do" method="post" id="insertForm">
         <!-- 배송지 정보 -->
         <div class="addrForm">
             <div class="step">
@@ -193,13 +240,27 @@ $(document).ready(function(){
             </div>
             <div class="product">
                 <p>상품정보</p>
-                <!-- 상품 정보 DB 불어올공간-->
+                <div>
+                	<label for="title" class="form-label">주문자 아이디</label>
+                 	<input type="text" class="form-control " name="title1" id="title1" value="${id}" readonly/>
+                </div>
+                <div>
+                	<label for="title" class="form-label">상품, 수량</label>
+                 	<input type="text" class="form-control do" name="title2" id="title2" value="" readonly/>
+                </div>
+                <div>
+                	<label for="title" class="form-label">총 주문가격</label>
+                 	<input type="text" class="form-control di" name="title4" id="title4" value="" readonly>
+                </div>
+                <div>
+                	<label for="title" class="form-label">수거날짜</label>
+                 	<input type="text" class="form-control dp" name="title5" id="title5" value="" readonly>
+                </div>
+                <!-- 주소 -->
             </div>
             <div class="addr">
                 <p>배송지정보</p>   
                 <!-- 1. 주소 입력 api 적용-->
-                <label for="staticName">이름 : 홍길동</label><br>
-                <label for="staticPhone">전화번호 : 010-1234-5678</label><br><br>
                 <div class=" form-check-inline">
                     <input class="form-check-input" type="radio" name="addr" value="기존배송지" checked>
                     <label class="form-check-label" for="addr">
@@ -213,16 +274,15 @@ $(document).ready(function(){
                     </label>
                 </div><br> 
                 <div id="selectAddr_curAddr"><br>
-                    <label for="staticAddr" >(06365)서울시 강남구 삼원타워 5층</label>
+                    <label for="staticAddr" >주소</label><br>
+                    <input type="text" class="form-control" name="addr1" id="addr1" value="${addr}" readonly>
                 </div><br>
                 <div id="selectAddr_newAddr">
-                    <form name="addrForm" method="post">
-                        <input type="text" name="useraddr1" id="sample6_postcode" placeholder="우편번호" class="form-control">
+                        <input type="text" name="useraddr1" id="sample6_postcode" placeholder="우편번호" class="form-control" readonly>
                         <input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기" class="btn btn-outline-primary"><br>
-                        <input type="text" name="useraddr2" id="sample6_address" placeholder="주소" class="form-control"><br>
+                        <input type="text" name="useraddr2" id="sample6_address" placeholder="주소" class="form-control" readonly><br>
                         <input type="text" name="useraddr3" id="sample6_detailAddress" placeholder="상세주소" class="form-control">
-                        <input type="text" name="useraddr4" id="sample6_extraAddress" placeholder="참고항목" class="form-control"> 
-                    </form>              
+                        <input type="text" name="useraddr4" id="sample6_extraAddress" placeholder="참고항목" class="form-control" readonly>        
                 </div>
             </div> 
                 <!--    
@@ -279,6 +339,7 @@ $(document).ready(function(){
                 </div>
             
         </div>
+        </form>
     </div>   
 <jsp:include page="/include/footer.jsp"></jsp:include>
 </body>
