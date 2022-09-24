@@ -33,6 +33,7 @@
 				<th>수거일</th>
 				<th>요청사항</th>
 				<th>상태</th>
+				<th></th>
 			</tr>
 		</thead>
 		<tbody>
@@ -43,7 +44,11 @@
 					<td>${tmp.order_addr }</td>
 					<td>${tmp.regdate}</td>
 					<td>${tmp.reservation_date }</td>
+					<td>${tmp.request}</td>
 					<td>${tmp.state }</td>
+				     <c:if test="${tmp.orderer eq id and tmp.state eq '반환완료' }">
+					<td><a href="${pageContext.request.contextPath }/review/insertform.do?code=${tmp.code }">후기쓰기</a></td>
+					</c:if>
 				</tr>
 			</c:forEach>
 		</tbody>

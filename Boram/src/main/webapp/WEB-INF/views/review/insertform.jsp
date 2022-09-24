@@ -45,11 +45,15 @@
 	<div class="container mb-3" style= "width:800px ;">
 	<img src="${pageContext.request.contextPath}/images/laundry3.PNG"  />
 	<form action="insert.do" method="post" id="insertForm">
+		<input type="hidden" name="code" value="${param.code}"/>
 		<div class="mt-3 mb-3">
 			<label class="form-label" for="title">제목</label>
-			<input class="form-control" type="text" name="title" id="title"/>
-			
+			<input class="form-control" type="text" name="title" id="title"/>			
 		</div>
+		<div class="mb-3">
+         <label for="code">주문번호</label>
+         <input type="text" id="code" value="${param.code}" disabled />
+      	</div>
 		<div class="mb-3">
 			<label class="form-label" for="star">평점</label>
 			<select name="star" id="star">
