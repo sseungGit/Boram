@@ -21,4 +21,10 @@ public class LsaOrderListDaoImpl implements LsaOrderListDao{
 	public List<LsaOrderListDto> getOrderDetailList(String code) {
 		return session.selectList("orders.getOrderDetailList",  code);
 	}
+
+	@Override
+	public List<LsaOrderListDto> getListData(String id) {
+		List<LsaOrderListDto> list= session.selectList("orders.getListData",id);
+		return list; 
+	}
 }

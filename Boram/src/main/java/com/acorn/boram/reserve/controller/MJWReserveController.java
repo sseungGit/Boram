@@ -11,15 +11,26 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.acorn.boram.reserve.dto.Order_ItemsDto;
+import com.acorn.boram.reserve.dto.Service_OrderDto;
 import com.acorn.boram.reserve.service.ItemService;
+import com.acorn.boram.reserve.service.OrderItemService;
 import com.acorn.boram.reserve.service.ServiceOrderService;
+import com.acorn.boram.users.dto.LsgUsersDto;
+import com.acorn.boram.users.service.LshUsersService;
 
 @Controller
 public class MJWReserveController {
 
 	@Autowired
 	private ItemService service;
-	
+	@Autowired
+	private ServiceOrderService productService;
+	@Autowired
+	private LshUsersService usersservice;
+	@Autowired
+	private OrderItemService orderitemservice;
+
    @RequestMapping("/reserve/reserve_select")
    public String reserve_select(HttpServletRequest request) {
       return "reserve/reserve_select";
@@ -36,39 +47,35 @@ public class MJWReserveController {
     	  service.getList(mView);
     	  mView.setViewName("reserve/reserve_wash");
       }else if(category.equals("bedding")){
-    	  
+    	  service.getList2(mView);
     	  mView.setViewName("reserve/reserve_bed");
       }else if(category.equals("shoes")){
-    	  
+    	  service.getList3(mView);
     	  mView.setViewName("reserve/reserve_shoes");
       }else if(category.equals("living")){
-    	  
+    	  service.getList4(mView);
     	  mView.setViewName("reserve/reserve_living");
       }
       	return mView;
    }
-   
-   @RequestMapping("/reserve/reserve_wash")
-   public String reserve_wash() {
-      return "reserve/reserve_wash";
-   }
+
    
    @RequestMapping("/reserve/reserve_credit")
-   public String reserve_credit() {
-      return "reserve/reserve_credit";
+   public ModelAndView reserve_credit(HttpSession session, ModelAndView mView, String name, String price, String count, String date) {
+	   mView.addObject("name", name);
+	   mView.addObject("price", price);
+	   mView.addObject("count", count);
+	   mView.addObject("date", date);
+	   mView.setViewName("reserve/reserve_credit");
+	   usersservice.getInfo(session, mView);
+	   
+      return mView;
    }
    
-   @RequestMapping("/reserve/reserve_bed")
-   public String reserve_bed() {
-      return "reserve/reserve_bed";
-   }
-   
-   @RequestMapping("/reserve/reserve_shoes")
-   public String reserve_shoes() {
-      return "reserve/reserve_shoes";
-   }
-   @RequestMapping("/reserve/reserve_living")
-   public String reserve_living() {
-      return "reserve/reserve_living";
+   @RequestMapping("/reserve/insert")
+   public ModelAndView reserve_insert(ModelAndView mView) {
+	   
+	   mView.setViewName("reserve/insert");
+	   return mView;
    }
 }

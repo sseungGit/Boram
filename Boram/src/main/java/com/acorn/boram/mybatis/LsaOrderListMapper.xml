@@ -23,4 +23,10 @@
 		AND OI.CODE=#{code}
 	</select>
 	
+	<select id="getListData" parameterType="String" resultType="orderListDto">
+		SELECT code, orderer, order_price, order_addr, regdate, reservation_date,
+				request, state, get_invoice_num, send_invoice_num
+		FROM service_order
+		WHERE orderer=#{id}
+	</select>
 </mapper>

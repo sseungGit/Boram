@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,7 +34,7 @@
     .container{
         height: 1000px !important;
         background: #f5f5f5;
-        margin-bottom: 50px;
+        margin-bottom: 470px;
     }
     .addr{
         margin-bottom: 30px;
@@ -44,30 +45,104 @@
     #selectPay_transpay img{
         margin-bottom: 10px;
     }
-    #sample6_postcode{
+    #postcode{
         width: 200px;
         display: inline-block;
         margin-bottom: 10px;
     }
-    #sample6_address{
+    #address{
         width: 405px;
         margin-bottom: -15px;
     }
-    #sample6_detailAddress{
+    #detailAddress{
         width: 200px;
         display: inline;
     }
-    #sample6_extraAddress{
+    #extraAddress{
         display: inline;
         width: 200px;
     }
-    
 </style>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
-$(document).ready(function(){
 
+
+
+$(document).ready(function(){
+	
+		var name = '<c:out value="${name}"/>';
+		var price = '<c:out value="${price}"/>';
+		var count = '<c:out value="${count}"/>';
+		var date = '<c:out value="${date}"/>';
+		
+		
+		//제품 수량에 따른 가격
+		var productTotPrice =  new Array();
+		
+		var n = name.split('/');
+		var p = price.split('/');
+		var c = count.split('/');
+		var d = date.split('/');
+		//전체 가격
+		var tot = 0;
+		
+		//Ex 이런식으로 값 화면에 뿌리기
+		//$('.'+getId).text(testtt);
+		
+		// 상품, 수량
+		var productName ='';
+		var productDate =d[1]+'년 '+d[2]+'월 '+d[3].substr(0, 2)+'일 '+d[3].substr(3, 7);
+		
+		//상품
+		var product ='';
+		var count ='';
+		
+		
+		for(var i = 1; i < n.length; i++){
+			productTotPrice[i] = parseInt(p[i]) * parseInt(c[i]);
+			tot += parseInt(p[i]) * parseInt(c[i]);
+			if(i==1){
+				productName += n[i]+' '+c[i]+'개';
+				product += n[i];
+				count += c[i];
+			}else{
+				productName += ', '+n[i]+' '+c[i]+'개';
+				product += ', '+n[i];
+				count += ', '+c[i];
+			}
+		}
+		$('.co').val(count);
+		$('.pro').val(product);
+		$('.do').val(productName);
+		$('.dp').val(productDate);
+		
+		$('.di').val(tot+'원');
+		
+		var message = $('#message').text();
+		$('.dr').val(message);
+		
+		
+		document.querySelector("#newAddr").addEventListener("submit", function(event){
+		
+		//폼 전체의 유효성 여부
+		//and 연상자 이용
+		let isFormValid = isNameValid && isIdValid && isPwdValid && isEmailValid && isPhoneValid && isAddrValid01 && isAddrValid02;
+		if(!isFormValid){
+			//폼 제출 막기 
+			//기본 동작을 막는 함수
+			event.preventDefault();
+		}
+		let postcode=document.querySelector("#postcode").value;
+		let addr=document.querySelector("#addr").value;
+		let detailAddr=document.querySelector("#detailAddr").value;
+		let extraAddr=document.querySelector("#extraAddr").value;
+		let totalAddr=document.querySelector("#totalAddr");
+		totalAddr.value=postcode+"_"+addr+"_"+detailAddr+"_"+extraAddr;
+	});
+		
+		
+		
         /*  배송지 선택 코드  */
 
         $('#selectAddr_newAddr').hide(); // 초기값 설정
@@ -108,7 +183,8 @@ $(document).ready(function(){
                 $('#selectPay_noBank').hide();
                 $('#selectPay_transpay').show();
             }
-        });          
+        });     
+       
     });
     
 
@@ -193,13 +269,27 @@ $(document).ready(function(){
             </div>
             <div class="product">
                 <p>상품정보</p>
-                <!-- 상품 정보 DB 불어올공간-->
+                <div>
+                	<label for="title" class="form-label">주문자 아이디</label>
+                 	<input type="text" class="form-control" name="title1" id="title1" value="${id}" readonly/>
+                </div>
+                <div>
+                	<label for="title" class="form-label">상품, 수량</label>
+                 	<input type="text" class="form-control do" name="title2" id="title2" value="" readonly/>
+                </div>
+                <div>
+                	<label for="title" class="form-label">총 주문가격</label>
+                 	<input type="text" class="form-control di" name="title4" id="title4" value="" readonly>
+                </div>
+                <div>
+                	<label for="title" class="form-label">수거날짜</label>
+                 	<input type="text" class="form-control dp" name="title5" id="title5" value="" readonly>
+                </div>
+                <!-- 주소 -->
             </div>
             <div class="addr">
                 <p>배송지정보</p>   
                 <!-- 1. 주소 입력 api 적용-->
-                <label for="staticName">이름 : 홍길동</label><br>
-                <label for="staticPhone">전화번호 : 010-1234-5678</label><br><br>
                 <div class=" form-check-inline">
                     <input class="form-check-input" type="radio" name="addr" value="기존배송지" checked>
                     <label class="form-check-label" for="addr">
@@ -213,16 +303,17 @@ $(document).ready(function(){
                     </label>
                 </div><br> 
                 <div id="selectAddr_curAddr"><br>
-                    <label for="staticAddr" >(06365)서울시 강남구 삼원타워 5층</label>
+                    <label for="staticAddr" >주소</label><br>
+                    <input type="text" class="form-control" name="addr1" id="addr1" value="${dto.addr}" readonly>
                 </div><br>
                 <div id="selectAddr_newAddr">
-                    <form name="addrForm" method="post">
-                        <input type="text" name="useraddr1" id="sample6_postcode" placeholder="우편번호" class="form-control">
+                        <input type="text" name="useraddr1" id="postcode" placeholder="우편번호" class="form-control" readonly>
                         <input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기" class="btn btn-outline-primary"><br>
-                        <input type="text" name="useraddr2" id="sample6_address" placeholder="주소" class="form-control"><br>
-                        <input type="text" name="useraddr3" id="sample6_detailAddress" placeholder="상세주소" class="form-control">
-                        <input type="text" name="useraddr4" id="sample6_extraAddress" placeholder="참고항목" class="form-control"> 
-                    </form>              
+                        <input type="text" name="useraddr2" id="address" placeholder="주소" class="form-control" readonly><br>
+                        <input type="text" name="useraddr3" id="detailAddress" placeholder="상세주소" class="form-control">
+                        <input type="text" name="useraddr4" id="extraAddress" placeholder="참고항목" class="form-control" readonly>  
+                        <input type="hidden" name="addr" id="totalAddr">  
+                              
                 </div>
             </div> 
                 <!--    
@@ -273,12 +364,20 @@ $(document).ready(function(){
                         <input type="email" class="form-control" id="creditEmail" name="username" placeholder="Laundry@naver.com">
                     </form>
                 </div>
-               
-                <div class="creditBtn">
-                    <button class="btn btn-outline-primary" onclick="creditComplete()" type="submit" style="margin-top: 30px;">결제하기</button>
-                </div>
-            
+               	<form action="insert.do" method="post" id="insertForm">
+               		<input type="hidden" class="form-control" name="title1" id="title1" value="${id}" readonly> <!-- 구입자 아이디 -->
+            		<input type="hidden" class="form-control pro" name="title2" id="title2" value="" readonly> <!-- 상품 목록 -->
+            		<input type="hidden" class="form-control di" name="title3" id="title3" value="" readonly> <!-- 총 금액 -->
+            		<input type="hidden" class="form-control" name="title4" id="title4" value="${dto.addr}" readonly> <!-- 기본 주소 -->
+    				<input type="hidden" class="form-control dp" name="title6" id="title6" value="" readonly> <!-- 예약 날짜 -->
+    				<input type="hidden" class="form-control dr" name="title7" id="title7" value="" readonly> <!-- 요구사항 -->
+    				<input type="hidden" class="form-control co" name="title8" id="title8" value="" readonly> <!-- 수량 -->
+        			<div class="creditBtn">
+        				<button class="btn btn-outline-primary" id="newAddr" onclick="creditComplete()" type="submit" style="margin-top: 30px;">결제하기</button>
+    				</div>
+    			</form>
         </div>
+
     </div>   
 <jsp:include page="/include/footer.jsp"></jsp:include>
 </body>
@@ -317,17 +416,17 @@ $(document).ready(function(){
                         extraAddr = ' (' + extraAddr + ')';
                     }
                     // 조합된 참고항목을 해당 필드에 넣는다.
-                    document.getElementById("sample6_extraAddress").value = extraAddr;
+                    document.getElementById("extraAddress").value = extraAddr;
                 
                 } else {
-                    document.getElementById("sample6_extraAddress").value = '';
+                    document.getElementById("extraAddress").value = '';
                 }
 
                 // 우편번호와 주소 정보를 해당 필드에 넣는다.
-                document.getElementById('sample6_postcode').value = data.zonecode;
-                document.getElementById("sample6_address").value = addr;
+                document.getElementById('postcode').value = data.zonecode;
+                document.getElementById("address").value = addr;
                 // 커서를 상세주소 필드로 이동한다.
-                document.getElementById("sample6_detailAddress").focus();
+                document.getElementById("detailAddress").focus();
             }
         }).open();
     }
