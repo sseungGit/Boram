@@ -166,7 +166,7 @@
 							<a class="${param.subPage eq 'info' ? 'active' : ''}" href="${pageContext.request.contextPath }/mypage/users/info.do">회원정보</a>
 						</li>
 						<li class="subNavItem ${param.subPage eq 'orderlist' ? 'deco' : ''}">
-							<a class="${param.subPage eq 'orderlist' ? 'active' : ''}" aria-current="page" href="${pageContext.request.contextPath}/mypage/orderList/customer.do">신청내역확인</a>
+							<a class="${param.subPage eq 'orderlist' ? 'active' : ''}" aria-current="page" href="${pageContext.request.contextPath}/mypage/order.do">신청내역확인</a>
 						</li>
 					</ul>
 				</c:when>
