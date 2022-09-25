@@ -7,7 +7,7 @@ public class KjReviewDto {
 	private String content;
 	private int viewCount;
 	private int star;
-	private int code;
+	private String code;
 	private String regdate;
 	private int startRowNum;
 	private int endRowNum;
@@ -16,7 +16,7 @@ public class KjReviewDto {
 	
 	public KjReviewDto () {}
 
-	public KjReviewDto(int num, String writer, String title, String content, int viewCount, int star, int code,
+	public KjReviewDto(int num, String writer, String title, String content, int viewCount, int star, String code,
 			String regdate, int startRowNum, int endRowNum, int prevNum, int nextNum) {
 		super();
 		this.num = num;
@@ -81,11 +81,11 @@ public class KjReviewDto {
 		this.star = star;
 	}
 
-	public int getCode() {
+	public String getCode() {
 		return code;
 	}
 
-	public void setCode(int code) {
+	public void setCode(String code) {
 		this.code = code;
 	}
 
