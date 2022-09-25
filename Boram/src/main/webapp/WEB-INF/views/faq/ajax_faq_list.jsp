@@ -7,7 +7,7 @@
 			<th scope="col">#</th>
 			<th scope="col">카테고리</th>
 			<th scope="col">제목</th>
-			<c:if test="${not empty manager and manager == 'Y'}">
+			<c:if test="${not empty id and manager == 'Y'}">
 			<th scope="col">수정</th>
 			<th scope="col">삭제</th>
 			</c:if>
@@ -15,9 +15,10 @@
 	</thead>
 	<tbody>
 	<c:forEach var="tmp" items="${list }">
+		<c:set var="i" value="${i+1 }"/>
 		<c:if test="${tmp.category eq param.category }">
 			<tr class="question" data-num="${tmp.num }">
-				<td scope="row">${tmp.num }</td>
+				<td scope="row">${i }</td>
 				<c:choose>
 					<c:when test="${tmp.category eq 'service' }">
 					<th scope="row">[서비스 이용]</th>
@@ -37,9 +38,9 @@
 					${tmp.title }<i class="bi bi-chevron-down" style="float:right"></i>
 		
 				</td>
-				<c:if test="${ not empty manager and manager == 'Y'}">
-				<td scope="row"><a href="updateform.do?num=${tmp.num }">수정</a></td>
-				<td scope="row"><a href="delete.do?num=${tmp.num }">삭제</a></td>
+				<c:if test="${ not empty id and manager == 'Y'}">
+					<td><a class="btn btn-outline-white" href="updateform.do?num=${tmp.num }"><i class="bi bi-pencil-fill"></i><span class="blind">수정</span></a></td>
+					<td><a class="btn btn-outline-white" href="delete.do?num=${tmp.num }"><i class="bi bi-x-circle-fill"></i><span class="blind">삭제</span></a></td>
 				</c:if>
 			</tr>
 			<tr class="answer" id="answer${tmp.num }">
@@ -54,3 +55,13 @@
 	</c:forEach>
 	</tbody>
 </table>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+	$(".question").click(function(){
+		//data-num 속성으로 저장된 번호를 읽어와서 
+		let num=$(this).attr("data-num");
+		//선택자로 활용한다.
+		$("#answer"+num).fadeToggle(400);
+	});
+</script>	
+>>>>>>> refs/heads/test

@@ -12,7 +12,15 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/nav.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/subFooter.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/subnav.css">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+	* { font-family: 'Noto Sans KR', sans-serif !important;}
+	.container{
+		margin-bottom: 200px;
+	}
+	#content{
+		height: 400px;
+	}
+</style>
 </head>
 <body>
 	<!-- main nav바  -->
@@ -23,7 +31,6 @@
 			<jsp:param value="faq" name="subPage"/>
 	</jsp:include>
 	<div class="container">
-		<h1>자주묻는질문 작성 폼</h1>
 		<form action="insert.do" method="post" id="insertForm">
 			<div class="mb-3">
 				<label class="form-label" for="category">카테고리</label>

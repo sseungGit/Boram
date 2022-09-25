@@ -19,6 +19,4 @@ public interface HyrFaqDao {
 	public void update(HyrFaqDto dto);
 	//글의 갯수
 	public int getCount(HyrFaqDto dto);
-
-	
 }

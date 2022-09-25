@@ -65,5 +65,13 @@ public class HyrFaqController {
 		service.updateContent(dto);
 		return new ModelAndView("faq/update");
 	}
+	
+	@RequestMapping("/faq/ajax_faq_list")
+	public ModelAndView ajaxFaqList(HttpServletRequest request,ModelAndView mView,String category) {
+		service.getList(request, mView);
+		mView.setViewName("faq/ajax_faq_list");
+		return mView;
+		
+	}
 
 }

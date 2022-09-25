@@ -61,8 +61,5 @@ public class HyrFaqDaoImpl implements HyrFaqDao {
 		// TODO Auto-generated method stub
 		return session.selectOne("faq.getData", num);
 	}
-
-
-	
 	
 }
