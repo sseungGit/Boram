@@ -16,9 +16,16 @@
 
 <style>
 	* { font-family: 'Noto Sans KR', sans-serif !important;}
+	th, td{text-align:center;}
 	.page-ui a{
 		text-decoration: none;
 		color: #000;
+	}
+	
+	.page-ui{margin: 30px auto;}
+	.page-ui a{
+		text-decoration: none;
+		color :black;
 	}
 	
 	.page-ui a:hover{
@@ -26,7 +33,7 @@
 	}
 	
 	.page-ui a.active{
-		color: red;
+		color: black;
 		font-weight: bold;
 		text-decoration: underline;
 	}
@@ -37,36 +44,46 @@
 	
 	.page-ui ul > li{
 		float: left;
-		padding: 5px;
 	}
 	.question:hover{
 		cursor: pointer;
 	}
 	.answer{
 		display: none;
+		background-color:white !important;
 	}
 	#btnGroup{		
 		display: inline-block;
-		margin-bottom: 50px;
+		margin-bottom: 20px;
 	}
 	.btn1{
-    border: 1px solid rgb(0, 0, 0);
-    text-transform: uppercase;
-    padding: 0.6rem 1rem;
-    cursor: pointer;
-    background: rgb(0, 0, 0);
-    color: #ffffff;
-    transition: all 0.5s ease;
-    border-radius: 0px;
-    text-decoration-line: none;
+	   border: 1px solid rgb(0, 0, 0);
+	   text-transform: uppercase;
+	   padding: 0.6rem 1rem;
+	   cursor: pointer;
+	   background: rgb(0, 0, 0);
+	   color: #ffffff;
+	   transition: all 0.5s ease;
+	   border-radius: 0px;
+	   text-decoration-line: none;
 	}
 	.btn1:hover{
-    background: transparent;
-    color: #000000;
+	    background: transparent;
+	    color: #000000;
 	}
 	#btnGroup a{
 		margin: 0px 30px;
 		width: 100px;
+	}
+	.blind{
+	  position: absolute;
+	  width: 1px;
+	  height: 1px;
+	  clip: rect(0 0 0 0);
+	  overflow: hidden;
+	}
+	.container{
+		margin-bottom: 200px;
 	}
 </style>
 
@@ -80,23 +97,25 @@
 			<jsp:param value="faq" name="subPage"/>
 	</jsp:include>
 	<div class="container">
-		<h1 class="text-center">자주 묻는 질문</h1>
-		
-		<div id="btnGroup">
-			<button type="button" name="category" class="btn1" value="서비스 이용" id="service" >서비스 이용</button>
-			<button type="button" name="category" class="btn1" value="주문·결제·배송" id="service" >주문·결제·배송</button>
-			<button type="button" name="category" class="btn1" value="회원정보" id="service" >회원정보</button>
-			<button type="button" name="category" class="btn1" value="기타" id="service" >기타</button>
+		<h1 style="font-size:30px; text-align:center">FAQ</h1>
+		<div class="mb-3" style="display:flex; justify-content:center;">
+			<span class="css-1y7lkh5">고객님들께서 가장 자주하시는 질문을 모두 모았습니다.</span>		
 		</div>
-		<button class="btn btn-outline-dark" id="qna" style="float:right" onclick="location.href='${pageContext.request.contextPath}/qna/list.do' ">1:1문의하러 가기</button>
+		<div id="btnGroup" style="display:flex; justify-content:center;">
+			<button type="button" class="btn1" value="service">서비스 이용</button>
+			<button type="button" class="btn1" value="order">주문·결제·배송</button>
+			<button type="button" class="btn1" value="member" >회원정보</button>
+			<button type="button" class="btn1" value="etc">기타</button>
+		</div>
+		<button class="btn btn-outline-dark mb-3" id="qna" style="float:right" onclick="location.href='${pageContext.request.contextPath}/qna/list.do' ">1:1문의하러 가기</button>
 		<div id="faqTableDiv">
 			<table class="table table-hover" id="table">
 				<thead>
 					<tr>
-						<th scope="col">NO</th>
-						<th scope="col">카테고리</th>
-						<th scope="col">제목</th>
-						<c:if test="${not empty manager and manager == 'Y'}">
+						<th style="width:20%;">NO</th>
+						<th style="width:10%;">카테고리</th>
+						<th style="width:70%;">제목</th>
+						<c:if test="${not empty id and manager == 'Y'}">
 						<th scope="col">수정</th>
 						<th scope="col">삭제</th>
 						</c:if>
@@ -106,22 +125,34 @@
 				<c:forEach var="tmp" items="${list }">
 					<c:set var="i" value="${i+1 }"/>
 					<tr class="question" data-num="${tmp.num }">
-						<td scope="row">${i }</td>						
-						<th scope="row">${tmp.category }</th>							
-						<td scope="row">						
+						<td>${i }</td>						
+					<c:choose>
+						<c:when test="${tmp.category eq 'service' }">
+						<td>[서비스 이용]</td>
+						</c:when>
+						<c:when test="${tmp.category eq 'order' }">
+						<td>[주문·결제·배송]</td>
+						</c:when>
+						<c:when test="${tmp.category eq 'member' }">
+						<td>[회원정보]</td>
+						</c:when>
+						<c:when test="${tmp.category eq 'etc' }">
+						<td>[기타]</td>
+						</c:when>
+					</c:choose>							
+						<td>						
 							${tmp.title }<i class="bi bi-chevron-down" style="float:right"></i>
 						</td>
-						<c:if test="${ not empty manager and manager == 'Y'}">
-						<td scope="row"><a href="updateform.do?num=${tmp.num }">수정</a></td>
-						<td scope="row"><a href="delete.do?num=${tmp.num }">삭제</a></td>
+						<c:if test="${ not empty id and manager == 'Y'}">
+						<td><a class="btn btn-outline-white" href="updateform.do?num=${tmp.num }"><i class="bi bi-pencil-fill"></i><span class="blind">수정</span></a></td>
+						<td><a class="btn btn-outline-white" href="delete.do?num=${tmp.num }"><i class="bi bi-x-circle-fill"></i><span class="blind">삭제</span></a></td>
 						</c:if>
 					</tr>
 		
-		
-					<tr class="answer" id="answer${tmp.num }">
+					<tr class="answer" id="answer${tmp.num }" style="background-color:white !important;">
 						<td colspan="100%">
-						<div>
-							<p style="text-align: left;">${tmp.content}</p>
+						<div style="text-align: left;  margin-left: 10%; ">
+							${tmp.content}
 						</div>
 						</td> 
 					</tr>
@@ -159,17 +190,16 @@
 			</c:if>
 		</ul>
 	</div>
-	
-	<div style="clear:both;"></div>
-		<form action="list.do" method="get"> 
+	<div class="mr-2" style="display:flex; justify-content:center;">
+		<form action="list.do" method="get" style="height:33px;"> 
 		<label for="condition">검색조건</label>
-		<select name="condition" id="condition">
+		<select name="condition" id="condition" style="height:100%;">
 			<option value="title_content" ${requestScope.condition eq 'title_content' ? 'selected' : '' }>제목+내용</option>
 			<option value="title" ${condition eq 'title' ? 'selected' : '' }>제목</option>
 			
 		</select>
-		<input type="text" id="keyword" name="keyword" placeholder="검색어..." value="${keyword }"/>
-		<button type="submit">검색</button>
+		<input style="height:100%;" type="text" id="keyword" name="keyword" placeholder="검색어..." value="${keyword }"/>
+		<button style="height:100%; margin-top:-5px;" class="btn btn-outline-dark btn-sm" type="submit">검색</button>
 	</form>	
 	<c:if test="${ not empty condition }">
 		<p>
@@ -177,27 +207,20 @@
 		</p>
 	</c:if>
 	</div>
+	</div>
 	<script src="${pageContext.request.contextPath}/resources/js/gura_util.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script>
     	$(".btn1").click(function(){
     			var category = $(this).val(); 	
-    			$.ajax({
-    				  url : "${pageContext.request.contextPath }/faq/ajax_faq_list",  
-    	              type : "post",
-    	              cache: false,
-    	              headers: {"cache-control":"no-cache", "pragma": "no-cache"},
-    	              data : {"category" : category}, 
-    	              success : function(data){ 
-    	                 console.log(data);
-    	                
-    	                 $('body').html(data);
-    	              },
-    	              error : function(data){
-    	            	 alert('error');
-    	               
-    	              }
-    			})
+    			ajaxPromise('${pageContext.request.contextPath }/faq/ajax_faq_list.do', 'get', "category="+category)
+    			.then(function(res){
+    				return res.text();
+    			}).then(function(data){
+    				console.log(data);
+    				$('#faqTableDiv').html("");
+    				$('#faqTableDiv').html(data);
+    			});
     		});
 		
 		$(".question").click(function(){

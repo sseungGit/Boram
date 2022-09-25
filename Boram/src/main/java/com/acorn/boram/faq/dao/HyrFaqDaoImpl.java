@@ -62,6 +62,14 @@ public class HyrFaqDaoImpl implements HyrFaqDao {
 		return session.selectOne("faq.getData", num);
 	}
 
+	@Override
+	public void getCategory(String category) {
+		session.selectOne("faq.getCategory", category);
+		
+	}
+
+
+
 
 	
 	

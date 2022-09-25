@@ -40,6 +40,9 @@
 	.question:hover{
 		cursor: pointer;
 	}
+	.container{
+		margin-bottom: 200px;
+	}
 </style>
 </head>
 <body>
@@ -51,7 +54,7 @@
 			<jsp:param value="faq" name="subPage"/>
 	</jsp:include>
 	<div class="container">
-		<h1 class="text-center">1:1문의</h1>
+		<h1 style="font-size:30px;">1:1문의</h1>
 		<button class="btn btn-outline-dark" style="float:right" onclick="location.href='${pageContext.request.contextPath}/qna/insertform.do' "><i class="bi bi-plus"></i>문의하기</button>
 		<table class="table table-hover">
 			<thead>

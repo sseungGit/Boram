@@ -12,7 +12,15 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/nav.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/subFooter.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/subnav.css">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+	* { font-family: 'Noto Sans KR', sans-serif !important;}
+	.container{
+		margin-bottom: 200px;
+	}
+	#content{
+		height: 400px;
+	}
+</style>
 </head>
 <body>
 	<!-- main nav바  -->

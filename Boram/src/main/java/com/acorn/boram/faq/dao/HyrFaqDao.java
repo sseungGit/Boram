@@ -20,5 +20,5 @@ public interface HyrFaqDao {
 	//글의 갯수
 	public int getCount(HyrFaqDto dto);
 
-	
+	public void getCategory(String category);
 }

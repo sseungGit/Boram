@@ -10,9 +10,6 @@
 			<when test="title != null">
 				WHERE title LIKE '%'||#{title}||'%'
 			</when>
-			<when test="category != null">
-				WHERE category LIKE '%'||#{category}||'%'
-			</when>
 		</choose>
 	</sql>
 		
@@ -24,26 +21,16 @@
 				(SELECT num,category,title,content
 				FROM faq_board
 				<include refid="searchCondition"/>
+				<choose>
+					<when test="category !=null">
+						WHERE category={#category}
+					</when>
+				</choose>
 				ORDER BY num DESC) result1)
 		<![CDATA[ 
 		WHERE rnum >= #{startRowNum} AND rnum <= #{endRowNum}
 		]]>
 	</select>
-		<select id="getList2" parameterType="faqDto" resultType="faqDto">
-		<![CDATA[ 
-		SELECT *
-		FROM
-			(SELECT result1.*, ROWNUM AS rnum
-			FROM
-				(SELECT num,category,title,content
-				FROM faq_board
-				<include refid="searchCondition"/>
-				WHERE category LIKE #{category}
-				ORDER BY num DESC) result1) 
-		WHERE rnum >= #{startRowNum} AND rnum <= #{endRowNum}
-		]]>
-	</select>
-	
 	<select id="getCount" parameterType="faqDto" resultType="int">
 		SELECT NVL(MAX(ROWNUM), 0)
 		FROM faq_board
@@ -88,7 +75,8 @@
 
 	<update id="update" parameterType="faqDto">
 		UPDATE faq_board
-		SET category=#{category}, title=#{title}, content=#{content}
+		SET category=#{category}, title=#{title}, content=#{content}, update_date=SYSDATE
 		WHERE num=#{num}
 	</update>
+
 </mapper>

@@ -123,5 +123,11 @@ public class HyrFaqServiceImpl implements HyrFaqService{
 		request.setAttribute("dto", dto);
 		
 	}
+
+	@Override
+	public void getCategory(String category) {
+		faqDao.getCategory(category);
+		
+	}
 	
 }
