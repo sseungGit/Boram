@@ -1,6 +1,7 @@
 package com.acorn.boram.faq.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import com.acorn.boram.faq.dto.HyrFaqDto;
 
@@ -18,5 +19,6 @@ public interface HyrFaqDao {
 	public void update(HyrFaqDto dto);
 	//글의 갯수
 	public int getCount(HyrFaqDto dto);
+
 	
 }

@@ -1,6 +1,7 @@
 package com.acorn.boram.faq.controller;
 
 import javax.servlet.http.HttpServletRequest;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,23 +22,19 @@ public class HyrFaqController {
 	
 	@RequestMapping("/faq/list")
 	public ModelAndView getList(HttpServletRequest request,ModelAndView mView) {
-		
 		service.getList(request, mView);
 		mView.setViewName("faq/list");
-		
 		return mView;
 	}
 	
-	//나중에 auth추가하기
-	
 	@RequestMapping("/faq/insertform")
-	public ModelAndView InsertForm(HttpServletRequest request) {
+	public ModelAndView authInsertForm(HttpServletRequest request) {
 		
 		return new ModelAndView("faq/insertform");
 	}
 	//새글 저장 요청 처리 
 	@RequestMapping("/faq/insert")
-	public ModelAndView Insert(HyrFaqDto dto, HttpSession session, HttpServletRequest request) {
+	public ModelAndView authInsert(HyrFaqDto dto, HttpSession session, HttpServletRequest request) {
 		//글 작성자는 세션에서 얻어낸다. 
 		String id=(String)session.getAttribute("id");
 		//dto객체에 글 작성자도 담기
@@ -48,7 +45,7 @@ public class HyrFaqController {
 	}
 	//삭제 요청 처리
 	@RequestMapping("/faq/delete")
-	public ModelAndView Delete(@RequestParam int num, HttpServletRequest request) {
+	public ModelAndView authDelete(@RequestParam int num, HttpServletRequest request) {
 		
 		service.deleteContent(num, request);
 		

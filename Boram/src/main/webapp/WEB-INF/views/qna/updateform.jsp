@@ -38,7 +38,7 @@
 				<label for="content">내용</label>
 				<textarea name="content" id="content">${dto.content }</textarea>
 			</div>
-			<button type="submit" onclick="submitContents(this);">수정 확인</button>
+			<button class="btn btn-outline-dark"type="submit" onclick="submitContents(this);">수정 확인</button>
 			<button type="reset">취소</button>
 		</form>
 	</div>

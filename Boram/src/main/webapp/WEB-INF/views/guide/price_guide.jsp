@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>views/guide/price_guide.jsp</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 <script src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
@@ -23,10 +23,24 @@
 	#price-wr{
 		 margin-bottom: 250px;
 	}
-	#btnGroup{
+	#btnGroup{		
 		display: inline-block;
 		margin-bottom: 50px;
 	}
+	.btn{
+    border: 1px solid rgb(0, 0, 0);
+    text-transform: uppercase;
+    padding: 0.6rem 1rem;
+    cursor: pointer;
+    background: rgb(0, 0, 0);
+    color: #ffffff;
+    transition: all 0.5s ease;
+    border-radius: 0px;
+}
+	.btn:hover{
+    background: transparent;
+    color: #000000;
+}
 	#btnGroup a{
 		margin: 0px 30px;
 		width: 100px;

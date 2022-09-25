@@ -1,6 +1,7 @@
 package com.acorn.boram.faq.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,6 +61,8 @@ public class HyrFaqDaoImpl implements HyrFaqDao {
 		// TODO Auto-generated method stub
 		return session.selectOne("faq.getData", num);
 	}
+
+
 	
 	
 }

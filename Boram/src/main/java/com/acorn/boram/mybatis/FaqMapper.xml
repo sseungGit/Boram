@@ -29,6 +29,20 @@
 		WHERE rnum >= #{startRowNum} AND rnum <= #{endRowNum}
 		]]>
 	</select>
+		<select id="getList2" parameterType="faqDto" resultType="faqDto">
+		<![CDATA[ 
+		SELECT *
+		FROM
+			(SELECT result1.*, ROWNUM AS rnum
+			FROM
+				(SELECT num,category,title,content
+				FROM faq_board
+				<include refid="searchCondition"/>
+				WHERE category LIKE #{category}
+				ORDER BY num DESC) result1) 
+		WHERE rnum >= #{startRowNum} AND rnum <= #{endRowNum}
+		]]>
+	</select>
 	
 	<select id="getCount" parameterType="faqDto" resultType="int">
 		SELECT NVL(MAX(ROWNUM), 0)
