@@ -149,8 +149,6 @@ public class HyrQnaServiceImpl implements HyrQnaService{
 		
 	}
 
-
-
 	@Override
 	public void updateCheckReply(int num) {
 		qnaDao.updateCheckReply(num);

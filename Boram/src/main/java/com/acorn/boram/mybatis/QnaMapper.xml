@@ -21,9 +21,9 @@
 	</select>
 	<insert id="insert" parameterType="qnaDto">
 		INSERT INTO qna_board
-		(num, writer, title, content, regdate)
+		(num, writer, title, content, regdate, check_reply)
 		VALUES(qna_seq.NEXTVAL, #{writer}, #{title}, #{content}
-			, SYSDATE)
+			, SYSDATE, #{check_reply})
 	</insert>
 	<select id="getData" parameterType="int" resultType="qnaDto">		
 		SELECT result1.*
@@ -31,7 +31,8 @@
 			(SELECT num,writer,title,content,
 				TO_CHAR(regdate,'YY.MM.DD HH24:MI') AS regdate,
 				LAG(num,1,0) OVER (ORDER BY num DESC) AS prevNum,
-				LEAD(num,1,0) OVER (ORDER BY num DESC) AS nextNum
+				LEAD(num,1,0) OVER (ORDER BY num DESC) AS nextNum,
+				check_reply
 			FROM qna_board
 			) result1
 		WHERE num=#{num}

@@ -42,7 +42,7 @@ public class HyrQnaController {
 		String id=(String)session.getAttribute("id");
 		//dto객체에 글 작성자도 담기
 		dto.setWriter(id);
-		//service.saveFile(dto, mView, request);
+		service.saveContent(dto);
 		mView.setViewName("qna/insert");
 		return mView;
 	}	

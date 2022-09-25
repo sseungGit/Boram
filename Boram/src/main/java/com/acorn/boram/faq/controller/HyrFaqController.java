@@ -1,6 +1,7 @@
 package com.acorn.boram.faq.controller;
 
 import javax.servlet.http.HttpServletRequest;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,13 +24,6 @@ public class HyrFaqController {
 	public ModelAndView getList(HttpServletRequest request,ModelAndView mView) {
 		service.getList(request, mView);
 		mView.setViewName("faq/list");
-		return mView;
-	}
-	
-	@RequestMapping("/faq/ajax_faq_list")
-	public ModelAndView getList2(HttpServletRequest request,ModelAndView mView,String category) {
-		service.getList(request, mView);
-		mView.setViewName("faq/ajax_faq_list");
 		return mView;
 	}
 	

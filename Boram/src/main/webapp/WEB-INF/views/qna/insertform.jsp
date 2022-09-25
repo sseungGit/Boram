@@ -24,7 +24,7 @@
 	</jsp:include>
 	<div class="container">
 		<h1 class="text-center">문의 작성 폼</h1>
-		<form action="insert.do" method="post" id="insertForm" enctype="multipart/form-data">
+		<form action="insert.do" method="post" id="insertForm">
 			<div class="mb-3">
 				<label class="form-label" for="title">제목</label>
 				<input class="form-control" type="text" name="title" id="title"/>
@@ -36,7 +36,6 @@
 			<button class="btn btn-outline-dark" type="submit" style="margin-bottom:50px;">문의 등록</button>
 		</form>
 	</div>
- --%>
 <!-- SmartEditor 에서 필요한 javascript 로딩  -->
 <script src="${pageContext.request.contextPath }/SmartEditor/js/HuskyEZCreator.js"></script>
 <script>

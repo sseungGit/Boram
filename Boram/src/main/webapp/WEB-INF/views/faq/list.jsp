@@ -83,17 +83,17 @@
 		<h1 class="text-center">자주 묻는 질문</h1>
 		
 		<div id="btnGroup">
-			<a href="javascript:clicked('service')" class="btn1" id="service">서비스 이용</a>
-			<a href="javascript:clicked('order')" class="btn1" id="order">주문·결제·배송</a>
-			<a href="javascript:clicked('member')" class="btn1" id="member">회원정보</a>
-			<a href="javascript:clicked('etc')" class="btn1" id="etc">기타</a>
+			<button type="button" name="category" class="btn1" value="서비스 이용" id="service" >서비스 이용</button>
+			<button type="button" name="category" class="btn1" value="주문·결제·배송" id="service" >주문·결제·배송</button>
+			<button type="button" name="category" class="btn1" value="회원정보" id="service" >회원정보</button>
+			<button type="button" name="category" class="btn1" value="기타" id="service" >기타</button>
 		</div>
 		<button class="btn btn-outline-dark" id="qna" style="float:right" onclick="location.href='${pageContext.request.contextPath}/qna/list.do' ">1:1문의하러 가기</button>
 		<div id="faqTableDiv">
 			<table class="table table-hover" id="table">
 				<thead>
 					<tr>
-						<th scope="col">#</th>
+						<th scope="col">NO</th>
 						<th scope="col">카테고리</th>
 						<th scope="col">제목</th>
 						<c:if test="${not empty manager and manager == 'Y'}">
@@ -104,26 +104,12 @@
 				</thead>
 				<tbody>
 				<c:forEach var="tmp" items="${list }">
+					<c:set var="i" value="${i+1 }"/>
 					<tr class="question" data-num="${tmp.num }">
-						<td scope="row">${tmp.num }</td>
-						<c:choose>
-							<c:when test="${tmp.category eq 'service' }">
-							<th scope="row">[서비스 이용]</th>
-							</c:when>
-							<c:when test="${tmp.category eq 'order' }">
-							<th scope="row">[주문·결제·배송]</th>
-							</c:when>
-							<c:when test="${tmp.category eq 'member' }">
-							<th scope="row">[회원정보]</th>
-							</c:when>
-							<c:when test="${tmp.category eq 'etc' }">
-							<th scope="row">[기타]</th>
-							</c:when>
-						</c:choose>
-						<td scope="row">
-						
+						<td scope="row">${i }</td>						
+						<th scope="row">${tmp.category }</th>							
+						<td scope="row">						
 							${tmp.title }<i class="bi bi-chevron-down" style="float:right"></i>
-			
 						</td>
 						<c:if test="${ not empty manager and manager == 'Y'}">
 						<td scope="row"><a href="updateform.do?num=${tmp.num }">수정</a></td>
@@ -194,16 +180,25 @@
 	<script src="${pageContext.request.contextPath}/resources/js/gura_util.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script>
-		function clicked(category){			
-			ajaxPromise('faq_list.do','get',"category="+category)
-			.then(function(res){
-				return res.text();
-			})
-			.then(function(data){
-				$('#faqTableDiv').html("");
-				$('#faqTableDiv').html(data);
-			});
-		}
+    	$(".btn1").click(function(){
+    			var category = $(this).val(); 	
+    			$.ajax({
+    				  url : "${pageContext.request.contextPath }/faq/ajax_faq_list",  
+    	              type : "post",
+    	              cache: false,
+    	              headers: {"cache-control":"no-cache", "pragma": "no-cache"},
+    	              data : {"category" : category}, 
+    	              success : function(data){ 
+    	                 console.log(data);
+    	                
+    	                 $('body').html(data);
+    	              },
+    	              error : function(data){
+    	            	 alert('error');
+    	               
+    	              }
+    			})
+    		});
 		
 		$(".question").click(function(){
 			//data-num 속성으로 저장된 번호를 읽어와서 

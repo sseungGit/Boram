@@ -8,7 +8,7 @@
 <title>/views/qna/detail.jsp</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" />
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+<script async src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/nav.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/subFooter.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/subnav.css">
@@ -92,8 +92,8 @@
 						</dl>
 						<c:if test="${manager eq 'Y' and dtoReply.writer eq sessionScope.id}">
 						<div id="btnGroup">
-							<a id="updateBtn" class="btn btn-outline-dark" href="javascript:rdelete();">수정</a>
-							<a id="deleteBtn" class="btn btn-outline-dark" href="javascript:('')">삭제</a>
+							<a id="updateBtn" class="btn btn-outline-dark" href="javascript:">수정</a>
+							<a id="deleteBtn" class="btn btn-outline-dark" href="javascript:">삭제</a>
 						</div>
 						</c:if>
 					</div>
@@ -130,56 +130,52 @@
 			<button class="btn btn-outline-dark" style="float:left" onclick="location.href='${pageContext.request.contextPath}/qna/list.do' ">목록보기</button>
 		</div>
 	</div>
-	<script src="${pageContext.request.contextPath}/resources/js/gura_util.js"></script>
-   	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-   	<script>
-   		document.querySelector("#updateForm").addEventListener("submit",function(event){
-   			let form=document.querySelector('#updateForm');
-   			let content=document.querySelector('#updateForm textarea').value;
-   			ajaxFormPromise(form)
-   			.then(function(res){
-   				return res.json();
-   			})
-   			.then(function(data){
-   				console.log(data);
-   				if(data){
-   					alert('수정되었습니다.');
-   		   			form.style.display="none";
-   				}else{
-   					alert('수정이 실패했습니다');
-   				}
-				location.href="detail.do?num=${dto.num }"
-   			});
-   		});
-   		
-   		document.querySelector('#updateBtn').addEventListener("click",function(){
-   			let form=document.querySelector("#updateForm");
-   			form.style.display="block";
-   		});
-   		
-		document.querySelector('#deleteBtn').addEventListener("click",function rdelete(){
-			let form=document.querySelector("#insertForm");
-			let rdiv=document.querySelector(".rcontent");
-			const isDelete=confirm("답글을 삭제 하시겠습니까?");
-			if(isDelete){
-				ajaxPromise("reply_delete.do", "get", "num=${dtoReply.rnum}")
-				.then(function(res){
-					return res.json();
-				})
-				.then(function(data){
-					if(data.isSuccess){
-						rdiv.style.display="none";
-						if(dtoReply.rnum == NULL){
-							form.style.display="block";
-						}
-					}
-				});
+<script defer src="${pageContext.request.contextPath}/resources/js/gura_util.js"></script>
+<script>
+window.onload= function(){
+	document.querySelector("#updateForm").addEventListener("submit",function(event){
+		let form=document.querySelector('#updateForm');
+		let content=document.querySelector('#updateForm textarea').value;
+		ajaxFormPromise(form)
+		.then(function(res){
+			return res.json();
+		})
+		.then(function(data){
+			console.log(data);
+			if(data){
+				alert('수정되었습니다.');
+	   			form.style.display="none";
+			}else{
+				alert('수정이 실패했습니다');
 			}
+	location.href="detail.do?num=${dto.num }"
+			});
 		});
-   		
-   	</script>
-	<footer>
-		<jsp:include page="/include/footer.jsp"></jsp:include>
-	</footer>
+	document.querySelector('#updateBtn').addEventListener("click",function(){
+		let form=document.querySelector("#updateForm");
+		form.style.display="block";
+	});
+	 		
+	document.querySelector('#deleteBtn').addEventListener("click",function(){
+		let form=document.querySelector("#insertForm");
+		let rdiv=document.querySelector(".rcontent");
+		const isDelete=confirm("답글을 삭제 하시겠습니까?");
+		if(isDelete){
+			ajaxPromise("reply_delete.do", "get", "num=${dtoReply.rnum}")
+			.then(function(res){
+				return res.json();
+			})
+			.then(function(data){
+				console.log(data);
+				if(data){
+					rdiv.style.display="none";
+					}
+				location.href="detail.do?num=${dto.num }"
+			});
+		}
+	});
+}	
+</script>
+<jsp:include page="/include/footer.jsp"></jsp:include>
 </body>
 </html>
