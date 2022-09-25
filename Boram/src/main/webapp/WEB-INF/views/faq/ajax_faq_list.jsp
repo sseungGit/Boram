@@ -64,4 +64,3 @@
 		$("#answer"+num).fadeToggle(400);
 	});
 </script>	
->>>>>>> refs/heads/test

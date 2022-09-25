@@ -12,5 +12,4 @@ public interface HyrFaqService {
 	public void updateContent(HyrFaqDto dto);
 	public void deleteContent(int num, HttpServletRequest request);
 	public void getData(HttpServletRequest request); //글 수정하기 위해 정보 불러오는 기능
-	public void getCategory(String category);
 }
