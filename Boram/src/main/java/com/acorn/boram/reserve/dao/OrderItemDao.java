@@ -4,5 +4,5 @@ import com.acorn.boram.reserve.dto.Order_ItemsDto;
 
 public interface OrderItemDao {
 	public Order_ItemsDto getData(int num);
-	public void insert(Order_ItemsDto dto);
+	public void productCountInsert(Order_ItemsDto dto);
 }

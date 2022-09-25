@@ -19,8 +19,8 @@ public class OrderItemDaoImpl implements OrderItemDao{
 	}
 
 	@Override
-	public void insert(Order_ItemsDto dto) {
-		session.insert("Reserve.insert1", dto);
+	public void productCountInsert(Order_ItemsDto dto) {
+		session.insert("Reserve.productCountInsert", dto);
 	}
 
 }
