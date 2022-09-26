@@ -203,11 +203,6 @@
 		<input style="height:100%;" type="text" id="keyword" name="keyword" placeholder="검색어..." value="${keyword }"/>
 		<button style="height:100%; margin-top:-5px;" class="btn btn-outline-dark btn-sm" type="submit">검색</button>
 	</form>	
-	<c:if test="${ not empty condition }">
-		<p>
-			<strong>${totalRow }</strong> 개의 글이 검색 되었습니다.
-		</p>
-	</c:if>
 	</div>
 	</div>
 	<script src="${pageContext.request.contextPath}/resources/js/gura_util.js"></script>
