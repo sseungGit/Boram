@@ -9,7 +9,7 @@
 <body>
 <script>
 	
-	var addr = '${product}';
+	var addr = '${category}';
 	
 	alert(addr);
 	alert("결제 완료 되었습니다.");

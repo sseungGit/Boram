@@ -37,7 +37,7 @@ public class MJWReserveController {
    }
    
    @RequestMapping("/reserve/select")
-   public ModelAndView reserve_select(ModelAndView mView,String category) {
+   public ModelAndView authreserve_select(ModelAndView mView,String category, HttpServletRequest request) {
       
       //카테고리 값 확인
       System.out.println("category : "+category);
@@ -73,7 +73,16 @@ public class MJWReserveController {
    }
    
    @RequestMapping("/reserve/insert")
-   public ModelAndView reserve_insert(ModelAndView mView) {
+   public ModelAndView reserve_insert(ModelAndView mView, Service_OrderDto dto, String category, String orderer, String order_price, String order_addr, String reservation_date, String request, String count) {
+	   mView.addObject("category", category);
+	   mView.addObject("orderer", orderer);
+	   mView.addObject("order_price", order_price);
+	   mView.addObject("order_addr", order_addr);
+	   mView.addObject("reservation_date", reservation_date);
+	   mView.addObject("request", request);
+	   mView.addObject("count", count);
+	  
+	   
 	   
 	   mView.setViewName("reserve/insert");
 	   return mView;
