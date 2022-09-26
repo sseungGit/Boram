@@ -16,7 +16,8 @@
 
 <style>
 	* { font-family: 'Noto Sans KR', sans-serif !important;}
-	th, td{text-align:center;}
+	th,td{text-align:center;}
+
 	.page-ui a{
 		text-decoration: none;
 		color: #000;
@@ -30,10 +31,11 @@
 	
 	.page-ui a:hover{
 		text-decoration: underline;
+		color : rgba(0, 0, 0, 0.7);
 	}
 	
 	.page-ui a.active{
-		color: black;
+		color: gray;
 		font-weight: bold;
 		text-decoration: underline;
 	}
@@ -164,35 +166,35 @@
 		<c:if test="${not empty manager and manager == 'Y'}">
 			<button class="btn btn-outline-dark" style="float:right" onclick="location.href='insertform.do' ">글쓰기</button>
 		</c:if>	
-		<div class="page-ui clearfix">
-		<ul>
-			<c:if test="${startPageNum ne 1 }">
-				<li>
-					<a href="list.do?pageNum=${startPageNum-1 }&condition=${condition }&keyword=${encodedK }">Prev</a>
-				</li>
-			</c:if>
-			<c:forEach var="i" begin="${startPageNum }" end="${endPageNum }">
-				<li>
-					<c:choose>
-						<c:when test="${pageNum eq i }">
-							<a  class="active" href="list.do?pageNum=${i }&condition=${condition }&keyword=${encodedK }">${i }</a>
-						</c:when>
-						<c:otherwise>
-							<a href="list.do?pageNum=${i }&condition=${condition }&keyword=${encodedK }">${i }</a>
-						</c:otherwise>
-					</c:choose>
-				</li>
-			</c:forEach>
-			<c:if test="${endPageNum lt totalPageCount }">
-				<li>
-					<a href="list.do?pageNum=${endPageNum+1 }&condition=${condition }&keyword=${encodedK }">Next</a>
-				</li>
-			</c:if>
-		</ul>
+		<div class="page-ui clearfix" style="display:flex; justify-content:center;">
+			<ul class="pagination">
+				<c:if test="${startPageNum ne 1 }">
+					<li class="page-item">
+						<a class="page-link" href="list.do?pageNum=${startPageNum-1 }&condition=${condition }&keyword=${encodedK }">Prev</a>
+					</li>
+				</c:if>
+				<c:forEach var="i" begin="${startPageNum }" end="${endPageNum }">
+					<li class="page-item">
+						<c:choose>
+							<c:when test="${pageNum eq i }">
+								<a  class="page-link" class="active" href="list.do?pageNum=${i }&condition=${condition }&keyword=${encodedK }">${i }</a>
+							</c:when>
+							<c:otherwise>
+								<a class="page-link" href="list.do?pageNum=${i }&condition=${condition }&keyword=${encodedK }">${i }</a>
+							</c:otherwise>
+						</c:choose>
+					</li>
+				</c:forEach>
+				<c:if test="${endPageNum lt totalPageCount }">
+					<li class="page-item">
+						<a class="page-link" href="list.do?pageNum=${endPageNum+1 }&condition=${condition }&keyword=${encodedK }">Next</a>
+					</li>
+				</c:if>
+			</ul>
 	</div>
 	<div class="mr-2" style="display:flex; justify-content:center;">
 		<form action="list.do" method="get" style="height:33px;"> 
-		<label for="condition">검색조건</label>
+		<label for="condition"></label>
 		<select name="condition" id="condition" style="height:100%;">
 			<option value="title_content" ${requestScope.condition eq 'title_content' ? 'selected' : '' }>제목+내용</option>
 			<option value="title" ${condition eq 'title' ? 'selected' : '' }>제목</option>

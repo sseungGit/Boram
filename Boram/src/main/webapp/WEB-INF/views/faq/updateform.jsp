@@ -40,8 +40,8 @@
 					<option value="">카테고리 선택</option>
 					<option value="service" ${dto.category eq 'service' ? 'selected' : '' }>서비스이용</option>
 					<option value="order" ${dto.category eq 'order' ? 'selected' : '' }>주문·결제·배송</option>
-					<option value="member ${dto.category eq 'member' ? 'selected' : '' }">회원정보</option>
-					<option value="etc ${dto.category eq 'etc' ? 'selected' : '' }">기타</option>
+					<option value="member" ${dto.category eq 'member' ? 'selected' : '' }>회원정보</option>
+					<option value="etc" ${dto.category eq 'etc' ? 'selected' : '' }>기타</option>
 				</select>
 			</div>
 			<div>
