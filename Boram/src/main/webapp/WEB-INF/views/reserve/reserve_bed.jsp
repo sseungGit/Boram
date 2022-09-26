@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -20,6 +21,9 @@
       <jsp:param value="guide" name="thisPage"/>
       <jsp:param value="area" name="subPage"/>
 </jsp:include>
+<form action="${pageContext.request.contextPath}/member/update.do" method="post">
+
+
 
 <div class="container">
     <p>step02 상품선택</p>
@@ -38,32 +42,32 @@
                         <select name="product" id="product">
                             <optgroup label="상품선택">
                                 <option value="">선택해주세요</option>
-                                <option value="일반이불">일반이불</option>
-                                <option value="극세사이불">극세사이불</option>
-                                <option value="오리, 거위털이불">오리, 거위털이불</option>
+                                <c:forEach var="tmp" items="${list2}">
+                                	<option id="${tmp.inum }" value="${tmp.price }">${tmp.item }</option>
+                                </c:forEach>
                             </optgroup>
                         </select>
                     </dd>
                     <dt>예약날짜</dt>
                     <dd>
-                        <input type="text" id="one"/>
+                        <input type="text" id="one" class="date"/>
                     </dd>
                 </dl>
                 <div class="number">
                     <ul class="order_name">
 
                     </ul>
-                    <div class="order_number">
+                    <div class="order_number" style="text-align:left; width: 100px;">
                         
                     </div>
                 </div>
                 <div class="total_price">
                     <p>총 상품 금액</p>
-                    <p class="result_price">2,000</p>
+                    <p class="result_price" value="0"></p>
                 </div>
             </div>
             <div class="bottom">
-                <button type="button" onclick="location.href='${pageContext.request.contextPath}/reserve/reserve_credit.do'" id="order_btn">예약하기</button>
+                <button type="button" onclick="nextViewPage()" id="order_btn">예약하기</button>
             </div>
         </div>
     </main>
@@ -100,20 +104,69 @@
     <script src="${pageContext.request.contextPath}/reserve_img/jquery js/jquery.datetimepicker.full.min.js"></script>
     <script>
         $.datetimepicker.setLocale("ko");
-
+		
         $("#one").datetimepicker();
-
-
+       
+		var idNum = 0;
+		
         $("#product").on("change", function(){
-            var msg=$("#product option:selected").val();
+        	idNum += 1;
+        	var msg2=parseInt($("#product option:selected").val());
+            var msg=$("#product option:selected").text();
             $("#number").text(msg);
             $("#inputMsg").val("");
-            $('.order_number').append('<input type="number" type="number" name="num" id="num" min="1" max="30" value="1">');
-            $('.order_number').append('<span>2000</span>');
-            $("<li></li>").text(msg).appendTo(".order_name");
+            $('.order_number').append('<input type="number" class="product" name="num" id="num'+idNum+'" min="1" max="30" value="1" onchange="history(this.value,'+msg2+',this.id);">');
+            $('.order_number').append('<span class="num'+idNum+' in" name="number">'+msg2+'</span>');
+            $("<li class=\"productName\"></li>").text(msg).appendTo(".order_name");
+            var sum = 0;
+        	$('.in').each(function(){
+
+        		sum += parseInt($(this).text());
+        	});
+           
+            $('.result_price').text(sum);
+            
         });
 
+    function history(countNum,countPrice,getId){
+    	var testtt = countNum * countPrice;
+    	
+    	
+    	$('.'+getId).text(testtt);
+    	ttt();
+    	
+    }
+    function ttt(){
+    	var sum = 0;
+    	$('.in').each(function(){
+
+    		sum += parseInt($(this).text());
+    	});
+    	$('.result_price').text(sum);
+    }
     
+    function nextViewPage(){
+    	var sum ='이름';
+    	var sum2 ='가격';
+    	var sum3 ='수량';
+    	var sum4 ='예약날짜';
+    	$('.productName').each(function(){
+    		sum = sum + '/' + $(this).text();
+    	});
+    	$('.in').each(function(){
+    		sum2 = sum2 + '/' + $(this).text();
+    	});
+    	$('.product').each(function(){
+    		sum3 = sum3 + '/' + $(this).val();
+    	});
+    	$('.date').each(function(){
+    		sum4 = sum4 + '/' + $(this).val();
+    	});
+    	
+
+    	var text = '${pageContext.request.contextPath}/reserve/reserve_credit.do?name='+sum+'&price='+sum2+'&count='+sum3+'&date='+sum4;
+    	location.href=text;
+    }
     </script>
     <jsp:include page="/include/footer.jsp"></jsp:include>
 </body>

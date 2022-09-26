@@ -401,7 +401,7 @@
 					</div>
 					<div>
 						
-						<a href="#" class="myButton">예약하기</a>
+						<a href="${pageContext.request.contextPath}/reserve/reserve_select.do" class="myButton">예약하기</a>
 					</div>
 				</div>
 			</div>

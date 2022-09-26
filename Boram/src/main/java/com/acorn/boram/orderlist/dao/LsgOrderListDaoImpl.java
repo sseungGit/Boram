@@ -15,8 +15,22 @@ public class LsgOrderListDaoImpl implements LsgOrderListDao{
 	private SqlSession session;
 	
 	@Override
-	public List<LsgOrderListDto> getList() {
-		return session.selectList("orderList.getList");
+	public List<LsgOrderListDto> getList(LsgOrderListDto dto) {
+		System.out.println("dao code: "+dto.getCode());
+		System.out.println("dao orderer: "+dto.getOrderer());
+		System.out.println("dao name: "+dto.getName());
+		System.out.println("dao state: "+dto.getState());
+		return session.selectList("orderList.getList",dto);
+	}
+
+	@Override
+	public int getCount(LsgOrderListDto dto) {
+		return session.selectOne("orderList.getCount",dto);
+	}
+
+	@Override
+	public LsgOrderListDto getData(LsgOrderListDto dto) {
+		return session.selectOne("orderList.getData",dto);
 	}
 
 }

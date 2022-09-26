@@ -36,11 +36,11 @@
  	<jsp:param value="brand" name="thisPage"/>
     <jsp:param value="members" name="subPage"/>
  </jsp:include>
-<div class="container mb-5" >
- 	<img src="${pageContext.request.contextPath}/resources/img/members.png"  />
- 
+<div class="container mb-5" style="border-top:1px solid #000; width:1320px" >
  </div>
- 
+ <div class="container" style="margin-bottom:200px">
+  	<img src="${pageContext.request.contextPath}/images/members.PNG"  /> 
+ </div>
 <jsp:include page="/include/footer.jsp"></jsp:include>
 </body>
 </html>

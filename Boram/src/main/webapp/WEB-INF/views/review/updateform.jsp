@@ -37,12 +37,15 @@
       subPage는 소메뉴를 구별하는데 사용
     -->
  <jsp:include page="/include/subnav.jsp">
- 	<jsp:param value="client" name="thisPage"/>
+ 	<jsp:param value="support" name="thisPage"/>
     <jsp:param value="review" name="subPage"/>
  </jsp:include>
-<div class="container mb-3" style= "width:800px">
+<div class="container mb-5" style= "width:800px; border-top:1px solid #000;">
+ 
+</div>
+<div class="container mb-3" style= "width:800px;">
 	<img src="${pageContext.request.contextPath}/images/laundry3.PNG"  />
-	<form action="update.do" method="post">
+	<form action="update.do" method="post" style="margin-bottom:100px">
 		<input type="hidden" name="num" value="${dto.num }" />
 		<div class="mt-3 mb-3">
 			<label for="writer">작성자</label>

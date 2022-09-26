@@ -25,6 +25,11 @@
 		JOIN categorize USING(category)
 		WHERE category = 'living'
 	</select>
+	<select id="productAddr" parameterType="String" resultType="usersDto">
+		SELECT id,name,pwd,email,countryCode,phone,addr,profile,TO_CHAR(regdate,'YYYY-MM-DD') regdate,manager
+		FROM users
+		WHERE id=#{id}
+	</select>
 	
 	<select id="getData2" parameterType="int" resultType="com.acorn.boram.reserve.dto.Order_ItemsDto">
 		SELECT code, inum, count FROM order_items
@@ -40,12 +45,20 @@
 		WHERE num=#{num}
 	</select>
 	<insert id="insert2" parameterType="com.acorn.boram.reserve.dto.Service_OrderDto">
-		INSERT INTO service_order
-		(code, orderer, category, order_price, regdate, reservation_date, request, get_invoice_num, send_invoice_num)
-		VALUES(#{code}, #{orderer}, #{category}, #{order_price}, #{regdate}, #{reservation_date}, #{request}, #{get_invoice_num}, #{send_invoice_num})
+		INSERT ALL
+			INTO service_order VALUES(service_order_seq.NEXTVAL, #{orderer}, #{category}, #{order_price}, SYSDATE, #{reservation_date}, #{request}, #{get_invoice_num}, #{send_invoice_num})
+			INTO order_items VALUES(order_items_seq.NEXTVAL, #{code}, #{inum}, #{count})
 	</insert>
 	<select id="getData4" resultType="com.acorn.boram.reserve.dto.Service_OrderDto">
 		SELECT code, orderer, category, order_price, regdate, reservation_date, request, get_invoice_num, send_invoice_num FROM service_order
 		WHERE num=#{num}
 	</select>
+	<insert id="productInsert" parameterType="com.acorn.boram.reserve.dto.Service_OrderDto">
+		INSERT INTO service_order(code, orderer, category, order_price, order_addr, regdate, reservation_date, request, state get_invoice_num, send_invoice_num)
+		VALUES(service_order_seq.NEXTVAL, #{orderer}, #{category}, #{order_price}, #{order_addr}, SYSDATE, #{reservation_date}, #{request}, #{state} #{get_invoice_num}, #{send_invoice_num})
+	</insert>
+	<insert id="productCountInsert" parameterType="com.acorn.boram.reserve.dto.Order_ItemsDto">
+		INSERT INTO order_items(num, code, inum, count)
+		VALUES(order_items_seq.NEXTVAL, #{code}, #{inum}, #{count})
+	</insert>
 </mapper>

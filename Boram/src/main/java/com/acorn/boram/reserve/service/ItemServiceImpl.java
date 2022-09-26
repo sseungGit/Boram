@@ -28,14 +28,14 @@ public class ItemServiceImpl implements ItemService{
 	@Override
 	public void getList2(ModelAndView mView) {
 		ItemsDto dto = new ItemsDto();
-		List<ItemsDto> list2=ItemDao.getList(dto);
+		List<ItemsDto> list2=ItemDao.getList2(dto);
 		mView.addObject("list2", list2);
 	}
 
 	@Override
 	public void getList3(ModelAndView mView) {
 		ItemsDto dto = new ItemsDto();
-		List<ItemsDto> list3=ItemDao.getList(dto);
+		List<ItemsDto> list3=ItemDao.getList3(dto);
 		mView.addObject("list3", list3);
 		
 	}
@@ -43,7 +43,7 @@ public class ItemServiceImpl implements ItemService{
 	@Override
 	public void getList4(ModelAndView mView) {
 		ItemsDto dto = new ItemsDto();
-		List<ItemsDto> list4=ItemDao.getList(dto);
+		List<ItemsDto> list4=ItemDao.getList4(dto);
 		mView.addObject("list4", list4);
 	}
 }

@@ -17,5 +17,7 @@ public interface HyrQnaDao {
 	public void delete(int num);
 	//글 수정
 	public void update(HyrQnaDto dto);
+	//답변 갯수
+	public void updateCheckReply(int num);
 	
 }

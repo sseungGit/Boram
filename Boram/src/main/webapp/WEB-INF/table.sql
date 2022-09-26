@@ -210,3 +210,21 @@ CREATE TABLE order_items(
    inum NUMBER NOT NULL,
    count NUMBER NOT NULL -- 수량
    );
+ 
+--질문 카테고리
+CREATE TABLE qcategorize(
+   category VARCHAR2(20) PRIMARY KEY
+);
+
+INSERT INTO qcategorize(category) VALUES('service');
+
+INSERT INTO qcategorize(category) VALUES('order');
+
+INSERT INTO qcategorize(category) VALUES('member');
+
+INSERT INTO qcategorize(category) VALUES('etc');
+
+ALTER TABLE qna_board ADD check_reply int DEFAULT '0';
+
+CREATE SEQUENCE order_items_seq;
+

@@ -48,4 +48,10 @@ public class HyrQnaDaoImpl implements HyrQnaDao {
 		
 	}
 
+	@Override
+	public void updateCheckReply(int num) {
+		session.update("qna.updateCheckReply", num);
+		
+	}
+
 }

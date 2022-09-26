@@ -46,4 +46,5 @@ public class LsgUsersDaoImpl implements LsgUsersDao{
 			return false;
 		}
 	}
+
 }
