@@ -43,7 +43,7 @@
                             <optgroup label="상품선택">
                                 <option value="">선택해주세요</option>
                                 <c:forEach var="tmp" items="${list2}">
-                                	<option id="${tmp.inum }" value="${tmp.price }">${tmp.item }</option>
+                                	<option id="${tmp.inum }" value="${tmp.price }">${tmp.item }</option> 
                                 </c:forEach>
                             </optgroup>
                         </select>

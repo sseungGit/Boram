@@ -34,7 +34,7 @@
     .container{
         height: 1000px !important;
         background: #f5f5f5;
-        margin-bottom: 270px;
+        margin-bottom: 320px;
     }
     .addr{
         margin-bottom: 30px;
@@ -67,16 +67,14 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
 
-
-
 $(document).ready(function(){
 	
-		var name = '<c:out value="${name}"/>';
-		var price = '<c:out value="${price}"/>';
-		var count = '<c:out value="${count}"/>';
-		var date = '<c:out value="${date}"/>';
-		
-		
+		var name = '${param.name}';// 이게 폼안에 안적혀있어서 안 넘어가는 것 같아요...
+		var price = '${param.price}'; // 인풋 하이든 만들어서 값 넣고 넘길까요?
+		var count = '${param.count}';
+		var date = '${param.date}';
+		var number = '${param.number}'; // 요게 겓 파라미터 el 로 받아온 거에요 이 값을 결제하기 버튼 눌렀을때 가는 controller 까지 옮겨주세요 네
+
 		//제품 수량에 따른 가격
 		var productTotPrice =  new Array();
 		
@@ -84,6 +82,7 @@ $(document).ready(function(){
 		var p = price.split('/');
 		var c = count.split('/');
 		var d = date.split('/');
+		var e = number.split('/'); // 이거랑
 		//전체 가격
 		var tot = 0;
 		
@@ -97,7 +96,7 @@ $(document).ready(function(){
 		//상품
 		var product ='';
 		var count ='';
-		
+		var inum =''; // 이거랑
 		
 		for(var i = 1; i < n.length; i++){
 			productTotPrice[i] = parseInt(p[i]) * parseInt(c[i]);
@@ -106,22 +105,22 @@ $(document).ready(function(){
 				productName += n[i]+' '+c[i]+'개';
 				product += n[i];
 				count += c[i];
+				inum += e[i]; // 이거랑
 			}else{
 				productName += ', '+n[i]+' '+c[i]+'개';
 				product += ', '+n[i];
 				count += ', '+c[i];
+				inum += ', '+e[i]; //이거랑
 			}
 		}
-		$('.co').val(count);
-		$('.pro').val(product);
-		$('.do').val(productName);
-		$('.dp').val(productDate);
+		$('#count').val(count);
+		$('#product').val(product);
+		$('#productcount').val(productName);
+		$('#reservation_date').val(productDate);
 		
-		$('.di').val(tot+'원');
-		
-		var message = $('#message').text();
-		$('.dr').val(message);
-		
+		$('#order_price').val(tot);
+
+		$('#inum').val(number) 
 		
 		document.querySelector("#newAddr").addEventListener("submit", function(event){
 		
@@ -261,6 +260,7 @@ $(document).ready(function(){
       <jsp:param value="guide" name="thisPage"/>
       <jsp:param value="area" name="subPage"/>
 </jsp:include>
+<form action="insert.do" method="post" id="insertForm">
     <div class="container">
         <!-- 배송지 정보 -->
         <div class="addrForm">
@@ -271,19 +271,19 @@ $(document).ready(function(){
                 <p>상품정보</p>
                 <div>
                 	<label for="title" class="form-label">주문자 아이디</label>
-                 	<input type="text" class="form-control" name="title1" id="title1" value="${id}" readonly/>
+                 	<input type="text" class="form-control" name="orderer" id="orderer" value="${id}" readonly/>
                 </div>
                 <div>
                 	<label for="title" class="form-label">상품, 수량</label>
-                 	<input type="text" class="form-control do" name="title2" id="title2" value="" readonly/>
+                 	<input type="text" class="form-control" name="productcount" id="productcount" value="" readonly/>
                 </div>
                 <div>
                 	<label for="title" class="form-label">총 주문가격</label>
-                 	<input type="text" class="form-control di" name="title4" id="title4" value="" readonly>
+                 	<input type="text" class="form-control" name="order_price" id="order_price" value="" readonly>
                 </div>
                 <div>
                 	<label for="title" class="form-label">수거날짜</label>
-                 	<input type="text" class="form-control dp" name="title5" id="title5" value="" readonly>
+                 	<input type="text" class="form-control" name="reservation_date" id="reservation_date" value="" readonly>
                 </div>
                 <!-- 주소 -->
             </div>
@@ -291,7 +291,7 @@ $(document).ready(function(){
                 <p>배송지정보</p>   
                 <!-- 1. 주소 입력 api 적용-->
                 <div class=" form-check-inline">
-                    <input class="form-check-input" type="radio" name="addr" value="기존배송지" checked>
+                    <input class="form-check-input" type="radio" name="order_addr" value="기존배송지" checked>
                     <label class="form-check-label" for="addr">
                     기존배송지
                     </label><br>
@@ -304,7 +304,7 @@ $(document).ready(function(){
                 </div><br> 
                 <div id="selectAddr_curAddr"><br>
                     <label for="staticAddr" >주소</label><br>
-                    <input type="text" class="form-control" name="addr1" id="addr1" value="${dto.addr}" readonly>
+                    <input type="text" class="form-control" name="addr1" id="addr" value="${dto.addr}" readonly>
                 </div><br>
                 <div id="selectAddr_newAddr">
                         <input type="text" name="useraddr1" id="postcode" placeholder="우편번호" class="form-control" readonly>
@@ -322,7 +322,7 @@ $(document).ready(function(){
                 -->
             <div class="mb-3">
                 <label for="exampleFormControlTextarea1" class="form-label">요청사항</label>
-                <textarea class="form-control" id="message" rows="3" placeholder="요청사항을 직접 입력합니다.(최대 200자)"></textarea>
+                <textarea class="form-control" name="request" id="request" rows="3" placeholder="요청사항을 직접 입력합니다.(최대 200자)"></textarea>
             </div>  
         </div>
         <!-- 결제 수단 -->
@@ -359,25 +359,18 @@ $(document).ready(function(){
                 <img src="${pageContext.request.contextPath}/reserve_img/kakaoQR.png" alt="카카오페이 홈페이지 연결" width="10%">
             </div>
                 <div class="mb-3">
-                    <form name="emailForm" method="post">
                         <label for="exampleFormControlInput1" class="form-label">결제 정보 이매일</label>
                         <input type="email" class="form-control" id="creditEmail" name="username" placeholder="Laundry@naver.com">
-                    </form>
                 </div>
-               	<form action="insert.do" method="post" id="insertForm">
-               		<input type="hidden" class="form-control" name="orderer" id="orderer" value="${id}" readonly> <!-- 구입자 아이디 -->
-            		<input type="hidden" class="form-control pro" name="category" id="category" value="" readonly> <!-- 상품 목록 -->
-            		<input type="hidden" class="form-control di" name="order_price" id="order_price" value="" readonly> <!-- 총 금액 -->
-            		<input type="hidden" class="form-control" name="order_addr" id="order_addr" value="${dto.addr}" readonly> <!-- 기본 주소 -->
-    				<input type="hidden" class="form-control dp" name="reservation_date" id="reservation_date" value="" readonly> <!-- 예약 날짜 -->
-    				<input type="hidden" class="form-control dr" name="request" id="request" value="" readonly> <!-- 요구사항 -->
-    				<input type="hidden" class="form-control co" name="count" id="count" value="" readonly> <!-- 수량 -->
         			<div class="creditBtn">
         				<button class="btn btn-outline-primary" id="newAddr" onclick="creditComplete()" type="submit" style="margin-top: 30px;">결제하기</button>
     				</div>
-    			</form>
-        </div>
-    </div>   
+    				<input type="hidden" name="count" id="count" value="${param.count}"/>
+    				<input type="hidden" name="product" id="product" value="${param.name}"/>
+    				<input type="hidden" name="inum" id="inum" value="${param.number}"/> 
+        	</div>
+    	</div>   
+    </form>
 <jsp:include page="/include/footer.jsp"></jsp:include>
 </body>
 <script src="http://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
