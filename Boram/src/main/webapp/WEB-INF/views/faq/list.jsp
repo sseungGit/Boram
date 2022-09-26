@@ -10,23 +10,32 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" />
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/nav.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/subFooter.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/subnav.css">
 
 <style>
+	* { font-family: 'Noto Sans KR', sans-serif !important;}
+	th,td{text-align:center;}
+
 	.page-ui a{
 		text-decoration: none;
 		color: #000;
 	}
 	
+	.page-ui{margin: 30px auto;}
+	.page-ui a{
+		text-decoration: none;
+		color :black;
+	}
+	
 	.page-ui a:hover{
 		text-decoration: underline;
+		color : rgba(0, 0, 0, 0.7);
 	}
 	
 	.page-ui a.active{
-		color: red;
+		color: gray;
 		font-weight: bold;
 		text-decoration: underline;
 	}
@@ -37,13 +46,46 @@
 	
 	.page-ui ul > li{
 		float: left;
-		padding: 5px;
 	}
 	.question:hover{
 		cursor: pointer;
 	}
 	.answer{
 		display: none;
+		background-color:white !important;
+	}
+	#btnGroup{		
+		display: inline-block;
+		margin-bottom: 20px;
+	}
+	.btn1{
+	   border: 1px solid rgb(0, 0, 0);
+	   text-transform: uppercase;
+	   padding: 0.6rem 1rem;
+	   cursor: pointer;
+	   background: rgb(0, 0, 0);
+	   color: #ffffff;
+	   transition: all 0.5s ease;
+	   border-radius: 0px;
+	   text-decoration-line: none;
+	}
+	.btn1:hover{
+	    background: transparent;
+	    color: #000000;
+	}
+	#btnGroup a{
+		margin: 0px 30px;
+		width: 100px;
+	}
+	.blind{
+	  position: absolute;
+	  width: 1px;
+	  height: 1px;
+	  clip: rect(0 0 0 0);
+	  overflow: hidden;
+	}
+	.container{
+		margin-bottom: 200px;
 	}
 </style>
 
@@ -57,111 +99,126 @@
 			<jsp:param value="faq" name="subPage"/>
 	</jsp:include>
 	<div class="container">
-		<h1 class="text-center">자주 묻는 질문</h1>
-			<button class="btn btn-dark" id="qna" style="float:right" onclick="location.href='${pageContext.request.contextPath}/qna/list.do' ">1:1문의하러 가기</button>
-		<table class="table" id="table">
-			<thead>
-				<tr>
-					<th scope="col">#</th>
-					<th scope="col">카테고리</th>
-					<th scope="col">제목</th>
-					<c:if test="${not empty manager and manager == 'Y'}">
-					<th scope="col">수정</th>
-					<th scope="col">삭제</th>
-					</c:if>
-				</tr>
-			</thead>
-			<tbody>
-			<c:forEach var="tmp" items="${list }">
-				<tr class="question" data-num="${tmp.num }">
-					<td scope="row">${tmp.num }</td>
+		<h1 style="font-size:30px; text-align:center">FAQ</h1>
+		<div class="mb-3" style="display:flex; justify-content:center;">
+			<span class="css-1y7lkh5">고객님들께서 가장 자주하시는 질문을 모두 모았습니다.</span>		
+		</div>
+		<div id="btnGroup" style="display:flex; justify-content:center;">
+			<button type="button" class="btn1" value="service">서비스 이용</button>
+			<button type="button" class="btn1" value="order">주문·결제·배송</button>
+			<button type="button" class="btn1" value="member">회원정보</button>
+			<button type="button" class="btn1" value="etc">기타</button>
+		</div>
+		<button class="btn btn-outline-dark mb-3" id="qna" style="float:right" onclick="location.href='${pageContext.request.contextPath}/qna/list.do' ">1:1문의하러 가기</button>
+		<div id="faqTableDiv">
+			<table class="table table-hover" id="table">
+				<thead>
+					<tr>
+						<th style="width:20%;">NO</th>
+						<th style="width:15%;">카테고리</th>
+						<th style="width:65%;">제목</th>
+						<c:if test="${not empty id and manager == 'Y'}">
+						<th scope="col">수정</th>
+						<th scope="col">삭제</th>
+						</c:if>
+					</tr>
+				</thead>
+				<tbody>
+				<c:forEach var="tmp" items="${list }">
+					<c:set var="i" value="${i+1 }"/>
+					<tr class="question" data-num="${tmp.num }">
+						<td>${i }</td>						
 					<c:choose>
 						<c:when test="${tmp.category eq 'service' }">
-						<th scope="row">[서비스 이용]</th>
+						<td>[서비스 이용]</td>
 						</c:when>
 						<c:when test="${tmp.category eq 'order' }">
-						<th scope="row">[주문·결제·배송]</th>
+						<td>[주문·결제·배송]</td>
 						</c:when>
 						<c:when test="${tmp.category eq 'member' }">
-						<th scope="row">[회원정보]</th>
+						<td>[회원정보]</td>
 						</c:when>
 						<c:when test="${tmp.category eq 'etc' }">
-						<th scope="row">[기타]</th>
+						<td>[기타]</td>
 						</c:when>
-					</c:choose>
-					<td scope="row">
-					
-						${tmp.title }<i class="bi bi-chevron-down" style="float:right"></i>
+					</c:choose>							
+						<td>						
+							${tmp.title }<i class="bi bi-chevron-down" style="float:right"></i>
+						</td>
+						<c:if test="${ not empty id and manager == 'Y'}">
+						<td><a class="btn btn-outline-white" href="updateform.do?num=${tmp.num }"><i class="bi bi-pencil-fill"></i><span class="blind">수정</span></a></td>
+						<td><a class="btn btn-outline-white" href="delete.do?num=${tmp.num }"><i class="bi bi-x-circle-fill"></i><span class="blind">삭제</span></a></td>
+						</c:if>
+					</tr>
 		
-					</td>
-					<c:if test="${ not empty manager and manager == 'Y'}">
-					<td scope="row"><a href="updateform.do?num=${tmp.num }">수정</a></td>
-					<td scope="row"><a href="delete.do?num=${tmp.num }">삭제</a></td>
-					</c:if>
-				</tr>
-	
-	
-				<tr class="answer" id="answer${tmp.num }">
-					<td colspan="100%">
-					<div>
-						<p style="text-align: left;">${tmp.content}</p>
-					</div>
-					</td> 
-				</tr>
-			</c:forEach>
-			</tbody>
-		</table>
+					<tr class="answer" id="answer${tmp.num }" style="background-color:white !important;">
+						<td colspan="100%">
+						<div style="text-align: left;  margin-left: 10%; ">
+							${tmp.content}
+						</div>
+						</td> 
+					</tr>
+				</c:forEach>
+				</tbody>
+			</table>		
+		</div>
+
 		<c:if test="${not empty manager and manager == 'Y'}">
-			<button class="btn btn-dark" style="float:right" onclick="location.href='insertform.do' ">글쓰기</button>
+			<button class="btn btn-outline-dark" style="float:right" onclick="location.href='insertform.do' ">글쓰기</button>
 		</c:if>	
-		<div class="page-ui clearfix">
-		<ul>
-			<c:if test="${startPageNum ne 1 }">
-				<li>
-					<a href="list.do?pageNum=${startPageNum-1 }&condition=${condition }&keyword=${encodedK }">Prev</a>
-				</li>
-			</c:if>
-			<c:forEach var="i" begin="${startPageNum }" end="${endPageNum }">
-				<li>
-					<c:choose>
-						<c:when test="${pageNum eq i }">
-							<a  class="active" href="list.do?pageNum=${i }&condition=${condition }&keyword=${encodedK }">${i }</a>
-						</c:when>
-						<c:otherwise>
-							<a href="list.do?pageNum=${i }&condition=${condition }&keyword=${encodedK }">${i }</a>
-						</c:otherwise>
-					</c:choose>
-				</li>
-			</c:forEach>
-			<c:if test="${endPageNum lt totalPageCount }">
-				<li>
-					<a href="list.do?pageNum=${endPageNum+1 }&condition=${condition }&keyword=${encodedK }">Next</a>
-				</li>
-			</c:if>
-		</ul>
+		<div class="page-ui clearfix" style="display:flex; justify-content:center;">
+			<ul class="pagination">
+				<c:if test="${startPageNum ne 1 }">
+					<li class="page-item">
+						<a class="page-link" href="list.do?pageNum=${startPageNum-1 }&condition=${condition }&keyword=${encodedK }">Prev</a>
+					</li>
+				</c:if>
+				<c:forEach var="i" begin="${startPageNum }" end="${endPageNum }">
+					<li class="page-item">
+						<c:choose>
+							<c:when test="${pageNum eq i }">
+								<a  class="page-link" class="active" href="list.do?pageNum=${i }&condition=${condition }&keyword=${encodedK }">${i }</a>
+							</c:when>
+							<c:otherwise>
+								<a class="page-link" href="list.do?pageNum=${i }&condition=${condition }&keyword=${encodedK }">${i }</a>
+							</c:otherwise>
+						</c:choose>
+					</li>
+				</c:forEach>
+				<c:if test="${endPageNum lt totalPageCount }">
+					<li class="page-item">
+						<a class="page-link" href="list.do?pageNum=${endPageNum+1 }&condition=${condition }&keyword=${encodedK }">Next</a>
+					</li>
+				</c:if>
+			</ul>
 	</div>
-	
-	<div style="clear:both;"></div>
-		<form action="list.do" method="get"> 
-		<label for="condition">검색조건</label>
-		<select name="condition" id="condition">
-			<option value="writer" ${condition eq 'category' ? 'selected' : '' }>카테고리</option>
+	<div class="mr-2" style="display:flex; justify-content:center;">
+		<form action="list.do" method="get" style="height:33px;"> 
+		<label for="condition"></label>
+		<select name="condition" id="condition" style="height:100%;">
 			<option value="title_content" ${requestScope.condition eq 'title_content' ? 'selected' : '' }>제목+내용</option>
 			<option value="title" ${condition eq 'title' ? 'selected' : '' }>제목</option>
 			
 		</select>
-		<input type="text" id="keyword" name="keyword" placeholder="검색어..." value="${keyword }"/>
-		<button type="submit">검색</button>
+		<input style="height:100%;" type="text" id="keyword" name="keyword" placeholder="검색어..." value="${keyword }"/>
+		<button style="height:100%; margin-top:-5px;" class="btn btn-outline-dark btn-sm" type="submit">검색</button>
 	</form>	
-	<c:if test="${ not empty condition }">
-		<p>
-			<strong>${totalRow }</strong> 개의 글이 검색 되었습니다.
-		</p>
-	</c:if>
-		</div>
-		
+	</div>
+	</div>
+	<script src="${pageContext.request.contextPath}/resources/js/gura_util.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script>
+    	$(".btn1").click(function(){
+    			var category = $(this).val(); 	
+    			ajaxPromise('${pageContext.request.contextPath }/faq/ajax_faq_list.do', 'get', "category="+category)
+    			.then(function(res){
+    				return res.text();
+    			}).then(function(data){
+    				console.log(data);
+    				$('#faqTableDiv').html("");
+    				$('#faqTableDiv').html(data);
+    			});
+    		});
 		
 		$(".question").click(function(){
 			//data-num 속성으로 저장된 번호를 읽어와서 
@@ -183,7 +240,7 @@
 					//로그인 폼으로 이동 시킨다.
 					//로그인 성공후 다시 해당글 자세히 보기 페이지로 돌아올 수 있도록 url 정보를  같이 전달한다.
 					location.href=
-						"${pageContext.request.contextPath}/users/loginform.do?url=${pageContext.request.contextPath}/faq/list.do";
+						"${pageContext.request.contextPath}/users/login_form.do?url=${pageContext.request.contextPath}/qna/list.do";
 				}
 			});
 	</script>

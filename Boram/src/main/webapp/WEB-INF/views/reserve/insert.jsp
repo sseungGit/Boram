@@ -8,7 +8,8 @@
 </head>
 <body>
 <script>
-	alert("결제 완료되었습니다.")
+
+	alert("결제 완료 되었습니다.");
 	location.href="${pageContext.request.contextPath}/home.do";
 </script>
 </body>

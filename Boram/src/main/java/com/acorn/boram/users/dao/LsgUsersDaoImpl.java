@@ -48,7 +48,7 @@ public class LsgUsersDaoImpl implements LsgUsersDao{
 			return false;
 		}
 	}
-
+	
 	@Override
 	public List<LsgUsersDto> getList(LsgUsersDto dto) {
 		return session.selectList("users.getList",dto);

@@ -18,8 +18,8 @@
 <body>
 <jsp:include page="/include/nav.jsp"></jsp:include>
 <jsp:include page="/include/subnav.jsp">
-      <jsp:param value="guide" name="thisPage"/>
-      <jsp:param value="area" name="subPage"/>
+      <jsp:param value="reserve" name="thisPage"/>
+      <jsp:param value="reserve" name="subPage"/>
 </jsp:include>
 <div class="container">
     <p>step02 상품선택</p>
@@ -39,7 +39,7 @@
                             <optgroup label="상품선택">
                                 <option value="">선택해주세요</option>
                                 <c:forEach var="tmp" items="${list }">
-                                <option id="${tmp.inum }" value="${tmp.price }">${tmp.item }</option>
+                                <option class="for" id="${tmp.inum }" data-inum="${tmp.inum }" value="${tmp.price }">${tmp.item }</option>
                                 </c:forEach>
                             </optgroup>
                         </select>
@@ -107,11 +107,16 @@
         $("#one").datetimepicker();
        
 		var idNum = 0;
-		
+		let inums="";
         $("#product").on("change", function(){
+        	alert($("#product option:selected").data('inum')); //이걸로 선택된 option의 inum 값을 가져왔어요
+        	inums+=$("#product option:selected").data('inum')+",";
+        	console.log(inums);
         	idNum += 1;
         	var msg2=parseInt($("#product option:selected").val());
             var msg=$("#product option:selected").text();
+            console.log(msg2);
+            console.log(msg);
             $("#number").text(msg);
             $("#inputMsg").val("");
             $('.order_number').append('<input type="number" class="product" name="num" id="num'+idNum+'" min="1" max="30" value="1" onchange="history(this.value,'+msg2+',this.id);">');
@@ -149,6 +154,7 @@
     	var sum2 ='가격';
     	var sum3 ='수량';
     	var sum4 ='예약날짜';
+    	var sum5 = '상품번호';
     	$('.productName').each(function(){
     		sum = sum + '/' + $(this).text();
     	});
@@ -161,9 +167,12 @@
     	$('.date').each(function(){
     		sum4 = sum4 + '/' + $(this).val();
     	});
+    	$('.for').each(function(){
+    		sum5 = sum5 + '/' + $(this).attr('id');
+    	});
     	
 
-    	var text = '${pageContext.request.contextPath}/reserve/reserve_credit.do?name='+sum+'&price='+sum2+'&count='+sum3+'&date='+sum4;
+    	var text = '${pageContext.request.contextPath}/reserve/reserve_credit.do?name='+sum+'&price='+sum2+'&count='+sum3+'&date='+sum4+'&number='+inums;//여기서 원래 inum을 가져가던 변수가 뭐 인가요? sum5여
     	location.href=text;
     }
     </script>

@@ -12,7 +12,7 @@ import com.acorn.boram.reserve.dto.Order_ItemsDto;
 import com.acorn.boram.reserve.dto.Service_OrderDto;
 import com.acorn.boram.users.dto.LsgUsersDto;
 
-
+@Service
 public class ServiceOrderServiceImpl implements ServiceOrderService{
 	
 	@Autowired
@@ -25,14 +25,14 @@ public class ServiceOrderServiceImpl implements ServiceOrderService{
 	}
 
 	@Override
-	public void insert2(ModelAndView mView, HttpServletRequest request) {
-		String id=(String)request.getSession().getAttribute("id");
-		int inum=Integer.parseInt(request.getParameter("inum"));
-		int num=Integer.parseInt(request.getParameter("num"));
-		int price=Integer.parseInt(request.getParameter("price"));
-		String addr=(String)request.getSession().getAttribute("addr");
-		Order_ItemsDto dto1=new Order_ItemsDto();
-		Service_OrderDto dto2=new Service_OrderDto();
-		
+	public void productInsert(Service_OrderDto dto) {
+		dao.productInsert(dto);
+	}
+
+	@Override
+	public void productAddr(String id, ModelAndView mView) {
+		System.out.println(id);
+		LsgUsersDto dto=dao.productAddr(id);
+		mView.addObject("dto",dto);
 	}
 }

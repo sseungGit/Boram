@@ -40,9 +40,9 @@
 	
 	<insert id="insert" parameterType="kjReviewDto">
 		INSERT INTO review_board
-		(num,writer,title,content,viewcount,regdate,star)
+		(num,writer,title,content,viewcount,regdate,star,code)
 		VALUES(review_board_seq.NEXTVAL, #{writer}, #{title},
-			#{content}, #{viewCount}, SYSDATE,#{star})
+			#{content}, #{viewCount}, SYSDATE,#{star},#{code})
 	</insert>
 	
 	<select id="getData" parameterType="int" resultType="kjReviewDto">

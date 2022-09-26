@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.acorn.boram.reserve.dto.Service_OrderDto;
+import com.acorn.boram.users.dto.LsgUsersDto;
 
 @Repository
 public class ServiceOrderDaoImpl implements ServiceOrderDao{
@@ -19,8 +20,15 @@ public class ServiceOrderDaoImpl implements ServiceOrderDao{
 	}
 
 	@Override
-	public void insert(Service_OrderDto dto) {
-		session.insert("Reserve.insert2", dto);
+	public void productInsert(Service_OrderDto dto) {
+		session.insert("Reserve.productInsert", dto);
+	}
+
+	@Override
+	public LsgUsersDto productAddr(String id) {
+		System.out.println(id);
+		LsgUsersDto dto=session.selectOne("users.productAddr", id);
+		return dto;
 	}
 
 }

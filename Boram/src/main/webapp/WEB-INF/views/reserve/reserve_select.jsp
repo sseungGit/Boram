@@ -59,8 +59,8 @@
 <body>
 <jsp:include page="/include/nav.jsp"></jsp:include>
 <jsp:include page="/include/subnav.jsp">
-   <jsp:param value="guide" name="thisPage"/>
-   <jsp:param value="area" name="subPage"/>
+   <jsp:param value="reserve" name="thisPage"/>
+   <jsp:param value="reserve" name="subPage"/>
 </jsp:include>
 
     <div class="main_back">
