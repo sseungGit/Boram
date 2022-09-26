@@ -1,27 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="orders">
-	<select id="getOrderList" resultType="ordersDto">
-		SELECT CODE, REGDATE,RESERVATION_DATE RESERVATIONDATE,  (SELECT ITEM FROM ORDER_ITEMS OI,ITEMS I
-		WHERE OI.CODE = SO.CODE
-		AND OI.INUM = I.INUM
-		AND ROWNUM=1) ITEM, 
-		(
-		SELECT SUM(OI.COUNT *PRICE) FROM ORDER_ITEMS OI,ITEMS I
-		WHERE OI.CODE = SO.CODE
-		AND OI.INUM = I.INUM
-		) totalPrice, STATE, SO.ORDERER FROM SERVICE_ORDER SO
-		WHERE SO.ORDERER = #{userId}
-		ORDER BY SO.CODE
-	</select>
-	
-	
-	<select id="getOrderDetailList" resultType="ordersDto">
-		SELECT CODE, ITEM, OI.COUNT, (OI.COUNT * I.PRICE) TOTALPRICE
-		FROM ORDER_ITEMS OI,ITEMS I
-		WHERE OI.INUM = I.INUM
-		AND OI.CODE=#{code}
-	</select>
 	
 	<select id="getListData" parameterType="String" resultType="orderListDto">
 		SELECT code, orderer, order_price, order_addr, regdate, reservation_date,
@@ -29,4 +8,12 @@
 		FROM service_order
 		WHERE orderer=#{id}
 	</select>
+	
+   <select id="getdata" parameterType="int" resultType="orderListDto"  >
+     	SELECT num, o.code, o.inum, count, s.oder_price, s.regdate
+     		   s.reservation_date, s.request, s.state, s.get_invoice_num, s.send_invoice_num,
+     		   i.item, i.price
+     	FROM order_items o, service_order s, items i
+     	WHERE o.code=#{code} AND o.code=s.code AND o.inum=i.inum
+   </select>
 </mapper>
