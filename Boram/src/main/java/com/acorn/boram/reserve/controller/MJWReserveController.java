@@ -11,14 +11,25 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.acorn.boram.reserve.dto.Order_ItemsDto;
+import com.acorn.boram.reserve.dto.Service_OrderDto;
 import com.acorn.boram.reserve.service.ItemService;
+import com.acorn.boram.reserve.service.OrderItemService;
 import com.acorn.boram.reserve.service.ServiceOrderService;
+import com.acorn.boram.users.dto.LsgUsersDto;
+import com.acorn.boram.users.service.LshUsersService;
 
 @Controller
 public class MJWReserveController {
 
 	@Autowired
 	private ItemService service;
+	@Autowired
+	private ServiceOrderService productService;
+	@Autowired
+	private LshUsersService usersservice;
+	@Autowired
+	private OrderItemService orderitemservice;
 
    @RequestMapping("/reserve/reserve_select")
    public String reserve_select(HttpServletRequest request) {
@@ -26,7 +37,7 @@ public class MJWReserveController {
    }
    
    @RequestMapping("/reserve/select")
-   public ModelAndView reserve_select(ModelAndView mView,String category) {
+   public ModelAndView authreserve_select(ModelAndView mView,String category, HttpServletRequest request) {
       
       //카테고리 값 확인
       System.out.println("category : "+category);
@@ -50,24 +61,30 @@ public class MJWReserveController {
 
    
    @RequestMapping("/reserve/reserve_credit")
-   public ModelAndView reserve_credit(HttpServletRequest request, ModelAndView mView, String name, String price, String count, String date) {
+   public ModelAndView reserve_credit(HttpSession session, ModelAndView mView, String name, String price, String count, String date) {
 	   mView.addObject("name", name);
 	   mView.addObject("price", price);
 	   mView.addObject("count", count);
 	   mView.addObject("date", date);
 	   mView.setViewName("reserve/reserve_credit");
+	   usersservice.getInfo(session, mView);
+	   
       return mView;
    }
    
    @RequestMapping("/reserve/insert")
-   public ModelAndView reserve_insert(HttpServletRequest request, ModelAndView mView, String name, String price, String count, String date) {
-	   request.getSession().getAttribute("id");
-	   request.getSession().getAttribute("addr");
+   public ModelAndView reserve_insert(ModelAndView mView, Service_OrderDto dto, String category, String orderer, String order_price, String order_addr, String reservation_date, String request, String count) {
+	   mView.addObject("category", category);
+	   mView.addObject("orderer", orderer);
+	   mView.addObject("order_price", order_price);
+	   mView.addObject("order_addr", order_addr);
+	   mView.addObject("reservation_date", reservation_date);
+	   mView.addObject("request", request);
+	   mView.addObject("count", count);
+	  
 	   
 	   
-	   
-	   mView.setViewName("/reserve/insert");
+	   mView.setViewName("reserve/insert");
 	   return mView;
    }
-
 }

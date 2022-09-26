@@ -12,7 +12,15 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/nav.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/subFooter.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/subnav.css">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+	* { font-family: 'Noto Sans KR', sans-serif !important;}
+	.container{
+		margin-bottom: 200px;
+	}
+	#content{
+		height: 400px;
+	}
+</style>
 </head>
 <body>
 	<!-- main nav바  -->
@@ -38,11 +46,11 @@
 				<label for="content">내용</label>
 				<textarea name="content" id="content">${dto.content }</textarea>
 			</div>
-			<button type="submit" onclick="submitContents(this);">수정 확인</button>
+			<button class="btn btn-outline-dark"type="submit" onclick="submitContents(this);">수정 확인</button>
 			<button type="reset">취소</button>
 		</form>
 	</div>
-	<!-- SmartEditor 에서 필요한 javascript 로딩  -->
+
 	<script src="${pageContext.request.contextPath }/SmartEditor/js/HuskyEZCreator.js"></script>
 	<script>
 	var oEditors = [];

@@ -16,7 +16,7 @@
 <body>
 	<script>
 		alert("수정 완료")
-		location.href="${pageContext.request.contextPath }/faq/list.jsp"
+		location.href="${pageContext.request.contextPath }/faq/list.do"
 	</script>
 </body>
 </html>

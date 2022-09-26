@@ -16,4 +16,5 @@ public interface HyrQnaService {
 	public void saveReply(HttpServletRequest request);//답글 저장 
 	public void deleteReply(HttpServletRequest request);//답글 삭제
 	public void updateReply(HyrQnaReplyDto dto);//답글 수정
+	public void updateCheckReply(int num);
 }

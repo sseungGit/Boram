@@ -34,7 +34,7 @@
 
 /* main 메뉴바  position 변경 */
 .navbar1{
-	position: fixed;
+	position: absolute;
 }
 
 /* sub 메뉴바 관련 css*/

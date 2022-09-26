@@ -1,7 +1,5 @@
 package com.acorn.boram.qna.dto;
 
-import org.springframework.web.multipart.MultipartFile;
-
 public class HyrQnaDto {
 	private int num;
 	private String writer;
@@ -12,6 +10,7 @@ public class HyrQnaDto {
 	private int endRowNum;
 	private int prevNum;
 	private int nextNum;
+	private int check_reply;
 	
 	public int getNum() {
 		return num;
@@ -66,6 +65,12 @@ public class HyrQnaDto {
 	}
 	public void setNextNum(int nextNum) {
 		this.nextNum = nextNum;
+	}
+	public int getCheck_reply() {
+		return check_reply;
+	}
+	public void setCheck_reply(int check_reply) {
+		this.check_reply = check_reply;
 	}
 
 }

@@ -6,13 +6,20 @@
 <head>
 <meta charset="UTF-8">
 <title>/views/faq/updateform.jsp</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" />
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/nav.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/subFooter.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/subnav.css">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+	* { font-family: 'Noto Sans KR', sans-serif !important;}
+	.container{
+		margin-bottom: 200px;
+	}
+	#content{
+		height: 400px;
+	}
+</style>
 </head>
 <body>
 	<!-- main nav바  -->
@@ -23,7 +30,7 @@
 			<jsp:param value="faq" name="subPage"/>
 	</jsp:include>
 	<div class="container">
-		<h1 class="text-center">자주 묻는 질문 수정</h1>
+		<h5>자주 묻는 질문 수정</h5>
 		<form action="update.do" method="post">
 			<input type="hidden" name="num" value="${dto.num }" />
 			<input type="hidden" name="writer" value="${dto.writer }" />
@@ -45,11 +52,12 @@
 				<label for="content">답변 내용</label>
 				<textarea name="content" id="content">${dto.content }</textarea>
 			</div>
-			<button type="submit" onclick="submitContents(this);">수정 확인</button>
-			<button type="reset">취소</button>
+			<button class="btn btn-dark" type="submit" onclick="submitContents(this);" >수정 확인</button>
+			<button class="btn btn-outline-dark" type="reset" onclick="goBack()">취소</button>
 		</form>
 	</div>
-	<!-- SmartEditor 에서 필요한 javascript 로딩  -->
+	<script src="${pageContext.request.contextPath}/resources/js/gura_util.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="${pageContext.request.contextPath }/SmartEditor/js/HuskyEZCreator.js"></script>
 	<script>
 	var oEditors = [];
@@ -101,6 +109,11 @@
 		var sDefaultFont = '궁서';
 		var nFontSize = 24;
 		oEditors.getById["content"].setDefaultFont(sDefaultFont, nFontSize);
+	}
+	
+	//취소 누르면 뒤로가기
+	function goBack(){
+		window.history.back();
 	}
 	</script>
 	<jsp:include page="/include/footer.jsp"></jsp:include>
