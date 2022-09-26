@@ -31,7 +31,7 @@
 		<jsp:param value="faq" name="subPage"/>
 	</jsp:include>
 	<div class="container">
-		<h1 class="text-center">문의 작성 폼</h1>
+		<h1 style="font-size:30px; font-weight: bold;">1:1 문의 작성</h1>
 		<form action="insert.do" method="post" id="insertForm">
 			<div class="mb-3">
 				<label class="form-label" for="title">제목</label>
