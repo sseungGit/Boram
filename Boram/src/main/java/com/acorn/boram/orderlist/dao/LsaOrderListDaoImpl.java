@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.acorn.boram.orderlist.dto.LsaOrderListDto;
+import com.acorn.boram.orderlist.dto.LsgOrderListDto;
 
 @Repository
 public class LsaOrderListDaoImpl implements LsaOrderListDao{
@@ -27,4 +28,13 @@ public class LsaOrderListDaoImpl implements LsaOrderListDao{
 		List<LsaOrderListDto> list= session.selectList("orders.getListData",id);
 		return list; 
 	}
+
+	@Override
+	public LsaOrderListDto getData(int code) {
+		System.out.println("dao code : " + code);
+		LsaOrderListDto dto=session.selectOne("orders.getdata", code);
+		System.out.println("test");
+		return dto;
+	}
+	
 }

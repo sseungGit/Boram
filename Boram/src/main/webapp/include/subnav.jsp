@@ -20,7 +20,7 @@
     		<!-- 이용안내 서브 이미지와 문구 -->
     		<div id="image-box">
     			<img id="image-thumbnail" 
-    				src="${pageContext.request.contextPath }/resources/img/sub/subimg.jpg" alt="" />
+    				src="${pageContext.request.contextPath }/resources/img/sub/guideimg.jpg" alt="" />
     		</div>
     		<div id="sub-text">
     			<p id="subTitle">이용안내</p>
@@ -28,11 +28,11 @@
     		</div>
     	</c:when>
     	
-    	<c:when test="${param.thisPage eq '예약안내thisPage값'}">
+    	<c:when test="${param.thisPage eq 'reserve'}">
     		<!-- 예약안내 서브 이미지와 문구 -->
     		<div id="image-box">
     			<img id="image-thumbnail" 
-    				src="${pageContext.request.contextPath }/예약안내 이미지 경로" alt="" />
+    				src="${pageContext.request.contextPath }/resources/img/sub/reserveimg.jpg" alt="" />
     		</div>
     		<div id="sub-text">
     			<p id="subTitle">예약안내</p>
@@ -137,10 +137,10 @@
 						</li>
 					</ul>
 		    	</c:when>
-		    	<c:when test="${param.thisPage eq '예약안내thisPage값'}">
+		    	<c:when test="${param.thisPage eq 'reserve'}">
 		    		<!-- 예약안내  서브 네비바 -->
 					<ul id="subNavUl">
-						<li class="subNavItem deco">
+						<li class="subNavItem ${param.subPage eq 'reserve' ? 'deco' : ''}">
 						  	<a class="active" href="price_guide.do">예약안내</a>
 						</li>
 					</ul>
@@ -196,7 +196,7 @@
 		    		<p>지역안내</p>
 		    	</c:when>
 		    	
-		    	<c:when test="${param.thisPage eq '예약안내thisPage값' and param.subPage eq '예약안내subPage값'}">
+		    	<c:when test="${param.thisPage eq 'reserve' and param.subPage eq 'reserve'}">
 		    		<p>예약안내</p>
 		    	</c:when>
 		    	
@@ -214,7 +214,7 @@
 		    		<p>회원정보</p>
 		    	</c:when>
 		  	    <c:when test="${param.thisPage eq 'mypage' and param.subPage eq 'orderlist'}">
-		    		<p>주문내역</p>
+		    		<p>신청내역</p>
 		    	</c:when> 
 			</c:choose>
 		</div>

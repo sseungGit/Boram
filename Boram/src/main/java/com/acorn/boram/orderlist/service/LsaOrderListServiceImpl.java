@@ -9,6 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.acorn.boram.orderlist.dao.LsaOrderListDao;
 import com.acorn.boram.orderlist.dto.LsaOrderListDto;
+import com.acorn.boram.orderlist.dto.LsgOrderListDto;
 
 @Service
 public class LsaOrderListServiceImpl implements LsaOrderListService{
@@ -31,4 +32,13 @@ public class LsaOrderListServiceImpl implements LsaOrderListService{
 		System.out.println("getOrderListData id : "+id);
 		mView.addObject("list", ordersDAO.getListData(id));
 	}
+
+	@Override
+	public LsaOrderListDto getData(int code) {
+		System.out.println("service code: "+code);
+		LsaOrderListDto dto=ordersDAO.getData(code);
+		return dto;
+	}
+	
+
 }

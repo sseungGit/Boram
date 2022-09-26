@@ -72,7 +72,7 @@ public class LsgOrderListServiceImpl implements LsgOrderListService {
 		if(!keyword.equals("")){ //검색 조건이 무엇이냐에 따라 분기 하기
 			if(condition.equals("code")){ 
 				//주문번호 검색인 경우 
-				dto.setCode(Integer.parseInt(keyword)); 
+				dto.setCode(keyword); 
 			}else if(condition.equals("orderer_name")){ 
 				//id,이름 검색인 경우 
 				dto.setOrderer(keyword); 

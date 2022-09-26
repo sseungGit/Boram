@@ -46,7 +46,13 @@
 		width: 14%;
 		height: 100px;
 	}
-
+	.blind{
+	  position: absolute;
+	  width: 1px;
+	  height: 1px;
+	  clip: rect(0 0 0 0);
+	  overflow: hidden;
+	}
 </style>
 </head>
 <body>
@@ -86,16 +92,16 @@
 			<div class="reply" >
 				<c:if test="${not empty dtoReply.content }">
 					<div class="rcontent">
+						<c:if test="${manager eq 'Y' and dtoReply.writer eq sessionScope.id}">
+						<div id="btnGroup">
+							<a id="deleteBtn" class="btn btn-outline-white" style="float:right;" href="javascript:"><i class="bi bi-x-circle-fill"></i><span class="blind">삭제</span></a>
+							<a id="updateBtn" class="btn btn-outline-white" style="float:right;" href="javascript:"><i class="bi bi-pencil-fill"></i><span class="blind">수정</span></a>
+						</div>
+						</c:if>
 						<dl>
 							<dt>&nbsp;<i class="bi bi-chat-square-quote"></i> 답변 드립니다.</dt>
 							<dd><pre>${dtoReply.content }</pre></dd>
 						</dl>
-						<c:if test="${manager eq 'Y' and dtoReply.writer eq sessionScope.id}">
-						<div id="btnGroup">
-							<a id="updateBtn" class="btn btn-outline-dark" href="javascript:">수정</a>
-							<a id="deleteBtn" class="btn btn-outline-dark" href="javascript:">삭제</a>
-						</div>
-						</c:if>
 					</div>
 				</c:if>
 	
@@ -125,7 +131,7 @@
 	
 	
 		</div>
-		<div class="btnContainer">
+		<div class="btnContainer mt-4">
 			<button class="btn btn-outline-dark" style="float:right" onclick="location.href='delete.do?num=${dto.num }' ">삭제</button>
 			<button class="btn btn-outline-dark" style="float:left" onclick="location.href='${pageContext.request.contextPath}/qna/list.do' ">목록보기</button>
 		</div>

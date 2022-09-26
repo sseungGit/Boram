@@ -32,7 +32,7 @@ public class LsgOrderListController {
 		if(isManager.equals("N")) {
 			//관리자가 아닌경우
 			ordersService.getOrderListData(mView,session);
-			mView.setViewName("mypage/orderList/customer3");
+			mView.setViewName("mypage/orderList/list_customer");
 		}else {
 			//관리자일 경우
 			service.getOrderList(request,mView);

@@ -16,7 +16,8 @@
 
 <style>
 	* { font-family: 'Noto Sans KR', sans-serif !important;}
-	th, td{text-align:center;}
+	th,td{text-align:center;}
+
 	.page-ui a{
 		text-decoration: none;
 		color: #000;
@@ -30,10 +31,11 @@
 	
 	.page-ui a:hover{
 		text-decoration: underline;
+		color : rgba(0, 0, 0, 0.7);
 	}
 	
 	.page-ui a.active{
-		color: black;
+		color: gray;
 		font-weight: bold;
 		text-decoration: underline;
 	}
@@ -104,7 +106,7 @@
 		<div id="btnGroup" style="display:flex; justify-content:center;">
 			<button type="button" class="btn1" value="service">서비스 이용</button>
 			<button type="button" class="btn1" value="order">주문·결제·배송</button>
-			<button type="button" class="btn1" value="member" >회원정보</button>
+			<button type="button" class="btn1" value="member">회원정보</button>
 			<button type="button" class="btn1" value="etc">기타</button>
 		</div>
 		<button class="btn btn-outline-dark mb-3" id="qna" style="float:right" onclick="location.href='${pageContext.request.contextPath}/qna/list.do' ">1:1문의하러 가기</button>
@@ -113,8 +115,8 @@
 				<thead>
 					<tr>
 						<th style="width:20%;">NO</th>
-						<th style="width:10%;">카테고리</th>
-						<th style="width:70%;">제목</th>
+						<th style="width:15%;">카테고리</th>
+						<th style="width:65%;">제목</th>
 						<c:if test="${not empty id and manager == 'Y'}">
 						<th scope="col">수정</th>
 						<th scope="col">삭제</th>
@@ -164,35 +166,35 @@
 		<c:if test="${not empty manager and manager == 'Y'}">
 			<button class="btn btn-outline-dark" style="float:right" onclick="location.href='insertform.do' ">글쓰기</button>
 		</c:if>	
-		<div class="page-ui clearfix">
-		<ul>
-			<c:if test="${startPageNum ne 1 }">
-				<li>
-					<a href="list.do?pageNum=${startPageNum-1 }&condition=${condition }&keyword=${encodedK }">Prev</a>
-				</li>
-			</c:if>
-			<c:forEach var="i" begin="${startPageNum }" end="${endPageNum }">
-				<li>
-					<c:choose>
-						<c:when test="${pageNum eq i }">
-							<a  class="active" href="list.do?pageNum=${i }&condition=${condition }&keyword=${encodedK }">${i }</a>
-						</c:when>
-						<c:otherwise>
-							<a href="list.do?pageNum=${i }&condition=${condition }&keyword=${encodedK }">${i }</a>
-						</c:otherwise>
-					</c:choose>
-				</li>
-			</c:forEach>
-			<c:if test="${endPageNum lt totalPageCount }">
-				<li>
-					<a href="list.do?pageNum=${endPageNum+1 }&condition=${condition }&keyword=${encodedK }">Next</a>
-				</li>
-			</c:if>
-		</ul>
+		<div class="page-ui clearfix" style="display:flex; justify-content:center;">
+			<ul class="pagination">
+				<c:if test="${startPageNum ne 1 }">
+					<li class="page-item">
+						<a class="page-link" href="list.do?pageNum=${startPageNum-1 }&condition=${condition }&keyword=${encodedK }">Prev</a>
+					</li>
+				</c:if>
+				<c:forEach var="i" begin="${startPageNum }" end="${endPageNum }">
+					<li class="page-item">
+						<c:choose>
+							<c:when test="${pageNum eq i }">
+								<a  class="page-link" class="active" href="list.do?pageNum=${i }&condition=${condition }&keyword=${encodedK }">${i }</a>
+							</c:when>
+							<c:otherwise>
+								<a class="page-link" href="list.do?pageNum=${i }&condition=${condition }&keyword=${encodedK }">${i }</a>
+							</c:otherwise>
+						</c:choose>
+					</li>
+				</c:forEach>
+				<c:if test="${endPageNum lt totalPageCount }">
+					<li class="page-item">
+						<a class="page-link" href="list.do?pageNum=${endPageNum+1 }&condition=${condition }&keyword=${encodedK }">Next</a>
+					</li>
+				</c:if>
+			</ul>
 	</div>
 	<div class="mr-2" style="display:flex; justify-content:center;">
 		<form action="list.do" method="get" style="height:33px;"> 
-		<label for="condition">검색조건</label>
+		<label for="condition"></label>
 		<select name="condition" id="condition" style="height:100%;">
 			<option value="title_content" ${requestScope.condition eq 'title_content' ? 'selected' : '' }>제목+내용</option>
 			<option value="title" ${condition eq 'title' ? 'selected' : '' }>제목</option>
@@ -201,11 +203,6 @@
 		<input style="height:100%;" type="text" id="keyword" name="keyword" placeholder="검색어..." value="${keyword }"/>
 		<button style="height:100%; margin-top:-5px;" class="btn btn-outline-dark btn-sm" type="submit">검색</button>
 	</form>	
-	<c:if test="${ not empty condition }">
-		<p>
-			<strong>${totalRow }</strong> 개의 글이 검색 되었습니다.
-		</p>
-	</c:if>
 	</div>
 	</div>
 	<script src="${pageContext.request.contextPath}/resources/js/gura_util.js"></script>

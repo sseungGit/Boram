@@ -23,7 +23,7 @@
 				<include refid="searchCondition"/>
 				<choose>
 					<when test="category !=null">
-						WHERE category={#category}
+						WHERE category=#{category}
 					</when>
 				</choose>
 				ORDER BY num DESC) result1)
@@ -67,7 +67,6 @@
 			) result1
 		WHERE num=#{num}
 	</select>
-	
 	<delete id="delete" parameterType="int">
 		DELETE FROM faq_board
 		WHERE num=#{num}

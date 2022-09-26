@@ -36,10 +36,10 @@
 				<label class="form-label" for="category">카테고리</label>
 				<select class="form-select" name="category" id="category">
 					<option selected>카테고리 선택</option>
-					<option value="서비스이용">서비스이용</option>
-					<option value="주문·결제·배송">주문·결제·배송</option>
-					<option value="회원정보">회원정보</option>
-					<option value="기타">기타</option>
+					<option value="service">서비스이용</option>
+					<option value="order">주문·결제·배송</option>
+					<option value="member">회원정보</option>
+					<option value="etc">기타</option>
 				</select>
 			</div>
 			<div class="mb-3">
@@ -91,12 +91,17 @@
 		alert(sHTML);
 	}
 
-	
 	function setDefaultFont() {
 		var sDefaultFont = '궁서';
 		var nFontSize = 24;
 		oEditors.getById["content"].setDefaultFont(sDefaultFont, nFontSize);
 	}
+	//폼에 submit 이벤트가 일어났을때 실행할 함수 등록
+	document.querySelector("#insertForm")
+		.addEventListener("submit", function(e){
+			//에디터에 입력한 내용이 textarea 의 value 값이 될수 있도록 변환한다. 
+			oEditors.getById["content"].exec("UPDATE_CONTENTS_FIELD", []);			
+		});
 </script>
 	<jsp:include page="/include/footer.jsp"></jsp:include>
 </body>

@@ -90,14 +90,16 @@
 				</thead>
 				<tbody>
 					<tr>
-						<td>${order.code}</td>
-						<td>${order.order_price }</td>
+						<td>${orders.code}</td>
+						<td>${orders.inum }</td>
+						<td>${orders.count }</td>
+						<td>${orders.order_price }</td>
 						<td><a href="https://tracker.delivery/#/kr.epost/1111111111111" target="_blank">배송조회</a></td>
 					</tr>
 				</tbody>
 			</table>
 		</div>
 	</div>
-	<jsp:include page="/include/footer.jsp"></jsp:include>	
+<jsp:include page="/include/footer.jsp"></jsp:include>
 </body>
 </html>

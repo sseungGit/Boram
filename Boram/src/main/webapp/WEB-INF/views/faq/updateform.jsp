@@ -35,22 +35,22 @@
 			<input type="hidden" name="num" value="${dto.num }" />
 			<input type="hidden" name="writer" value="${dto.writer }" />
 			<div>
-				<label for="category">카테고리</label>
-				<select name="category" id="category">
+				<label class="form-label" for="category">카테고리</label>
+				<select class="form-select" name="category" id="category">
 					<option value="">카테고리 선택</option>
 					<option value="service" ${dto.category eq 'service' ? 'selected' : '' }>서비스이용</option>
-					<option value="order" ${dto.category eq 'order' ? 'selected' : '' }>주문결제배송</option>
-					<option value="member ${dto.category eq 'member' ? 'selected' : '' }">회원정보</option>
-					<option value="etc ${dto.category eq 'etc' ? 'selected' : '' }">기타</option>
+					<option value="order" ${dto.category eq 'order' ? 'selected' : '' }>주문·결제·배송</option>
+					<option value="member" ${dto.category eq 'member' ? 'selected' : '' }>회원정보</option>
+					<option value="etc" ${dto.category eq 'etc' ? 'selected' : '' }>기타</option>
 				</select>
 			</div>
 			<div>
-				<label for="title">질문</label>
-				<input type="text" name="title" id="title" value="${dto.title }"/>
+				<label class="form-label" for="title">질문</label>
+				<input class="form-control" type="text" name="title" id="title" value="${dto.title }"/>
 			</div>
 			<div>
-				<label for="content">답변 내용</label>
-				<textarea name="content" id="content">${dto.content }</textarea>
+				<label class="form-label" for="content">답변 내용</label>
+				<textarea class="form-control" name="content" id="content">${dto.content }</textarea>
 			</div>
 			<button class="btn btn-dark" type="submit" onclick="submitContents(this);" >수정 확인</button>
 			<button class="btn btn-outline-dark" type="reset" onclick="goBack()">취소</button>
