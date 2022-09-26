@@ -41,6 +41,13 @@
 		width:100%;
 		bottom: 0px;
 	}
+	.input-group span{
+		background-color:white;
+	}
+	.input-group{
+		border-color:#dddddd; 
+		border-radius:0px;
+	}
 </style>
 </head>
 <body>

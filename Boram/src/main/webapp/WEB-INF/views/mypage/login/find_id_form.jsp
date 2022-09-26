@@ -104,9 +104,14 @@
 					return res.json();
 				})
 				.then(function(data){
-					$("#findIdForm").hide();
-					$("#data").text(data.user.id);
-					$("#successDiv").show();
+					console.log(data);
+					if(data.user==null){
+						alert('존재하지 않는 회원정보입니다.');
+					}else{
+						$("#findIdForm").hide();
+						$("#data").text(data.user.id);
+						$("#successDiv").show();
+					}
 				});
 			}
 		});

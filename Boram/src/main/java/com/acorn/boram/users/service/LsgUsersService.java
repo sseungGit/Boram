@@ -1,5 +1,6 @@
 package com.acorn.boram.users.service;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,4 +19,7 @@ public interface LsgUsersService {
 			ModelAndView mView, HttpServletResponse response,
 			HttpServletRequest request);
 	public LsgUsersDto checkUser(LsgUsersDto dto);
+	public void getUserList(HttpServletRequest request,ModelAndView mView);
+	public int userDelete(String[] users);
+	public int userUpdate(LsgUsersDto dto);
 }

@@ -115,8 +115,27 @@ public class LsgOrderListServiceImpl implements LsgOrderListService {
 
 	@Override
 	public void getDataOrder(ModelAndView mView, LsgOrderListDto dto) {
-		LsgOrderListDto order=dao.getData(dto);
-		mView.addObject("order", order);
+		mView.addObject("order", dao.getData(dto));
+	}
+
+	public void getListOrderItme(ModelAndView mView, LsgOrderListDto dto) {
+		mView.addObject("orderItems", dao.getListOrderItem(dto));
+	}
+	
+	
+	@Override
+	public int orderUpdate(String[] codes, String state) {
+		return dao.update(codes,state);
+	}
+
+	@Override
+	public int coruierUpdate(String[] codes, String courier) {
+		return dao.coruierUpdate(codes,courier);
+	}
+	
+	@Override
+	public int coruierUpdate2(String[] codes, String courier) {
+		return dao.coruierUpdate2(codes,courier);
 	}
 
 }

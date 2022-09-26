@@ -14,6 +14,7 @@
 		<typeAlias type="com.acorn.boram.orderlist.dto.LsgOrderListDto" alias="orderListDto"/>
 		<typeAlias type="com.acorn.boram.notice.dto.NoticeDto" alias="noticeDto"/>
 		<typeAlias type="com.acorn.boram.notice.dto.NoticeCommentDto" alias="noticeCommentDto"/>
+		<typeAlias type="com.acorn.boram.orderlist.dto.LsgOrderItemsDto" alias="orderItemsDto"/>
  	</typeAliases>
  	<mappers>
 		<mapper resource="com/acorn/boram/mybatis/QnaMapper.xml"/>

@@ -65,11 +65,23 @@
     	</c:when>
     	
     	<c:when test="${param.thisPage eq 'login' or param.thisPage eq 'signup' 
-	    		or param.thisPage eq 'findpwd' or param.thisPage eq 'findid' or param.thisPage eq 'manager'}">
-			<!-- 로그인 및 회원가입 및 관리자 서브 이미지와 문구 -->
+	    		or param.thisPage eq 'findpwd' or param.thisPage eq 'findid'}">
+			<!-- 로그인 및 회원가입 서브 이미지와 문구 -->
     		<div id="image-box">
     			<img id="image-thumbnail" 
     				src="${pageContext.request.contextPath }/resources/img/sub/loginimg.jpg" alt="" />
+    		</div>
+    		<div id="sub-text">
+    			<p id="subTitle"></p>
+				<p id="subContent"></p>	
+    		</div>
+    	</c:when>
+    	
+    	<c:when test="${param.thisPage eq 'manager'}">
+			<!-- 관리자 서브 이미지와 문구 -->
+    		<div id="image-box">
+    			<img id="image-thumbnail" 
+    				src="${pageContext.request.contextPath }/resources/img/sub/mypageimg.jpg" alt="" />
     		</div>
     		<div id="sub-text">
     			<p id="subTitle"></p>
@@ -98,10 +110,6 @@
 	<c:when test="${param.thisPage eq 'findid'}">
 		<div id="subMenuText">
 			<p>아이디 찾기</p>
-		</div>
-	</c:when>
-	<c:when test="${param.thisPage eq 'manager'}">
-		<div id="subMenuText">
 		</div>
 	</c:when>
 	<c:otherwise>
@@ -166,7 +174,18 @@
 							<a class="${param.subPage eq 'info' ? 'active' : ''}" href="${pageContext.request.contextPath }/mypage/users/info.do">회원정보</a>
 						</li>
 						<li class="subNavItem ${param.subPage eq 'orderlist' ? 'deco' : ''}">
-							<a class="${param.subPage eq 'orderlist' ? 'active' : ''}" aria-current="page" href="${pageContext.request.contextPath}/mypage/orderList/customer.do">신청내역확인</a>
+							<a class="${param.subPage eq 'orderlist' ? 'active' : ''}" aria-current="page" href="${pageContext.request.contextPath}/mypage/order.do">신청내역확인</a>
+						</li>
+					</ul>
+				</c:when>
+				<c:when test="${param.thisPage eq 'manager'}">
+		    		<!-- 마이페이지  서브 네비바 -->
+					<ul id="subNavUl">
+						<li class="subNavItem ${param.subPage eq 'user' ? 'deco' : ''}">
+							<a class="${param.subPage eq 'user' ? 'active' : ''}" href="${pageContext.request.contextPath }/mypage/user.do">회원관리</a>
+						</li>
+						<li class="subNavItem ${param.subPage eq 'order' ? 'deco' : ''}">
+							<a class="${param.subPage eq 'order' ? 'active' : ''}" aria-current="page" href="${pageContext.request.contextPath}/mypage/order.do">주문관리</a>
 						</li>
 					</ul>
 				</c:when>

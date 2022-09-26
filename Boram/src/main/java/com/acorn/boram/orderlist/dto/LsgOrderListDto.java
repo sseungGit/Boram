@@ -14,6 +14,8 @@ public class LsgOrderListDto {
 	private String state;
 	private String get_invoice_num;
 	private String send_invoice_num;
+	private String get_courier;
+	private String send_courier;
 	private int startRowNum;
 	private int endRowNum;
 	
@@ -21,7 +23,8 @@ public class LsgOrderListDto {
 
 	public LsgOrderListDto(int code, String orderer, String name, String phone, String addr, int order_price,
 			String order_addr, String regdate, String reservation_date, String request, String state,
-			String get_invoice_num, String send_invoice_num, int startRowNum, int endRowNum) {
+			String get_invoice_num, String send_invoice_num, String get_courier, String send_courier, int startRowNum,
+			int endRowNum) {
 		super();
 		this.code = code;
 		this.orderer = orderer;
@@ -36,6 +39,8 @@ public class LsgOrderListDto {
 		this.state = state;
 		this.get_invoice_num = get_invoice_num;
 		this.send_invoice_num = send_invoice_num;
+		this.get_courier = get_courier;
+		this.send_courier = send_courier;
 		this.startRowNum = startRowNum;
 		this.endRowNum = endRowNum;
 	}
@@ -144,6 +149,22 @@ public class LsgOrderListDto {
 		this.send_invoice_num = send_invoice_num;
 	}
 
+	public String getGet_courier() {
+		return get_courier;
+	}
+
+	public void setGet_courier(String get_courier) {
+		this.get_courier = get_courier;
+	}
+
+	public String getSend_courier() {
+		return send_courier;
+	}
+
+	public void setSend_courier(String send_courier) {
+		this.send_courier = send_courier;
+	}
+
 	public int getStartRowNum() {
 		return startRowNum;
 	}
@@ -159,5 +180,4 @@ public class LsgOrderListDto {
 	public void setEndRowNum(int endRowNum) {
 		this.endRowNum = endRowNum;
 	}
-
 }

@@ -14,11 +14,15 @@ public class LsgUsersDto {
 	private String manager;
 	//아이디 저장여부
 	private boolean saveId;
+	//페이징 처리
+	private int startRowNum;
+	private int endRowNum;
 	
 	public LsgUsersDto() {}
-	
-	public LsgUsersDto(String id, String pwd,String newPwd, String name, int countryCode, String phone, String email, String profile,
-			String addr, String regdate, String manager, boolean saveId) {
+
+	public LsgUsersDto(String id, String pwd, String newPwd, String name, int countryCode, String phone, String email,
+			String profile, String addr, String regdate, String manager, boolean saveId, int startRowNum,
+			int endRowNum) {
 		super();
 		this.id = id;
 		this.pwd = pwd;
@@ -32,6 +36,8 @@ public class LsgUsersDto {
 		this.regdate = regdate;
 		this.manager = manager;
 		this.saveId = saveId;
+		this.startRowNum = startRowNum;
+		this.endRowNum = endRowNum;
 	}
 
 	public String getId() {
@@ -48,6 +54,14 @@ public class LsgUsersDto {
 
 	public void setPwd(String pwd) {
 		this.pwd = pwd;
+	}
+
+	public String getNewPwd() {
+		return newPwd;
+	}
+
+	public void setNewPwd(String newPwd) {
+		this.newPwd = newPwd;
 	}
 
 	public String getName() {
@@ -122,12 +136,19 @@ public class LsgUsersDto {
 		this.saveId = saveId;
 	}
 
-	public String getNewPwd() {
-		return newPwd;
+	public int getStartRowNum() {
+		return startRowNum;
 	}
 
-	public void setNewPwd(String newPwd) {
-		this.newPwd = newPwd;
+	public void setStartRowNum(int startRowNum) {
+		this.startRowNum = startRowNum;
 	}
-	
+
+	public int getEndRowNum() {
+		return endRowNum;
+	}
+
+	public void setEndRowNum(int endRowNum) {
+		this.endRowNum = endRowNum;
+	}
 }

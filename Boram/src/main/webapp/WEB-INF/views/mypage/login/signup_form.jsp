@@ -32,38 +32,38 @@
 		padding:48px;
 	}
 	#btnGroup{
+		margin-top:30px;
 		text-align: center;
 	}
-/* 	html,body{  
-		margin:0;
-		padding:0;
-	    height:100%;
+	#btnGroup a.btn{
+		border-radius:0px;
+		width: 130px;
+		height:45px;
 	}
-    body {
-		display: flex;
-		flex-direction: column;
-		text-align: center;
-		background-color: #999;
-		margin: 0;
+	#btnGroup a.btn-dark:hover{
+		background-color:white;
+		color:black;
 	}
-	main {
-        flex: 2;
-        background-color: cornflowerblue;
-		padding:10px;
-		margin:20px;
-        display: flex;
-        justify-content:center;
-        align-items:center;
-		height:100%;
-		width:100%;
-		overflow:auto;
+	.form-control{
+		border: 1px solid #dddddd !important;
+		border-radius:0 !important;
 	}
-	#register_agree{
-		background-color: white;
-		height:100%;
-		width:100%;
-		border:1px solid black;
-	} */
+	input.is-invalid{
+		background-color:white;
+	}
+	#signupBtn{
+		border-radius:0px; 
+		width:120px; 
+		heigth:40px; 
+		margin-top:30px;
+		background-color:white;
+		color:black;
+	}
+	
+	#signupBtn:hover{
+		background-color:black;
+		color:white;
+	}
 </style>
 </head>
 <body>

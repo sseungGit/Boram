@@ -1,4 +1,6 @@
 package com.acorn.boram.users.dao;
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -45,5 +47,32 @@ public class LsgUsersDaoImpl implements LsgUsersDao{
 		}else {
 			return false;
 		}
+	}
+
+	@Override
+	public List<LsgUsersDto> getList(LsgUsersDto dto) {
+		return session.selectList("users.getList",dto);
+	}
+
+	@Override
+	public int getCount(LsgUsersDto dto) {
+		return session.selectOne("users.getCount",dto);
+	}
+
+	@Override
+	public int delete(String[] users) {
+		int count=0;
+		for(int i=0;i<users.length;i++) {
+			System.out.println("id : "+users[i]);
+			session.delete("users.delete", users[i]);
+			count++;
+		}
+		return count;
+	}
+
+	@Override
+	public int update(LsgUsersDto dto) {
+		System.out.println(dto.getManager());
+		return session.update("users.adminUpdate", dto);
 	}
 }
