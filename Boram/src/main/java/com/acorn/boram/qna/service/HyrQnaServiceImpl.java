@@ -154,5 +154,13 @@ public class HyrQnaServiceImpl implements HyrQnaService{
 		qnaDao.updateCheckReply(num);
 		
 	}
+
+
+
+	@Override
+	public void deleteContent(int num, HttpServletRequest request) {
+		qnaDao.delete(num);
+		
+	}
 	
 }

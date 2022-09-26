@@ -23,7 +23,7 @@
 				<include refid="searchCondition"/>
 				<choose>
 					<when test="category !=null">
-						WHERE category={#category}
+						WHERE category=#{category}
 					</when>
 				</choose>
 				ORDER BY num DESC) result1)
@@ -52,22 +52,10 @@
 				LAG(num,1,0) OVER (ORDER BY num DESC) AS prevNum,
 				LEAD(num,1,0) OVER (ORDER BY num DESC) AS nextNum
 			FROM faq_board
-			) result1
-		WHERE num=#{num}
-	</select>
-	<select id="getData2" parameterType="faqDto" resultType="faqDto">
-		SELECT result1.*
-		FROM
-			(SELECT num,category,writer,title,content,
-				TO_CHAR(regdate,'YY.MM.DD HH24:MI') AS regdate,
-				LAG(num,1,0) OVER (ORDER BY num DESC) AS prevNum,
-				LEAD(num,1,0) OVER (ORDER BY num DESC) AS nextNum
-			FROM faq_board
 			<include refid="searchCondition"/>
 			) result1
 		WHERE num=#{num}
 	</select>
-	
 	<delete id="delete" parameterType="int">
 		DELETE FROM faq_board
 		WHERE num=#{num}

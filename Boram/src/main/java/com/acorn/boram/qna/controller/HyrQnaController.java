@@ -50,7 +50,7 @@ public class HyrQnaController {
 	@RequestMapping("/qna/delete")
 	public ModelAndView authDelete(@RequestParam int num,
 			ModelAndView mView, HttpServletRequest request) {
-		
+		service.deleteContent(num, request);
 		mView.setViewName("redirect:/qna/list.do");
 		return mView;
 	}

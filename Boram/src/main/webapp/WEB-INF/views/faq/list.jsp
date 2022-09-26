@@ -104,7 +104,7 @@
 		<div id="btnGroup" style="display:flex; justify-content:center;">
 			<button type="button" class="btn1" value="service">서비스 이용</button>
 			<button type="button" class="btn1" value="order">주문·결제·배송</button>
-			<button type="button" class="btn1" value="member" >회원정보</button>
+			<button type="button" class="btn1" value="member">회원정보</button>
 			<button type="button" class="btn1" value="etc">기타</button>
 		</div>
 		<button class="btn btn-outline-dark mb-3" id="qna" style="float:right" onclick="location.href='${pageContext.request.contextPath}/qna/list.do' ">1:1문의하러 가기</button>
@@ -113,8 +113,8 @@
 				<thead>
 					<tr>
 						<th style="width:20%;">NO</th>
-						<th style="width:10%;">카테고리</th>
-						<th style="width:70%;">제목</th>
+						<th style="width:15%;">카테고리</th>
+						<th style="width:65%;">제목</th>
 						<c:if test="${not empty id and manager == 'Y'}">
 						<th scope="col">수정</th>
 						<th scope="col">삭제</th>
