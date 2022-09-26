@@ -174,7 +174,7 @@
 						<!-- item -->
 						<div class = "sub-menu-item1" id="lili2">
 							<h2>여러분의 배송정보를 여기서 확인해 보세요.</h2>
-							<button type = "button" class = "btn1">신청내역확인</button>
+							<button type = "button" class = "btn1" onclick="location.href='${pageContext.request.contextPath}/mypage/order.do'">신청내역확인</button>
 						</div>
 						<!-- end of item -->
 						<!-- item -->
