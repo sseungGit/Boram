@@ -114,7 +114,7 @@
 						<option value="code" ${condition eq 'code' ? 'selected' : '' }>주문번호</option>
 						<option value="orderer_name" ${condition eq 'orderer_name' ? 'selected' : '' }>아이디/이름</option>
 					</select>
-					<input type="text" class="form-control form-control-lg" id="keyword" name="keyword" placeholder="검색어..." value="${keyword }"/>
+					<input type="text" class="form-control form-control-lg" id="keyword" name="keyword" placeholder="검색어를 입력해주세요" value="${keyword }"/>
 					<button type="submit" class="btn btn-dark btn-lg" style="width:80px;">검색</button>
 				</form>	
 			</div>

@@ -76,6 +76,17 @@ public class LsgOrderListController {
 		return mView;
 	}
 	
+	//(고객)상세 페이지로 이동
+	@RequestMapping("/mypage/detail")
+	public ModelAndView authUserDetail(HttpServletRequest request
+			, ModelAndView mView, LsgOrderListDto dto) {
+		String isManager=request.getSession().getAttribute("manager").toString();
+		service.getDataOrder(mView,dto);
+		service.getListOrderItme(mView, dto);
+		mView.setViewName("mypage/orderList/detail");
+		return mView;
+	}
+	
 	//회원정보 삭제
 	@RequestMapping("/mypage/admin_user_delete")
 	@ResponseBody

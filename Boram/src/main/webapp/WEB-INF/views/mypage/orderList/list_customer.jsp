@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="f"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -64,8 +66,8 @@ td > a {
 			<c:forEach var="tmp" items="${list }">
 				<tr>
 					<td>${tmp.code }</td>
-					<td><a href="${pageContext.request.contextPath }/mypage/orderList/list_detail.do?code=${tmp.code }">상세정보보기</a></td>
-					<td>${tmp.order_price }원</td>
+					<td><a href="${pageContext.request.contextPath }/mypage/detail.do?code=${tmp.code }">상세정보보기</a></td>
+					<td><f:formatNumber value="${tmp.order_price }" pattern="#,###" />원</td>
 					<td>${tmp.order_addr }</td>
 					<td>${tmp.regdate}</td>
 					<td>${tmp.reservation_date }</td>

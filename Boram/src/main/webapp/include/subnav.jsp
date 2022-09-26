@@ -84,8 +84,8 @@
     				src="${pageContext.request.contextPath }/resources/img/sub/mypageimg.jpg" alt="" />
     		</div>
     		<div id="sub-text">
-    			<p id="subTitle"></p>
-				<p id="subContent"></p>	
+    			<p id="subTitle">관리자페이지</p>
+				<p id="subContent">고객 및 주문 관리</p>	
     		</div>
     	</c:when>
     </c:choose>
@@ -167,11 +167,22 @@
 						</li>
 					</ul>
 		    	</c:when>
+		    	<c:when test="${param.thisPage eq 'mypage'}">
+		    		<!-- 마이페이지  서브 네비바 -->
+					<ul id="subNavUl">
+						<li class="subNavItem ${param.subPage eq 'info' ? 'deco' : ''}">
+							<a class="${param.subPage eq 'info' ? 'active' : ''}" href="${pageContext.request.contextPath }/mypage/users/info.do">회원정보</a>
+						</li>
+						<li class="subNavItem ${param.subPage eq 'orderlist' ? 'deco' : ''}">
+							<a class="${param.subPage eq 'orderlist' ? 'active' : ''}" aria-current="page" href="${pageContext.request.contextPath}/mypage/order.do">신청내역확인</a>
+						</li>
+					</ul>
+				</c:when>
 				<c:when test="${param.thisPage eq 'manager'}">
 		    		<!-- 마이페이지  서브 네비바 -->
 					<ul id="subNavUl">
 						<li class="subNavItem ${param.subPage eq 'user' ? 'deco' : ''}">
-							<a class="${param.subPage eq 'user' ? 'active' : ''}" href="${pageContext.request.contextPath }/mypage/user.do">회원관리</a>
+							<a class="${param.subPage eq 'user' ? 'active' : ''}" href="${pageContext.request.contextPath }/mypage/user.do">고객관리</a>
 						</li>
 						<li class="subNavItem ${param.subPage eq 'order' ? 'deco' : ''}">
 							<a class="${param.subPage eq 'order' ? 'active' : ''}" aria-current="page" href="${pageContext.request.contextPath}/mypage/order.do">주문관리</a>

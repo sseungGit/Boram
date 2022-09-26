@@ -19,15 +19,11 @@
 		padding: 0;
 		height: 100%;
 	}
-	#subMenuText{
-		height: 80px;
-		position:relative;
-	}
 	#detail_wr{
 		height:700px;
 		display:flex;
 		justify-content: left;
-		font-size:18px;
+		font-size:16px;
 		margin-bottom:100px;
 	}
 	#body-content{
@@ -69,8 +65,8 @@
 		subPage는 소메뉴를 구별하는데 사용
 	 -->
 	<jsp:include page="/include/subnav.jsp">
-		<jsp:param value="manager" name="thisPage"/>
-		<jsp:param value="order" name="subPage"/>
+		<jsp:param value="mypage" name="thisPage"/>
+		<jsp:param value="orderlist" name="subPage"/>
 	</jsp:include>
 	<div id="detail_wr" class="container">
 		<div id="body-content">

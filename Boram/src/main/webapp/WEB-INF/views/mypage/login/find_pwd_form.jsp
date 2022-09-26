@@ -48,6 +48,14 @@
 		border-color:#dddddd; 
 		border-radius:0px;
 	}
+	#idFindBtn{
+		border-color:#dddddd;
+		border-radius:0px;
+	}
+	#idFindBtn:hover{
+		background-color:black;
+		color:white;
+	}
 </style>
 </head>
 <body>
@@ -66,26 +74,26 @@
 		<div id="body_content">
 			<form action="#" id="findPwdForm" method="post" autocomplete="off">
 				<div class="input-group mb-3">
-					<span class="input-group-text" id="basic-addon1" style="background-color:#F5F5F5;">아이디
+					<span class="input-group-text" id="basic-addon1" style="border-color:#dddddd; border-radius:0px; width:80px;">아이디
 					 </span>
-					 <input class="form-control" type="text" id="id" name="id" style="background-color:#F5F5F5;">
+					 <input class="form-control" type="text" id="id" name="id">
 				</div>
 				<div class="input-group mb-3">
-					<span class="input-group-text" id="basic-addon1" style="background-color:#F5F5F5;">이름
+					<span class="input-group-text" id="basic-addon1" style="border-color:#dddddd; border-radius:0px;width:80px;">이름
 					 </span>
-					 <input class="form-control" type="text" id="name" name="name" style="background-color:#F5F5F5;">
+					 <input class="form-control" type="text" id="name" name="name">
 				</div>
 				<div class="input-group mb-3">
-					<span class="input-group-text" id="basic-addon1" style="background-color:#F5F5F5;">E-mail
+					<span class="input-group-text" id="basic-addon1" style="border-color:#dddddd; border-radius:0px;width:80px;">E-mail
 					 </span>
-					 <input class="form-control" type="text" id="email" name="email" style="background-color:#F5F5F5;">
+					 <input class="form-control" type="text" id="email" name="email">
 				</div>
 				<div class="row row-cols-1">
 					<div class="col d-grid gap-1 mx-auto mb-3">
-						<button class="btn btn-primary" type="submit" >계속</button>
+						<button class="btn btn-dark" type="submit" style="border-radius:0px;">계속</button>
 					</div>
 					<div class="col">
-						<a href="find_id_form.do" class="btn">Forgot ID?</a>
+						<a href="find_id_form.do" class="btn" id="idFindBtn">Forgot ID?</a>
 					</div>
 				</div>
 			</form>

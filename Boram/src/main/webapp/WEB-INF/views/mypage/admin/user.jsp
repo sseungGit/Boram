@@ -26,7 +26,7 @@
 		height:700px;
 		display:flex;
 		justify-content: center;
-		font-size:18px;
+		font-size:16px;
 	}
 	#body_content{
 		width: 1000px;
@@ -37,6 +37,7 @@
 	#user_table{
 		height:500px;
 		text-align:center;
+		margin-bottom:30px;
 	}
 	#user_table table{
 		width: 1000px;

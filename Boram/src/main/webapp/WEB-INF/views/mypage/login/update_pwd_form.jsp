@@ -4,14 +4,16 @@
 	<form action="update_pwd.do" id="updatePwdForm" method="post" autocomplete="off">
 		<input type="hidden" id="id" name="id"  value="${param.id }"/>
 		<div class="mb-3">
-			<input class="form-control" type="password" name="pwd" id="pwd" maxlength="13" placeholder="암호"/>
+			<input class="form-control" type="password" name="pwd" id="pwd" maxlength="13" placeholder="비밀번호"
+				style="border-color:#dddddd; border-radius:0px;"/>
 			<div class="invalid-feedback">최소 하나의 영문자,숫자,특수문자가 들어가고 8글자~13글자 이내로 입력해주세요.</div>
 		</div>
 		<div class="mb-4">
-			<input class="form-control" type="password" name="pwd2" id="pwd2" maxlength="13"  placeholder="암호 확인"/>
+			<input class="form-control" type="password" name="pwd2" id="pwd2" maxlength="13"  placeholder="비밀번호 확인"
+				style="border-color:#dddddd; border-radius:0px;"/>
 			<div class="invalid-feedback">비밀 번호가 일치하지 않습니다.</div>
 		</div>
-		<button type="submit" class="btn">확인</button>
+		<button type="submit" class="btn btn-dark" style="border-radius:0px;">확인</button>
 	</form>
 	<div id="successDiv"></div>
 	
@@ -61,6 +63,7 @@
 	updateForm.addEventListener("submit", function(event){
 		event.preventDefault();
 		if(!isPwdValid){
+			alert('비밀번호를 확인해주세요.');
 			return;
 		}else{
 			ajaxFormPromise(updateForm)
@@ -71,13 +74,19 @@
 				let mag="";
 				if(data.isSuccess){
 					msg=`
-						<h1>비밀번호를 수정했습니다.</h1>
-						<a href="login_form.do" class="btn">로그인</a>
+						<div style="text-align:center">
+							<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="currentColor" class="bi bi-bag-check-fill" viewBox="0 0 16 16">
+							  	<path fill-rule="evenodd" d="M10.5 3.5a2.5 2.5 0 0 0-5 0V4h5v-.5zm1 0V4H15v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4h3.5v-.5a3.5 3.5 0 1 1 7 0zm-.646 5.354a.5.5 0 0 0-.708-.708L7.5 10.793 6.354 9.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z"/>
+							</svg>
+							<h6 style="margin-top:30px; border:1px solid black; padding:20px; background-color:#585d6e;color:white; width: 300px; margin:10px auto;">비밀번호를 수정했습니다
+							<a href="login_form.do" class="btn btn-dark" style="border-radius:0px; height:35px; margin-top:10px;">로그인</a>
+							</h6>
+						</div>
 					`;
 				}else{
 					msg=`
 						<h1>비밀번호 수정이 실패했습니다.</h1>
-						<a href="find_pwd_form.do" class="btn">수정하기</a>
+						<a href="find_pwd_form.do" class="btn btn-dark" style="border-radius:0px;">수정하기</a>
 					`;
 				}
 				$('#successDiv').html(msg);
