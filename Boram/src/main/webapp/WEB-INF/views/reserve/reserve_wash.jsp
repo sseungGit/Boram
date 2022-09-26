@@ -39,6 +39,7 @@
                             <optgroup label="상품선택">
                                 <option value="">선택해주세요</option>
                                 <c:forEach var="tmp" items="${list }">
+                                <!-- data-inum을 사용해서 inum이라는 이름으로 요소에 data 담기, value는  상품의 primary key인 ${tmp.inum }을 담는다.-->
                                 <option class="for" id="${tmp.inum }" data-inum="${tmp.inum }" value="${tmp.price }">${tmp.item }</option>
                                 </c:forEach>
                             </optgroup>
@@ -96,7 +97,6 @@
         <h2>Laundry365에서<br>깨끗하고 안전하게! 배송해드리겠습니다!</h2>
     </div>
 </div>
-</form>
     <script src="${pageContext.request.contextPath}/reserve_img/jquery js/jquery-3.4.1.js"></script>
     <script src="${pageContext.request.contextPath}/reserve_img/jquery js/jquery.datetimepicker.full.min.js"></script>
 <script src="${pageContext.request.contextPath}/reserve_img/jquery js/jquery-3.4.1.js"></script>
@@ -104,19 +104,17 @@
     <script>
         $.datetimepicker.setLocale("ko");
 		
-        $("#one").datetimepicker();
+        $("#one").datetimepicker({minDate: 0});
        
 		var idNum = 0;
+		
 		let inums="";
         $("#product").on("change", function(){
-        	alert($("#product option:selected").data('inum')); //이걸로 선택된 option의 inum 값을 가져왔어요
-        	inums+=$("#product option:selected").data('inum')+",";
-        	console.log(inums);
         	idNum += 1;
+        	//선택한 상품의 inum을 inums에 이어 담기
+        	inums+=$("#product option:selected").data('inum')+"/"; 
         	var msg2=parseInt($("#product option:selected").val());
             var msg=$("#product option:selected").text();
-            console.log(msg2);
-            console.log(msg);
             $("#number").text(msg);
             $("#inputMsg").val("");
             $('.order_number').append('<input type="number" class="product" name="num" id="num'+idNum+'" min="1" max="30" value="1" onchange="history(this.value,'+msg2+',this.id);">');
@@ -154,7 +152,6 @@
     	var sum2 ='가격';
     	var sum3 ='수량';
     	var sum4 ='예약날짜';
-    	var sum5 = '상품번호';
     	$('.productName').each(function(){
     		sum = sum + '/' + $(this).text();
     	});
@@ -167,13 +164,19 @@
     	$('.date').each(function(){
     		sum4 = sum4 + '/' + $(this).val();
     	});
-    	$('.for').each(function(){
-    		sum5 = sum5 + '/' + $(this).attr('id');
-    	});
     	
 
-    	var text = '${pageContext.request.contextPath}/reserve/reserve_credit.do?name='+sum+'&price='+sum2+'&count='+sum3+'&date='+sum4+'&number='+inums;//여기서 원래 inum을 가져가던 변수가 뭐 인가요? sum5여
-    	location.href=text;
+    	//number라는 key에 inums 담기
+    	var text = '${pageContext.request.contextPath}/reserve/reserve_credit.do?name='+sum
+    				+'&price='+sum2+'&count='+sum3+'&date='+sum4+'&number='+inums+'&category=${param.category}'; 
+    
+    	if(sum4=="예약날짜/"){
+    		alert('예약 날짜를 선택해주세요');
+    	}else if(inums==""){
+    		alert('상품을 선택해 주세요');
+    	}else{
+    		location.href=text;	
+    	}
     }
     </script>
    <jsp:include page="/include/footer.jsp"></jsp:include>

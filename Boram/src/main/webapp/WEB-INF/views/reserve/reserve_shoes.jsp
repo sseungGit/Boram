@@ -23,11 +23,6 @@
       <jsp:param value="reserve" name="subPage"/>
 </jsp:include>
 <form action="${pageContext.request.contextPath}/member/update.do" method="post">
-		
-		
-
-		
-
 <div class="container">
     <p>step02 상품선택</p>
     <main id="order_wrap">
@@ -46,7 +41,7 @@
                             <optgroup label="상품선택">
                                 <option value="">선택해주세요</option>
                                 <c:forEach var="tmp" items="${list3 }">
-                                	<option id="${tmp.inum }" value="${tmp.price }">${tmp.item }</option>
+                                	<option id="${tmp.inum }" data-inum="${tmp.inum }" value="${tmp.price }">${tmp.item }</option>
                                 </c:forEach>
                             </optgroup>
                         </select>
@@ -110,17 +105,19 @@
     <script>
         $.datetimepicker.setLocale("ko");
 		
-        $("#one").datetimepicker();
+        $("#one").datetimepicker({minDate: 0}); //{minDate: 0}을 이용해서 이전 날짜는 선택 못하게
        
 		var idNum = 0;
 		
+		let inums="";
         $("#product").on("change", function(){
         	idNum += 1;
+        	//선택한 상품의 inum을 inums에 이어 담기
+        	inums+=$("#product option:selected").data('inum')+"/"; 
         	var msg2=parseInt($("#product option:selected").val());
             var msg=$("#product option:selected").text();
             $("#number").text(msg);
             $("#inputMsg").val("");
-            
             $('.order_number').append('<input type="number" class="product" name="num" id="num'+idNum+'" min="1" max="30" value="1" onchange="history(this.value,'+msg2+',this.id);">');
             $('.order_number').append('<span class="num'+idNum+' in" name="number">'+msg2+'</span>');
             $("<li class=\"productName\"></li>").text(msg).appendTo(".order_name");
@@ -170,8 +167,16 @@
     	});
     	
 
-    	var text = '${pageContext.request.contextPath}/reserve/reserve_credit.do?name='+sum+'&price='+sum2+'&count='+sum3+'&date='+sum4;
-    	location.href=text;
+    	var text = '${pageContext.request.contextPath}/reserve/reserve_credit.do?name='+sum
+    				+'&price='+sum2+'&count='+sum3+'&date='+sum4+'&number='+inums+'&category=${param.category}';
+    	
+    	if(sum4=="예약날짜/"){
+    		alert('예약 날짜를 선택해주세요');
+    	}else if(inums==""){
+    		alert('상품을 선택해 주세요');
+    	}else{
+    		location.href=text;	
+    	}
     }
     </script>
 <jsp:include page="/include/footer.jsp"></jsp:include>

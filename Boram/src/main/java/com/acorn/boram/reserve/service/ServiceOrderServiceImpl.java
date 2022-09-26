@@ -35,4 +35,21 @@ public class ServiceOrderServiceImpl implements ServiceOrderService{
 		LsgUsersDto dto=dao.productAddr(id);
 		mView.addObject("dto",dto);
 	}
+
+	@Override
+	public void insertOrder(ModelAndView mView, Service_OrderDto dto, 
+			String inum, String count) {
+		int flag=dao.insertOrder(dto);
+		if(flag>0) {
+			int seq=dao.getServiceOrderSeq();
+			int num=dao.insertOrderItems(seq,inum,count);
+			if(num >0) {
+				mView.addObject("isSuccess", true);
+			}else {
+				mView.addObject("isSuccess", false);
+			}
+		}else {
+			mView.addObject("isSuccess", false);
+		}
+	}
 }

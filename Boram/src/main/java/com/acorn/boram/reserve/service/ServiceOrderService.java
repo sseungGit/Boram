@@ -13,4 +13,6 @@ public interface ServiceOrderService {
 	public void getData4(HttpServletRequest request);
 	public void productAddr(String id, ModelAndView mView);
 	public void productInsert(Service_OrderDto dto);
+	public void insertOrder(ModelAndView mView, Service_OrderDto dto, 
+		   String inum, String count);
 }

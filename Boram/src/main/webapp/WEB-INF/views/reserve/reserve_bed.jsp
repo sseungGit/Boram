@@ -21,10 +21,7 @@
       <jsp:param value="reserve" name="thisPage"/>
       <jsp:param value="reserve" name="subPage"/>
 </jsp:include>
-<form action="${pageContext.request.contextPath}/member/update.do" method="post">
-
-
-
+<%-- <form action="${pageContext.request.contextPath}/member/update.do" method="post">  사용하지 않는 것 같아서 주석처리 했습니다--%>
 <div class="container">
     <p>step02 상품선택</p>
     <main id="order_wrap">
@@ -41,9 +38,9 @@
                     <dd>
                         <select name="product" id="product">
                             <optgroup label="상품선택">
-                                <option value="">선택해주세요</option>
+                                <option value="">선택</option>
                                 <c:forEach var="tmp" items="${list2}">
-                                	<option id="${tmp.inum }" value="${tmp.price }">${tmp.item }</option> 
+                                	<option id="${tmp.inum }" data-inum="${tmp.inum }" value="${tmp.price }">${tmp.item }</option> 
                                 </c:forEach>
                             </optgroup>
                         </select>
@@ -105,12 +102,15 @@
     <script>
         $.datetimepicker.setLocale("ko");
 		
-        $("#one").datetimepicker();
+        $("#one").datetimepicker({minDate: 0});
        
 		var idNum = 0;
 		
+		let inums="";
         $("#product").on("change", function(){
         	idNum += 1;
+        	//선택한 상품의 inum을 inums에 이어 담기
+        	inums+=$("#product option:selected").data('inum')+"/"; 
         	var msg2=parseInt($("#product option:selected").val());
             var msg=$("#product option:selected").text();
             $("#number").text(msg);
@@ -164,8 +164,16 @@
     	});
     	
 
-    	var text = '${pageContext.request.contextPath}/reserve/reserve_credit.do?name='+sum+'&price='+sum2+'&count='+sum3+'&date='+sum4;
-    	location.href=text;
+    	var text = '${pageContext.request.contextPath}/reserve/reserve_credit.do?name='+sum
+    				+'&price='+sum2+'&count='+sum3+'&date='+sum4+'&number='+inums+'&category=${param.category}';
+
+    	if(sum4=="예약날짜/"){
+    		alert('예약 날짜를 선택해주세요');
+    	}else if(inums==""){
+    		alert('상품을 선택해 주세요');
+    	}else{
+    		location.href=text;	
+    	}
     }
     </script>
     <jsp:include page="/include/footer.jsp"></jsp:include>
