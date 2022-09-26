@@ -25,20 +25,8 @@ public class ServiceOrderServiceImpl implements ServiceOrderService{
 	}
 
 	@Override
-	public void productInsert(HttpSession session, Service_OrderDto dto) {
-		String orderer=(String)session.getAttribute("orderer");
-		String category=(String)session.getAttribute("category");
-		String order_price=(String)session.getAttribute("order_price");
-		String order_addr=(String)session.getAttribute("order_addr");
-		String regdate=(String)session.getAttribute("regdate");
-		String reservation_date=(String)session.getAttribute("reservation_date");
-		String request=(String)session.getAttribute("request");
-		String state=(String)session.getAttribute("state");
-		String get_invoice_num=(String)session.getAttribute("get_invoice_num");
-		String send_invoice_num=(String)session.getAttribute("send_invoice_num");
-
-		dto.setOrderer(orderer);
-		
+	public void productInsert(Service_OrderDto dto) {
+		dao.productInsert(dto);
 	}
 
 	@Override

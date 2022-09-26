@@ -12,5 +12,5 @@ import com.acorn.boram.users.dto.LsgUsersDto;
 public interface ServiceOrderService {
 	public void getData4(HttpServletRequest request);
 	public void productAddr(String id, ModelAndView mView);
-	public void productInsert(HttpSession session, Service_OrderDto dto);
+	public void productInsert(Service_OrderDto dto);
 }

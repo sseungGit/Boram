@@ -21,7 +21,7 @@ public class ServiceOrderDaoImpl implements ServiceOrderDao{
 
 	@Override
 	public void productInsert(Service_OrderDto dto) {
-		session.insert("Reserve.insert2", dto);
+		session.insert("Reserve.productInsert", dto);
 	}
 
 	@Override

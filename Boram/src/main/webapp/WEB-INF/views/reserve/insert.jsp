@@ -8,10 +8,7 @@
 </head>
 <body>
 <script>
-	
-	var addr = '${category}';
-	
-	alert(addr);
+
 	alert("결제 완료 되었습니다.");
 	location.href="${pageContext.request.contextPath}/home.do";
 </script>

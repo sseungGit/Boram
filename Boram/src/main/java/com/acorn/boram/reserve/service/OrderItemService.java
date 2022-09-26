@@ -8,5 +8,5 @@ import com.acorn.boram.reserve.dto.Service_OrderDto;
 
 public interface OrderItemService {
 	public void getData2(HttpServletRequest request);
-	public void productCountInsert(Order_ItemsDto dto, HttpSession session);
+	public void productCountInsert(Order_ItemsDto dto);
 }

@@ -61,29 +61,21 @@ public class MJWReserveController {
 
    
    @RequestMapping("/reserve/reserve_credit")
-   public ModelAndView reserve_credit(HttpSession session, ModelAndView mView, String name, String price, String count, String date) {
-	   mView.addObject("name", name);
-	   mView.addObject("price", price);
-	   mView.addObject("count", count);
-	   mView.addObject("date", date);
+   public ModelAndView reserve_credit(HttpSession session, Service_OrderDto dto, ModelAndView mView) {
+	   
 	   mView.setViewName("reserve/reserve_credit");
 	   usersservice.getInfo(session, mView);
 	   
       return mView;
    }
-   
+   //400번은 컨트롤러 때문이라고 그러던데... 왜 그런지.. ㅠㅠ
    @RequestMapping("/reserve/insert")
-   public ModelAndView reserve_insert(ModelAndView mView, Service_OrderDto dto, String category, String orderer, String order_price, String order_addr, String reservation_date, String request, String count) {
-	   mView.addObject("category", category);
-	   mView.addObject("orderer", orderer);
-	   mView.addObject("order_price", order_price);
-	   mView.addObject("order_addr", order_addr);
-	   mView.addObject("reservation_date", reservation_date);
-	   mView.addObject("request", request);
-	   mView.addObject("count", count);
-	  
-	   
-	   
+   public ModelAndView reserve_insert(ModelAndView mView, Service_OrderDto dto, 
+		   String inum, String count, String product) {
+		
+	   	System.out.println(inum); System.out.println(count);
+		System.out.println(product);
+
 	   mView.setViewName("reserve/insert");
 	   return mView;
    }
