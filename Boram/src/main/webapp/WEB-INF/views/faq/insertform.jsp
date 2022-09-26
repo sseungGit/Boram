@@ -51,6 +51,7 @@
 				<textarea class="form-control"  name="content" id="content"></textarea>
 			</div>
 			<button class="btn btn-outline-dark" type="submit" style="margin-bottom:50px;">저장</button>
+			<button class="btn btn-outline-dark" type="reset" onclick="goBack()" style="margin-bottom:50px; float:right;">취소</button>
 		</form>
 	</div>
 <!-- SmartEditor 에서 필요한 javascript 로딩  -->
@@ -102,6 +103,10 @@
 			//에디터에 입력한 내용이 textarea 의 value 값이 될수 있도록 변환한다. 
 			oEditors.getById["content"].exec("UPDATE_CONTENTS_FIELD", []);			
 		});
+	//취소 누르면 뒤로가기
+	function goBack(){
+		window.history.back();
+	}
 </script>
 	<jsp:include page="/include/footer.jsp"></jsp:include>
 </body>

@@ -64,7 +64,7 @@
 	  	<jsp:param value="faq" name="subPage"/>
 	</jsp:include>
 	<div class="container" style= "width:800px">
-	<h1>1:1문의</h1>
+	<h1 style="font-size:20px">1:1문의</h1>
 		<div>
 			<table class="table table-bordered table-striped-columns">
 				<tr>
@@ -124,16 +124,12 @@
 						<textarea name="content">${dtoReply.content }</textarea>
 						<button class="btn btn-dark" type="submit">수정</button>
 					</form>
-				</c:if>
-				
-				
+				</c:if>	
 			</div>
-	
-	
 		</div>
 		<div class="btnContainer mt-4">
-			<button class="btn btn-outline-dark" style="float:right" onclick="location.href='delete.do?num=${dto.num }' ">삭제</button>
-			<button class="btn btn-outline-dark" style="float:left" onclick="location.href='${pageContext.request.contextPath}/qna/list.do' ">목록보기</button>
+			<button class="btn btn-outline-dark mt-3" style="float:right" onclick="location.href='delete.do?num=${dto.num }' ">삭제</button>
+			<button class="btn btn-outline-dark mt-3" style="float:left" onclick="location.href='${pageContext.request.contextPath}/qna/list.do' ">목록보기</button>
 		</div>
 	</div>
 <script defer src="${pageContext.request.contextPath}/resources/js/gura_util.js"></script>

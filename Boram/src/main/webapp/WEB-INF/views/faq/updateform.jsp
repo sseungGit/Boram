@@ -53,7 +53,7 @@
 				<textarea class="form-control" name="content" id="content">${dto.content }</textarea>
 			</div>
 			<button class="btn btn-dark" type="submit" onclick="submitContents(this);" >수정 확인</button>
-			<button class="btn btn-outline-dark" type="reset" onclick="goBack()">취소</button>
+			<button class="btn btn-dark" type="reset" onclick="goBack()" style="float:right">취소</button>
 		</form>
 	</div>
 	<script src="${pageContext.request.contextPath}/resources/js/gura_util.js"></script>

@@ -54,9 +54,10 @@
 			<jsp:param value="faq" name="subPage"/>
 	</jsp:include>
 	<div class="container">
-		<h1 style="font-size:30px;">1:1문의</h1>
+		<h1 style="font-size:25px;"><strong>1:1문의</strong></h1>
+		<span style="color:#696969; font-size:15px;">궁금하신 점이나 의견을 남겨주시면 성실히 답변해 드리겠습니다.</span>
 		<button class="btn btn-outline-dark" style="float:right" onclick="location.href='${pageContext.request.contextPath}/qna/insertform.do' "><i class="bi bi-plus"></i>문의하기</button>
-		<table class="table table-hover">
+		<table class="table table-hover mt-5">
 			<thead>
 				<tr>
 					<th scope="col">제목</th>
