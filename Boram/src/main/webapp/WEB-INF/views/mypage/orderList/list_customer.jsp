@@ -51,6 +51,7 @@ td > a {
 		<thead>
 			<tr>
 				<th>주문번호</th>
+				<th>주문상세정보</th>
 				<th>주문가격</th>
 				<th>배송지</th>
 				<th>예약일</th>
@@ -62,8 +63,9 @@ td > a {
 		<tbody>
 			<c:forEach var="tmp" items="${list }">
 				<tr>
-					<td><a href="${pageContext.request.contextPath }/mypage/orderList/list_detail.do?code=${tmp.code }">${tmp.code }</a></td>
-					<td>${tmp.order_price }</td>
+					<td>${tmp.code }</td>
+					<td><a href="${pageContext.request.contextPath }/mypage/orderList/list_detail.do?code=${tmp.code }">상세정보보기</a></td>
+					<td>${tmp.order_price }원</td>
 					<td>${tmp.order_addr }</td>
 					<td>${tmp.regdate}</td>
 					<td>${tmp.reservation_date }</td>
@@ -88,6 +90,6 @@ td > a {
 		</tbody>
 	</table>
 </div>
-		<jsp:include page="/include/footer.jsp"></jsp:include>
+<jsp:include page="/include/footer.jsp"></jsp:include>
 </body>
 </html>

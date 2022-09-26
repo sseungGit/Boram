@@ -34,7 +34,7 @@
     .container{
         height: 1000px !important;
         background: #f5f5f5;
-        margin-bottom: 470px;
+        margin-bottom: 270px;
     }
     .addr{
         margin-bottom: 30px;
@@ -365,19 +365,18 @@ $(document).ready(function(){
                     </form>
                 </div>
                	<form action="insert.do" method="post" id="insertForm">
-               		<input type="hidden" class="form-control" name="title1" id="title1" value="${id}" readonly> <!-- 구입자 아이디 -->
-            		<input type="hidden" class="form-control pro" name="title2" id="title2" value="" readonly> <!-- 상품 목록 -->
-            		<input type="hidden" class="form-control di" name="title3" id="title3" value="" readonly> <!-- 총 금액 -->
-            		<input type="hidden" class="form-control" name="title4" id="title4" value="${dto.addr}" readonly> <!-- 기본 주소 -->
-    				<input type="hidden" class="form-control dp" name="title6" id="title6" value="" readonly> <!-- 예약 날짜 -->
-    				<input type="hidden" class="form-control dr" name="title7" id="title7" value="" readonly> <!-- 요구사항 -->
-    				<input type="hidden" class="form-control co" name="title8" id="title8" value="" readonly> <!-- 수량 -->
+               		<input type="hidden" class="form-control" name="orderer" id="orderer" value="${id}" readonly> <!-- 구입자 아이디 -->
+            		<input type="hidden" class="form-control pro" name="category" id="category" value="" readonly> <!-- 상품 목록 -->
+            		<input type="hidden" class="form-control di" name="order_price" id="order_price" value="" readonly> <!-- 총 금액 -->
+            		<input type="hidden" class="form-control" name="order_addr" id="order_addr" value="${dto.addr}" readonly> <!-- 기본 주소 -->
+    				<input type="hidden" class="form-control dp" name="reservation_date" id="reservation_date" value="" readonly> <!-- 예약 날짜 -->
+    				<input type="hidden" class="form-control dr" name="request" id="request" value="" readonly> <!-- 요구사항 -->
+    				<input type="hidden" class="form-control co" name="count" id="count" value="" readonly> <!-- 수량 -->
         			<div class="creditBtn">
         				<button class="btn btn-outline-primary" id="newAddr" onclick="creditComplete()" type="submit" style="margin-top: 30px;">결제하기</button>
     				</div>
     			</form>
         </div>
-
     </div>   
 <jsp:include page="/include/footer.jsp"></jsp:include>
 </body>
