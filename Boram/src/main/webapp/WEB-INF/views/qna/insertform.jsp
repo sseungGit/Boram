@@ -88,6 +88,12 @@
 		var nFontSize = 24;
 		oEditors.getById["content"].setDefaultFont(sDefaultFont, nFontSize);
 	}
+	//폼에 submit 이벤트가 일어났을때 실행할 함수 등록
+	document.querySelector("#insertForm")
+		.addEventListener("submit", function(e){
+			//에디터에 입력한 내용이 textarea 의 value 값이 될수 있도록 변환한다. 
+			oEditors.getById["content"].exec("UPDATE_CONTENTS_FIELD", []);			
+		});
 </script>
 	<jsp:include page="/include/footer.jsp"></jsp:include>
 </body>

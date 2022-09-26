@@ -67,7 +67,7 @@
 			<tbody>
 				<c:forEach var="tmp" items="${list }" varStatus="status">
 					<c:choose>
-						<c:when test="${ tmp.writer ne sessionScope.id }">
+						<c:when test="${ tmp.writer ne sessionScope.id and manager == 'N' }">
 							<c:if test="${ status.first }">
 								<tr>
 									<td colspan="3" class="text-center">작성한 1:1 문의가 없습니다.</td>
@@ -77,7 +77,7 @@
 								<tr style="display:none;"></tr>
 							</c:if>
 						</c:when>
-						<c:otherwise>
+						<c:when test="${ tmp.writer eq sessionScope.id or manager == 'Y' }">
 							<tr class="question" onclick="location.href='detail.do?num=${tmp.num }'">
 								<td scope="row">${tmp.title }</td>
 								<td scope="row">${tmp.regdate }</td>
@@ -88,7 +88,7 @@
 									<td scope="row">답변완료</td>
 								</c:if>					
 							</tr>
-						</c:otherwise>
+						</c:when>
 					</c:choose>
 				</c:forEach>
 			</tbody>
