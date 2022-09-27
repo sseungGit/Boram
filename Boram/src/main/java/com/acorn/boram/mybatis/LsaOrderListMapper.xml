@@ -7,6 +7,7 @@
 				request, state, get_invoice_num, send_invoice_num
 		FROM service_order
 		WHERE orderer=#{id}
+		ORDER BY code DESC
 	</select>
 	
    <select id="getdata" parameterType="int" resultType="orderListDto"  >

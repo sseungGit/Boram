@@ -33,7 +33,7 @@
 						WHERE state=#{state}
 					</when>
 				</choose>
-				ORDER BY code) result1)
+				ORDER BY code DESC) result1)
 		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}		 
 	</select>
 	<!-- 주문 내역 총 숫자 검색 -->

@@ -18,10 +18,6 @@ public class LsgOrderListDaoImpl implements LsgOrderListDao{
 	
 	@Override
 	public List<LsgOrderListDto> getList(LsgOrderListDto dto) {
-		System.out.println("dao code: "+dto.getCode());
-		System.out.println("dao orderer: "+dto.getOrderer());
-		System.out.println("dao name: "+dto.getName());
-		System.out.println("dao state: "+dto.getState());
 		return session.selectList("orderList.getList",dto);
 	}
 
@@ -39,7 +35,6 @@ public class LsgOrderListDaoImpl implements LsgOrderListDao{
 	public int update(String[] codes, String state) {
 		int count=0;
 		for(int i=0;i<codes.length;i++) {
-			System.out.println("code : "+codes[i]);
 			LsgOrderListDto dto=new LsgOrderListDto();
 			dto.setCode(Integer.parseInt(codes[i]));
 			dto.setState(state);

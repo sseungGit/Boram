@@ -69,11 +69,13 @@ public class MJWReserveController {
    @RequestMapping("/reserve/insert")
    public ModelAndView reserve_insert(ModelAndView mView, Service_OrderDto dto, 
 		   String inum, String count) {
-		
-	   	System.out.println(inum); //선택한 품목의 inum값들
-	   	System.out.println(count); //선택한 품목의 수량들
-	   	
 	   	//service_order 테이블에 주문 정보 insert
+	   System.out.println(dto.getCategory());
+	   System.out.println(dto.getOrder_addr());
+	   System.out.println(dto.getOrder_price());
+	   System.out.println(dto.getOrderer());
+	   System.out.println(dto.getRequest());
+	   System.out.println(dto.getReservation_date());
 	   	productService.insertOrder(mView,dto,inum,count);
 
 	   mView.setViewName("reserve/insert");

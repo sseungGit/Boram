@@ -312,7 +312,7 @@ img {
 					<input class="form-control" type="text" id="postcode" placeholder="우편번호" readonly>
 				</div>
 				<div class="col-auto">
-					<button class="btn btn-primary" type="button" onclick="execDaumPostcode()">우편번호 찾기</button>
+					<button class="btn btn-dark" type="button" onclick="execDaumPostcode()" style="border-radius:0px;">우편번호 찾기</button>
 				</div>
 			</div>
 			<div class="mb-2">

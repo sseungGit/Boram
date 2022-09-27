@@ -63,7 +63,6 @@ public class LsgUsersDaoImpl implements LsgUsersDao{
 	public int delete(String[] users) {
 		int count=0;
 		for(int i=0;i<users.length;i++) {
-			System.out.println("id : "+users[i]);
 			session.delete("users.delete", users[i]);
 			count++;
 		}
@@ -72,7 +71,6 @@ public class LsgUsersDaoImpl implements LsgUsersDao{
 
 	@Override
 	public int update(LsgUsersDto dto) {
-		System.out.println(dto.getManager());
 		return session.update("users.adminUpdate", dto);
 	}
 }

@@ -31,7 +31,6 @@ public class ServiceOrderServiceImpl implements ServiceOrderService{
 
 	@Override
 	public void productAddr(String id, ModelAndView mView) {
-		System.out.println(id);
 		LsgUsersDto dto=dao.productAddr(id);
 		mView.addObject("dto",dto);
 	}

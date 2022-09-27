@@ -9,6 +9,12 @@
 </head>
 <body>
 	<c:choose>
+		<c:when test="${not empty isExist}">
+			<script>
+				alert("존재하지 않는 아이디입니다.");
+				location.href="login_form.do?url=${requestScope.encodedUrl }";
+			</script>
+		</c:when>
 		<c:when test="${not empty sessionScope.id }">
 			<script>
 				location.href="${requestScope.url }";

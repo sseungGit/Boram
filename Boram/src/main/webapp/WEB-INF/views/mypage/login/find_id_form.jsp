@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>find_pwd_form</title>
+<title>아이디찾기</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 <script src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
@@ -77,13 +77,9 @@
 					<button class="btn btn-dark" type="submit" style="border-radius:0px;">계속</button>
 				</div>
 			</form>
-			<div id="successDiv" style="text-align:center;display:none;">
-				<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="currentColor" class="bi bi-bag-check-fill" viewBox="0 0 16 16">
-				  	<path fill-rule="evenodd" d="M10.5 3.5a2.5 2.5 0 0 0-5 0V4h5v-.5zm1 0V4H15v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4h3.5v-.5a3.5 3.5 0 1 1 7 0zm-.646 5.354a.5.5 0 0 0-.708-.708L7.5 10.793 6.354 9.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z"/>
-				</svg>
-				<h6 style="margin-top:30px; border:1px solid black; padding:20px; background-color:#585d6e;color:white; width: 350px; margin:10px auto;">회원님의 ID는 <strong id="data"></strong> 입니다.
-				<a href="login_form.do" class="btn btn-dark" style="border-radius:0px; height:35px; ">로그인</a>
-				</h6>
+			<div id="successDiv" style="text-align:center; display:none; border:1px solid #ededed; padding:50px;margin:10px auto; ">
+				<h6 style="margin-bottom:15px;">회원님의 ID는 <strong id="data"></strong> 입니다.</h6>
+				<a href="login_form.do" class="btn btn-dark" style="border-radius:0px; height:35px;">로그인</a>
 			</div>
 		</div>
 	</div>
