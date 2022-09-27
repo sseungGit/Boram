@@ -34,12 +34,6 @@
 		text-decoration: underline;
 		color : rgba(0, 0, 0, 0.7);
 	}
-	
-	.page-ui a.active{
-		color: gray;
-		font-weight: bold;
-		text-decoration: underline;
-	}
 	.page-ui ul{
 		list-style-type: none;
 		padding: 0;
@@ -88,6 +82,10 @@
 	}
 	.container{
 		margin-bottom: 200px;
+	}
+	#btnGroup a:focus{
+	background: transparent;
+   	color: #000000;
 	}
 </style>
 

@@ -73,8 +73,9 @@
 		text-align: left;
 		padding-left: 20px;
 	}
-	.clickBtn{
-		background-color: black;
+	#btnGroup a:focus{
+		background: transparent;
+    	color: #000000;
 	}
 </style>
 </head>

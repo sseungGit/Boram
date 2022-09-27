@@ -1,4 +1,15 @@
-
+CREATE TABLE users(
+	id VARCHAR2(100) PRIMARY KEY,
+	pwd VARCHAR2(100) NOT NULL,
+	name VARCHAR2(100) NOT NULL,
+	countryCode NUMBER,
+	phone VARCHAR2(100),
+	email VARCHAR2(100),
+	profile VARCHAR2(100),
+	addr VARCHAR2(100),
+	regdate DATE,
+	manager CHAR(1) CHECK(manager IN ('Y', 'N')) 
+)
 -- 리뷰게시글을 저장할 테이블 
 CREATE TABLE review_board(
 	num NUMBER PRIMARY KEY, --글번호
@@ -7,7 +18,8 @@ CREATE TABLE review_board(
 	content CLOB, --글 내용
 	viewCount NUMBER, -- 조회수
 	regdate DATE, --글 작성일
-	star NUMBER --별점
+	star NUMBER,--별점
+	code NUMBER
 );
 -- 게시글의 번호를 얻어낼 시퀀스
 CREATE SEQUENCE review_board_seq; 
@@ -61,9 +73,7 @@ CREATE TABLE qna_board(
 	title VARCHAR2(100) NOT NULL, --제목
 	content CLOB, --글(질문) 내용
 	regdate DATE,
-	orgFileName VARCHAR2(100) NOT NULL, -- 원본 파일명
-	saveFileName VARCHAR2(100) NOT NULL, -- 서버에 실제로 저장된 파일명
-	fileSize NUMBER NOT NULL -- 파일의 크기 
+	check_reply NUMBER DEFAULT '0'
 );
 
 CREATE SEQUENCE qna_seq; 
@@ -79,26 +89,8 @@ CREATE TABLE reply_board(
 
 CREATE SEQUENCE reply_seq;
 
---sample 자주묻는질문 데이터
-INSERT INTO faq_board (num,category,title,content)
-values(faq_seq.nextval,'회원정보','회원정보를 바꾸고 싶습니다','마이페이지에서 회원정보를 직접 변경할 수 있습니다.');
-
-
-
-
---ALTER TABLE users ADD(saveId CHAR(1));
---ALTER TABLE users ADD CHECK (saveId IN('Y','N'));
-
---UPDATE users Set saveid='H' WHERE id='hahaha';
-
---select *
---from user_constraints
---where table_name='USERS'
-
---alter table users
---drop constraint SYS_C0015017
 CREATE TABLE categorize(
-   category VARCHAR2(100) PRIMARY KEY
+   category VARCHAR2(20) PRIMARY KEY
 );
 
 
@@ -218,6 +210,9 @@ CREATE TABLE service_order(
    state VARCHAR2(50) CHECK(type IN ('예약완료', '수거중', '수거완료', '세탁중', '세탁완료', '반환중','반환완료')),
    get_invoice_num NUMBER, -- 수거용  번호
    send_invoice_num NUMBER -- 반환용 운송장 번호
+   get_courier VARCHAR2(20),--택배회사 이름
+   send_courier VARCHAR2(20) --택배회사 이름
+   
    );
    
 CREATE SEQUENCE service_order_seq;
@@ -241,8 +236,6 @@ INSERT INTO qcategorize(category) VALUES('order');
 INSERT INTO qcategorize(category) VALUES('member');
 
 INSERT INTO qcategorize(category) VALUES('etc');
-
-ALTER TABLE qna_board ADD check_reply int DEFAULT '0';
 
 CREATE SEQUENCE order_items_seq;
 
