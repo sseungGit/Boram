@@ -11,22 +11,14 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/subFooter.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/subnav.css">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-
-
-<!-- Font awesome -->
->>>>>>> branch 'master' of https://github.com/sseungGit/Boram.git
 <script src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
 <style>
-<<<<<<< HEAD
 	.btn{border-radius: 0px !important;}
 	* { font-family: 'Noto Sans KR', sans-serif !important;}
-=======
 	/* hover 수정 세진*/
 	a:hover{color : rgba(0, 0, 0, 0.6) !important;}
 	.tr_hover:hover{color : rgba(0, 0, 0, 0.6) !important;}
 	* { font-family: 'Noto Sans KR', sans-serif !important;}
-	
->>>>>>> branch 'master' of https://github.com/sseungGit/Boram.git
 	.page-ui a{
 		text-decoration: none;
 		color: #000;
