@@ -83,7 +83,7 @@
 	.container{
 		margin-bottom: 200px;
 	}
-	#btnGroup a:focus{
+	#btnGroup .btn1:focus{
 	background: transparent;
    	color: #000000;
 	}
