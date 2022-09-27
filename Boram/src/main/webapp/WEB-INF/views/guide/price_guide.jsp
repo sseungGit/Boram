@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>가격안내</title>
+<title>views/guide/price_guide.jsp</title>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 <script src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
@@ -24,8 +24,8 @@
 		 margin-bottom: 250px;
 	}
 	#btnGroup{		
-		display: inline-block;
 		margin-bottom: 50px;
+		display:flex; align-items:center; justify-content:center;
 	}
 	.btn{
     border: 1px solid rgb(0, 0, 0);
@@ -36,13 +36,13 @@
     color: #ffffff;
     transition: all 0.5s ease;
     border-radius: 0px;
+
 }
 	.btn:hover{
     background: transparent;
     color: #000000;
 }
 	#btnGroup a{
-		margin: 0px 30px;
 		width: 100px;
 	}
 	#itemsTableDiv{
