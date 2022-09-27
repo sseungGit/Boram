@@ -31,7 +31,7 @@
 	<jsp:param value="brand" name="thisPage"/>
 	<jsp:param value="history" name="subPage"/>
 </jsp:include>
-<div class="container" style="margin:0px 150px 250px 150px">
+<div class="container" style="margin-bottom:200px;">
 	<img src="${pageContext.request.contextPath}/resources/img/corporhistory.jpg">
  </div>
 	<jsp:include page="/include/footer.jsp"></jsp:include>
