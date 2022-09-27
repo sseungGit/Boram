@@ -7,67 +7,176 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>reserve_credit</title>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/nav.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/subFooter.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/subnav.css">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-	
+    <title>결제화면</title>
+	<style>
+	    body{
+	        background: #f5f5f5;
+	    }
+	    span{
+	        font-size: x-large;
+	    }
+	    p{
+	        font-size: large;
+	        font-weight: bold;
+	        margin-bottom: 30px;
+	        margin-top: 30px;
+	    }
+	    .step{
+	        margin-bottom: 50px;
+	    }
+	    .container{
+	        height: 1000px !important;
+	        background: #f5f5f5;
+	        margin-bottom: 320px;
+	    }
+	    .addr{
+	        margin-bottom: 30px;
+	    }
+	    #selectPay_transpay p{
+	        margin: 10px 10px 10px 35px;
+	    }
+	    #selectPay_transpay img{
+	        margin-bottom: 10px;
+	    }
+	    #postcode{
+	        width: 200px;
+	        display: inline-block;
+	        margin-bottom: 10px;
+	    }
+	    #address{
+	        width: 405px;
+	        margin-bottom: -15px;
+	    }
+	    #detailAddress{
+	        width: 200px;
+	        display: inline;
+	    }
+	    #extraAddress{
+	        display: inline;
+	        width: 200px;
+	    }
+	</style>
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/nav.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/subFooter.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/subnav.css">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>	
 </head>
-<style>
-    body{
-        background: #f5f5f5;
-    }
-    span{
-        font-size: x-large;
-    }
-    p{
-        font-size: large;
-        font-weight: bold;
-        margin-bottom: 30px;
-        margin-top: 30px;
-    }
-    .step{
-        margin-bottom: 50px;
-    }
-    .container{
-        height: 1000px !important;
-        background: #f5f5f5;
-        margin-bottom: 320px;
-    }
-    .addr{
-        margin-bottom: 30px;
-    }
-    #selectPay_transpay p{
-        margin: 10px 10px 10px 35px;
-    }
-    #selectPay_transpay img{
-        margin-bottom: 10px;
-    }
-    #postcode{
-        width: 200px;
-        display: inline-block;
-        margin-bottom: 10px;
-    }
-    #address{
-        width: 405px;
-        margin-bottom: -15px;
-    }
-    #detailAddress{
-        width: 200px;
-        display: inline;
-    }
-    #extraAddress{
-        display: inline;
-        width: 200px;
-    }
-</style>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<body>
+<jsp:include page="/include/nav.jsp"></jsp:include>
+<jsp:include page="/include/subnav.jsp">
+      <jsp:param value="reserve" name="thisPage"/>
+      <jsp:param value="reserve" name="subPage"/>
+</jsp:include>
+<form action="insert.do" method="post" id="insertForm">
+    <div class="container">
+        <!-- 배송지 정보 -->
+        <div class="addrForm">
+            <div class="step">
+                <span>Step03 결제창</span>
+            </div>
+            <div class="product">
+            	<input type="hidden" name="category" value="${param.category }"/>
+                <p>상품정보</p>
+                <div>
+                	<label for="title" class="form-label">주문자 아이디</label>
+                 	<input type="text" class="form-control" name="orderer" id="orderer" value="${id}" readonly/>
+                </div>
+                <div>
+                	<label for="title" class="form-label">상품, 수량</label>
+                 	<input type="text" class="form-control" name="productcount" id="productcount" value="" readonly/>
+                </div>
+                <div>
+                	<label for="title" class="form-label">총 주문가격</label>
+                 	<input type="text" class="form-control" name="order_price" id="order_price" value="" readonly>
+                </div>
+                <div>
+                	<label for="title" class="form-label">수거날짜</label>
+                 	<input type="text" class="form-control" name="reservation_date" id="reservation_date" value="" readonly>
+                </div>
+                <!-- 주소 -->
+            </div>
+            <div class="addr">
+                <p>배송지정보</p>   
+                <!-- 1. 주소 입력 api 적용-->
+                <div class=" form-check-inline">
+                    <input class="form-check-input" type="radio" name="addr" id="order_addr_old" value="기존배송지" checked>
+                    <label class="form-check-label" for="order_addr_old">기존배송지</label><br>
+                </div>
+                <div class=" form-check-inline">
+                    <input class="form-check-input" type="radio" name="addr" id="order_addr_new" value="신규배송지">
+                    <label class="form-check-label" for="order_addr_new">신규배송지</label>
+                </div><br> 
+                <div id="selectAddr_curAddr"><br>
+                    <label for="staticAddr" >주소</label><br>
+                    <input type="text" class="form-control" name="order_addr" id="order_addr" value="${dto.addr}" readonly>
+                </div><br>
+                <div id="selectAddr_newAddr">
+                        <input type="text" id="postcode" placeholder="우편번호" class="form-control" readonly>
+                        <input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기" class="btn btn-outline-primary"><br>
+                        <input type="text" id="address" placeholder="주소" class="form-control" readonly><br>
+                        <input type="text" id="detailAddress" placeholder="상세주소" class="form-control">
+                        <input type="text" id="extraAddress" placeholder="참고항목" class="form-control" readonly>  
+                        <input type="hidden" id="totalAddr">  
+                </div> 
+            </div> 
+                <!--    
+                    2 .이 부분에다가 라디오 버튼의 선택결과 유무에 따라서 
+                    기존 배송지폼을 DB에서 전송받거나 신규배송지폼을 제공한다.
+                -->
+            <div class="mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label">요청사항</label>
+                <textarea class="form-control" name="request" id="request" rows="3" placeholder="요청사항을 직접 입력합니다.(최대 200자)"></textarea>
+            </div>  
+        </div>
+        <!-- 결제 수단 -->
+        <div class="creditForm">
+            <div class="credit">
+                <p>결제수단</p>
+                <div class=" form-check-inline">
+                    <input class="form-check-input" type="radio" name="payment" id="payment" value="현장결제" checked>
+                    <label class="form-check-label" for="payment">
+                    현장결제
+                    </label>
+                </div>
+                <div class=" form-check-inline">
+                    <input class="form-check-input" type="radio" name="payment" id="payment2"value="무통장입금">
+                    <label class="form-check-label" for="payment2">
+                    무통장입금
+                    </label>
+                </div>
+                <div class=" form-check-inline">
+                    <input class="form-check-input" type="radio" name="payment" id="payment3" value="QR코드결제">
+                    <label class="form-check-label" for="payment3">
+                    큐알코드
+                    </label>
+                </div>
+            </div>
+            <div id="selectPay_current">
+                <p class="datein"></p>
+            </div>
+            <div id="selectPay_noBank">
+                <p>가상 계좌 : 12345678-876-123456 (보람은행)</p>
+            </div>
+            <div id="selectPay_transpay">
+                <p>QR코드</p>
+                <img src="${pageContext.request.contextPath}/reserve_img/kakaoQR.png" alt="카카오페이 홈페이지 연결" width="10%">
+            </div>
+                <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">결제 정보 이메일</label>
+                        <input type="email" class="form-control" id="creditEmail" name="username" placeholder="Laundry@naver.com">
+                </div>
+        			<div class="creditBtn">
+        				<button class="btn btn-dark" onclick="creditComplete()" type="submit" style="margin-top: 30px; border-radius: 0px;">결제하기</button>
+    				</div>
+    				<input type="hidden" name="count" id="count" value="${param.count}"/>
+    				<input type="hidden" name="product" id="product" value="${param.name}"/>
+    				<input type="hidden" name="inum" id="inum" value="${param.number}"/> 
+        	</div>
+    	</div>   
+    </form>
+<jsp:include page="/include/footer.jsp"></jsp:include>
 <script>
-
-$(document).ready(function(){
 	
 		var name = '${param.name}';
 		var price = '${param.price}'; 
@@ -100,7 +209,7 @@ $(document).ready(function(){
 		
 		for(var i = 1; i < n.length; i++){
 			productTotPrice[i] = parseInt(p[i]) * parseInt(c[i]);
-			tot += parseInt(p[i]) * parseInt(c[i]);
+			tot += parseInt(p[i]);
 			if(i==1){
 				productName += n[i]+' '+c[i]+'개';
 				product += n[i];
@@ -121,25 +230,9 @@ $(document).ready(function(){
 		$('#order_price').val(tot);
 
 		$('#inum').val(number) 
-		
-		document.querySelector("#newAddr").addEventListener("submit", function(event){
-		
-		//폼 전체의 유효성 여부
-		//and 연상자 이용
-		let isFormValid = isNameValid && isIdValid && isPwdValid && isEmailValid && isPhoneValid && isAddrValid01 && isAddrValid02;
-		if(!isFormValid){
-			//폼 제출 막기 
-			//기본 동작을 막는 함수
-			event.preventDefault();
-		}
-		let postcode=document.querySelector("#postcode").value;
-		let addr=document.querySelector("#addr").value;
-		let detailAddr=document.querySelector("#detailAddr").value;
-		let extraAddr=document.querySelector("#extraAddr").value;
-		let totalAddr=document.querySelector("#totalAddr");
-		totalAddr.value=postcode+"_"+addr+"_"+detailAddr+"_"+extraAddr;
-	});
-		
+		$('.datein').text(productDate+' 에 현장결제를 선택하셨습니다.')
+
+		let oldAddrSelect=true;
 		
 		
         /*  배송지 선택 코드  */
@@ -151,11 +244,13 @@ $(document).ready(function(){
             if($("input[name='addr']:checked").val() == '기존배송지'){
                 $('#selectAddr_newAddr').hide();
                 $('#selectAddr_curAddr').show();
+                oldAddrSelect=true;
             }
             // 신규 배송지 선택시.
             else if($("input[name='addr']:checked").val() == '신규배송지'){
                 $('#selectAddr_curAddr').hide();
                 $('#selectAddr_newAddr').show();
+                oldAddrSelect=false;
             }
         });
         /*  결제 방법 선택 코드  */
@@ -184,38 +279,32 @@ $(document).ready(function(){
             }
         });     
        
-    });
-    
+
 
         /* 결제버튼 누를시 이매일입력 & 신규 주소 입력확인 */
         
     function creditComplete() {
-        var email =document.emailForm.username.value;
-        var addr1 = document.addrForm.useraddr1.value;
-        var addr2 = document.addrForm.useraddr2.value;
-        var addr3 = document.addrForm.useraddr3.value;
-        var addr4 = document.addrForm.useraddr4.value;
-        if(email==""){
-            alert("이매일 입력하세요.");       
-            return;
-            /* 이매일 표현 정규식 추가 할것 */
-        }else if($("input[name='addr']:checked").val() == '신규배송지' && addr1=="" && addr2=="" && addr3=="" && addr4==""){
-            alert("주소입력 확인해주세요.");
-            return;
-
-        }else if(email!="" && $("input[name='addr']:checked").val() == '기존배송지'){
-            alert("결제완료");
-            /* 
-            1. 메인페이지로 보낼지
-            2. 마이페이지 보낼지 
-            */
-        }else if(email!="" && $("input[name='addr']:checked").val() == '신규배송지' && addr1!="" && addr2!="" && addr3!="" && addr4!=""){
-            alert("결제완료");
-            /* 
-            1. 메인페이지로 보낼지
-            2. 마이페이지 보낼지 
-            */
-        }
+        let email = document.querySelector("#creditEmail").value;
+		let postcode=document.querySelector("#postcode").value;
+		let addr=document.querySelector("#address").value;
+		let detailAddr=document.querySelector("#detailAddress").value;
+		let extraAddr=document.querySelector("#extraAddress").value;
+		
+		if(!oldAddrSelect){
+			if(detailAddr == "" || postcode=="" || addr==""){
+				event.preventDefault();
+				alert('배송지를 입력해주세요');
+				return;
+			}else{
+				let totalAddr=document.querySelector("#order_addr");
+				totalAddr.value=postcode+"_"+addr+"_"+detailAddr+"_"+extraAddr;
+			}
+		} 
+		if(email == ""){
+			event.preventDefault();
+			alert('이메일을 입력해주세요');
+			return;
+		}
     };
 
 
@@ -248,132 +337,7 @@ $(document).ready(function(){
         //     alert("결제이매일 정보를 입력해주세요");
         // }
      
-  
-
-
-    
-
 </script>
-<body>
-<jsp:include page="/include/nav.jsp"></jsp:include>
-<jsp:include page="/include/subnav.jsp">
-      <jsp:param value="guide" name="thisPage"/>
-      <jsp:param value="area" name="subPage"/>
-</jsp:include>
-<form action="insert.do" method="post" id="insertForm">
-    <div class="container">
-        <!-- 배송지 정보 -->
-        <div class="addrForm">
-            <div class="step">
-                <span>Step04 결제창</span>
-            </div>
-            <div class="product">
-            	<input type="hidden" name="category" value="${param.category }"/>
-                <p>상품정보</p>
-                <div>
-                	<label for="title" class="form-label">주문자 아이디</label>
-                 	<input type="text" class="form-control" name="orderer" id="orderer" value="${id}" readonly/>
-                </div>
-                <div>
-                	<label for="title" class="form-label">상품, 수량</label>
-                 	<input type="text" class="form-control" name="productcount" id="productcount" value="" readonly/>
-                </div>
-                <div>
-                	<label for="title" class="form-label">총 주문가격</label>
-                 	<input type="text" class="form-control" name="order_price" id="order_price" value="" readonly>
-                </div>
-                <div>
-                	<label for="title" class="form-label">수거날짜</label>
-                 	<input type="text" class="form-control" name="reservation_date" id="reservation_date" value="" readonly>
-                </div>
-                <!-- 주소 -->
-            </div>
-            <div class="addr">
-                <p>배송지정보</p>   
-                <!-- 1. 주소 입력 api 적용-->
-                <div class=" form-check-inline">
-                    <input class="form-check-input" type="radio" name="order_addr" value="${dto.addr}" checked>
-                    <label class="form-check-label" for="addr">
-                    기존배송지
-                    </label><br>
-                </div>
-                <div class=" form-check-inline">
-                    <input class="form-check-input" type="radio" name="addr" value="신규배송지">
-                    <label class="form-check-label" for="addr">
-                    신규배송지
-                    </label>
-                </div><br> 
-                <div id="selectAddr_curAddr"><br>
-                    <label for="staticAddr" >주소</label><br>
-                    <input type="text" class="form-control" name="addr1" id="addr" value="${dto.addr}" readonly>
-                </div><br>
-                <div id="selectAddr_newAddr">
-                        <input type="text" name="useraddr1" id="postcode" placeholder="우편번호" class="form-control" readonly>
-                        <input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기" class="btn btn-outline-primary"><br>
-                        <input type="text" name="useraddr2" id="address" placeholder="주소" class="form-control" readonly><br>
-                        <input type="text" name="useraddr3" id="detailAddress" placeholder="상세주소" class="form-control">
-                        <input type="text" name="useraddr4" id="extraAddress" placeholder="참고항목" class="form-control" readonly>  
-                        <input type="hidden" name="addr" id="totalAddr">  
-                              
-                </div>
-            </div> 
-                <!--    
-                    2 .이 부분에다가 라디오 버튼의 선택결과 유무에 따라서 
-                    기존 배송지폼을 DB에서 전송받거나 신규배송지폼을 제공한다.
-                -->
-            <div class="mb-3">
-                <label for="exampleFormControlTextarea1" class="form-label">요청사항</label>
-                <textarea class="form-control" name="request" id="request" rows="3" placeholder="요청사항을 직접 입력합니다.(최대 200자)"></textarea>
-            </div>  
-        </div>
-        <!-- 결제 수단 -->
-        <div class="creditForm">
-            <div class="credit">
-                <p>결제수단</p>
-                <div class=" form-check-inline">
-                    <input class="form-check-input" type="radio" name="payment" value="현장결제" checked>
-                    <label class="form-check-label" for="payment">
-                    현장결제
-                    </label>
-                </div>
-                <div class=" form-check-inline">
-                    <input class="form-check-input" type="radio" name="payment" value="무통장입금">
-                    <label class="form-check-label" for="payment">
-                    무통장입금
-                    </label>
-                </div>
-                <div class=" form-check-inline">
-                    <input class="form-check-input" type="radio" name="payment" value="QR코드결제">
-                    <label class="form-check-label" for="payment">
-                    큐알코드
-                    </label>
-                </div>
-            </div>
-            <div id="selectPay_current">
-                <p>2022년 9월 28일에 현장결제로 선택하셨습니다</p>
-            </div>
-            <div id="selectPay_noBank">
-                <p>가상 계좌 : 12345678-876-123456 (보람은행)</p>
-            </div>
-            <div id="selectPay_transpay">
-                <p>QR코드</p>
-                <img src="${pageContext.request.contextPath}/reserve_img/kakaoQR.png" alt="카카오페이 홈페이지 연결" width="10%">
-            </div>
-                <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">결제 정보 이매일</label>
-                        <input type="email" class="form-control" id="creditEmail" name="username" placeholder="Laundry@naver.com">
-                </div>
-        			<div class="creditBtn">
-        				<button class="btn btn-outline-primary" id="newAddr" onclick="creditComplete()" type="submit" style="margin-top: 30px;">결제하기</button>
-    				</div>
-    				<input type="hidden" name="count" id="count" value="${param.count}"/>
-    				<input type="hidden" name="product" id="product" value="${param.name}"/>
-    				<input type="hidden" name="inum" id="inum" value="${param.number}"/> 
-        	</div>
-    	</div>   
-    </form>
-<jsp:include page="/include/footer.jsp"></jsp:include>
-</body>
 <script src="http://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
     function sample6_execDaumPostcode() {
@@ -424,4 +388,5 @@ $(document).ready(function(){
         }).open();
     }
 </script>
+</body>
 </html>

@@ -31,9 +31,7 @@ public class LsaOrderListDaoImpl implements LsaOrderListDao{
 
 	@Override
 	public LsaOrderListDto getData(int code) {
-		System.out.println("dao code : " + code);
 		LsaOrderListDto dto=session.selectOne("orders.getdata", code);
-		System.out.println("test");
 		return dto;
 	}
 	

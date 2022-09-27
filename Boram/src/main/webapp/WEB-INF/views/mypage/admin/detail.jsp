@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>주문상세정보</title>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/nav.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/subFooter.css">
@@ -130,19 +130,27 @@
 								<td>${order.reservation_date}</td>
 							</tr>
 							<tr>
+								<th scope="row" class="sizesm">배송지</th>
+								<td>${order.order_addr}</td>
+							</tr>
+							<tr>
+								<th scope="row" class="sizesm">요청내용</th>
+								<td>${order.request}</td>
+							</tr>
+							<tr>
 								<th scope="row" class="sizesm">수거용 송장번호</th>
-								<td>${order.get_courier} &nbsp; | &nbsp; ${order.get_invoice_num}
+								<td>${order.get_invoice_num}
 									<c:if test="${not empty order.get_courier}">
-										 &nbsp;<button type="type" onclick="showPopup2('https://tracker.delivery/#/kr.epost/${order.get_invoice_num}')"
+										 &nbsp;<button type="type" onclick="showPopup2('https://tracker.delivery/#/${order.get_courier}/${order.get_invoice_num}')"
 										 class="btn btn-dark" style="border-radius:0px;">배송조회</button>
 									</c:if>
 								</td>
 							</tr>
 							<tr>
 								<th scope="row" class="sizesm">반환용 송장번호</th>
-								<td>${order.send_courier} &nbsp; | &nbsp;  ${order.send_invoice_num}
+								<td>${order.send_invoice_num}
 									<c:if test="${not empty order.send_courier}">
-										 &nbsp;<button type="type" onclick="showPopup2('https://tracker.delivery/#/kr.epost/${order.send_invoice_num}')"
+										 &nbsp;<button type="type" onclick="showPopup2('https://tracker.delivery/#/${order.send_courier}/${order.send_invoice_num}')"
 										 class="btn btn-dark" style="border-radius:0px;">배송조회</button>
 									</c:if>
 								</td>

@@ -6,8 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-
-<title>지역안내</title>
+<title>가격안내</title>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 <script src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
@@ -94,11 +93,7 @@
 			<a href="javascript:clicked('living')" class="btn" id="living">리빙</a>
 		</div>
 		<div id="itemsTableDiv">
-<<<<<<< HEAD
-			<table class="table  ">
-=======
 			<table class="table">
->>>>>>> branch 'master' of https://github.com/sseungGit/Boram.git
 				<thead>
 					<tr>
 						<th>NO</th>

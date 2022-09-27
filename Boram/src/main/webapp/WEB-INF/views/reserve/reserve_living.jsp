@@ -26,7 +26,7 @@
     <p>step02 상품선택</p>
     <main id="order_wrap">
         <div class="left">
-            <img src="${pageContext.request.contextPath}/reserve_img/Z4C60MKTH4DOG0TBN5AL.jpg">
+            <img src="${pageContext.request.contextPath}/reserve_img/Z4C60MKTH4DOG0TBN5AL.jpg" style="border-radius:2%;">
         </div>
         <div class="right">
             <div class="top">
@@ -36,7 +36,7 @@
                     <dd>리빙</dd>
                     <dt>옵션</dt>
                     <dd>
-                        <select name="product" id="product">
+                        <select name="product" id="product" class="form-select">
                             <optgroup label="상품선택">
                             	<option value="">선택해주세요</option>
                                 <c:forEach var="tmp" items="${list4 }">
@@ -47,7 +47,7 @@
                     </dd>
                     <dt>예약날짜</dt>
                     <dd>
-                        <input type="text" id="one" class="date"/>
+                        <input type="text" id="one" class="date form-control" autocomplete='off'/>
                     </dd>
                 </dl>
                 <div class="number">

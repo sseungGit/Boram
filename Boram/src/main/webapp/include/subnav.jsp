@@ -121,7 +121,7 @@
 		    		<!-- 브랜드  서브 네비바 -->
 					<ul id="subNavUl">
 						<li class="subNavItem ${param.subPage eq 'corpor' ? 'deco' : ''}">
-						  	<a class="${param.subPage eq 'corpor' ? 'active' : ''}" aria-current="page" href="${pageContext.request.contextPath}/corporation/brand.do">브랜드소개</a>
+						  	<a class="${param.subPage eq 'corpor' ? 'active' : ''}" aria-current="page" href="${pageContext.request.contextPath}/corporation/brand.do">회사소개</a>
 						</li>
 						<li class="subNavItem ${param.subPage eq 'history' ? 'deco' : ''}">
 						  	<a class="${param.subPage eq 'history' ? 'active' : ''}" href="${pageContext.request.contextPath}/corporation/history.do">연혁</a>
@@ -196,7 +196,7 @@
 		<div id="subMenuText">
 			<c:choose>
 				<c:when test="${param.thisPage eq 'brand' and param.subPage eq 'corpor'}">
-		    		<p>브랜드소개</p>
+		    		<p>회사소개</p>
 		    	</c:when>
 		  	    <c:when test="${param.thisPage eq 'brand' and param.subPage eq 'history'}">
 		    		<p>연혁</p>

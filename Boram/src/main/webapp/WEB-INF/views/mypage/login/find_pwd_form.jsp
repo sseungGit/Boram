@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>find_pwd_form</title>
+<title>비밀번호찾기</title>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 <script src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/nav.css">

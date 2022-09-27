@@ -74,13 +74,9 @@
 				let mag="";
 				if(data.isSuccess){
 					msg=`
-						<div style="text-align:center">
-							<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="currentColor" class="bi bi-bag-check-fill" viewBox="0 0 16 16">
-							  	<path fill-rule="evenodd" d="M10.5 3.5a2.5 2.5 0 0 0-5 0V4h5v-.5zm1 0V4H15v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4h3.5v-.5a3.5 3.5 0 1 1 7 0zm-.646 5.354a.5.5 0 0 0-.708-.708L7.5 10.793 6.354 9.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z"/>
-							</svg>
-							<h6 style="margin-top:30px; border:1px solid black; padding:20px; background-color:#585d6e;color:white; width: 300px; margin:10px auto;">비밀번호를 수정했습니다
-							<a href="login_form.do" class="btn btn-dark" style="border-radius:0px; height:35px; margin-top:10px;">로그인</a>
-							</h6>
+						<div style="text-align:center; border:1px solid #ededed; padding:50px;margin:10px auto; ">
+							<h6 style="margin-bottom:15px;">비밀번호를 수정했습니다</h6>
+							<a href="login_form.do" class="btn btn-dark" style="border-radius:0px; height:35px;">로그인</a>
 						</div>
 					`;
 				}else{

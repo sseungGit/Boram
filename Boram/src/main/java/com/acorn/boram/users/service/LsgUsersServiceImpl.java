@@ -70,17 +70,15 @@ public class LsgUsersServiceImpl implements LsgUsersService {
 		
 		//1. 로그인 폼에 입력한 아이디를 이용해서 해당 정보를 select 해 본다. 
 		LsgUsersDto result=dao.getData(dto.getId());
-		System.out.println(result.getManager());
-		System.out.println(result.getName());
-		System.out.println(result.getEmail());
-		System.out.println(result.getPhone());
 		if(result != null) {//만일 존재하는 아이디 라면
 			//비밀번호가 일치하는지 확인한다.
 			String encodedPwd=result.getPwd(); //DB 에 저장된 암호화된 비밀번호 
 			String inputPwd=dto.getPwd(); //로그인폼에 입력한 비밀번호
 			//Bcrypt 클래스의 static 메소드를 이용해서 일치 여부를 얻어낸다.
 			isValid=BCrypt.checkpw(inputPwd, encodedPwd);
-		} 
+		}else {
+			mView.addObject("isExist", false);
+		}
 		
 		if(isValid) {//만일 유효한 정보이면 
 			//쿠키 가져와서 cookies에 담기
@@ -119,7 +117,6 @@ public class LsgUsersServiceImpl implements LsgUsersService {
 			session.setAttribute("id", dto.getId());
 			//매니저 여부 담기
 			session.setAttribute("manager", result.getManager());
-			System.out.println(result.getManager());
 		}
 	}
 

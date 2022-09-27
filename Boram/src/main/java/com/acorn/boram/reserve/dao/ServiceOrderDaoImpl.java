@@ -27,7 +27,6 @@ public class ServiceOrderDaoImpl implements ServiceOrderDao{
 
 	@Override
 	public LsgUsersDto productAddr(String id) {
-		System.out.println(id);
 		LsgUsersDto dto=session.selectOne("users.productAddr", id);
 		return dto;
 	}
@@ -48,8 +47,6 @@ public class ServiceOrderDaoImpl implements ServiceOrderDao{
 		String[] array = inum.split("/");
 	   	String[] array2 = count.split(", ");
 	   	for(int i=0;i<array.length;i++) {
-		   	System.out.println("array : "+ array[i]);
-		   	System.out.println("array2 : "+ array2[i]);
 		   	Order_ItemsDto dto=new Order_ItemsDto();
 		   	dto.setCode(seq);
 		   	dto.setInum(Integer.parseInt(array[i]));

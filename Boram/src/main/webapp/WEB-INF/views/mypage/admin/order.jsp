@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>주문관리</title>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 <script src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/nav.css">
@@ -159,31 +159,33 @@
 			</div>
 			<div style="display:inline-block; float: right;">
 				<select name="courier" id="courier" class="form-select" style="display:inline-block; width:200px;">
-					<option>DHL</option>
-					<option>Sagawa</option>
-					<option>Kuroneko Yamato</option>
-					<option>Japan Post</option>
-					<option>천일택배</option>
-					<option>CJ대한통운</option>
-					<option>CU 편의점택배</option>
-					<option>GS Postbox 택배</option>
-					<option>CWAY (Woori Express)</option>
-					<option>대신택배</option>
-					<option selected>우체국 택배</option>
-					<option>한의사랑택배</option>
-					<option>홈픽</option>
-					<option>한서호남택배</option>
-					<option>일양로지스</option>
-					<option>경동택배</option>
-					<option>건영택배</option>
-					<option>로젠택배</option>
-					<option>롯데택배</option>
-					<option>SLX</option>
-					<option>성원글로벌카고</option>
-					<option>EMS</option>
-					<option>Fedex</option>
-					<option>UPS</option>
-					<option>USPS</option>
+					<option value="de.dhl">DHL</option>
+					<option value="jp.sagawa">Sagawa</option>
+					<option value="jp.yamato">Kuroneko Yamato</option>
+					<option value="jp.yuubin">Japan Post</option>
+					<option value="kr.chunilps">천일택배</option>
+					<option value="kr.cjlogistics">CJ대한통운</option>
+					<option value="kr.cupost">CU 편의점택배</option>
+					<option value="kr.cvsnet">GS Postbox 택배</option>
+					<option value="kr.cway">CWAY (Woori Express)</option>
+					<option value="kr.daesin">대신택배</option>
+					<option value="kr.epost" selected>우체국 택배</option>
+					<option value="kr.hanips">한의사랑택배</option>
+					<option value="kr.hanjin">한진택배</option>
+					<option value="kr.hdexp">합동택배</option>
+					<option value="kr.homepick">홈픽</option>
+					<option value="kr.honamlogis">한서호남택배</option>
+					<option value="kr.ilyanglogis">일양로지스</option>
+					<option value="kr.kdexp">경동택배</option>
+					<option value="kr.kunyoung">건영택배</option>
+					<option value="kr.logen">로젠택배</option>
+					<option value="kr.lotte">롯데택배</option>
+					<option value="kr.slx">SLX</option>
+					<option value="kr.swgexp">성원글로벌카고</option>
+					<option value="un.upu.ems">EMS</option>
+					<option value="us.fedex">Fedex</option>
+					<option value="us.ups">UPS</option>
+					<option value="us.usps">USPS</option>
 				</select>
 				<button type="button" id="getBtn" class="btn btn-dark">수거용 송장번호 발급</button>
 				<button type="button" id="sendBtn" class="btn btn-dark">반환용 송장번호 발급</button>
@@ -369,7 +371,6 @@
 		
 		document.querySelector("#getBtn").addEventListener("click",function(){
 			let updateUsers=document.querySelectorAll('.selectRow input[type=checkbox]:checked');
-			let selectCourier=document.querySelector('#courier');
 			
 			if(updateUsers.length==0){
 				alert("회원을 선택해주세요.");
@@ -386,7 +387,7 @@
 						return;
 					}
 				}
-				if (!confirm("택배사를 '"+selectCourier.value+"' 로 선택하시겠습니까?")) {
+				if (!confirm("택배사를 '"+$('#courier option:checked').text()+"' 로 선택하시겠습니까?")) {
 			        return;
 			    } else {
 			    	let form=document.querySelector("#orderForm");
@@ -410,7 +411,6 @@
 		
 		document.querySelector("#sendBtn").addEventListener("click",function(){
 			let updateUsers=document.querySelectorAll('.selectRow input[type=checkbox]:checked');
-			let selectCourier=document.querySelector('#courier');
 			
 			if(updateUsers.length==0){
 				alert("회원을 선택해주세요.");
@@ -427,7 +427,7 @@
 						return;
 					}
 				}
-				if (!confirm("택배사를 '"+selectCourier.value+"' 로 선택하시겠습니까?")) {
+				if (!confirm("택배사를 '"+$('#courier option:checked').text()+"' 로 선택하시겠습니까?")) {
 			        return;
 			    } else {
 			    	let form=document.querySelector("#orderForm");

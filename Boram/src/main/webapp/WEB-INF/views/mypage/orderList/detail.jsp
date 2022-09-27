@@ -126,19 +126,27 @@
 								<td>${order.reservation_date}</td>
 							</tr>
 							<tr>
+								<th scope="row" class="sizesm">배송지</th>
+								<td>${order.order_addr}</td>
+							</tr>
+							<tr>
+								<th scope="row" class="sizesm">요청내용</th>
+								<td>${order.request}</td>
+							</tr>
+							<tr>
 								<th scope="row" class="sizesm">수거용 송장번호</th>
-								<td>${order.get_courier} &nbsp; | &nbsp; ${order.get_invoice_num}
+								<td>${order.get_invoice_num}
 									<c:if test="${not empty order.get_courier}">
-										 &nbsp;<button type="type" onclick="showPopup2('https://tracker.delivery/#/kr.epost/${order.get_invoice_num}')"
+										 &nbsp;<button type="type" onclick="showPopup2('https://tracker.delivery/#/${order.get_courier}/${order.get_invoice_num}')"
 										 class="btn btn-dark" style="border-radius:0px;">배송조회</button>
 									</c:if>
 								</td>
 							</tr>
 							<tr>
 								<th scope="row" class="sizesm">반환용 송장번호</th>
-								<td>${order.send_courier} &nbsp; | &nbsp;  ${order.send_invoice_num}
+								<td>${order.send_invoice_num}
 									<c:if test="${not empty order.send_courier}">
-										 &nbsp;<button type="type" onclick="showPopup2('https://tracker.delivery/#/kr.epost/${order.send_invoice_num}')"
+										 &nbsp;<button type="type" onclick="showPopup2('https://tracker.delivery/#/${order.send_courier}/${order.send_invoice_num}')"
 										 class="btn btn-dark" style="border-radius:0px;">배송조회</button>
 									</c:if>
 								</td>

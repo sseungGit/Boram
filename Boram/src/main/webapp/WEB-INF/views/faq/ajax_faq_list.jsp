@@ -4,7 +4,7 @@
 <table class="table table-hover" id="table">
 	<thead>
 		<tr>
-			<th scope="col" style="width:20%;">#</th>
+			<th scope="col" style="width:20%;">NO</th>
 			<th scope="col" style="width:15%;">카테고리</th>
 			<th scope="col" style="width:65%;">제목</th>
 			<c:if test="${not empty id and manager == 'Y'}">
