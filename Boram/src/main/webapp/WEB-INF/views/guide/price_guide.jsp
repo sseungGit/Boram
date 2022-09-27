@@ -37,11 +37,11 @@
     transition: all 0.5s ease;
     border-radius: 0px;
 
-}
+	}
 	.btn:hover{
     background: transparent;
     color: #000000;
-}
+	}    
 	#btnGroup a{
 		width: 100px;
 	}
@@ -118,7 +118,7 @@
 	
 	<script src="${pageContext.request.contextPath}/resources/js/gura_util.js"></script>
 	<script>
-		function clicked(category){			
+		function clicked(category){
 			ajaxPromise('price_guide.do','get',"category="+category)
 			.then(function(res){
 				return res.text();
