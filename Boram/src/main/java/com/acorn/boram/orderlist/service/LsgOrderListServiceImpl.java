@@ -72,7 +72,7 @@ public class LsgOrderListServiceImpl implements LsgOrderListService {
 		if(!keyword.equals("")){ //검색 조건이 무엇이냐에 따라 분기 하기
 			if(condition.equals("code")){ 
 				//주문번호 검색인 경우 
-				dto.setCode(keyword); 
+				dto.setCode(Integer.parseInt(keyword)); 
 			}else if(condition.equals("orderer_name")){ 
 				//id,이름 검색인 경우 
 				dto.setOrderer(keyword); 
@@ -115,8 +115,27 @@ public class LsgOrderListServiceImpl implements LsgOrderListService {
 
 	@Override
 	public void getDataOrder(ModelAndView mView, LsgOrderListDto dto) {
-		LsgOrderListDto order=dao.getData(dto);
-		mView.addObject("order", order);
+		mView.addObject("order", dao.getData(dto));
+	}
+
+	public void getListOrderItme(ModelAndView mView, LsgOrderListDto dto) {
+		mView.addObject("orderItems", dao.getListOrderItem(dto));
+	}
+	
+	
+	@Override
+	public int orderUpdate(String[] codes, String state) {
+		return dao.update(codes,state);
+	}
+
+	@Override
+	public int coruierUpdate(String[] codes, String courier) {
+		return dao.coruierUpdate(codes,courier);
+	}
+	
+	@Override
+	public int coruierUpdate2(String[] codes, String courier) {
+		return dao.coruierUpdate2(codes,courier);
 	}
 
 }

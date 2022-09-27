@@ -13,14 +13,32 @@ CREATE TABLE review_board(
 CREATE SEQUENCE review_board_seq; 
 
 -- 공지게시판 만들기 위한 테이블 
+
 CREATE TABLE notice_board(
-	num NUMBER PRIMARY KEY,
-	writer VARCHAR2(100),
-	caption VARCHAR2(100), -- 이미지에 대한 설명
-	imagePath VARCHAR2(100) -- 업로드된 이미지의 경로  ex) /upload/xxx.jpg
+	num NUMBER PRIMARY KEY, --글번호
+	writer VARCHAR2(100) NOT NULL, --작성자 (로그인된 아이디)
+	title VARCHAR2(100) NOT NULL, --제목
+	content CLOB, --글 내용
+	viewCount NUMBER, -- 조회수
+	regdate DATE --글 작성일
 );
 
-CREATE SEQUENCE notice_board_seq;
+CREATE SEQUENCE notice_board_seq; 
+
+
+CREATE TABLE notice_board_comment(
+	num NUMBER PRIMARY KEY, --댓글의 글번호
+	writer VARCHAR2(100), --댓글 작성자의 아이디
+	content VARCHAR2(500), --댓글 내용
+	target_id VARCHAR2(100), --댓글의 대상자 아이디(댓글 쓴 사람)
+	ref_group NUMBER, --게시판 원글(참조)의 번호이다
+	comment_group NUMBER, --댓글의 그룹 번호이다
+	deleted CHAR(3) DEFAULT 'no',
+	regdate DATE
+);
+
+CREATE SEQUENCE notice_board_comment_seq;
+
 
 -- 자주묻는 질문
 CREATE TABLE faq_board(

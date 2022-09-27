@@ -407,8 +407,8 @@
 		    </section>
 		
 		    <div id="btnGroup">
-				<a href="javascript:history.back();" class="btn btn-primary">취소</a>
-				<a href="javascript:agree_check();" class="btn btn-success">계속</a>
+				<a href="javascript:agree_check();" class="btn btn-dark btn-lg">계속</a>
+				<a href="javascript:history.back();" class="btn btn-dark btn-lg">취소</a>
 		    </div>
 		
 		    <script>

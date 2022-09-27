@@ -6,12 +6,12 @@
 <head>
 <meta charset="UTF-8">
 <title>find_pwd_form</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 <script src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/nav.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/subnav.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/subFooter.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/subnav.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 <style>
 	body{
 		margin: 0;
@@ -41,6 +41,13 @@
 		width:100%;
 		bottom: 0px;
 	}
+	.input-group span{
+		background-color:white;
+	}
+	.input-group{
+		border-color:#dddddd; 
+		border-radius:0px;
+	}
 </style>
 </head>
 <body>	
@@ -59,21 +66,24 @@
 		<div id="body_content">
 			<form action="#" id="findIdForm" method="post" autocomplete="off">
 				<div class="input-group mb-3">
-					<span class="input-group-text" id="basic-addon1" style="background-color:#F5F5F5;">이름</span>
-					 <input class="form-control" type="text" id="name" name="name" style="background-color:#F5F5F5;">
+					<span class="input-group-text" id="basic-addon1" style="border-color:#dddddd; border-radius:0px; width:80px;">이름</span>
+					 <input class="form-control" type="text" id="name" name="name">
 				</div>
 				<div class="input-group mb-3">
-					<span class="input-group-text" id="basic-addon1" style="background-color:#F5F5F5;">이메일</span>
-					 <input class="form-control" type="text" id="email" name="email" style="background-color:#F5F5F5;">
+					<span class="input-group-text" id="basic-addon1" style="border-color:#dddddd; border-radius:0px; width:80px;">이메일</span>
+					 <input class="form-control" type="text" id="email" name="email">
 				</div>
 				<div class="d-grid gap-1 mx-auto mb-3">
-					<button class="btn btn-primary" type="submit" >계속</button>
+					<button class="btn btn-dark" type="submit" style="border-radius:0px;">계속</button>
 				</div>
 			</form>
-			<div id="successDiv" style="display:none;">
-				<p>회원님의 ID는
-				<strong id="data"></strong>입니다.</p>
-				<a href="login_form.do" class="btn btn-primary">로그인</a>
+			<div id="successDiv" style="text-align:center;display:none;">
+				<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="currentColor" class="bi bi-bag-check-fill" viewBox="0 0 16 16">
+				  	<path fill-rule="evenodd" d="M10.5 3.5a2.5 2.5 0 0 0-5 0V4h5v-.5zm1 0V4H15v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4h3.5v-.5a3.5 3.5 0 1 1 7 0zm-.646 5.354a.5.5 0 0 0-.708-.708L7.5 10.793 6.354 9.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z"/>
+				</svg>
+				<h6 style="margin-top:30px; border:1px solid black; padding:20px; background-color:#585d6e;color:white; width: 350px; margin:10px auto;">회원님의 ID는 <strong id="data"></strong> 입니다.
+				<a href="login_form.do" class="btn btn-dark" style="border-radius:0px; height:35px; ">로그인</a>
+				</h6>
 			</div>
 		</div>
 	</div>
@@ -104,9 +114,14 @@
 					return res.json();
 				})
 				.then(function(data){
-					$("#findIdForm").hide();
-					$("#data").text(data.user.id);
-					$("#successDiv").show();
+					console.log(data);
+					if(data.user==null){
+						alert('존재하지 않는 회원정보입니다.');
+					}else{
+						$("#findIdForm").hide();
+						$("#data").text(data.user.id);
+						$("#successDiv").show();
+					}
 				});
 			}
 		});

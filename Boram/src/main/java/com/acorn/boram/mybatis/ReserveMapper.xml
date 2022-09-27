@@ -61,4 +61,21 @@
 		INSERT INTO order_items(num, code, inum, count)
 		VALUES(order_items_seq.NEXTVAL, #{code}, #{inum}, #{count})
 	</insert>
+	
+	<!-- 주문 내역 insert -->
+	<insert id="insertOrder" parameterType="service_orderDto">
+		INSERT INTO service_order(code, orderer, category, order_price, 
+								order_addr, regdate, reservation_date, request, state)
+		VALUES(service_order_seq.NEXTVAL, #{orderer}, #{category}, #{order_price}, #{order_addr}, SYSDATE, #{reservation_date}, #{request}, '예약완료')
+	</insert>
+	<!-- servie_order의 현재 seq 가져오기 -->
+	<select id="getSeq" resultType="int">
+		SELECT service_order_seq.CURRVAL
+		FROM DUAL
+	</select>
+	<!-- 주문상품 order_items에 넣기 -->
+	<insert id="insertOrderItems" parameterType="order_itemsDto">
+		INSERT INTO order_items(num,code,inum,count)
+		VALUES(order_items_seq.NEXTVAL, #{code}, #{inum}, #{count})
+	</insert>
 </mapper>

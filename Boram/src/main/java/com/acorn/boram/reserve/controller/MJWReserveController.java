@@ -6,17 +6,13 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.acorn.boram.reserve.dto.Order_ItemsDto;
 import com.acorn.boram.reserve.dto.Service_OrderDto;
 import com.acorn.boram.reserve.service.ItemService;
 import com.acorn.boram.reserve.service.OrderItemService;
 import com.acorn.boram.reserve.service.ServiceOrderService;
-import com.acorn.boram.users.dto.LsgUsersDto;
 import com.acorn.boram.users.service.LshUsersService;
 
 @Controller
@@ -68,13 +64,17 @@ public class MJWReserveController {
 	   
       return mView;
    }
-   //400번은 컨트롤러 때문이라고 그러던데... 왜 그런지.. ㅠㅠ
+   
+   
    @RequestMapping("/reserve/insert")
    public ModelAndView reserve_insert(ModelAndView mView, Service_OrderDto dto, 
-		   String inum, String count, String product) {
+		   String inum, String count) {
 		
-	   	System.out.println(inum); System.out.println(count);
-		System.out.println(product);
+	   	System.out.println(inum); //선택한 품목의 inum값들
+	   	System.out.println(count); //선택한 품목의 수량들
+	   	
+	   	//service_order 테이블에 주문 정보 insert
+	   	productService.insertOrder(mView,dto,inum,count);
 
 	   mView.setViewName("reserve/insert");
 	   return mView;

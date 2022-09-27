@@ -8,11 +8,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>reserve_credit</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/nav.css">
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/subFooter.css"/>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/subnav.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/nav.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/subFooter.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/subnav.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 	
 </head>
 <style>
@@ -69,11 +69,11 @@
 
 $(document).ready(function(){
 	
-		var name = '${param.name}';// 이게 폼안에 안적혀있어서 안 넘어가는 것 같아요...
-		var price = '${param.price}'; // 인풋 하이든 만들어서 값 넣고 넘길까요?
+		var name = '${param.name}';
+		var price = '${param.price}'; 
 		var count = '${param.count}';
 		var date = '${param.date}';
-		var number = '${param.number}'; // 요게 겓 파라미터 el 로 받아온 거에요 이 값을 결제하기 버튼 눌렀을때 가는 controller 까지 옮겨주세요 네
+		var number = '${param.number}'; 
 
 		//제품 수량에 따른 가격
 		var productTotPrice =  new Array();
@@ -268,6 +268,7 @@ $(document).ready(function(){
                 <span>Step04 결제창</span>
             </div>
             <div class="product">
+            	<input type="hidden" name="category" value="${param.category }"/>
                 <p>상품정보</p>
                 <div>
                 	<label for="title" class="form-label">주문자 아이디</label>
@@ -291,7 +292,7 @@ $(document).ready(function(){
                 <p>배송지정보</p>   
                 <!-- 1. 주소 입력 api 적용-->
                 <div class=" form-check-inline">
-                    <input class="form-check-input" type="radio" name="order_addr" value="기존배송지" checked>
+                    <input class="form-check-input" type="radio" name="order_addr" value="${dto.addr}" checked>
                     <label class="form-check-label" for="addr">
                     기존배송지
                     </label><br>

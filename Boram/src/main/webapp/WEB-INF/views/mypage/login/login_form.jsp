@@ -6,11 +6,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Login Page</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/nav.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/subnav.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/subFooter.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/subnav.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 <style>
 	body{
 		margin: 0;
@@ -40,6 +40,17 @@
 		width:100%;
 		bottom: 0px;
 	}
+	.input-group span{
+		background-color:white;
+	}
+	#sign_findBtn a{
+		border-color:#dddddd;
+		border-radius:0px;
+	}
+	#sign_findBtn a:hover{
+		background-color:black;
+		color:white;
+	}
 </style>
 </head>
 <body>
@@ -67,30 +78,30 @@
 					</c:otherwise>
 				</c:choose>
 				<div class="input-group mb-3">
-				  <span class="input-group-text" id="basic-addon1" style="background-color:#F5F5F5;">
+				  <span class="input-group-text" id="basic-addon1" style="border-color:#dddddd; border-radius:0px;">
 				  	<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
 					  <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
 					</svg>
 				  </span>
-				  <input class="form-control" type="text" name="id" id="id" style="background-color:#F5F5F5;">
+				  <input class="form-control" type="text" name="id" id="id" style="border-color:#dddddd; border-radius:0px;">
 				</div>
 				
 				<div class="input-group">
-				  <span class="input-group-text" id="basic-addon2" style="background-color:#F5F5F5;">
+				  <span class="input-group-text" id="basic-addon2" style="border-color:#dddddd; border-radius:0px;">
 					<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-lock" viewBox="0 0 16 16">
 					  <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2zM5 8h6a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/>
 					</svg>
 				  </span>
-				  <input class="form-control" type="password"  name="pwd" id="pwd" style="background-color:#F5F5F5;" onkeyup="checkCapsLock(event)">
+				  <input class="form-control" type="password"  name="pwd" id="pwd" style="border-color:#dddddd; border-radius:0px;"  onkeyup="checkCapsLock(event)">
 				</div>
 				<p id="message" class="mt-1 mb-3"></p>
 				<div class="row row-cols-1">
 					<div class="col d-grid gap-1 mx-auto mb-3">
-						<button class="btn btn-primary" type="submit" >Sign in</button>
+						<button class="btn btn-dark" type="submit" style="border-radius:0px;">Sign in</button>
 					</div>
-					<div class="col d-flex justify-content-between mb-2">
-						<a href="signup_form.do" class="btn btn-light" style="width:150px;">Sign up</a>
-						<a href="find_pwd_form.do" class="btn btn-light" style="width:150px;" >Password?</a>		
+					<div class="col d-flex justify-content-between mb-2" id="sign_findBtn">
+						<a href="signup_form.do" class="btn" style="width:150px;">Sign up</a>
+						<a href="find_pwd_form.do" class="btn" style="width:150px;" >Password?</a>		
 					</div>			
 					<div class="col">
 						<input type="checkbox" name="saveId" id="saveIdCB" class="form-check-input me-1"/>

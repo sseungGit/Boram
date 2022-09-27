@@ -9,25 +9,21 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/nav.css">
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/subFooter.css">
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/subnav.css">
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/nav.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/subFooter.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/subnav.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 <style>
 	body{
 		margin: 0;
 		padding: 0;
 		height: 100%;
 	}
-	#subMenuText{
-		height: 80px;
-		position:relative;
-	}
 	#detail_wr{
 		height:700px;
 		display:flex;
 		justify-content: left;
-		font-size:18px;
+		font-size:16px;
 		margin-bottom:100px;
 	}
 	#body-content{
@@ -69,8 +65,8 @@
 		subPage는 소메뉴를 구별하는데 사용
 	 -->
 	<jsp:include page="/include/subnav.jsp">
-		<jsp:param value="manager" name="thisPage"/>
-		<jsp:param value="order" name="subPage"/>
+		<jsp:param value="mypage" name="thisPage"/>
+		<jsp:param value="orderlist" name="subPage"/>
 	</jsp:include>
 	<div id="detail_wr" class="container">
 		<div id="body-content">

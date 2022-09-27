@@ -5,12 +5,12 @@
 <head>
 <meta charset="UTF-8">
 <title>signup_form.jsp</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/nav.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/subnav.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/subFooter.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/subnav.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 <style>
 	#image-box{
 		width: 100%;
@@ -32,38 +32,38 @@
 		padding:48px;
 	}
 	#btnGroup{
+		margin-top:30px;
 		text-align: center;
 	}
-/* 	html,body{  
-		margin:0;
-		padding:0;
-	    height:100%;
+	#btnGroup a.btn{
+		border-radius:0px;
+		width: 130px;
+		height:45px;
 	}
-    body {
-		display: flex;
-		flex-direction: column;
-		text-align: center;
-		background-color: #999;
-		margin: 0;
+	#btnGroup a.btn-dark:hover{
+		background-color:white;
+		color:black;
 	}
-	main {
-        flex: 2;
-        background-color: cornflowerblue;
-		padding:10px;
-		margin:20px;
-        display: flex;
-        justify-content:center;
-        align-items:center;
-		height:100%;
-		width:100%;
-		overflow:auto;
+	.form-control{
+		border: 1px solid #dddddd !important;
+		border-radius:0 !important;
 	}
-	#register_agree{
-		background-color: white;
-		height:100%;
-		width:100%;
-		border:1px solid black;
-	} */
+	input.is-invalid{
+		background-color:white;
+	}
+	#signupBtn{
+		border-radius:0px; 
+		width:120px; 
+		heigth:40px; 
+		margin-top:30px;
+		background-color:white;
+		color:black;
+	}
+	
+	#signupBtn:hover{
+		background-color:black;
+		color:white;
+	}
 </style>
 </head>
 <body>

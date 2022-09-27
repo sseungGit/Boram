@@ -1,8 +1,9 @@
 package com.acorn.boram.orderlist.dto;
 
 public class LsgOrderListDto {
-	private String code;
+	private int code;
 	private String orderer;
+	private String category;
 	private String name;
 	private String phone;
 	private String addr;
@@ -21,13 +22,14 @@ public class LsgOrderListDto {
 	
 	public LsgOrderListDto() {}
 
-	public LsgOrderListDto(String code, String orderer, String name, String phone, String addr, int order_price,
-			String order_addr, String regdate, String reservation_date, String request, String state,
+	public LsgOrderListDto(int code, String orderer, String category, String name, String phone, String addr,
+			int order_price, String order_addr, String regdate, String reservation_date, String request, String state,
 			String get_invoice_num, String send_invoice_num, String get_courier, String send_courier, int startRowNum,
 			int endRowNum) {
 		super();
 		this.code = code;
 		this.orderer = orderer;
+		this.category = category;
 		this.name = name;
 		this.phone = phone;
 		this.addr = addr;
@@ -45,11 +47,11 @@ public class LsgOrderListDto {
 		this.endRowNum = endRowNum;
 	}
 
-	public String getCode() {
+	public int getCode() {
 		return code;
 	}
 
-	public void setCode(String code) {
+	public void setCode(int code) {
 		this.code = code;
 	}
 
@@ -59,6 +61,14 @@ public class LsgOrderListDto {
 
 	public void setOrderer(String orderer) {
 		this.orderer = orderer;
+	}
+
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
 	}
 
 	public String getName() {
@@ -180,5 +190,4 @@ public class LsgOrderListDto {
 	public void setEndRowNum(int endRowNum) {
 		this.endRowNum = endRowNum;
 	}
-
 }

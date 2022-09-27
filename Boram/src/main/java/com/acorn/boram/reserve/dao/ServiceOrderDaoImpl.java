@@ -4,6 +4,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.acorn.boram.reserve.dto.Order_ItemsDto;
 import com.acorn.boram.reserve.dto.Service_OrderDto;
 import com.acorn.boram.users.dto.LsgUsersDto;
 
@@ -29,6 +30,35 @@ public class ServiceOrderDaoImpl implements ServiceOrderDao{
 		System.out.println(id);
 		LsgUsersDto dto=session.selectOne("users.productAddr", id);
 		return dto;
+	}
+
+	@Override
+	public int insertOrder(Service_OrderDto dto) {
+		return session.insert("Reserve.insertOrder",dto);
+	}
+
+	@Override
+	public int getServiceOrderSeq() {
+		return session.selectOne("Reserve.getSeq");
+	}
+
+	@Override
+	public int insertOrderItems(int seq, String inum, String count) {
+		int num=0;
+		String[] array = inum.split("/");
+	   	String[] array2 = count.split(", ");
+	   	for(int i=0;i<array.length;i++) {
+		   	System.out.println("array : "+ array[i]);
+		   	System.out.println("array2 : "+ array2[i]);
+		   	Order_ItemsDto dto=new Order_ItemsDto();
+		   	dto.setCode(seq);
+		   	dto.setInum(Integer.parseInt(array[i]));
+		   	dto.setCount(Integer.parseInt(array2[i]));
+		   	session.insert("Reserve.insertOrderItems",dto);
+		   	num++;
+	   	}
+		
+		return num;
 	}
 
 }

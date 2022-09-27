@@ -11,7 +11,8 @@
 	* { font-family: 'Noto Sans KR', sans-serif !important;}
 	th, td{text-align:center !important;}
 	table a{text-decoration:none !important; color :black !important;}
-	a:hover{color : rgba(0, 0, 0, 0.7) !important;}
+	a:hover{color : rgba(0, 0, 0, 0.6) !important;}
+	.tr_hover:hover{color : rgba(0, 0, 0, 0.6) !important;}
 	tr{border-bottom:1px solid #ebebeb !important;}
 	
 	.margin_auto{margin:0 auto;}
@@ -47,6 +48,7 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/subFooter.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/subnav.css">
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 </head>
 <body>
 <jsp:include page="/include/nav.jsp"></jsp:include>
@@ -67,11 +69,9 @@
 			</thead>
 			<tbody>
 			<c:forEach var="tmp" items="${list }">
-				<tr>
+				<tr onclick="location.href='detail.do?num=${tmp.num }&keyword=${encodedK }&condition=${condition}'" style="cursor:pointer;" class="tr_hover">
 					<td>${tmp.num }</td>
-					<td>
-						<a href="detail.do?num=${tmp.num }&keyword=${encodedK }&condition=${condition}">${tmp.title }</a>
-					</td>
+					<td>${tmp.title }</td>
 					<td>${tmp.regdate }</td>
 				</tr>
 			</c:forEach>

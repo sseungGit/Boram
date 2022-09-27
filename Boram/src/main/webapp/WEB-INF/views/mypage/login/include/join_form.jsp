@@ -33,7 +33,7 @@
 					<input class="form-control" type="text" id="postcode" placeholder="우편번호" readonly>
 				</div>
 				<div class="col-auto">
-					<button class="btn btn-primary" type="button" onclick="execDaumPostcode()">우편번호 찾기</button>
+					<button class="btn btn-dark" style="border-radius:0px;" type="button" onclick="execDaumPostcode()">우편번호 찾기</button>
 				</div>
 			</div>
 			<div class="mb-2">
@@ -274,7 +274,7 @@
 			<div class="invalid-feedback">01(0|1|6|7|8|9)로 시작하고 숫자만 입력해주세요</div>
 		</div>
 		<div class="d-flex justify-content-center">
-			<button class="btn btn-info" type="submit">가입</button>
+			<button class="btn btn-dark" type="submit" id="signupBtn">가입</button>
 		</div>
 	</form>		
 </div>
@@ -512,6 +512,21 @@
 			//폼 제출 막기 
 			//기본 동작을 막는 함수
 			event.preventDefault();
+			if(!isNameValid){
+				alert('이름을 입력해주세요');
+			}else if(!isEmailValid){
+				alert('이메일을 입력해주세요');
+			}else if(!isIdValid){
+				alert('아이디를 입력해주세요');
+			}else if(!isPwdValid){
+				alert('비밀번호를 입력해주세요');
+			}else if(!isAddrValid01){
+				alert('주소를 선택해주세요');
+			}else if(!isAddrValid02){
+				alert('상세주소를 입력해주세요');
+			}else if(!isPhoneValid){
+				alert('핸드폰 번호를 입력해주세요');
+			}
 		}
 		let postcode=document.querySelector("#postcode").value;
 		let addr=document.querySelector("#addr").value;

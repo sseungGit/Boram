@@ -6,12 +6,12 @@
 <head>
 <meta charset="UTF-8">
 <title>find_pwd_form</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 <script src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/nav.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/subnav.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/subFooter.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/subnav.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 <style>
 	body{
 		margin: 0;
@@ -41,6 +41,21 @@
 		width:100%;
 		bottom: 0px;
 	}
+	.input-group span{
+		background-color:white;
+	}
+	.input-group{
+		border-color:#dddddd; 
+		border-radius:0px;
+	}
+	#idFindBtn{
+		border-color:#dddddd;
+		border-radius:0px;
+	}
+	#idFindBtn:hover{
+		background-color:black;
+		color:white;
+	}
 </style>
 </head>
 <body>
@@ -59,26 +74,26 @@
 		<div id="body_content">
 			<form action="#" id="findPwdForm" method="post" autocomplete="off">
 				<div class="input-group mb-3">
-					<span class="input-group-text" id="basic-addon1" style="background-color:#F5F5F5;">아이디
+					<span class="input-group-text" id="basic-addon1" style="border-color:#dddddd; border-radius:0px; width:80px;">아이디
 					 </span>
-					 <input class="form-control" type="text" id="id" name="id" style="background-color:#F5F5F5;">
+					 <input class="form-control" type="text" id="id" name="id">
 				</div>
 				<div class="input-group mb-3">
-					<span class="input-group-text" id="basic-addon1" style="background-color:#F5F5F5;">이름
+					<span class="input-group-text" id="basic-addon1" style="border-color:#dddddd; border-radius:0px;width:80px;">이름
 					 </span>
-					 <input class="form-control" type="text" id="name" name="name" style="background-color:#F5F5F5;">
+					 <input class="form-control" type="text" id="name" name="name">
 				</div>
 				<div class="input-group mb-3">
-					<span class="input-group-text" id="basic-addon1" style="background-color:#F5F5F5;">E-mail
+					<span class="input-group-text" id="basic-addon1" style="border-color:#dddddd; border-radius:0px;width:80px;">E-mail
 					 </span>
-					 <input class="form-control" type="text" id="email" name="email" style="background-color:#F5F5F5;">
+					 <input class="form-control" type="text" id="email" name="email">
 				</div>
 				<div class="row row-cols-1">
 					<div class="col d-grid gap-1 mx-auto mb-3">
-						<button class="btn btn-primary" type="submit" >계속</button>
+						<button class="btn btn-dark" type="submit" style="border-radius:0px;">계속</button>
 					</div>
 					<div class="col">
-						<a href="find_id_form.do" class="btn">Forgot ID?</a>
+						<a href="find_id_form.do" class="btn" id="idFindBtn">Forgot ID?</a>
 					</div>
 				</div>
 			</form>

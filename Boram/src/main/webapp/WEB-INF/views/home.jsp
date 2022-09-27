@@ -321,7 +321,7 @@
 	<jsp:include page="/include/nav.jsp"></jsp:include>
     <div id="fullpage">
 	    <div class="section" id="section0">
-			<video class="myvideo" id="video_obj" autoplay muted loop data-autoplay>
+			<video class="myvideo" id="video_obj" autoplay muted loop data-autoplay> 
 				<source src="${pageContext.request.contextPath}/resources/img/Laundry365_sample4.mp4" type="video/mp4">
 			</video>
 			<div class="mov_bg">
@@ -480,10 +480,12 @@
 	    function video_pause() {
             var video_obj = document.getElementById("video_obj");
             if(video_obj.paused){
+            	video_obj.autoplay = false;
                 video_obj.play();
 	        	document.querySelector(".video_play_btn").style.display="none";
 	        	document.querySelector(".video_pause_btn").style.display="block";
             }else{
+            	video_obj.autoplay = false;
                 video_obj.pause();
 	        	document.querySelector(".video_pause_btn").style.display="none";
 	        	document.querySelector(".video_play_btn").style.display="block";
