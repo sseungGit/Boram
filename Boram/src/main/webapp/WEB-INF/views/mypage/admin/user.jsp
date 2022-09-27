@@ -6,12 +6,12 @@
 <head>
 <meta charset="UTF-8">
 <title>고객관리</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 <script src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/nav.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/subnav.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/subFooter.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/subnav.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 <style>
 	body{
 		margin: 0;
@@ -47,7 +47,7 @@
 		border-bottom: 3px solid black;
 	}
 	#body_content tbody tr:hover{
-		background-color: #A1A1AB;
+		color : rgba(0, 0, 0, 0.6) !important;
 	}
 	footer{
 		width:100%;
@@ -66,6 +66,29 @@
 	}
 	.btn{
 		border-radius:0px;
+	}
+	/*page css*/
+	.page-ui{margin: 30px auto;}
+	.page-ui a{
+		text-decoration: none;
+		color :black;
+	}
+	
+	.page-ui a:hover{
+		text-decoration: underline;
+	}
+	
+	.page-ui a.active{
+		color: black;
+		text-decoration: underline;
+	}
+	.page-ui ul{
+		list-style-type: none;
+		padding: 0;
+	}
+	
+	.page-ui ul > li{
+		float: left;
 	}
 </style>
 </head>
@@ -141,22 +164,21 @@
 				</table>		
 				</form>	
 			</div>
-
+		</div>
+	</div>
 			<!-- 페이징처리 -->
-			<nav aria-label="Page navigation">
+			<div class="page-ui clearfix" style="display:flex; justify-content:center; margin-top :40px; margin-bottom:120px;">
 				<ul class="pagination">
 					<c:if test="${startPageNum ne 1 }">
 					<li class="page-item">
-						<a class="page-link" href="user.do?pageNum=${startPageNum-1 }&condition=${condition }&keyword=${encodedK }" aria-label="Previous">
-							<span aria-hidden="true">&laquo;</span>
-						</a>
+						<a class="page-link" href="user.do?pageNum=${startPageNum-1 }&condition=${condition }&keyword=${encodedK }">Prev</a>
 					</li>
 					</c:if>
 					<c:forEach var="i" begin="${startPageNum }" end="${endPageNum }">
-						<li>
+						<li class="page-item">
 							<c:choose>
 								<c:when test="${pageNum eq i }">
-									<a  class="page-link active" href="user.do?pageNum=${i }&condition=${condition }&keyword=${encodedK }">${i }</a>
+									<a  class="page-link" class="active" href="user.do?pageNum=${i }&condition=${condition }&keyword=${encodedK }">${i }</a>
 								</c:when>
 								<c:otherwise>
 									<a class="page-link" href="user.do?pageNum=${i }&condition=${condition }&keyword=${encodedK }">${i }</a>
@@ -166,16 +188,12 @@
 					</c:forEach>
 					<c:if test="${endPageNum lt totalPageCount }">
 					<li class="page-item">
-					  	<a class="page-link" href="user.do?pageNum=${endPageNum+1 }&condition=${condition }&keyword=${encodedK }" aria-label="Next">
-					    	<span aria-hidden="true">&raquo;</span>
-					  	</a>
+					  	<a class="page-link" href="user.do?pageNum=${endPageNum+1 }&condition=${condition }&keyword=${encodedK }">Next</a>
 					</li>
 					</c:if>
 				</ul>
-			</nav>
+			</div>
 			<div style="clear:both;"></div>
-		</div>
-	</div>
 	<jsp:include page="/include/footer.jsp"></jsp:include>
 	<script src="${pageContext.request.contextPath}/resources/js/gura_util.js"></script>
 	<script>
