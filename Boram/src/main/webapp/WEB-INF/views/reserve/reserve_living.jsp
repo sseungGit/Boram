@@ -23,7 +23,7 @@
 </jsp:include>
 <form action="${pageContext.request.contextPath}/member/update.do" method="post">
 <div class="container">
-    <p>step02 상품선택</p>
+    <p class="prod">step02 상품선택</p>
     <main id="order_wrap">
         <div class="left">
             <img src="${pageContext.request.contextPath}/reserve_img/Z4C60MKTH4DOG0TBN5AL.jpg" style="border-radius:2%;">
