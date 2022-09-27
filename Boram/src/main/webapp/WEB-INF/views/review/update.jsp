@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Review Page</title>
+<title>후기게시판</title>
 </head>
 <body>
 	<script>
