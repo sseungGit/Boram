@@ -9,9 +9,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>결제화면</title>
 	<style>
-	    body{
-	        background: #f5f5f5;
-	    }
 	    span{
 	        font-size: x-large;
 	    }
@@ -26,7 +23,7 @@
 	    }
 	    .container{
 	        height: 1000px !important;
-	        background: #f5f5f5;
+	        background: #fff;
 	        margin-bottom: 320px;
 	    }
 	    .addr{
@@ -54,6 +51,9 @@
 	    #extraAddress{
 	        display: inline;
 	        width: 200px;
+	    }
+	    input{
+	    	margin-bottom: 10px !important;
 	    }
 	</style>
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/nav.css">
@@ -97,24 +97,24 @@
                 <!-- 주소 -->
             </div>
             <div class="addr">
-                <p>배송지정보</p>   
+                <p style="margin-top: 30px;">배송지정보</p>   
                 <!-- 1. 주소 입력 api 적용-->
                 <div class=" form-check-inline">
                     <input class="form-check-input" type="radio" name="addr" id="order_addr_old" value="기존배송지" checked>
-                    <label class="form-check-label" for="order_addr_old">기존배송지</label><br>
+                    <label class="form-check-label" for="order_addr_old">기존배송지</label>
                 </div>
                 <div class=" form-check-inline">
                     <input class="form-check-input" type="radio" name="addr" id="order_addr_new" value="신규배송지">
                     <label class="form-check-label" for="order_addr_new">신규배송지</label>
-                </div><br> 
+                </div>
                 <div id="selectAddr_curAddr"><br>
-                    <label for="staticAddr" >주소</label><br>
+                    <label for="staticAddr" >주소</label>
                     <input type="text" class="form-control" name="order_addr" id="order_addr" value="${dto.addr}" readonly>
-                </div><br>
-                <div id="selectAddr_newAddr">
+                </div>
+                <div id="selectAddr_newAddr" style="margin-top: 30px;">
                         <input type="text" id="postcode" placeholder="우편번호" class="form-control" readonly>
-                        <input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기" class="btn btn-outline-primary"><br>
-                        <input type="text" id="address" placeholder="주소" class="form-control" readonly><br>
+                        <input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기" class="btn btn-outline-primary">
+                        <input type="text" id="address" placeholder="주소" class="form-control" readonly>
                         <input type="text" id="detailAddress" placeholder="상세주소" class="form-control">
                         <input type="text" id="extraAddress" placeholder="참고항목" class="form-control" readonly>  
                         <input type="hidden" id="totalAddr">  
@@ -132,7 +132,7 @@
         <!-- 결제 수단 -->
         <div class="creditForm">
             <div class="credit">
-                <p>결제수단</p>
+                <p style="margin-top: 30px !important;">결제수단</p>
                 <div class=" form-check-inline">
                     <input class="form-check-input" type="radio" name="payment" id="payment" value="현장결제" checked>
                     <label class="form-check-label" for="payment">
@@ -153,13 +153,13 @@
                 </div>
             </div>
             <div id="selectPay_current">
-                <p class="datein"></p>
+                <p class="datein" style="margin-top: 15px !important;"></p>
             </div>
             <div id="selectPay_noBank">
-                <p>가상 계좌 : 12345678-876-123456 (보람은행)</p>
+                <p style="margin-top: 15px !important;">가상 계좌 : 12345678-876-123456 (보람은행)</p>
             </div>
             <div id="selectPay_transpay">
-                <p>QR코드</p>
+                <p style="margin-top: 15px !important;">QR코드</p>
                 <img src="${pageContext.request.contextPath}/reserve_img/kakaoQR.png" alt="카카오페이 홈페이지 연결" width="10%">
             </div>
                 <div class="mb-3">
