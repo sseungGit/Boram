@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>/views/review/updateform.jsp</title>
+<title>Review Page</title>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/nav.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/subFooter.css">
@@ -68,7 +68,7 @@
 			<textarea name="content" id="content">${dto.content }</textarea>
 		</div>
 		<button class="btn btn-outline-secondary" type="submit" onclick="submitContents(this);">수정</button>
-		<button class="btn btn-outline-secondary" type="reset">취소</button>
+		<button class="btn btn-outline-secondary" type="button" onclick="goBack()">취소</button>
 	</form>
 </div>
 <!-- SmartEditor 에서 필요한 javascript 로딩  -->
@@ -124,6 +124,10 @@
 		var nFontSize = 24;
 		oEditors.getById["content"].setDefaultFont(sDefaultFont, nFontSize);
 	}
+	 //취소 누르면 뒤로가기
+	 function goBack(){
+	     window.history.back();
+	   }	
 </script>
 <jsp:include page="/include/footer.jsp"></jsp:include>
 </body>

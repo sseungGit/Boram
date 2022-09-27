@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>/views/review/update.jsp</title>
+<title>Review Page</title>
 </head>
 <body>
 	<script>
