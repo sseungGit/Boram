@@ -5,9 +5,9 @@
 <table class="table">
 	<thead>
 		<tr>
-			<th>NO</th>
-			<th>품목</th>
-			<th>가격</th>
+			<th style="width:20%;">NO</th>
+			<th style="width:50%;">품목</th>
+			<th style="width:30%;">가격</th>
 		</tr>
 	</thead>
 	<tbody>
