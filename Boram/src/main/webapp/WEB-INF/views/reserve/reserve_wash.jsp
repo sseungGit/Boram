@@ -22,7 +22,7 @@
       <jsp:param value="reserve" name="subPage"/>
 </jsp:include>
 <div class="container">
-    <p>step02 상품선택</p>
+    <p class="prod">step02 상품선택</p>
     <main id="order_wrap">
         <div class="left">
             <img src="${pageContext.request.contextPath}/reserve_img/990A4A4A5DB90F5C2F.png" style="border-radius:2%;">

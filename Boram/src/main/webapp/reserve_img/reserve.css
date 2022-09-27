@@ -105,7 +105,7 @@ span{
     text-align: center;
     margin-top: 70px;
 }
-p{
+.prod{
     width: 1000px; margin: 0px auto; font-size: x-large; 
     padding-left: 15px; padding-bottom: 20px; font-weight: 550;
 }
