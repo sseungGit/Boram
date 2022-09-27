@@ -17,6 +17,7 @@
 <!-- Font awesome -->
 <script src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
 <style>
+	.btn{border-radius: 0px !important;}
 	#content{
 		height: 200px;
 		width: 750px;

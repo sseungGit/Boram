@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>/views/qna/list.jsp</title>
+<title>1:1문의</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" />
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
@@ -13,7 +13,9 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/subFooter.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/subnav.css">
 <style>
+	.btn{border-radius: 0px !important;}
 	* { font-family: 'Noto Sans KR', sans-serif !important;}
+	a:hover{color : rgba(0, 0, 0, 0.6) !important;}
 	.page-ui a{
 		text-decoration: none;
 		color: #000;
@@ -39,6 +41,7 @@
 	}
 	.question:hover{
 		cursor: pointer;
+		color : rgba(0, 0, 0, 0.6) !important;
 	}
 	.container{
 		margin-bottom: 200px;
@@ -57,7 +60,7 @@
 		<h1 style="font-size:25px;"><strong>1:1문의</strong></h1>
 		<span style="color:#696969; font-size:15px;">궁금하신 점이나 의견을 남겨주시면 성실히 답변해 드리겠습니다.</span>
 		<button class="btn btn-outline-dark" style="float:right" onclick="location.href='${pageContext.request.contextPath}/qna/insertform.do' "><i class="bi bi-plus"></i>문의하기</button>
-		<table class="table table-hover mt-5">
+		<table class="table mt-5">
 			<thead>
 				<tr>
 					<th scope="col">제목</th>

@@ -141,7 +141,7 @@
 		    		<!-- 예약안내  서브 네비바 -->
 					<ul id="subNavUl">
 						<li class="subNavItem ${param.subPage eq 'reserve' ? 'deco' : ''}">
-						  	<a class="active" href="price_guide.do">예약안내</a>
+						  	<a class="active" href="reserve_select.do">예약안내</a>
 						</li>
 					</ul>
 		    	</c:when>

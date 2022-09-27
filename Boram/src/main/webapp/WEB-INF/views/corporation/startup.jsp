@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>/views/corporation/startup</title>
+<title>창업안내</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/nav.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/subnav.css">
 

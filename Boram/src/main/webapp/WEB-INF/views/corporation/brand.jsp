@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>views/corporation/brand.jsp</title>
+<title>회사소개</title>
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/nav.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/subnav.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/subFooter.css">

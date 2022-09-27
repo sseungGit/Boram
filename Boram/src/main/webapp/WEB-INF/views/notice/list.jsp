@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>/views/notice/list.jsp</title>
 <style>
+	.btn{border-radius: 0px !important;}
 	* { font-family: 'Noto Sans KR', sans-serif !important;}
 	th, td{text-align:center !important;}
 	table a{text-decoration:none !important; color :black !important;}

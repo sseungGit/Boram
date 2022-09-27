@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>views/faq/list.jsp</title>
+<title>자주묻는질문</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" />
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
@@ -15,9 +15,10 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/subnav.css">
 
 <style>
+	.btn{border-radius: 0px !important;}
 	* { font-family: 'Noto Sans KR', sans-serif !important;}
 	th,td{text-align:center;}
-
+	a:hover{color : rgba(0, 0, 0, 0.6) !important;}
 	.page-ui a{
 		text-decoration: none;
 		color: #000;
@@ -49,6 +50,7 @@
 	}
 	.question:hover{
 		cursor: pointer;
+		color : rgba(0, 0, 0, 0.6) !important;
 	}
 	.answer{
 		display: none;
@@ -111,7 +113,7 @@
 		</div>
 		<button class="btn btn-outline-dark mb-3" id="qna" style="float:right" onclick="location.href='${pageContext.request.contextPath}/qna/list.do' ">1:1문의하러 가기</button>
 		<div id="faqTableDiv">
-			<table class="table table-hover" id="table">
+			<table class="table" id="table">
 				<thead>
 					<tr>
 						<th style="width:20%;">NO</th>

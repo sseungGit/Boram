@@ -13,11 +13,10 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/subFooter.css">
-<!--font-->
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
-<!-- Font awesome -->
 <script src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
 <style>
+	.btn{border-radius: 0px !important;}
+	* { font-family: 'Noto Sans KR', sans-serif !important;}
 	.page-ui a{
 		text-decoration: none;
 		color: #000;

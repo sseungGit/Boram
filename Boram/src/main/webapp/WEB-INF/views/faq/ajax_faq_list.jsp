@@ -4,9 +4,9 @@
 <table class="table table-hover" id="table">
 	<thead>
 		<tr>
-			<th scope="col">#</th>
-			<th scope="col">카테고리</th>
-			<th scope="col">제목</th>
+			<th style="width:20%;">NO</th>
+			<th style="width:15%;">카테고리</th>
+			<th style="width:65%;">제목</th>
 			<c:if test="${not empty id and manager == 'Y'}">
 			<th scope="col">수정</th>
 			<th scope="col">삭제</th>
@@ -45,8 +45,8 @@
 			</tr>
 			<tr class="answer" id="answer${tmp.num }">
 				<td colspan="100%">
-				<div>
-					<p style="text-align: left;">${tmp.content}</p>
+				<div style="text-align: left;  margin-left: 10%; ">
+					<p>${tmp.content}</p>
 				</div>
 				</td> 
 			</tr>
