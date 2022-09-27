@@ -8,11 +8,11 @@
 <meta charset="UTF-8">
 <title>views/faq/list.jsp</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/nav.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/subFooter.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/subnav.css">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/nav.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/subFooter.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/subnav.css">
 
 <style>
 	* { font-family: 'Noto Sans KR', sans-serif !important;}
@@ -49,6 +49,7 @@
 	}
 	.question:hover{
 		cursor: pointer;
+		color : rgba(0, 0, 0, 0.6) !important;
 	}
 	.answer{
 		display: none;
@@ -111,7 +112,7 @@
 		</div>
 		<button class="btn btn-outline-dark mb-3" id="qna" style="float:right" onclick="location.href='${pageContext.request.contextPath}/qna/list.do' ">1:1문의하러 가기</button>
 		<div id="faqTableDiv">
-			<table class="table table-hover" id="table">
+			<table class="table" id="table">
 				<thead>
 					<tr>
 						<th style="width:20%;">NO</th>
@@ -128,20 +129,20 @@
 					<c:set var="i" value="${i+1 }"/>
 					<tr class="question" data-num="${tmp.num }">
 						<td>${i }</td>						
-					<c:choose>
-						<c:when test="${tmp.category eq 'service' }">
-						<td>[서비스 이용]</td>
-						</c:when>
-						<c:when test="${tmp.category eq 'order' }">
-						<td>[주문·결제·배송]</td>
-						</c:when>
-						<c:when test="${tmp.category eq 'member' }">
-						<td>[회원정보]</td>
-						</c:when>
-						<c:when test="${tmp.category eq 'etc' }">
-						<td>[기타]</td>
-						</c:when>
-					</c:choose>							
+						<c:choose>
+							<c:when test="${tmp.category eq 'service' }">
+							<td>[서비스 이용]</td>
+							</c:when>
+							<c:when test="${tmp.category eq 'order' }">
+							<td>[주문·결제·배송]</td>
+							</c:when>
+							<c:when test="${tmp.category eq 'member' }">
+							<td>[회원정보]</td>
+							</c:when>
+							<c:when test="${tmp.category eq 'etc' }">
+							<td>[기타]</td>
+							</c:when>
+						</c:choose>							
 						<td>						
 							${tmp.title }<i class="bi bi-chevron-down" style="float:right"></i>
 						</td>
